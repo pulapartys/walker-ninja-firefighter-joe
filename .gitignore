@@ -1,0 +1,28 @@
+# Engine caches and local editor state
+.godot/
+.DS_Store
+.idea/
+.vscode/
+
+# MP3/MP4 and distribution packages stay out of git (course rule). The class repo root ignores *.wav, so game audio ships as OGG.
+*.[mM][pP]3
+*.[mM][pP]4
+*.avi
+*.mov
+exports/
+builds/
+
+# Per-run test output — the record lives in TEST-REPORT.md.
+# Keep evidence/build-manifest.json and evidence/screens/.
+evidence/mechanics-*.json
+evidence/keyboard-*.json
+
+# Local credentials/configuration
+.env
+.env.*
+!.env.example
+credentials/
+*.p12
+*.pfx
+
+# Git cannot ignore by size: inspect staged files before committing (>25 MB).
