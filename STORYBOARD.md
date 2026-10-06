@@ -311,3 +311,10 @@ Panel 6. Medium shot, low angle. The ninja firefighter leaping off a burning roo
 - **Result:** flying kick, arc arrow, and a three-point landing with impact lines.
 - **Mismatch:** the bag shows two people and a dog; the game has one person and one dog. Accepted for the storyboard because the moment (kung-fu escape, survivors in the bag, bored face) reads correctly. The in-game bag follows the code, not this sketch.
 - **Tweak if regenerating:** "exactly one person and one dog in the bag."
+
+## Revision 2026-10-05 — panel 3b: the toss goes up
+
+**Design change (mine), made while generating the toss pose:** the reckless toss is now **upward**. Without looking, mid-yawn, he flings the survivor sky-high, and they drop into his bag a moment later. It's funnier than the sideways toss over the shoulder and pushes *Too cool to care* harder.
+
+- **The sketch** `design/storyboard/03b-throw.png` still shows the old sideways toss. I'm keeping it as it is, as the record of the earlier design, rather than regenerating it.
+- **In the game:** his pose is CHAR-TOSS (arm thrown straight up). The survivor's flight is drawn by the game (CHANGE-BRIEF, "Revision 2026-10-05"), and it's optional if time runs short.

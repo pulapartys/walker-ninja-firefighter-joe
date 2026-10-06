@@ -88,3 +88,20 @@ Each sound fires from the code that already represents the event.
 | F6 | The sprite does not line up with the collision box (floating feet, offset body). | Draw the collision overlay on each pose; compare in-engine with debug collision shapes visible. |
 | F7 | Pixel art blurs when scaled. | Set the texture filter to Nearest; compare screenshots. |
 | F8 | The slice is unreadable with sound muted. | Play a full run muted; the death-reason text and poses must explain every event. |
+
+## Revision 2026-10-05 — what changed during pose generation
+
+The plan above is kept as written; these are the changes since.
+
+- **Assignment update:** animation is no longer required. Each character state is **one static image** that the game swaps in. "Sprite frames" above now means one image per state.
+- **Character size:** he will be **bigger** than the A1 firefighter. The art's detail disappears at the A1 size of about 64 px on screen; the exact size will be chosen during the build. A bigger character needs a bigger collision box and level adjustments (CHARACTER-SHEET, CHAR-REF-03).
+- **Pose-to-state changes:**
+  - CHAR-IDLE is now the standing side profile (`side-profile-game.png`), not "arms crossed".
+  - CHAR-WALK-A/B are replaced by one run pose, **CHAR-RUN** (the game has one speed).
+  - The kung-fu ready stance is kept as **CHAR-RESPAWN**, shown on retry (panel 5).
+- **Things the game draws, not the pose images:**
+  - **Water:** the hose pose (CHAR-SPRAY) has no water. The game already draws the water stream (`godot/game/session.gd`), starting at the nozzle (pointing right, about chest height).
+  - **Survivors:** the grab and toss poses (CHAR-RESCUE, CHAR-TOSS) have nobody in them. The game draws the person and the dog, so one image works for both.
+- **Rescue toss goes up (my design change):** instead of a sideways toss over the shoulder, he flings the survivor **straight up, sky-high**, without looking, and they drop into his bag (CHAR-TOSS shows his arm thrown up, mid-yawn).
+  - **Optional build step:** the game draws the survivor flying up and falling into the bag. It's a short code-drawn arc after the rescue event. If there isn't time, the survivor appears in the bag immediately, as in A1.
+  - It must stay visual only. The rescue counts at the moment of contact, as now, so the arc never changes game state.

@@ -33,6 +33,8 @@ Reference notes, in words:
 - Lighting: warm firelight from below, cool smoky shadows above.
 - Posing: martial-arts movie freeze-frames, held for a beat at the top of a jump.
 
+**Revision 2026-10-02 (under test):** while exploring the character I chose a **more realistic, crusty, ashy** style instead of the comic-book style above: ancient ninja / kung-fu clothing combined with firefighter gear, soot, scorched fabric, and a muscular adult build. The reasons for the original choice still apply, because the character must read at about 32 px. The realistic style is tested at game size before it replaces this direction (CHARACTER-SHEET, "Revision 2026-10-02").
+
 ## Audio direction
 
 - **Feel:** urgent, and funny. The music carries the urgency; the sound effects carry the comedy.
