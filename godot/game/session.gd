@@ -27,6 +27,15 @@ var fire_active: bool = true           # lethal + blocks the rescue until FULLY 
 var extinguish_ticks: int = 0          # frames until the fire is out (240 = full, 0 = out)
 var water_ticks: int = 0               # frames the water visual keeps pouring (lingers ~1 s)
 var near_fire: bool = false            # player in hose range this frame (for the prompt)
+# Rescue toss (visual only): the rescued survivor is grabbed, flung sky-high, and drops into
+# the bag. Game state (rescued, counts) changes at the touch, before any of this is drawn.
+const GRAB_TICKS := 15                 # grab pose, survivor held at the window
+const TOSS_UP_TICKS := 30              # flying up
+const TOSS_DOWN_TICKS := 30            # dropping into the bag
+const TOSS_HEIGHT := 150.0
+var flights: Array = []                # [{type, from: Vector2, t: int, launch, apex}]
+const BOW_TICKS := 75                  # the bow shows ~1.2 s before the "Rescue complete" card covers him
+var complete_ticks: int = 0
 
 func _ready() -> void:
 	process_physics_priority = 10
@@ -49,6 +58,16 @@ func _ready() -> void:
 	camera = Camera2D.new()
 	camera.position = Vector2(320, 180)
 	add_child(camera)
+	# ENV-BG: the generated skyline, fixed behind everything (a distant backdrop, so it doesn't scroll).
+	var bg_layer := CanvasLayer.new()
+	bg_layer.layer = -1
+	add_child(bg_layer)
+	var bg := TextureRect.new()
+	bg.texture = load("res://art/env/env_bg.png")
+	bg.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	bg.stretch_mode = TextureRect.STRETCH_SCALE
+	bg.size = Vector2(640, 360)
+	bg_layer.add_child(bg)
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	hud = Hud.new()
@@ -124,6 +143,7 @@ func restart_attempt() -> void:
 	fire_active = true
 	extinguish_ticks = 0
 	water_ticks = 0
+	flights.clear()
 	for s in survivors:
 		s.rescued = false
 		s.area.set_deferred("monitoring", true)
@@ -161,11 +181,16 @@ func resolve_contacts(fatal: bool, finished: bool) -> void:
 		retry_remaining = 0.55
 		player.enabled = false
 		player.velocity = Vector2.ZERO
+		if death_reason == "The fire got you.":
+			player.show_pose("burned")
+			retry_remaining = 0.9  # hold the burned pose long enough to read (was 0.55 s: unseen in playtest 2); still under the 1 s retry limit
 	elif finished:
 		state = State.COMPLETE
 		last_finish_time = elapsed
 		player.enabled = false
 		player.velocity = Vector2.ZERO
+		player.show_pose("celebrate")
+		complete_ticks = 0
 
 func _physics_process(delta: float) -> void:
 	if state == State.DYING:
@@ -186,7 +211,8 @@ func _physics_process(delta: float) -> void:
 		if fire_active and level.has("blocking_fire"):
 			var bf0: Array = level.blocking_fire
 			var fire_top: float = (float(bf0[1]) + float(bf0[3])) - fire_height()
-			if player.position.x + 9.0 > float(bf0[0]) and player.position.x - 9.0 < float(bf0[0]) + float(bf0[2]) and player.position.y > fire_top and player.position.y - 28.0 < float(bf0[1]) + float(bf0[3]):
+			var half_w: float = Player.BOX.x / 2.0
+			if player.position.x + half_w > float(bf0[0]) and player.position.x - half_w < float(bf0[0]) + float(bf0[2]) and player.position.y > fire_top and player.position.y - Player.BOX.y < float(bf0[1]) + float(bf0[3]):
 				hit_fire = true
 		var fatal := fell or timed_out or hit_fire
 		if fatal:
@@ -208,6 +234,7 @@ func _physics_process(delta: float) -> void:
 				fire_active = false
 		if water_ticks > 0:
 			water_ticks -= 1
+		player.hosing = water_ticks > 0
 		# Touch to rescue -- only while NOT in a fatal state, so you can't rescue THROUGH fire.
 		if not fatal:
 			for s in survivors:
@@ -217,6 +244,9 @@ func _physics_process(delta: float) -> void:
 					rescued_count += 1
 					player.rescued = rescued_count
 					player.bag_types.append(s.type)
+					player.bag_in_flight += 1
+					player.play_actions([["grab", GRAB_TICKS], ["toss", TOSS_UP_TICKS]])
+					flights.append({"type": s.type, "from": Vector2(s.x, s.y), "t": 0})
 					saved_popup_ticks = 55
 					saved_popup_pos = Vector2(s.x - 18.0, s.y - 34.0)
 		var all_rescued := rescued_count >= survivors.size()
@@ -234,6 +264,17 @@ func _physics_process(delta: float) -> void:
 			# State machine unchanged; only the COMPLETE condition gains "both rescued".
 			resolve_contacts(fatal, at_exit and all_rescued)
 		camera.position.x = clampf(player.position.x + 100, 320, float(level.width) - 320)
+	if state == State.COMPLETE:
+		complete_ticks += 1
+	for fl in flights:
+		fl.t += 1
+		if fl.t == GRAB_TICKS:  # toss starts: launch from his raised hand, straight up
+			fl.launch = player.position + Vector2(0.0, -62.0)
+			fl.apex = fl.launch + Vector2(0.0, -TOSS_HEIGHT)
+		if fl.t >= GRAB_TICKS + TOSS_UP_TICKS + TOSS_DOWN_TICKS:
+			player.bag_in_flight = maxi(player.bag_in_flight - 1, 0)
+			player.queue_redraw()
+	flights = flights.filter(func(fl): return fl.t < GRAB_TICKS + TOSS_UP_TICKS + TOSS_DOWN_TICKS)
 	if is_instance_valid(hud):
 		hud.queue_redraw()
 	queue_redraw()  # refresh the level's own dynamic draw: survivors vanish, SAVED! animates, exit unlocks
@@ -266,14 +307,7 @@ func _draw() -> void:
 	var font := ThemeDB.fallback_font
 	var ink := Color("25354a")
 	# All visual assets are original Godot vector drawing, not recovered art.
-	var lw: int = int(level.width)
-	draw_rect(Rect2(-400, -260, float(lw) + 800.0, 1000), Color("f6f3ec"))
-	for x in range(0, lw + 1, 32):
-		draw_line(Vector2(x, 64), Vector2(x, 320), Color("e7e5df"), 1)
-	for y in range(96, 321, 32):
-		draw_line(Vector2(0, y), Vector2(lw, y), Color("e7e5df"), 1)
-	for x in range(100, lw, 340):
-		draw_colored_polygon(PackedVector2Array([Vector2(x-90,320),Vector2(x+50,180),Vector2(x+190,320)]), Color("e4e8e3"))
+	# The A1 cream sky, grid, and hills are replaced by the generated ENV-BG (see _ready).
 	# Burning buildings — decorative facades drawn BEHIND the ledges (no collision).
 	for b in level.get("buildings", []):
 		var bl := Rect2(b[0], b[1], b[2], b[3])
@@ -286,10 +320,12 @@ func _draw() -> void:
 				draw_rect(Rect2(wx + 2, wy + 2, 9, 13), Color("f2ecd8"))
 	for entry in level.solids:
 		var r := Rect2(entry[0], entry[1], entry[2], entry[3])
-		draw_rect(r, ink)
+		# Light concrete with a dark outline: the A1 navy (#25354a) vanished against ENV-BG's dark fog (#2c3547).
+		draw_rect(Rect2(r.position - Vector2(1, 1), r.size + Vector2(2, 2)), Color("1b2230"))
+		draw_rect(r, Color("b8b2a6"))
 		draw_rect(Rect2(r.position, Vector2(r.size.x, 4)), Color("438e7d"))
 		for x in range(int(r.position.x)+12, int(r.end.x), 24):
-			draw_line(Vector2(x, r.position.y+12), Vector2(x+7, r.position.y+19), Color("405166"), 1)
+			draw_line(Vector2(x, r.position.y+12), Vector2(x+7, r.position.y+19), Color("8f897d"), 1)
 	# Fire hazard drawn as bold flames, data-driven from the hazard rect. The VISUAL is
 	# enlarged for readability but the COLLISION (the rect, built in _add_area) is
 	# UNCHANGED, so the jump-over margins verified by flame-clearance-positive still
@@ -321,20 +357,20 @@ func _draw() -> void:
 	draw_rect(Rect2(fr.position.x + 2.0, fr.position.y + fr.size.y / 2.0 - 1.0, fr.size.x - 4.0, 2.0), ink)
 	draw_rect(Rect2(fr.position.x - 2.0, fr.end.y - 2.0, fr.size.x + 4.0, 3.0), ink)
 	if all_saved:
-		draw_string(font, Vector2(fr.position.x - 22.0, fr.position.y - 14.0), "JUMP OUT →", HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("287c68"))
+		_label(Vector2(fr.position.x - 22.0, fr.position.y - 14.0), "JUMP OUT →", 13, Color("7fe0b0"))
 	else:
 		var lx: float = fr.position.x + fr.size.x / 2.0
 		var ly: float = fr.position.y + fr.size.y / 2.0
 		draw_rect(Rect2(lx - 4.0, ly - 1.0, 8.0, 7.0), Color("3a2f1a"))
 		draw_arc(Vector2(lx, ly - 1.0), 3.0, PI, TAU, 8, Color("3a2f1a"), 1.5)
-		draw_string(font, Vector2(fr.position.x - 40.0, fr.position.y - 14.0), "FIRE ESCAPE", HORIZONTAL_ALIGNMENT_LEFT, -1, 13, ink)
+		_label(Vector2(fr.position.x - 40.0, fr.position.y - 14.0), "FIRE ESCAPE", 13, Color("f6f3ec"))
 	if locked_cue_ticks > 0:
-		draw_string(font, Vector2(fr.position.x - 66.0, fr.position.y - 30.0), "Rescue everyone first!", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color("a23e36"))
+		_label(Vector2(fr.position.x - 66.0, fr.position.y - 30.0), "Rescue everyone first!", 14, Color("ff7a66"))
 	# "SAVED!" popup that rises + fades at the moment of a rescue.
 	if saved_popup_ticks > 0:
 		var pa: float = clampf(float(saved_popup_ticks) / 55.0, 0.0, 1.0)
 		var rise: float = float(55 - saved_popup_ticks) * 0.35
-		draw_string(font, saved_popup_pos - Vector2(0.0, rise), "SAVED!", HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color(0.16, 0.49, 0.41, pa))
+		_label(saved_popup_pos - Vector2(0.0, rise), "SAVED!", 16, Color(0.5, 0.88, 0.69, pa))
 	# Trapped survivors (un-rescued only), each with a HELP! bubble to draw the player in.
 	for s in survivors:
 		if s.rescued:
@@ -411,14 +447,55 @@ func _draw() -> void:
 				draw_colored_polygon(PackedVector2Array([Vector2(fcx-2, bbase), Vector2(fcx, minf(ftop+1.0, bbase)), Vector2(fcx+2, bbase)]), Color("ffe95a"))
 		if water_ticks > 0:
 			var tgt := Vector2(bx + bw / 2.0, bbase - maxf(fire_height() * 0.5, 6.0))
-			var src := player.position + Vector2(7.0 * player.facing, -16.0)
+			var src := player.position + Vector2(Player.NOZZLE.x * player.facing, Player.NOZZLE.y)
 			draw_line(src, tgt, Color(0.42, 0.72, 1.0, 0.85), 3.0)
 			draw_circle(tgt, 7.0, Color(0.6, 0.82, 1.0, 0.55))
 		if near_fire and fire_active and extinguish_ticks == 0:
-			draw_string(font, Vector2(bx - 40.0, byy - 56.0), "Press W to hose the fire", HORIZONTAL_ALIGNMENT_LEFT, -1, 13, ink)
+			_label(Vector2(bx - 40.0, byy - 56.0), "Press W to hose the fire", 13, Color("f6f3ec"))
 	# Intro context labels near the spawn — hidden while the menu/pause/complete card is up.
 	if state == State.PLAYING or state == State.DYING:
-		draw_string(font, Vector2(33, 251), "01 / TO THE BUILDINGS", HORIZONTAL_ALIGNMENT_LEFT, -1, 15, ink)
-		draw_string(font, Vector2(33, 273), "Save the person + dog, then out the B2 roof.", HORIZONTAL_ALIGNMENT_LEFT, -1, 13, ink)
-	draw_string(font, Vector2(1010, 200), "B1 / SAVE THE PERSON", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, ink)
-	draw_string(font, Vector2(1560, 138), "B2 / SAVE THE DOG -> ROOF", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, ink)
+		_label(Vector2(33, 150), "01 / TO THE BUILDINGS", 15, Color("f6f3ec"))
+		_label(Vector2(33, 172), "Save the person + dog, then out the B2 roof.", 13, Color("f6f3ec"))
+	_draw_flights()
+	_label(Vector2(1010, 200), "B1 / SAVE THE PERSON", 14, Color("f6f3ec"))
+	_label(Vector2(1560, 138), "B2 / SAVE THE DOG -> ROOF", 14, Color("f6f3ec"))
+
+# Survivors mid-toss: held at the window during the grab, flung straight up, then dropped
+# into the bag on his back (which moves with him). Small code-drawn figures, spinning.
+func _draw_flights() -> void:
+	var ink := Color("25354a")
+	for fl in flights:
+		var t: int = fl.t
+		var from: Vector2 = fl.from + Vector2(0.0, -12.0)
+		var launch: Vector2 = fl.get("launch", from)
+		var apex: Vector2 = fl.get("apex", from + Vector2(0.0, -TOSS_HEIGHT))
+		var bag: Vector2 = Player.BAG.get(player.pose, Player.BAG.idle)
+		var into := player.position + Vector2(bag.x * player.facing, bag.y - 6.0)
+		var pos := from
+		var spin := 0.0
+		if t >= GRAB_TICKS + TOSS_UP_TICKS:
+			var k := float(t - GRAB_TICKS - TOSS_UP_TICKS) / float(TOSS_DOWN_TICKS)
+			pos = Vector2(lerpf(apex.x, into.x, k), lerpf(apex.y, into.y, k * k))
+			spin = float(t) * 0.5
+		elif t >= GRAB_TICKS:
+			var k := float(t - GRAB_TICKS) / float(TOSS_UP_TICKS)
+			pos = launch.lerp(apex, 1.0 - (1.0 - k) * (1.0 - k))
+			spin = float(t) * 0.5
+		draw_set_transform(pos, spin, Vector2.ONE)
+		if fl.type == "dog":
+			draw_rect(Rect2(-7, -3, 12, 7), ink)
+			draw_rect(Rect2(-6, -2, 10, 5), Color("d59243"))
+			draw_circle(Vector2(6, -3), 4.0, ink)
+			draw_circle(Vector2(6, -3), 3.0, Color("d59243"))
+		else:
+			draw_rect(Rect2(-4, -2, 8, 10), ink)
+			draw_rect(Rect2(-3, -1, 6, 8), Color("46a0e0"))
+			draw_circle(Vector2(0, -6), 4.5, ink)
+			draw_circle(Vector2(0, -6), 3.5, Color("f2c9a0"))
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+# World text: light or colored fill with a dark outline, readable on ENV-BG and on the buildings.
+func _label(pos: Vector2, text: String, size: int, color: Color) -> void:
+	var font := ThemeDB.fallback_font
+	draw_string_outline(font, pos, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 4, Color(0.106, 0.133, 0.188, color.a))
+	draw_string(font, pos, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)

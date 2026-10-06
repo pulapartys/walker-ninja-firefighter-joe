@@ -40,6 +40,8 @@ func _draw() -> void:
 		centered(game.death_reason, 155, 21, Color("a23e36"))
 		centered("Back at the start in a moment.", 180, 13)
 		return
+	if game.state == game.State.COMPLETE and game.complete_ticks < game.BOW_TICKS:
+		return  # let the player see the bow first (storyboard panel 6)
 	draw_rect(Rect2(0,74,640,261), Color(0.10,0.16,0.20,0.16))
 	draw_rect(Rect2(163,103,318,159), Color("fffdf7"))
 	draw_rect(Rect2(163,103,318,4), Color("ef875f"))

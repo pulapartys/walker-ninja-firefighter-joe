@@ -35,7 +35,7 @@ func run() -> void:
 	check("launch-grounded", game.player.is_on_floor() and game.state == Game.State.PLAYING, {"position": str(game.player.position), "engine": Engine.get_version_info().string})
 	game.player.test_axis = 1
 	await steps(8)
-	check("speed-cap", is_equal_approx(game.player.velocity.x,160), {"velocity_x": game.player.velocity.x})
+	check("speed-cap", is_equal_approx(game.player.velocity.x,120), {"velocity_x": game.player.velocity.x})
 	game.player.test_axis = 0
 	await steps(5)
 	check("neutral-stop", is_zero_approx(game.player.velocity.x), {"velocity_x": game.player.velocity.x})
@@ -59,7 +59,8 @@ func run() -> void:
 		min_y = minf(min_y, game.player.position.y)
 		if i == 12:
 			game.player.test_jump_pressed = true
-	check("fixed-jump-and-no-double", game.player.jumps == 1 and absf((320-min_y)-53.3333) < 5, {"rise_px":320-min_y, "jumps":game.player.jumps})
+	# Designed rise = jump_velocity^2 / (2 * gravity) = 320^2 / 1600 = 64 px (was 53.3 with gravity 960; changed 2026-10-06, option A).
+	check("fixed-jump-and-no-double", game.player.jumps == 1 and absf((320-min_y)-64.0) < 5, {"rise_px":320-min_y, "jumps":game.player.jumps})
 	await steps(30)
 	check("held-jump-no-bounce", game.player.jumps == 1 and game.player.is_on_floor(), {"jumps":game.player.jumps})
 	# Actual geometry fixtures at a ledge; tick ages exercise inclusive 6 / expired 7.
@@ -105,7 +106,7 @@ func run() -> void:
 	check("actual-spike-collision", game.state == Game.State.DYING and game.deaths == 1, {"state":game.state,"deaths":game.deaths})
 	game.resolve_contacts(true,true)
 	check("duplicate-death-ignored", game.deaths == 1, {"deaths":game.deaths})
-	await steps(38)
+	await steps(58)  # was 38: a fire death now holds the burned pose 0.9 s (still within twenty-retries' 60-tick limit)
 	check("respawn", game.state == Game.State.PLAYING and game.player.position.distance_to(Vector2(64,320)) < 1, {"state":game.state,"position":str(game.player.position)})
 	game.restart_attempt()
 	check("manual-restart-not-death", game.deaths == 1, {"deaths":game.deaths})

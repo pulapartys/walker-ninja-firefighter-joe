@@ -17,6 +17,29 @@ var test_axis: float = 0.0
 var test_jump_pressed: bool = false
 var test_jump_held: bool = false
 var test_water_pressed: bool = false  # hose input hook for the scripted route / tests
+# Extinguisho art: one static generated image per state, swapped in (visual only; never read by gameplay).
+const ART_DIR := "res://art/character/"
+const BOX := Vector2(20, 40)   # collision box; feet at the origin (CHARACTER-SHEET, collision option A)
+const LAND_TICKS := 20         # landing pose holds this long after real air time (was 8: too fast to see)
+const NOZZLE := Vector2(33, -27.5)  # hose nozzle tip in the hose pose (game px, facing right): the water starts here
+# Rescue bag center per pose (game px, facing right): on his back at the hip, measured on each image.
+const BAG := {"idle": Vector2(-10, -30), "respawn": Vector2(-13, -20), "run": Vector2(-8, -21),
+	"jump_crouch": Vector2(-9, -30), "rising": Vector2(-10, -18), "falling": Vector2(-12, -16),
+	"landing": Vector2(-8, -20), "hose": Vector2(-10, -19), "grab": Vector2(-10, -27),
+	"toss": Vector2(-10, -31), "burned": Vector2(-10, -30), "celebrate": Vector2(-9, -27)}
+var pose: String = "idle"
+var art: Node2D
+var sprite: Sprite2D
+var textures := {}
+var anchors := {}
+var jumped_this_air: bool = false
+var air_ticks: int = 0
+var land_ticks: int = 0
+var was_on_floor: bool = true
+var hosing: bool = false        # water is pouring (set by session)
+var bag_in_flight: int = 0      # survivors still flying toward the bag (set by session); their heads appear on landing
+var action_queue: Array = []    # timed poses that override movement, e.g. [["grab", 15], ["toss", 27]]
+var action_cancel_on_move: bool = false
 
 func _ready() -> void:
 	name = "Player"
@@ -24,11 +47,69 @@ func _ready() -> void:
 	collision_mask = 1
 	floor_snap_length = 1.0
 	var shape := RectangleShape2D.new()
-	shape.size = Vector2(18, 28)
+	shape.size = BOX
 	var collider := CollisionShape2D.new()
 	collider.shape = shape
-	collider.position = Vector2(0, -14)
+	collider.position = Vector2(0, -BOX.y / 2.0)
 	add_child(collider)
+	var info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(ART_DIR + "anchors.json"))
+	anchors = info.anchors
+	for state in anchors:
+		textures[state] = load(ART_DIR + state + ".png")
+	art = Node2D.new()
+	art.show_behind_parent = true  # the code-drawn rescue bag stays on top of the art
+	add_child(art)
+	sprite = Sprite2D.new()
+	sprite.centered = false
+	art.add_child(sprite)
+	show_pose("idle")
+
+# Swap the state image. The anchor (bottom-center of the collision box in texture px)
+# lands on the origin; the holder's negative x scale mirrors the art when facing left.
+func show_pose(state: String) -> void:
+	pose = state
+	sprite.texture = textures[state]
+	var a: Array = anchors[state]
+	sprite.position = -Vector2(a[0], a[1])
+	art.scale = Vector2(0.5 * facing, 0.5)
+	queue_redraw()  # the bag follows the pose
+
+# Timed state poses (grab, toss, respawn), played in order and held for their tick count.
+func play_actions(steps: Array, cancel_on_move: bool = false) -> void:
+	action_queue = steps.duplicate(true)
+	action_cancel_on_move = cancel_on_move
+	show_pose(action_queue[0][0])
+
+func _update_pose() -> void:
+	var on_floor := is_on_floor()
+	if on_floor:
+		if not was_on_floor and air_ticks > 10:
+			land_ticks = LAND_TICKS
+		air_ticks = 0
+		jumped_this_air = false
+	else:
+		air_ticks += 1
+	was_on_floor = on_floor
+	if land_ticks > 0:
+		land_ticks -= 1
+	if not action_queue.is_empty() and action_cancel_on_move and (absf(velocity.x) > 8.0 or not on_floor):
+		action_queue.clear()
+	if not action_queue.is_empty():
+		show_pose(action_queue[0][0])
+		action_queue[0][1] -= 1
+		if action_queue[0][1] <= 0:
+			action_queue.pop_front()
+	elif not on_floor:
+		# A jump is one flying kick all the way; walking off a ledge is the meditating fall.
+		show_pose("rising" if jumped_this_air else "falling")
+	elif land_ticks > 0:
+		show_pose("landing")
+	elif absf(velocity.x) > 8.0:
+		show_pose("run")
+	elif hosing:
+		show_pose("hose")
+	else:
+		show_pose("idle")
 
 func reset_at(spawn: Vector2) -> void:
 	position = spawn
@@ -41,6 +122,13 @@ func reset_at(spawn: Vector2) -> void:
 	jumps = 0
 	rescued = 0
 	bag_types.clear()
+	jumped_this_air = false
+	air_ticks = 0
+	land_ticks = 0
+	was_on_floor = true
+	hosing = false
+	bag_in_flight = 0
+	play_actions([["respawn", 30]], true)  # snaps into the ready stance; any movement ends it
 	queue_redraw()
 
 func _physics_process(delta: float) -> void:
@@ -68,48 +156,33 @@ func _physics_process(delta: float) -> void:
 		opportunity_consumed = true
 		jump_request_tick = -1000
 		jumps += 1
+		jumped_this_air = true
 	move_and_slide()
 	position.x = maxf(position.x, 10.0)
+	_update_pose()
 	queue_redraw()
 
 func _draw() -> void:
-	# Firefighter ("Firefighter Rescue"). Original geometric drawing — no imported art.
-	# Collider (18x28) and movement unchanged; pure repaint. The solid body fills the
-	# collider; the helmet, air tank, and rescue bag extend a few px past it cosmetically.
-	var coat := Color("2c3e50")     # dark turnout coat
-	var stripe := Color("f4d03f")   # reflective yellow band
-	var helmet := Color("c0392b")   # red fire helmet
+	# The body is the generated art (sprite above). Only the rescue bag is still code-drawn:
+	# the art has no bag, and rescued survivors ride in it (person or dog head per rescue).
+	# Same drawing as Assignment 1, doubled, placed per pose on his back. Hidden until the
+	# first rescue, so the empty bag doesn't cover the generated art.
+	if bag_types.is_empty():
+		return
+	var f := facing                 # +1 right, -1 left
+	var c: Vector2 = BAG.get(pose, BAG.idle)
+	draw_set_transform(Vector2(c.x * f, c.y), 0.0, Vector2(2.0, 2.0))
 	var ink := Color("1b2a3f")      # outline
 	var skin := Color("e8b98f")     # face
 	var bag_col := Color("e67e22")  # orange rescue duffel
 	var bag_dark := Color("b8621b") # bag seam
-	var tank := Color("9aa4ab")     # air tank
-	var gold := Color("f1c40f")     # helmet badge
-	var f := facing                 # +1 right, -1 left
-	var stride := sin(float(tick) * 0.7) * 2.0 if is_on_floor() and absf(velocity.x) > 8 else 0.0
-	# pale rim light so the dark suit separates from dark ledges + burning interiors
-	var rim := Color(0.88, 0.94, 0.99, 0.85)
-	draw_rect(Rect2(-10, -31, 20, 27), rim)
-	# boots to the feet, step when walking
-	draw_rect(Rect2(-5, -4, 3, 4 + stride), ink)
-	draw_rect(Rect2(2, -4, 3, 4 - stride), ink)
-	# body: coat outline, dark coat, reflective stripe
-	draw_rect(Rect2(-9, -19, 18, 15), ink)
-	draw_rect(Rect2(-7, -17, 14, 13), coat)
-	draw_rect(Rect2(-7, -12, 14, 2), stripe)
-	# air tank high on the back (mirrors with facing)
-	var tank_left := -10.0 if f > 0 else 7.0
-	draw_rect(Rect2(tank_left - 0.5, -21, 4, 8), ink)
-	draw_rect(Rect2(tank_left, -20, 3, 6), tank)
-	# rescue duffel on the back hip (mirrors); rescued survivors ride here
-	var bag_left := -12.0 if f > 0 else 5.0
-	draw_rect(Rect2(bag_left - 1.0, -13, 9, 9), ink)
-	draw_rect(Rect2(bag_left, -12, 7, 7), bag_col)
-	draw_rect(Rect2(bag_left, -12, 7, 2), bag_dark)
+	draw_rect(Rect2(-4.5, -4.5, 9, 9), ink)
+	draw_rect(Rect2(-3.5, -3.5, 7, 7), bag_col)
+	draw_rect(Rect2(-3.5, -3.5, 7, 2), bag_dark)
 	# rescued survivors ride in the bag — a clear head per rescue (grows as you save more)
-	for i in range(bag_types.size()):
-		var hx := bag_left + 2.5 + float(i) * 4.5
-		var hyy := -15.5
+	for i in range(bag_types.size() - bag_in_flight):
+		var hx := (-1.0 + float(i) * 4.5) * f
+		var hyy := -7.0
 		if String(bag_types[i]) == "dog":
 			draw_colored_polygon(PackedVector2Array([Vector2(hx-3, hyy-1), Vector2(hx-2, hyy-6), Vector2(hx+0.5, hyy-1)]), Color("6b4420"))  # left ear
 			draw_colored_polygon(PackedVector2Array([Vector2(hx+0.5, hyy-1), Vector2(hx+2, hyy-6), Vector2(hx+3, hyy-1)]), Color("6b4420"))  # right ear
@@ -119,16 +192,3 @@ func _draw() -> void:
 			draw_circle(Vector2(hx, hyy), 3.2, skin)                 # person head
 			draw_rect(Rect2(hx - 3.0, hyy - 3.6, 6.0, 2.2), Color("3a2f1a"))  # hair
 			draw_circle(Vector2(hx + 1.2 * f, hyy), 0.8, ink)        # eye
-	# head (skin) with outline
-	draw_rect(Rect2(-6, -25, 12, 7), ink)
-	draw_rect(Rect2(-5, -24, 10, 5), skin)
-	# helmet: dome + brim + back beavertail + gold front badge (mirrors)
-	draw_rect(Rect2(-7, -30, 14, 6), ink)
-	draw_rect(Rect2(-6, -29, 12, 5), helmet)
-	draw_rect(Rect2(-8, -25, 16, 2), helmet)
-	var tail_left := -12.0 if f > 0 else 8.0
-	draw_rect(Rect2(tail_left, -25, 4, 3), helmet)
-	var badge_x := 1.0 if f > 0 else -4.0
-	draw_rect(Rect2(badge_x, -28, 3, 3), gold)
-	# eye on the front of the face
-	draw_circle(Vector2(2.5 * f, -21), 1.2, ink)

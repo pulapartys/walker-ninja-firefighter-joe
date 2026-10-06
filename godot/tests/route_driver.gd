@@ -13,7 +13,8 @@ func step(player: CharacterBody2D) -> void:
 	player.test_jump_held = false
 	player.test_water_pressed = false
 	# On B1's window ledge (in the ~40px runway before the fire), hose it, then wait ~4 s.
-	if not hosed and player.is_on_floor() and player.position.y > 232.0 and player.position.y < 248.0 and player.position.x > 1188.0 and player.position.x < 1245.0:
+	# x > 1204: inside the game's hose range (fire x - 50); at speed 120 he lands short of the old 1188 mark.
+	if not hosed and player.is_on_floor() and player.position.y > 232.0 and player.position.y < 248.0 and player.position.x > 1204.0 and player.position.x < 1245.0:
 		player.test_water_pressed = true
 		hosed = true
 		hose_wait = 255

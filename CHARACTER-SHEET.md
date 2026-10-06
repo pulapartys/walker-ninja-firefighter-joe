@@ -645,3 +645,28 @@ Change only the smoke: make the dark-gray smoke wisps shorter so they stay fully
 
 **Hand edit on try 1 (done by Claude, with my OK):** the top 60 px rows of the image were faded linearly into the background color, so the smoke tips fade out instead of being cut. The smoke now ends 28 px below the top edge. Nothing else in the image changed (only background and smoke are in those rows).
 - **File:** `design/character/poses/pose11-burned.png`, the faded version, resized to 800 px wide (0.78 factor).
+
+### Pose 12, celebrate (CHAR-BOW) · try 1 2026-10-05 · bow edits failed · try 2 (12b, new chat) accepted 2026-10-06
+
+**What I wanted:** the end of the level (`COMPLETE`, storyboard panel 6): a deadpan formal kung-fu bow after the escape. Pillars: *Every move is a kata* and *Too cool to care*.
+
+**Try 1 · rejected.** Sent in the "Character Concept Sheet" chat with `side-profile-game.png` attached, using the revised header and the planned pose line ("Kung-fu salute: right fist pressed into his open left palm in front of his chest, a slow formal bow. Deadpan face."). *The prompt text here is reconstructed from the plan, not copied from the chat.*
+- **Result:** a true side profile, gear matching, but he stands **upright with his palms pressed together**: no bow, and almost the same shape as idle. At game size it would not read as a different state.
+- Thumbnail: `rejected/CHAR-BOW-pose12-salute-no-bow.png`.
+
+**Bow edits · failed.** I asked ChatGPT twice to edit try 1 into a bow; both times it returned an error and no image (possibly because the chat had become very long, or the image wasn't attached). Nothing to judge.
+
+**Try 2 (12b) · accepted.** A **new chat** ("Character Profile Prompt", Plus, Instant mode), with `side-profile-game.png` attached. Claude wrote the prompt with the bow built into the pose line:
+
+```
+Use the attached image as the exact character reference: same face, build, outfit, colors, soot, and scale. Single image only: one character, full body, TRUE SIDE PROFILE facing right (chest not turned toward the camera), plain flat cream / off-white background, no scenery, no text. His body is turned fully sideways like the reference: we see only his left side, his back faces the left edge of the image, only one eye is visible.
+
+Pose: A formal kung-fu bow: his upper body bent forward at the waist about 45 degrees, head lowered, his right fist pressed into his open left palm in front of his chest, feet together. Deadpan, bored face.
+```
+
+- **Result** (1024×1536, `pose12b.png`): a clear forward bow with the head lowered, true side profile, one belt pouch, gear and colors matching the reference.
+- **Off:** the hands are palms pressed together, not a fist in a palm. Minor; it still reads as a formal bow, and the hands don't show at game size.
+- **Decision (mine):** accepted 12b. Its bent shape is distinct from idle at game size.
+- **File:** `design/character/poses/pose12-celebrate.png`, resized to 800 px wide (0.78 factor).
+
+**Pose count:** 12 labeled pose images (idle, poses 1–9, 11, 12) plus the turnaround.

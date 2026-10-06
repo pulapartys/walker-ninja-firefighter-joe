@@ -35,19 +35,34 @@ func run() -> void:
 		if game.state == Game.State.DYING: break
 	assert(game.state == Game.State.DYING)
 	await capture("02-failure")
+	await capture("state-burned")
 	game.state = Game.State.MENU
 	game.start_session()
+	# Retry stance, then idle after standing still for a moment (no input).
+	game.player.test_axis = 0.0
+	await step()
+	await capture("state-respawn")
+	for i in range(35): await step()
+	await capture("state-idle")
 	var route = Route.new()
 	var gap_captured := false
-	for i in range(900):
+	var seen := {}
+	# 3000 ticks, as in test_game.gd: the route now waits ~4 s for the hose, so 900 was too short.
+	for i in range(3000):
 		route.step(game.player)
 		await step()
 		if not gap_captured and game.player.position.x > 463 and game.player.position.y < 300:
 			await capture("03-jump")
 			gap_captured = true
+		# First real occurrence of each character state image during the route.
+		if not seen.has(game.player.pose):
+			seen[game.player.pose] = true
+			await capture("state-" + game.player.pose)
 		if game.state != Game.State.PLAYING: break
+	print("ROUTE END state=%d deaths=%d pos=%s reason=%s rescued=%d" % [game.state, game.deaths, str(game.player.position), game.death_reason, game.rescued_count])
 	assert(game.state == Game.State.COMPLETE, "Input route did not complete")
 	await capture("04-complete")
+	await capture("state-celebrate")
 	print("VISUAL ROUTE: completed with %d deaths" % game.deaths)
 	game.queue_free()
 	await process_frame
