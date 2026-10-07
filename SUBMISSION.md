@@ -12,7 +12,7 @@
 - **Generative models used (name, version, where run, license):**
   - ChatGPT image generation (Instant mode; model name not shown), chatgpt.com, ChatGPT Plus on OpenAI's free student offer, OpenAI Terms of Use: storyboard sketches, character references and poses, ENV-BG, ENV-FIRE
   - ElevenLabs Music ("Music v2"), elevenlabs.io free plan; Eleven Music terms: attribution "Created in collaboration with ElevenLabs" given; downloads not permitted on the free plan, so recorded from playback with Audacity (approved by the course staff): music loop
-  - ElevenLabs Sound Effects (version not shown), elevenlabs.io free plan; free plan = non-commercial, attribution "elevenlabs.io" given: event sounds and the siren
+  - ElevenLabs Sound Effects (version not shown), elevenlabs.io free plan; free plan = non-commercial, attribution "elevenlabs.io" given: event sounds
 - **Final film URL and filename:** *(course media storage link)* · *(filename)*
 - **Final film SHA-256:** *(checksum)*
 - **Summary of my work:** *(fill in your own words: the design decisions, what you accepted or rejected and why, what you playtested and changed)*

@@ -48,7 +48,7 @@ Automated tests (from `godot/`):
 - **Character:** 11 generated state images swapped by game state: idle, run, flying-kick jump, meditating fall, landing, hose, rescue grab, upward toss, burned, respawn stance, and a bow at the end. Facing left mirrors the art. Collision box 20×40 (CHARACTER-SHEET.md, collision overlay).
 - **Environment:** a generated smoky city skyline (ENV-BG v2) behind the level, and generated flames (ENV-FIRE) on every fire hazard; the fire blocking the person shrinks as it's hosed.
 - **Failure punchline and win:** on a fire death (held 2 s; R retries at once) the generated DEVASTATED close-up pops up next to "The fire got you."; on the win, the bow close-up pops up.
-- **Sound:** generated sound effects on real game events: jump, hose, rescue toss, fire death, level complete, plus a fire-truck siren when a session starts. Each fires exactly once per event (`tests/test_audio.gd`). Muting changes nothing in play.
+- **Sound:** generated sound effects on real game events: jump, hose, rescue toss, fire death, level complete. Each fires exactly once per event (`tests/test_audio.gd`). Muting changes nothing in play.
 - **Music:** a 16-bar, 150 BPM generated loop (ElevenLabs Music) that pauses on pause, dips on a fire death, continues on retry, and stops on the win (`tests/test_audio.gd`).
 - **Design and evidence:** CONCEPT.md, STORYBOARD.md, CHARACTER-SHEET.md, CHANGE-BRIEF.md (plan and predictions), SOURCES.md (models and asset log), TEST-REPORT.md, ../FRICTIONAL.md (design log), rejected outputs in `rejected/`, in-engine screenshots in `evidence/screens-web/`.
 

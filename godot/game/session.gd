@@ -40,7 +40,7 @@ var complete_ticks: int = 0
 # Audio (CHANGE-BRIEF event-to-sound map). Every sound plays AFTER the state change it reports;
 # nothing reads a sound or a mute flag, so a missing or muted sound never changes what happens.
 const SFX_FILES := {"jump": "sfx_jump", "hose": "sfx_hose", "rescue": "sfx_rescue",
-	"burn": "sfx_burn", "win": "sfx_win", "siren": "sfx_siren"}
+	"burn": "sfx_burn", "win": "sfx_win"}
 const MUSIC_FILE := "res://audio/music_loop.ogg"
 const MUSIC_DIP_DB := -12.0            # music level under the burn sound while DYING
 var sfx_players := {}
@@ -142,7 +142,6 @@ func start_session() -> void:
 		return
 	deaths = 0
 	restart_attempt()
-	play_sfx("siren")  # the fire truck arrives: once per session start, not on every retry
 
 func restart_attempt() -> void:
 	state = State.PLAYING

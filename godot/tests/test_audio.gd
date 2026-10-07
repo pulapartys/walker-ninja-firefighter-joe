@@ -2,7 +2,7 @@ extends SceneTree
 ## Assignment 2 automated check (added 2026-10-07): each sound event fires exactly once per real
 ## occurrence, including a held key, rapid repeats, W mashing, and a duplicate death at reset; and
 ## muting both buses, or missing sound files, change nothing about what happens in the game; sounds
-## play after the state change they report; the siren plays per session, not per retry; and the
+## play after the state change they report; starting and retrying add no sounds; and the
 ## music follows pause / death / win (once the music file exists).
 ##   godot --headless --path . -s tests/test_audio.gd
 const Game = preload("res://game/session.gd")
@@ -53,9 +53,12 @@ func play_route() -> Dictionary:
 		"rescued": game.rescued_count, "pos": str(game.player.position.round()), "sfx": counts()}
 
 func run() -> void:
-	# 1. Session start: the siren once; nothing else.
+	# 1. Session start: no sound at all (the start siren was removed after playtest 3).
 	await fresh()
-	check("siren-once-on-start", counts().siren == 1 and counts().jump == 0, counts())
+	var total_at_start := 0
+	for id in counts():
+		total_at_start += counts()[id]
+	check("silent-start", total_at_start == 0, counts())
 
 	# 2. Held jump key: one jump, one sound, even held for a second.
 	game.player.test_jump_pressed = true
@@ -85,7 +88,7 @@ func run() -> void:
 	# 5. Full route: jump sounds = jumps, one hose, one rescue per survivor, one win, no burn.
 	var a := await play_route()
 	var c: Dictionary = a.sfx
-	check("route-one-sound-per-event", a.state == Game.State.COMPLETE and c.jump == a.jumps and c.hose == 1 and c.rescue == a.rescued and c.rescue == 2 and c.win == 1 and c.burn == 0 and c.siren == 1, a)
+	check("route-one-sound-per-event", a.state == Game.State.COMPLETE and c.jump == a.jumps and c.hose == 1 and c.rescue == a.rescued and c.rescue == 2 and c.win == 1 and c.burn == 0, a)
 
 	# 6. W mashed while the water pours: one hose sound.
 	await fresh()
@@ -112,7 +115,7 @@ func run() -> void:
 
 	# 8. Every sound plays in the state of the event it reports (after the state change).
 	var expected := {"jump": Game.State.PLAYING, "hose": Game.State.PLAYING, "rescue": Game.State.PLAYING,
-		"siren": Game.State.PLAYING, "burn": Game.State.DYING, "win": Game.State.COMPLETE}
+		"burn": Game.State.DYING, "win": Game.State.COMPLETE}
 	await play_route()
 	var bad := []
 	for e in game.sfx_log:
@@ -126,14 +129,12 @@ func run() -> void:
 			bad.append(e)
 	check("sound-after-state-change", bad.is_empty(), {"wrong": bad})
 
-	# 9. Siren: once per new session, never on a retry.
+	# 9. Retries and new sessions add no sounds by themselves (only the burn that caused the retry).
 	await steps(130)                       # the fire death retries by itself
-	var after_retry: int = counts().siren
 	game.restart_attempt()                 # R-style retry
-	var after_r: int = counts().siren
-	game.resolve_contacts(false, true)     # finish, then a new session from the end card
+	game.resolve_contacts(false, true)     # finish (one win sound), then a new session from the end card
 	game.start_session()
-	check("siren-session-not-retry", after_retry == 1 and after_r == 1 and counts().siren == 2, {"after_retry": after_retry, "after_r": after_r, "after_new_session": counts().siren})
+	check("retry-and-restart-silent", counts().burn == 1 and counts().win == 1 and counts().jump == 0 and counts().hose == 0 and counts().rescue == 0, counts())
 
 	# 10. Falling or running out of time: no burn sound (the text explains it).
 	await fresh()

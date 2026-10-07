@@ -327,3 +327,4 @@ The panels above are kept as planned. Differences in the built slice (sounds in 
 - **Panel 6 (end):** SFX-WIN is a cartoon crowd cheering with claps, not the gong; the music stops under it as planned.
 - **All panels:** MUS-LOOP is not in the slice yet.
 - **Update:** MUS-LOOP is now in the slice (panels 1–5); it stops at the win (panel 6), as planned.
+- **Update:** the panel 1 siren was removed after playtest 3 (too much at the start); panel 1 now hears only the music.

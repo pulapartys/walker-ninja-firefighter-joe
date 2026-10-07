@@ -38,9 +38,8 @@ clean "$RAW/sfx_hose_raw.wav"    "$OUT/sfx_hose.ogg"
 clean "$RAW/sfx_rescue_raw2.wav" "$OUT/sfx_rescue.ogg"
 clean "$RAW/sfx_burn_rawB.wav"   "$OUT/sfx_burn.ogg"
 clean "$RAW/sfx_win_raw.wav"     "$OUT/sfx_win.ogg"
-clean "$RAW/sfx_siren_raw.wav"   "$OUT/sfx_siren.ogg"
 
-for r in sfx_burn_rawA sfx_rescue_raw1; do   # rejected takes: small mono copies
+for r in sfx_burn_rawA sfx_rescue_raw1 sfx_siren_raw; do   # rejected takes: small mono copies (siren: playtest 3)
   ffmpeg -hide_banner -loglevel error -y -i "$RAW/$r.wav" -ac 1 "$TMP/rej.wav"
   to_ogg "$TMP/rej.wav" "$REJ/$r-rejected.ogg" 0.2
 done
