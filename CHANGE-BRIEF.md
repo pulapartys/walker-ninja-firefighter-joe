@@ -128,7 +128,7 @@ The layout, timer, survivors, and hose rules are unchanged, and the full scripte
 | ENV-BG | done, in the slice |
 | ENV-FIRE | **done** (2026-10-07): three generated flame images (single, wide, tall) replace the code-drawn flames; visual only, the hazard collision rectangles are unchanged (flame-clearance tests pass) |
 | SFX-JUMP, SFX-HOSE, SFX-RESCUE, SFX-BURN, SFX-WIN | **in progress**: prompt variants drafted by Claude; the prompts actually sent will be logged verbatim in SOURCES.md |
-| MUS-LOOP | **in progress**: Suno, since 2026-10-05 |
+| MUS-LOOP | **done** (2026-10-07): ElevenLabs Music, recorded via Audacity, 16-bar loop cut at 14.10–39.70 s; in the slice with Loop on |
 
 ### Event-to-sound map: one change
 
@@ -165,3 +165,4 @@ The v1 event-to-sound map is implemented as planned, with these changes (code: `
 - A bow close-up pops up on COMPLETE, like the DEVASTATED close-up on a fire death.
 - New automated checks for sound: order after the state change, siren per session, no burn for falls or timeouts, missing sound files change nothing; music behaviour check ready (skipped until the loop exists).
 - **Update (same day): ENV-BG regenerated (v2)** as an edit of v1 in ChatGPT: cool, hazy blue-gray, gray smoke, no warm glow. The code darkening was removed. F2 (character disappears against the background) is resolved by changing the background, not the character.
+- **Update: MUS-LOOP is in** (ElevenLabs Music, not the planned Suno). The music behaviour above is now tested with the real file (`test_audio.gd` `music-behaviour`, `music-loops`). F5 (click at the seam): measured in the file (crossfaded seam, step 387 vs 736 typical); to confirm by ear over 3 repetitions.

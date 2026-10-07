@@ -2,7 +2,7 @@
 
 An asset slice for CSYE 7270 Assignment 2: **Extinguisho**, a deadpan ninja firefighter, has 40 seconds to rescue a person and a dog from two burning buildings: kung-fu jump over flames, hose the fire blocking the way, toss the survivors into his bag, and escape off the roof. The art (and, in progress, the sound and music) is generated with generative models and wired into a playable Godot scene.
 
-> Status 2026-10-07: character art, the background, the flames, sound effects, and mute are in the slice; the music loop is in progress. Sections marked *(in progress)* will be updated before submission.
+> Status 2026-10-07: character art, the background, the flames, sound effects, the music loop, and mute are in the slice; the film is in progress. Sections marked *(in progress)* will be updated before submission.
 
 ## Started from
 
@@ -49,7 +49,7 @@ Automated tests (from `godot/`):
 - **Environment:** a generated smoky city skyline (ENV-BG v2) behind the level, and generated flames (ENV-FIRE) on every fire hazard; the fire blocking the person shrinks as it's hosed.
 - **Failure punchline and win:** on a fire death (held 2 s; R retries at once) the generated DEVASTATED close-up pops up next to "The fire got you."; on the win, the bow close-up pops up.
 - **Sound:** generated sound effects on real game events: jump, hose, rescue toss, fire death, level complete, plus a fire-truck siren when a session starts. Each fires exactly once per event (`tests/test_audio.gd`). Muting changes nothing in play.
-- **Music:** a seamless loop *(in progress)*.
+- **Music:** a 16-bar, 150 BPM generated loop (ElevenLabs Music) that pauses on pause, dips on a fire death, continues on retry, and stops on the win (`tests/test_audio.gd`).
 - **Design and evidence:** CONCEPT.md, STORYBOARD.md, CHARACTER-SHEET.md, CHANGE-BRIEF.md (plan and predictions), SOURCES.md (models and asset log), TEST-REPORT.md, ../FRICTIONAL.md (design log), rejected outputs in `rejected/`, in-engine screenshots in `evidence/screens-web/`.
 
 ## Known limitations
@@ -67,4 +67,7 @@ Automated tests (from `godot/`):
 
 ## Credits
 
-- Images: generated with ChatGPT (OpenAI). Sound effects: generated with **ElevenLabs** Sound Effects (elevenlabs.io), free plan. Music: Suno *(in progress)*. Details, prompts, and terms in SOURCES.md.
+- Images: generated with ChatGPT (OpenAI).
+- Sound effects: generated with ElevenLabs Sound Effects, free plan — **elevenlabs.io**.
+- Music: **Created in collaboration with ElevenLabs (Eleven Music)**, free plan; recorded from playback in Audacity, approved by the course staff.
+- Details, prompts, and the terms of each model: SOURCES.md.

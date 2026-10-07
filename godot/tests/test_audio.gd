@@ -186,6 +186,20 @@ func run() -> void:
 		await steps(3)
 		var stopped: bool = not game.music.playing
 		check("music-behaviour", playing and paused and dipped and back and stopped, {"playing": playing, "paused": paused, "dipped": dipped, "back_without_restart": back, "stopped_on_win": stopped})
+		# The loop wraps: after one full length (25.6 s) it is back near the start and still playing.
+		await fresh()
+		var length: float = game.music.stream.get_length()
+		var wrapped := false
+		var last := 0.0
+		var t2 := 0
+		while t2 < int((length + 2.0) * 60.0) and game.state == Game.State.PLAYING:
+			await physics_frame
+			t2 += 1
+			var pos: float = game.music.get_playback_position()
+			if pos + 1.0 < last:
+				wrapped = true
+			last = pos
+		check("music-loops", game.music.stream.loop and wrapped and game.music.playing, {"length_s": length, "loop": game.music.stream.loop, "wrapped": wrapped, "playing": game.music.playing})
 
 	print("AUDIO TESTS: %d failures" % failures)
 	game.queue_free()

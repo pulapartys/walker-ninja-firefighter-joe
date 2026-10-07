@@ -13,7 +13,7 @@
 | Character against the sheet (in-engine screenshot per state) | pending (step 2 adds the remaining states) |
 | Storyboard against the slice | pending |
 | Sound events: exactly one sound per occurrence | pending (sound not added yet) |
-| Music loop and pause/end behavior | pending |
+| Music loop and pause/end behavior | automated: pass (`music-behaviour`, `music-loops`); listened with the effects: fine (playtest 3) |
 | Muted play | pending |
 | Automated check added by me | pending (planned: sound-trigger count per event) |
 | Inspect-and-revise cycle | **Playtest 1 below** |
@@ -152,3 +152,15 @@ Still needed from a human: Playtest 3 with sound **on** (does each sound fit its
 - **Revision:** regenerated the background as an edit of v1 with my in-game screenshot attached (SOURCES "ENV-BG v2"): cool, hazy blue-gray, no warm glow. Code darkening removed.
 - **Result:** suit red worst-spot ΔE **31 → 85**, typical 76 → 87; helmet worst spot 54 → 72. Screenshots (`evidence/screens-web/`): he reads at a glance; the flames stand out more as well. Trade-off: the sky no longer says "fire" by itself; the smoke columns and the in-level flames carry it.
 - **Automated after the change:** `test_game.gd` 41/41, `test_keyboard.gd` 14/14, `test_audio.gd` 12/12 + 1 skipped (music), screenshot route complete with 0 deaths.
+
+## 2026-10-07 — music loop in the slice
+
+- **Change:** `godot/audio/music_loop.ogg` (ElevenLabs Music, 25.6 s = 16 bars at 150 BPM, −20 LUFS) added with Loop on; volume 0 dB on the Music bus.
+- **Automated:** `test_audio.gd` now **14 / 14 pass, nothing skipped**. `music-behaviour` (previously SKIPPED) passes with the real file: plays while playing, pauses in place, dips while DYING, continues without restarting after the retry, stops on COMPLETE. New `music-loops`: after one full length the playback wraps to the start and keeps playing. `test_game.gd` 41/41, `test_keyboard.gd` 14/14.
+- **Seam (measured in the sound session):** 10 ms crossfade, sample step across the seam 387 vs 736 typical inside the music; no click expected.
+- **Still for a human:** the seam over 3 repetitions in play (25.6 s and 51.2 s), the balance with the effects, siren + music at the start, final volume.
+
+### Playtest 3, sound on (human: me)
+
+- **Result, in my words:** "after listening to the sounds together they seem fine." Music at 0 dB with the effects: no change needed, so the final volume is 0 dB.
+- Covered by that listen: the effects over the music. Not reported separately: the seam at 25.6 s / 51.2 s by ear (measured clean in the file and the loop is tested), the siren with the music at the start, and muted play (N/B work in `test_keyboard.gd`; whether muted play is still understandable is a human judgment).

@@ -326,3 +326,4 @@ The panels above are kept as planned. Differences in the built slice (sounds in 
 - **Panel 3 (rescue):** SFX-RESCUE is a slide whistle up and a bag thump (matching the upward toss), not a bright sting.
 - **Panel 6 (end):** SFX-WIN is a cartoon crowd cheering with claps, not the gong; the music stops under it as planned.
 - **All panels:** MUS-LOOP is not in the slice yet.
+- **Update:** MUS-LOOP is now in the slice (panels 1–5); it stops at the win (panel 6), as planned.

@@ -69,7 +69,7 @@ The v1 text above is kept as the original plan. This revision records what chang
 
 | Pillar | Delivered in the slice | Weak or missing |
 |---|---|---|
-| **Race the flames** | 40 s clock always visible; flames block the path until hosed (~4 s). | The fast drum loop isn't in yet (music in progress). |
+| **Race the flames** | 40 s clock always visible; flames block the path until hosed (~4 s). | (Music loop added 2026-10-07: 150 BPM taiko drums.) |
 | **Too cool to care** | Mid-yawn upward toss (the survivor flies sky-high and drops into his bag); meditating fall; deadpan bow at the end. | His grumpy face doesn't show at 64 px; the attitude reads through poses, not the face. |
 | **Every move is a kata** | Flying kick for the whole jump, three-point ninja landing, low ninja dash, hose held in a martial-arts stance, kung-fu ready stance on respawn. | — |
 | **Failure is a punchline** | Burned pose (both hands clutching the helmet) held 0.9 s, **plus the generated DEVASTATED portrait popping up big** next to "The fire got you." (added 2026-10-07, like storyboard panel 4's close-up), then a fast retry. | The sooty pose itself is still dark on the dark sky; the cartoon burn sound isn't in yet. |
@@ -90,4 +90,4 @@ The loop (move, jump, hose, rescue, escape in 40 s) is unchanged, but some numbe
 
 ### Audio direction: status
 
-The plan from v1 still holds (urgent music, funny effects, music pauses on pause, dips on death, stops on the win). **Sound effects are now in the slice** (ElevenLabs, see SOURCES): jump whoosh, hose blast, slide-whistle toss, sizzle-and-yelp burn, a fire-truck siren at the start, and a cheering crowd at the end. **Changed from v1:** the win is a silly crowd cheer, not a gong, because I wanted it funnier; that pulls against "he does not cheer" (Too cool to care), unresolved: the reading I'm considering is that the rescued people cheer while he stays deadpan and bows. **Music:** I have been generating it in Suno since 2026-10-05; the loop is not in the slice yet.
+The plan from v1 still holds (urgent music, funny effects, music pauses on pause, dips on death, stops on the win). **Sound effects are now in the slice** (ElevenLabs, see SOURCES): jump whoosh, hose blast, slide-whistle toss, sizzle-and-yelp burn, a fire-truck siren at the start, and a cheering crowd at the end. **Changed from v1:** the win is a silly crowd cheer, not a gong, because I wanted it funnier; that pulls against "he does not cheer" (Too cool to care), unresolved: the reading I'm considering is that the rescued people cheer while he stays deadpan and bows. **Music:** in the slice: a 150 BPM taiko-driven loop from ElevenLabs Music (the plan said Suno), 16 bars, sitting about 6 dB under the effects; it pauses, dips on a fire death, and stops on the win.
