@@ -96,3 +96,59 @@ What I saw, in my words, and what it means:
 - **Screenshots (Claude's check):** the flames read clearly on the backdrop and against the red suit (the dark outline separates them); the pop-up shows on the fire death (`evidence/screens-web/02-failure.jpg`).
 - **Still to do:** my playtest of both (Playtest 3).
 
+## 2026-10-07 — sound effects wired; automated sound check (added by us)
+
+- **Changes:** six ElevenLabs sounds cleaned by `tools/make_audio.sh` (front/end silence trim, −14 LUFS, −1 dBFS peak limit, OGG) and played from the code that already represents each event (CHANGE-BRIEF revision "sounds wired"). Two buses: N mutes music, B mutes sound effects. Music behaviour coded; no music file yet.
+- **Automated check we added:** `godot --headless --path . -s tests/test_audio.gd` (from `godot/`). Result: **8 checks, 0 failures** (run twice):
+
+| Check | What it does | Observed |
+|---|---|---|
+| siren-once-on-start | new session | siren 1, nothing else |
+| held-jump-one-sound | jump key held 1 s | 1 jump, 1 jump sound |
+| rapid-jumps-match | five taps | 5 jumps, 5 jump sounds |
+| burn-once-per-death | fire touch, then a duplicate death call | 1 death, 1 burn |
+| no-burn-after-retry | after the retry | still 1 burn |
+| route-one-sound-per-event | full scripted route | 13 jumps / 13 jump sounds, hose 1, rescue 2 (2 survivors), win 1, burn 0, siren 1 |
+| w-mashing-one-hose | W pressed 30 ticks in a row while water pours | hose 1 |
+| mute-changes-nothing | the same route with both buses muted | identical: COMPLETE, 1269 ticks, 0 deaths, 13 jumps, 2 rescued, same final position |
+
+- **A failure we fixed honestly:** the first version of `mute-changes-nothing` **failed** (unmuted 1265 ticks vs muted 1268). Before touching it we ran the route four times **unmuted**: 1267, 1267, 1268, 1268. So the difference came from the test harness (it stepped by rendered frames, which hold one or two physics ticks), not from muting. The route now steps exactly one physics tick per input; four runs gave 1269 every time, and the check still requires an **exact** match. No tolerance was added.
+- **Other suites:** `test_game.gd` 41/41; `test_keyboard.gd` all PASS.
+- **Known warning:** at exit, `test_keyboard.gd` and `test_audio.gd` print "resources still in use / ObjectDB instances leaked" (the loaded sounds are still referenced when the test quits). It doesn't affect any result.
+- **Not yet checked by a human:** whether each sound *sounds* right on its event (e.g. the rescue thump vs the toss on screen), mute keys in play, the siren on start, and the music (none yet). → Playtest 3.
+
+## 2026-10-07 — Playtest 3 (human: me, with sound) and the changes it caused
+
+| Observation | Cause | Change |
+|---|---|---|
+| The firefighter is hard to see against the background. | ENV-BG is dark with an orange glow band at his height; the red suit and dark soot blend into it (palette check: suit red vs the glow 1.1). | ENV-BG drawn darker, cooler and less saturated in code (`modulate` 0.58/0.60/0.70; the image file is unchanged), and a thin light outline (about 2 screen px, `outline.gdshader`) around every character image. State images got a 4 px transparent margin so the outline isn't clipped. |
+| "The fire got you" disappears too fast. | Fire deaths retried after 0.9 s. | Fire deaths hold **2.0 s** (`FIRE_DEATH_HOLD`); **R** still retries at once. |
+| After winning, the bow should get a big close-up like the fire death. | Only the fire death had a pop-up. | The bow close-up (cropped from pose 12b) pops up on COMPLETE, in the same tilted frame. |
+| (Claude, from my screenshot) The menu card's line of text ran past the card's edges. | The line was wider than the card. | Shortened to "Save the person + dog, then out the fire escape." |
+
+**Screenshots after the change** (`evidence/screens-web/`): the outline separates him from the sky, the glow, and the flames; both close-ups show.
+
+**Test changes, each recorded as a design change:**
+- `test_game.gd` `twenty-retries`: the limit changes from 60 ticks (1 s, A1) to 125 (the new 2.0 s hold + 5 ticks), because I chose a longer hold. The fast-retry promise now lives in R: `test_keyboard.gd` `r-skips-fire-wait` checks that R retries immediately during a fire death.
+- `test_game.gd` `respawn` waits 125 ticks (was 58); `test_audio.gd` `no-burn-after-retry` waits 130 (was 60). Both failed for the right reason (still DYING) until the waits matched the new hold.
+
+## 2026-10-07 — full automated suite (after playtest 3)
+
+| Suite | Command (from `godot/`) | Result |
+|---|---|---|
+| A1 game mechanics | `godot --headless --path . -s tests/test_game.gd` | **41 / 41 pass** |
+| Keyboard input (real key events) | `godot --headless --path . -s tests/test_keyboard.gd` | **14 / 14 pass**, including new: `n-mutes-music-only`, `b-mutes-sfx`, `n-b-unmute`, `no-jump-sound-while-paused`, `r-skips-fire-wait` |
+| **Sound (added for Assignment 2)** | `godot --headless --path . -s tests/test_audio.gd` | **12 / 12 pass, 1 skipped** (two runs). New since the first version: `sound-after-state-change` (every sound plays in the state of its event), `siren-session-not-retry`, `no-burn-for-fall-or-timeout`, `missing-sounds-change-nothing` (all sound files removed → identical route, tick for tick). `music-behaviour` is **SKIPPED**, not passed, until `godot/audio/music_loop.ogg` exists. |
+| Screenshots of every state | `godot --path . -s tests/capture_game.gd` | route completes, 0 deaths |
+
+Still needed from a human: Playtest 3 with sound **on** (does each sound fit its moment?) and **muted** (N and B), and the music once it exists.
+
+**Update, same day:** I rejected the character outline: I want the background changed, not the character. The outline shader and margin were removed (tests re-run: 41/41, keyboard all pass, sound 12/12 + 1 skipped). A new ENV-BG is being generated; the code darkening stays until it arrives.
+
+## 2026-10-07 — inspect and revise: ENV-BG regenerated (v2)
+
+- **Observation (playtest 3, me):** the firefighter was hard to see against the background.
+- **Cause (measured by Claude in his play band):** v1's orange-red glow sits at his height; his red suit was nearly the same colour (worst-spot ΔE 31, brightness contrast 1.1 to 1.5). Darkening v1 in code helped only a little; I rejected outlining the character.
+- **Revision:** regenerated the background as an edit of v1 with my in-game screenshot attached (SOURCES "ENV-BG v2"): cool, hazy blue-gray, no warm glow. Code darkening removed.
+- **Result:** suit red worst-spot ΔE **31 → 85**, typical 76 → 87; helmet worst spot 54 → 72. Screenshots (`evidence/screens-web/`): he reads at a glance; the flames stand out more as well. Trade-off: the sky no longer says "fire" by itself; the smoke columns and the in-level flames carry it.
+- **Automated after the change:** `test_game.gd` 41/41, `test_keyboard.gd` 14/14, `test_audio.gd` 12/12 + 1 skipped (music), screenshot route complete with 0 deaths.

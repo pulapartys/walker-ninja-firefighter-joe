@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal jumped  # emitted once per real jump (the session plays SFX-JUMP; sound never feeds back)
+
 const Tuning = preload("res://features/player/tuning.gd")
 var tuning = Tuning.new()
 var enabled: bool = false
@@ -157,6 +159,7 @@ func _physics_process(delta: float) -> void:
 		jump_request_tick = -1000
 		jumps += 1
 		jumped_this_air = true
+		jumped.emit()
 	move_and_slide()
 	position.x = maxf(position.x, 10.0)
 	_update_pose()

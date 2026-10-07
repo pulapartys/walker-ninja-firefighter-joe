@@ -137,3 +137,31 @@ SFX-RESCUE fires at the same place as planned (`session.gd`, where `s.rescued = 
 ### Mute keys (planned)
 
 M is taken by "menu", so: **N** toggles music, **B** toggles sound effects (separate, as the assignment prefers). Both only change volume; nothing in the game reads them.
+
+## Revision 2026-10-07 (later) — sounds wired into the slice
+
+The v1 event-to-sound map is implemented as planned, with these changes (code: `godot/game/session.gd`, `godot/features/player/player.gd`):
+
+| Sound | Trigger in code, as built | Double-trigger guard (unchanged from v1) |
+|---|---|---|
+| SFX-JUMP | `player.gd` emits `jumped` right after `jumps += 1`; the session plays the sound | the jump branch runs once per jump |
+| SFX-HOSE | `session.gd`, right after `extinguish_ticks = EXTINGUISH_TICKS` | only when `extinguish_ticks == 0` |
+| SFX-RESCUE | `session.gd`, right after `s.rescued = true` (the toss starts there too) | `not s.rescued` + monitoring off |
+| SFX-BURN | `resolve_contacts`, after the state becomes `DYING`, only for "The fire got you." | the `PLAYING` guard |
+| SFX-WIN | `resolve_contacts`, after the state becomes `COMPLETE` | the `PLAYING` guard |
+| SFX-SIREN (new) | `start_session()` (a new session from the menu or the end card), **not** on retries | `start_session` returns while `PLAYING` |
+
+- **Changed sound (my decision):** SFX-WIN is a cartoon crowd cheering with claps, not the planned gong, because I wanted the win to be funny and childish. Still open: how it fits "he does not cheer" (CONCEPT). One reading: the rescued people cheer while he stays deadpan and bows.
+- **New sound (my idea):** SFX-SIREN, the fire truck arriving, once per session start. Kept out of the music so the loop seam stays clean (Claude's advice). Keep or drop: to decide after playtest 3.
+- **Open decision closed for now:** dying by falling or timeout plays **no** sound (no SFX-FAIL was generated); the on-screen reason ("You fell." / "Out of time!") explains it.
+- **Mute:** N toggles the Music bus, B the SFX bus; the HUD shows "MUSIC OFF" / "SOUND OFF". Nothing in the game reads the buses.
+- **Music behaviour** is implemented (plays while playing, pauses in place, dips 12 dB while DYING and returns on retry without restarting, stops on COMPLETE, off in the menu) but **MUS-LOOP does not exist yet**, so it is untested with real music.
+- **F4 (a sound fires twice) is checked automatically** by `godot/tests/test_audio.gd` (TEST-REPORT).
+
+## Revision 2026-10-07 (playtest 3)
+
+- Fire-death retry hold 0.9 s → **2.0 s** (R skips it). This changes A1's 1 s retry limit; the test now checks the new hold and that R retries at once.
+- ENV-BG drawn darker in code (F2 "character disappears against the background" observed in playtest 3). A light character outline was tried and rejected (my decision); **ENV-BG is being regenerated** so the background itself lets him read.
+- A bow close-up pops up on COMPLETE, like the DEVASTATED close-up on a fire death.
+- New automated checks for sound: order after the state change, siren per session, no burn for falls or timeouts, missing sound files change nothing; music behaviour check ready (skipped until the loop exists).
+- **Update (same day): ENV-BG regenerated (v2)** as an edit of v1 in ChatGPT: cool, hazy blue-gray, gray smoke, no warm glow. The code darkening was removed. F2 (character disappears against the background) is resolved by changing the background, not the character.

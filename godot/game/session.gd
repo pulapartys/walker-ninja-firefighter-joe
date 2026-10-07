@@ -34,8 +34,19 @@ const TOSS_UP_TICKS := 30              # flying up
 const TOSS_DOWN_TICKS := 30            # dropping into the bag
 const TOSS_HEIGHT := 150.0
 var flights: Array = []                # [{type, from: Vector2, t: int, launch, apex}]
+const FIRE_DEATH_HOLD := 2.0          # s; was 0.55 (A1), 0.9 (playtest 2); 2.0 after playtest 3
 const BOW_TICKS := 75                  # the bow shows ~1.2 s before the "Rescue complete" card covers him
 var complete_ticks: int = 0
+# Audio (CHANGE-BRIEF event-to-sound map). Every sound plays AFTER the state change it reports;
+# nothing reads a sound or a mute flag, so a missing or muted sound never changes what happens.
+const SFX_FILES := {"jump": "sfx_jump", "hose": "sfx_hose", "rescue": "sfx_rescue",
+	"burn": "sfx_burn", "win": "sfx_win", "siren": "sfx_siren"}
+const MUSIC_FILE := "res://audio/music_loop.ogg"
+const MUSIC_DIP_DB := -12.0            # music level under the burn sound while DYING
+var sfx_players := {}
+var sfx_counts := {}                   # plays per sound id (read by tests/test_audio.gd)
+var sfx_log: Array = []                # [{id, state, tick}] per play, so tests can check the order
+var music: AudioStreamPlayer
 const FIRE_SINGLE := preload("res://art/env/fire_single.png")   # ENV-FIRE-A
 const FIRE_WIDE := preload("res://art/env/fire_wide.png")       # ENV-FIRE-B
 const FIRE_TALL := preload("res://art/env/fire_tall.png")       # ENV-FIRE-Bb
@@ -71,6 +82,8 @@ func _ready() -> void:
 	bg.stretch_mode = TextureRect.STRETCH_SCALE
 	bg.size = Vector2(640, 360)
 	bg_layer.add_child(bg)
+	_setup_audio()
+	player.jumped.connect(func(): play_sfx("jump"))
 	var layer := CanvasLayer.new()
 	add_child(layer)
 	hud = Hud.new()
@@ -80,7 +93,7 @@ func _ready() -> void:
 	queue_redraw()
 
 func _setup_input() -> void:
-	var actions := {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT], "jump": [KEY_SPACE], "pause": [KEY_ESCAPE, KEY_P], "restart": [KEY_R], "confirm": [KEY_ENTER], "menu": [KEY_M], "water": [KEY_W]}
+	var actions := {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT], "jump": [KEY_SPACE], "pause": [KEY_ESCAPE, KEY_P], "restart": [KEY_R], "confirm": [KEY_ENTER], "menu": [KEY_M], "water": [KEY_W], "mute_music": [KEY_N], "mute_sfx": [KEY_B]}
 	for action in actions:
 		if InputMap.has_action(action):
 			continue
@@ -129,6 +142,7 @@ func start_session() -> void:
 		return
 	deaths = 0
 	restart_attempt()
+	play_sfx("siren")  # the fire truck arrives: once per session start, not on every retry
 
 func restart_attempt() -> void:
 	state = State.PLAYING
@@ -186,7 +200,8 @@ func resolve_contacts(fatal: bool, finished: bool) -> void:
 		player.velocity = Vector2.ZERO
 		if death_reason == "The fire got you.":
 			player.show_pose("burned")
-			retry_remaining = 0.9  # hold the burned pose long enough to read (was 0.55 s: unseen in playtest 2); still under the 1 s retry limit
+			play_sfx("burn")
+			retry_remaining = FIRE_DEATH_HOLD  # burned pose + DEVASTATED pop-up stay up; R skips the wait
 	elif finished:
 		state = State.COMPLETE
 		last_finish_time = elapsed
@@ -194,6 +209,7 @@ func resolve_contacts(fatal: bool, finished: bool) -> void:
 		player.velocity = Vector2.ZERO
 		player.show_pose("celebrate")
 		complete_ticks = 0
+		play_sfx("win")
 
 func _physics_process(delta: float) -> void:
 	if state == State.DYING:
@@ -231,6 +247,7 @@ func _physics_process(delta: float) -> void:
 			if water and near_fire and extinguish_ticks == 0:
 				extinguish_ticks = EXTINGUISH_TICKS
 				water_ticks = EXTINGUISH_TICKS + 60  # water lingers ~1 s after it is out
+				play_sfx("hose")
 		if extinguish_ticks > 0:
 			extinguish_ticks -= 1
 			if extinguish_ticks == 0:
@@ -250,6 +267,7 @@ func _physics_process(delta: float) -> void:
 					player.bag_in_flight += 1
 					player.play_actions([["grab", GRAB_TICKS], ["toss", TOSS_UP_TICKS]])
 					flights.append({"type": s.type, "from": Vector2(s.x, s.y), "t": 0})
+					play_sfx("rescue")
 					saved_popup_ticks = 55
 					saved_popup_pos = Vector2(s.x - 18.0, s.y - 34.0)
 		var all_rescued := rescued_count >= survivors.size()
@@ -285,7 +303,11 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.echo:
 		return
-	if event.is_action_pressed("confirm"):
+	if event.is_action_pressed("mute_music"):
+		_toggle_mute("Music")
+	elif event.is_action_pressed("mute_sfx"):
+		_toggle_mute("SFX")
+	elif event.is_action_pressed("confirm"):
 		if state in [State.MENU, State.COMPLETE]:
 			start_session()
 		elif state == State.PAUSED:
@@ -496,3 +518,60 @@ func _label(pos: Vector2, text: String, size: int, color: Color) -> void:
 	var font := ThemeDB.fallback_font
 	draw_string_outline(font, pos, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, 4, Color(0.106, 0.133, 0.188, color.a))
 	draw_string(font, pos, text, HORIZONTAL_ALIGNMENT_LEFT, -1, size, color)
+
+# Two buses so music and effects mute separately (N / B). Streams load only if the file exists,
+# so a missing sound leaves the game unchanged.
+func _setup_audio() -> void:
+	for bus in ["Music", "SFX"]:
+		if AudioServer.get_bus_index(bus) == -1:
+			AudioServer.add_bus()
+			AudioServer.set_bus_name(AudioServer.bus_count - 1, bus)
+	for id in SFX_FILES:
+		var p := AudioStreamPlayer.new()
+		p.bus = "SFX"
+		var path := "res://audio/%s.ogg" % SFX_FILES[id]
+		if ResourceLoader.exists(path):
+			p.stream = load(path)
+		add_child(p)
+		sfx_players[id] = p
+		sfx_counts[id] = 0
+	music = AudioStreamPlayer.new()
+	music.bus = "Music"
+	if ResourceLoader.exists(MUSIC_FILE):
+		music.stream = load(MUSIC_FILE)
+		music.stream.loop = true
+	add_child(music)
+
+func play_sfx(id: String) -> void:
+	sfx_counts[id] += 1
+	sfx_log.append({"id": id, "state": state, "tick": player.tick})
+	var p: AudioStreamPlayer = sfx_players[id]
+	if p.stream:
+		p.play()
+
+func _toggle_mute(bus: String) -> void:
+	var i := AudioServer.get_bus_index(bus)
+	AudioServer.set_bus_mute(i, not AudioServer.is_bus_mute(i))
+
+func is_muted(bus: String) -> bool:
+	return AudioServer.is_bus_mute(AudioServer.get_bus_index(bus))
+
+# Music follows the state (CHANGE-BRIEF "Music behavior"): plays while playing, pauses in place on
+# pause, dips under the burn while DYING and comes back on retry (no restart), stops on COMPLETE,
+# off in the menu.
+func _process(_delta: float) -> void:
+	if music == null or music.stream == null:
+		return
+	match state:
+		State.PLAYING:
+			music.volume_db = 0.0
+			music.stream_paused = false
+			if not music.playing:
+				music.play()
+		State.DYING:
+			music.volume_db = MUSIC_DIP_DB
+		State.PAUSED:
+			music.stream_paused = true
+		_:
+			music.stop()
+

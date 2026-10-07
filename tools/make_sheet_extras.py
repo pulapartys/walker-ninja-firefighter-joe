@@ -28,7 +28,8 @@ ORDER = ["idle", "run", "jump_crouch", "rising", "falling", "landing", "hose",
          "grab", "toss", "burned", "respawn", "celebrate"]
 PALETTE = [("suit red", "be1a16"), ("suit shadow", "77110c"), ("helmet yellow", "f1bc27"),
            ("outline / mask", "0e0a08"), ("gear brown", "705340")]
-AGAINST = [("backdrop glow", "8f5548"), ("backdrop mid", "50424b"), ("backdrop fog", "2c3547"),
+# Backdrop colours sampled in his play band of ENV-BG v2 (darkest / typical / lightest, 2026-10-07).
+AGAINST = [("backdrop dark", "4e5b71"), ("backdrop mid", "798aa2"), ("backdrop light", "dbd3cd"),
            ("flame red", "d0341a"), ("flame orange", "f39a1e"), ("flame core", "ffe95a"),
            ("ledge", "b8b2a6"), ("building wall", "e0cdaf")]
 

@@ -58,6 +58,27 @@ func run() -> void:
 	check("pause-main-menu",game.state == Game.State.MENU,"state="+str(game.state))
 	await tap(KEY_ENTER)
 	check("menu-start-again",game.state == Game.State.PLAYING,"state="+str(game.state))
+	# Assignment 2: mute keys (N = music, B = sound effects), separately, and back.
+	await tap(KEY_N)
+	check("n-mutes-music-only",game.is_muted("Music") and not game.is_muted("SFX"),"music="+str(game.is_muted("Music"))+" sfx="+str(game.is_muted("SFX")))
+	await tap(KEY_B)
+	check("b-mutes-sfx",game.is_muted("Music") and game.is_muted("SFX"),"music="+str(game.is_muted("Music"))+" sfx="+str(game.is_muted("SFX")))
+	var pos_muted: Vector2 = game.player.position
+	await tap(KEY_N)
+	await tap(KEY_B)
+	check("n-b-unmute",not game.is_muted("Music") and not game.is_muted("SFX") and game.state == Game.State.PLAYING,"state="+str(game.state))
+	# A jump pressed while paused makes no sound and no jump.
+	await tap(KEY_ESCAPE)
+	var jumps_before: int = game.sfx_counts.jump
+	await tap(KEY_SPACE)
+	check("no-jump-sound-while-paused",game.sfx_counts.jump == jumps_before and game.state == Game.State.PAUSED,"jump sounds="+str(game.sfx_counts.jump))
+	await tap(KEY_ENTER)
+	# Fire death holds 2 s, but R retries immediately.
+	game.player.position = Vector2(330,310)
+	await steps(4)
+	var died: bool = game.state == Game.State.DYING
+	await tap(KEY_R)
+	check("r-skips-fire-wait",died and game.state == Game.State.PLAYING and game.player.position.distance_to(Vector2(64,320)) < 1,"died="+str(died)+" state="+str(game.state))
 	var out := ProjectSettings.globalize_path("res://../evidence")
 	DirAccess.make_dir_recursive_absolute(out)
 	var file := FileAccess.open(out+"/keyboard-"+str(Time.get_unix_time_from_system())+".json", FileAccess.WRITE)

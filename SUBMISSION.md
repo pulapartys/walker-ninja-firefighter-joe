@@ -10,9 +10,9 @@
 - **Source revision shown in the film:** *(commit the film was rendered from; the final commit must not change the demonstrated source)*
 - **Godot version and operating system:** Godot 4.7.2 stable, macOS
 - **Generative models used (name, version, where run, license):**
-  - ChatGPT image generation (Instant mode; model name not shown), chatgpt.com, ChatGPT Plus on OpenAI's free student offer, OpenAI Terms of Use: storyboard sketches, character references and poses, ENV-BG *(and ENV-FIRE)*
+  - ChatGPT image generation (Instant mode; model name not shown), chatgpt.com, ChatGPT Plus on OpenAI's free student offer, OpenAI Terms of Use: storyboard sketches, character references and poses, ENV-BG, ENV-FIRE
   - Suno *(version)*, suno.com free tier, non-commercial terms: music loop
-  - *(sound-effects model, version, where, terms)*: event sounds
+  - ElevenLabs Sound Effects (version not shown), elevenlabs.io free plan, ElevenLabs terms (free plan; attribution given): event sounds and the siren
 - **Final film URL and filename:** *(course media storage link)* · *(filename)*
 - **Final film SHA-256:** *(checksum)*
 - **Summary of my work:** *(fill in your own words: the design decisions, what you accepted or rejected and why, what you playtested and changed)*

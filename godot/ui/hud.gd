@@ -4,6 +4,8 @@ const INK := Color("25354a")
 # CHAR-EXPR-02's DEVASTATED portrait (generated), shown big when the fire gets him: at 64 px the
 # burned pose can't show his face, so the punchline gets a comic close-up (storyboard panel 4). Visual only.
 const PORTRAIT := preload("res://art/character/devastated_portrait.png")
+# The bow close-up (from pose 12b), shown the same way when the level is complete (playtest 3).
+const WIN_PORTRAIT := preload("res://art/character/celebrate_portrait.png")
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -22,7 +24,10 @@ func _draw() -> void:
 	draw_rect(Rect2(0,0,640,74), Color("f6f3ec"))
 	text_at("FIREFIGHTER RESCUE", Vector2(22,27), 18)
 	text_at("FIRST ALARM", Vector2(510,27), 14)
-	text_at("A/D or arrows: move     Space: jump     W: hose     R: retry     Esc: pause", Vector2(22,50), 13)
+	text_at("A/D or arrows: move   Space: jump   W: hose   R: retry   Esc: pause   N/B: mute music/sound", Vector2(22,50), 12)
+	var mutes := ("MUSIC OFF  " if game.is_muted("Music") else "") + ("SOUND OFF" if game.is_muted("SFX") else "")
+	if mutes != "":
+		text_at(mutes, Vector2(470,27), 11, Color("a23e36"))
 	draw_rect(Rect2(22,63,596,3), Color("daddd6"))
 	var progress: float = clampf((game.player.position.x-64)/maxf(1.0, float(game.level.finish[0])-64.0), 0, 1)
 	draw_rect(Rect2(22,63,596*progress,3), Color("287c68"))
@@ -43,20 +48,17 @@ func _draw() -> void:
 		centered(game.death_reason, 155, 21, Color("a23e36"))
 		centered("Back at the start in a moment.", 180, 13)
 		if game.death_reason == "The fire got you.":
-			var t: float = clampf((0.9 - game.retry_remaining) / 0.15, 0.0, 1.0)  # pops in over 0.15 s
-			var size := Vector2(140, 145) * (0.6 + 0.4 * t)
-			draw_set_transform(Vector2(548, 160), -0.06, Vector2.ONE)
-			draw_rect(Rect2(-size / 2 - Vector2(3, 3), size + Vector2(6, 6)), Color("1b2230"))
-			draw_texture_rect(PORTRAIT, Rect2(-size / 2, size), false)
-			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+			pop_portrait(PORTRAIT, game.FIRE_DEATH_HOLD - game.retry_remaining, -0.06)
 		return
-	if game.state == game.State.COMPLETE and game.complete_ticks < game.BOW_TICKS:
-		return  # let the player see the bow first (storyboard panel 6)
+	if game.state == game.State.COMPLETE:
+		pop_portrait(WIN_PORTRAIT, game.complete_ticks / 60.0, 0.06)
+		if game.complete_ticks < game.BOW_TICKS:
+			return  # let the player see the bow first (storyboard panel 6)
 	draw_rect(Rect2(0,74,640,261), Color(0.10,0.16,0.20,0.16))
 	draw_rect(Rect2(163,103,318,159), Color("fffdf7"))
 	draw_rect(Rect2(163,103,318,4), Color("ef875f"))
 	var title := "Into the fire."
-	var detail := "Walk into the person + dog to save them, then out the fire escape."
+	var detail := "Save the person + dog, then out the fire escape."
 	var button := "ENTER  /  START"
 	if game.state == game.State.PAUSED:
 		title = "Take a breath."
@@ -71,3 +73,13 @@ func _draw() -> void:
 	centered("One jump. No double jump. Unlimited retries.", 197, 12)
 	draw_rect(Rect2(220,215,200,34), Color("287c68"))
 	centered(button, 237, 14, Color("fffdf7"))
+
+# A generated close-up in a tilted comic frame at the right, popping in over 0.15 s.
+func pop_portrait(tex: Texture2D, shown_s: float, tilt: float) -> void:
+	var t: float = clampf(shown_s / 0.15, 0.0, 1.0)
+	var size := Vector2(140, 145) * (0.6 + 0.4 * t)
+	draw_set_transform(Vector2(552, 160), tilt, Vector2.ONE)
+	draw_rect(Rect2(-size / 2 - Vector2(3, 3), size + Vector2(6, 6)), Color("1b2230"))
+	draw_texture_rect(tex, Rect2(-size / 2, size), false)
+	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+

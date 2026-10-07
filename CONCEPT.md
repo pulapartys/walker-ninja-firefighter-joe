@@ -63,7 +63,7 @@ The v1 text above is kept as the original plan. This revision records what chang
 - **Size:** 64 px tall in the 640×360 game (128 px in the window), twice the A1 character. At the planned ~32 px, the art's detail and the face disappeared (size tests in `design/character/size-test/`).
 - **Not pixel art:** the art is painted and drawn at half its texture size with smooth filtering. Predicted failure F7 ("pixel art blurs, use Nearest") does not apply.
 - **Reference notes, as built:** dusk and smoke (a cool blue-gray sky so his red and yellow stand out); firelight only low on the horizon; matte, scorched heat-suit fabric with reflective stripes; martial-arts freeze-frame poses.
-- **Environment:** ENV-BG, a generated burning-city skyline at dusk, sits behind the level. The level itself (ledges, buildings, survivors, the rescue bag, the HUD) stays code-drawn from A1; the ledges and in-level text were recolored so they stay visible on the darker backdrop. Generated flames (ENV-FIRE, three images) replace the code-drawn flames on every fire hazard; they came out more comic than painted, which I accepted (SOURCES).
+- **Environment:** ENV-BG, a generated burning-city skyline, sits behind the level. **v2 (2026-10-07):** a cool, hazy blue-gray day with gray smoke columns replaced the dusk version with its orange glow, because the red-and-yellow character disappeared against the glow (playtest 3). The level itself (ledges, buildings, survivors, the rescue bag, the HUD) stays code-drawn from A1; the ledges and in-level text were recolored so they stay visible on the darker backdrop. Generated flames (ENV-FIRE, three images) replace the code-drawn flames on every fire hazard; they came out more comic than painted, which I accepted (SOURCES).
 
 ### Pillars: how the slice delivers them now
 
@@ -85,9 +85,9 @@ The loop (move, jump, hose, rescue, escape in 40 s) is unchanged, but some numbe
 | Run speed | 160 px/s | 120 px/s | Playtest 2: the poses changed too fast to read. |
 | Jump | 53 px high, 0.67 s in the air | 64 px high, 0.8 s | Keeps the burning-street jump possible at the slower speed (option A). |
 | Collision box | 18 × 28 | 20 × 40 | The character is twice as tall; the crouching poses set the height. |
-| Retry after a fire death | 0.55 s | 0.9 s | So the burned pose is seen; still under the 1 s retry limit. |
+| Retry after a fire death | 0.55 s | 2.0 s (R retries at once) | Playtests 2 and 3: the burned pose and "The fire got you" disappeared too fast. |
 | Rescue | the survivor appears in the bag | grab → upward toss → drops into the bag | My design change (2026-10-05); visual only, the rescue still counts on touch. |
 
 ### Audio direction: status
 
-Unchanged from v1 (urgent music, funny effects, music pauses on pause, dips on death, stops on the win). **Not in the slice yet:** I have been generating music in Suno since 2026-10-05; the sound effects and the loop are still to be captured, trimmed, and wired in.
+The plan from v1 still holds (urgent music, funny effects, music pauses on pause, dips on death, stops on the win). **Sound effects are now in the slice** (ElevenLabs, see SOURCES): jump whoosh, hose blast, slide-whistle toss, sizzle-and-yelp burn, a fire-truck siren at the start, and a cheering crowd at the end. **Changed from v1:** the win is a silly crowd cheer, not a gong, because I wanted it funnier; that pulls against "he does not cheer" (Too cool to care), unresolved: the reading I'm considering is that the rescued people cheer while he stays deadpan and bows. **Music:** I have been generating it in Suno since 2026-10-05; the loop is not in the slice yet.

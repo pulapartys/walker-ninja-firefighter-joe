@@ -106,7 +106,7 @@ func run() -> void:
 	check("actual-spike-collision", game.state == Game.State.DYING and game.deaths == 1, {"state":game.state,"deaths":game.deaths})
 	game.resolve_contacts(true,true)
 	check("duplicate-death-ignored", game.deaths == 1, {"deaths":game.deaths})
-	await steps(58)  # was 38: a fire death now holds the burned pose 0.9 s (still within twenty-retries' 60-tick limit)
+	await steps(125)  # was 38 (A1), 58 (0.9 s hold): a fire death now holds 2.0 s (FIRE_DEATH_HOLD, playtest 3)
 	check("respawn", game.state == Game.State.PLAYING and game.player.position.distance_to(Vector2(64,320)) < 1, {"state":game.state,"position":str(game.player.position)})
 	game.restart_attempt()
 	check("manual-restart-not-death", game.deaths == 1, {"deaths":game.deaths})
@@ -114,11 +114,14 @@ func run() -> void:
 	for i in range(20):
 		game.resolve_contacts(true,false)
 		var waited := 0
-		while game.state == Game.State.DYING and waited < 65:
+		while game.state == Game.State.DYING and waited < 130:
 			await steps(1)
 			waited += 1
 		largest_retry_ticks = maxi(largest_retry_ticks, waited)
-	check("twenty-retries", game.deaths == 21 and largest_retry_ticks <= 60, {"deaths":game.deaths,"max_retry_ticks":largest_retry_ticks})
+	# Design change (playtest 3, my decision): a fire death holds 2.0 s so "The fire got you" and the
+	# DEVASTATED close-up can be read; the A1 limit was 60 ticks (1 s). R still retries at once
+	# (test_keyboard "r-skips-fire-wait"). The limit below is the new designed hold + 5 ticks.
+	check("twenty-retries", game.deaths == 21 and largest_retry_ticks <= 125, {"deaths":game.deaths,"max_retry_ticks":largest_retry_ticks})
 	await fresh()
 	game.resolve_contacts(true,true)
 	check("death-before-finish", game.state == Game.State.DYING, {"state":game.state})

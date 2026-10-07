@@ -743,6 +743,8 @@ Sampled from the idle image; `design/character/palette.png` shows each color wit
 **Check against the environment** (luminance contrast; 1.0 = identical brightness):
 - **Near the flames:** suit red vs flame red 1.3, helmet yellow vs flame orange 1.3 and flame core 1.4. The suit and helmet alone would vanish in the fire (predicted failure F2). **The dark outline carries him there:** outline vs flames 3.9 to 16.0.
 - **On the ENV-BG backdrop:** the outline is weak on the dark fog (1.6), but the helmet yellow (7.0 on fog, 3.4 on the glow) and the suit red (2.0 on fog) carry him. The weakest spot is the red suit on the orange horizon glow (1.1).
+- **ENV-BG v2 (2026-10-07):** `palette.png` is now checked against the new backdrop's colours in his play band (dark `#4e5b71`, mid `#798aa2`, light `#dbd3cd`). The orange glow that matched his suit is gone; suit red vs the background improved from worst-spot ΔE 31 to 85 (colour difference, which brightness ratios alone miss).
+- **Playtest 3 (2026-10-07):** in play he still got lost against the backdrop, so the backdrop is drawn darker and cooler in code. A light outline around him was tried and **rejected by me**: the fix belongs in the background, which is being regenerated. The palette is unchanged.
 - These are brightness ratios only; red on blue-gray also differs in hue, which helps. Judged in the game, he reads against the backdrop (TEST-REPORT, ENV-BG).
 - This is v1's palette **option A** (keep red and yellow, rely on a dark outline), and no recolor was needed.
 
