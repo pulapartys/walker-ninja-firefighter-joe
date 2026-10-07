@@ -9,14 +9,20 @@
 
 | Model | Version | Where it ran | License / terms | Used for |
 |---|---|---|---|---|
-| ChatGPT image generation | "Instant" mode; the image model name is not shown in the app | chatgpt.com, **ChatGPT Plus (paid subscription)** | OpenAI Terms of Use | storyboard sketches (SB-01 … SB-06) |
-| Gemini (image) | | Northeastern access / free tier | | |
-| Suno | | free tier | Free tier: non-commercial use; acceptable for coursework | |
+| ChatGPT image generation | "Instant" mode; the image model name is not shown in the app | chatgpt.com, ChatGPT Plus account. **Updated 2026-10-07:** Plus is on OpenAI's free student offer (4 months), so no money was paid for generation. | OpenAI Terms of Use | storyboard sketches (SB-01 … SB-06), character exploration, references, all poses, ENV-BG |
+| Gemini (image) | — | — | — | **Not used.** Planned on 2026-10-01, but I couldn't activate the student offer; every image came from ChatGPT. |
+| Suno | version to record from the app | suno.com, free tier | Free tier: non-commercial use only; acceptable for coursework (to confirm against Suno's current terms) | music loop MUS-LOOP (in progress since 2026-10-05) |
+| Sound-effects model | to choose | free tier | to record | SFX-JUMP, SFX-HOSE, SFX-RESCUE, SFX-BURN, SFX-WIN |
+
+**Reproducibility notes (all ChatGPT images):** ChatGPT does not expose a seed, sampler, or negative prompt, and offers no size setting; the output size is recorded per row instead. Every prompt is verbatim in CHARACTER-SHEET.md or STORYBOARD.md, with the attached reference image named. Re-running a prompt gives a similar, not identical, image.
 
 ## Tools (not generative)
 
 - macOS `sips`: resizing images (panels to 1280 px wide, rejects to thumbnails).
-- Audacity: trimming, loop points, export to OGG (the class repo ignores WAV).
+- Audacity: recording, trimming, loop points, export to OGG (the class repo ignores WAV). Not installed on the build machine as of 2026-10-07.
+- ffmpeg: available for trimming and OGG export from the command line (exact commands logged per sound).
+- Python + Pillow/numpy/scipy (scripts by Claude): `tools/make_sprites.py` (background removal, scaling, anchors), `tools/make_sheet_extras.py` (silhouette, collision overlay, palette, screenshot copies).
+- Godot 4.7.2: the engine; screenshots come from `godot/tests/capture_game.gd`.
 - Claude Code: code, prompts, plans, and document drafting. Not an image or audio generator.
 
 ## Asset log
@@ -75,3 +81,7 @@ Prompts are verbatim in CHARACTER-SHEET.md, "Revision 2026-10-02". All were made
 | CHAR-BOW (pose 12, try 1) | Salute/bow from CHAR-REF-03 (planned pose line; prompt reconstructed from the plan). True side profile, but upright with palms together: **no bow**, nearly the same shape as idle. **Rejected.** Two follow-up edit requests for a bow returned ChatGPT errors (no image). | thumbnail `rejected/CHAR-BOW-pose12-salute-no-bow.png` (400 px wide) |
 | CHAR-BOW (pose 12b, new chat) | Same header, pose line with the bow built in (verbatim in CHARACTER-SHEET.md), sent in a **new chat** with CHAR-REF-03 attached. Clear forward bow, head lowered, true side profile, gear matches; palms together instead of fist-in-palm (minor). **Accepted.** Resized to 800 px wide. | `design/character/poses/pose12-celebrate.png` · panel 6 |
 | ENV-BG | Burning-city backdrop, sent 2026-10-06 in ChatGPT (Plus, Instant mode). Prompt: Claude's ENV-BG prompt (**exact text as sent still to be confirmed**). 1672×941, 16:9: cool blue-gray smoky sky, distant burning skyline, orange glow near the horizon, no people, text, or platforms. **Accepted.** Edits: resized to 1280×720 with `sips`. In-game, the ledges and level text were recolored in code to stay visible on it (TEST-REPORT, "ENV-BG in the game"). | `godot/art/env/env_bg.png` · all panels (background) |
+| ENV-FIRE-A (single flame) | Sent 2026-10-07 in a new ChatGPT chat ("Flame Image Description", Plus, Instant mode), no attachment. Prompt verbatim: "Single image: one standalone fire flame for a 2D side-view video game hazard, centered, about twice as tall as it is wide, flat bottom as if burning on a floor. Semi-realistic painted style with a clear dark-red outer edge, orange body, and bright yellow core, crisp edges, no sparks or smoke floating away from it, no glow or light spilling onto the background. Plain flat solid pure green background (#00FF00), no shadow, no scenery, no text." 1024×1536; flat green background (about #04F80B), crisp edges, no glow. **Accepted.** Style is more comic than "semi-realistic painted" (judged fine: a hazard must read at a glance). Edits: green keyed out, cropped, scaled to 96 px tall (`tools/make_env.py`). | `godot/art/env/fire_single.png` · small ledge hazards · panels 2, 4, 5 |
+| ENV-FIRE-B (wide cluster) | Same chat. Prompt verbatim: "Single image: a low, wide cluster of three or four fire flames side by side for a 2D side-view video game hazard, about three times as wide as it is tall, flat bottom as if burning along a floor. Semi-realistic painted style with clear dark-red outer edges, orange bodies, and bright yellow cores, crisp edges, no sparks or smoke floating away, no glow or light spilling onto the background. Plain flat solid pure green background (#00FF00), no shadow, no scenery, no text." 2172×724, same quality. **Accepted.** Edits: as A, 64 px tall. | `godot/art/env/fire_wide.png` · burning-street fire · panels 5, 6 |
+| ENV-FIRE-Bb (taller cluster, edit) | Edit of B in the same chat, my own words: "make the flames taller". 1907×825, taller flames, same style and background. **Accepted.** Edits: as A, 128 px tall. | `godot/art/env/fire_tall.png` · the fire blocking the person (shrinks as it's hosed) · panel 2 |
+| CHAR-EXPR-02 reused in the game | The DEVASTATED portrait from the accepted expression sheet, **no new generation**. Edits: cropped from the full-size download (right quarter, label removed), scaled to 300 px tall. Shown as a tilted pop-up in the HUD for the 0.9 s of a fire death, because the burned pose can't show his face at 64 px (my decision 2026-10-07). | `godot/art/character/devastated_portrait.png` · panel 4 |

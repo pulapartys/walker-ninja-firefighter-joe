@@ -105,3 +105,35 @@ The plan above is kept as written; these are the changes since.
 - **Rescue toss goes up (my design change):** instead of a sideways toss over the shoulder, he flings the survivor **straight up, sky-high**, without looking, and they drop into his bag (CHAR-TOSS shows his arm thrown up, mid-yawn).
   - **Optional build step:** the game draws the survivor flying up and falling into the bag. It's a short code-drawn arc after the rescue event. If there isn't time, the survivor appears in the bag immediately, as in A1.
   - It must stay visual only. The rescue counts at the moment of contact, as now, so the arc never changes game state.
+
+## Revision 2026-10-07 — plan vs. what is built
+
+The plans above are kept as written. This records the slice as of 2026-10-07.
+
+### Gameplay is no longer "unchanged"
+
+v1 said gameplay, layout, collision, timer, and tuning stay as A1. That changed for the bigger generated character and after playtest 2 (details: CONCEPT.md "Revision 2026-10-07", TEST-REPORT.md):
+- run speed 160 → 120, jump gravity 960 → 800 (64 px jump), collision box 18×28 → 20×40, fire-death retry 0.55 s → 0.9 s;
+- ledges and in-level text recolored for ENV-BG; the "Rescue complete" card waits 1.25 s so the bow is seen.
+The layout, timer, survivors, and hose rules are unchanged, and the full scripted route still completes (41/41 tests).
+
+### Asset list: status
+
+| ID | Status |
+|---|---|
+| CHAR-REF (turnaround, side profiles) | done |
+| CHAR-IDLE, CHAR-RUN, CHAR-RISE, CHAR-FALL, CHAR-LAND, CHAR-SPRAY, CHAR-RESCUE, CHAR-TOSS, CHAR-BURNED, CHAR-RESPAWN, CHAR-BOW | done, in the slice (one image per state) |
+| CHAR-STANCE (crane) | generated; **sheet only** (dropped from the jump in playtest 1; on 2026-10-07 I decided not to reuse it as a "waiting" pose) |
+| CHAR-WALK-A / -B | replaced by CHAR-RUN (one speed) |
+| ENV-BG | done, in the slice |
+| ENV-FIRE | **done** (2026-10-07): three generated flame images (single, wide, tall) replace the code-drawn flames; visual only, the hazard collision rectangles are unchanged (flame-clearance tests pass) |
+| SFX-JUMP, SFX-HOSE, SFX-RESCUE, SFX-BURN, SFX-WIN | **in progress**: prompt variants drafted by Claude; the prompts actually sent will be logged verbatim in SOURCES.md |
+| MUS-LOOP | **in progress**: Suno, since 2026-10-05 |
+
+### Event-to-sound map: one change
+
+SFX-RESCUE fires at the same place as planned (`session.gd`, where `s.rescued = true`), which is also where the grab → toss starts. The toss arc is drawn afterwards and never triggers a second sound.
+
+### Mute keys (planned)
+
+M is taken by "menu", so: **N** toggles music, **B** toggles sound effects (separate, as the assignment prefers). Both only change volume; nothing in the game reads them.

@@ -88,3 +88,11 @@ What I saw, in my words, and what it means:
 - **Automated:** 41/41, keyboard PASS. The screenshot route failed once, on the first run right after the new image was imported; three runs since then completed with 0 deaths. Cause not confirmed.
 - **Still to do:** my playtest with the backdrop (Playtest 3).
 
+## 2026-10-07 — DEVASTATED pop-up and ENV-FIRE in the game
+
+- **Why:** the critical review found *Failure is a punchline* weak in play (face invisible at 64 px, burned pose dark on the backdrop), and ENV-FIRE was in the asset list but not in the slice.
+- **Changes:** on a fire death the HUD pops up the generated DEVASTATED portrait (CHAR-EXPR-02) in a tilted frame next to "The fire got you."; the code-drawn flames are replaced by ENV-FIRE (single flames on small hazards, the wide cluster on the street fire, the tall cluster on the blocking fire, shrinking as it's hosed). Hazard collision rectangles unchanged.
+- **Automated:** `test_game.gd` 41/41 (including `flame-clearance-positive`), `test_keyboard.gd` PASS; screenshot route completes with 0 deaths.
+- **Screenshots (Claude's check):** the flames read clearly on the backdrop and against the red suit (the dark outline separates them); the pop-up shows on the fire death (`evidence/screens-web/02-failure.jpg`).
+- **Still to do:** my playtest of both (Playtest 3).
+

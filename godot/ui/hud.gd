@@ -1,6 +1,9 @@
 extends Control
 var game: Node2D
 const INK := Color("25354a")
+# CHAR-EXPR-02's DEVASTATED portrait (generated), shown big when the fire gets him: at 64 px the
+# burned pose can't show his face, so the punchline gets a comic close-up (storyboard panel 4). Visual only.
+const PORTRAIT := preload("res://art/character/devastated_portrait.png")
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -39,6 +42,13 @@ func _draw() -> void:
 		draw_rect(Rect2(180,128,280,68), Color("fff9ee"))
 		centered(game.death_reason, 155, 21, Color("a23e36"))
 		centered("Back at the start in a moment.", 180, 13)
+		if game.death_reason == "The fire got you.":
+			var t: float = clampf((0.9 - game.retry_remaining) / 0.15, 0.0, 1.0)  # pops in over 0.15 s
+			var size := Vector2(140, 145) * (0.6 + 0.4 * t)
+			draw_set_transform(Vector2(548, 160), -0.06, Vector2.ONE)
+			draw_rect(Rect2(-size / 2 - Vector2(3, 3), size + Vector2(6, 6)), Color("1b2230"))
+			draw_texture_rect(PORTRAIT, Rect2(-size / 2, size), false)
+			draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 		return
 	if game.state == game.State.COMPLETE and game.complete_ticks < game.BOW_TICKS:
 		return  # let the player see the bow first (storyboard panel 6)

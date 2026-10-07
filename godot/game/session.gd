@@ -36,6 +36,9 @@ const TOSS_HEIGHT := 150.0
 var flights: Array = []                # [{type, from: Vector2, t: int, launch, apex}]
 const BOW_TICKS := 75                  # the bow shows ~1.2 s before the "Rescue complete" card covers him
 var complete_ticks: int = 0
+const FIRE_SINGLE := preload("res://art/env/fire_single.png")   # ENV-FIRE-A
+const FIRE_WIDE := preload("res://art/env/fire_wide.png")       # ENV-FIRE-B
+const FIRE_TALL := preload("res://art/env/fire_tall.png")       # ENV-FIRE-Bb
 
 func _ready() -> void:
 	process_physics_priority = 10
@@ -331,19 +334,19 @@ func _draw() -> void:
 	# UNCHANGED, so the jump-over margins verified by flame-clearance-positive still
 	# hold. Flame tips stay below the player's jump clearance, so a cleared jump does
 	# not clip the visual.
+	# ENV-FIRE (generated flames) drawn over each hazard rect: the wide street fire uses the wide
+	# cluster, small ones a row of single flames. Visual only: the COLLISION is the rect built in
+	# _add_area, unchanged, so the flame-clearance tests still hold. The art reaches ~8 px above the
+	# rect, like A1's code-drawn tips, so it can look touched without killing (forgiving).
 	for entry in level.hazards:
-		var hx: float = entry[0]
-		var hy: float = entry[1]
-		var hw: float = entry[2]
-		var base_y: float = hy + entry[3]
-		var tongues: int = maxi(1, int(hw / 12.0))
-		var span: float = hw / float(tongues)
-		for i in range(tongues):
-			var cx: float = hx + span * (float(i) + 0.5)
-			var tip: float = hy - 6.0 - (2.0 if i % 2 == 0 else 0.0)
-			draw_colored_polygon(PackedVector2Array([Vector2(cx-span*0.5, base_y), Vector2(cx-3, hy+3), Vector2(cx, tip), Vector2(cx+3, hy+3), Vector2(cx+span*0.5, base_y)]), Color("e0411c"))
-			draw_colored_polygon(PackedVector2Array([Vector2(cx-span*0.3, base_y), Vector2(cx-2, hy+4), Vector2(cx, tip+3), Vector2(cx+2, hy+4), Vector2(cx+span*0.3, base_y)]), Color("f5a01f"))
-			draw_colored_polygon(PackedVector2Array([Vector2(cx-2, base_y), Vector2(cx, hy+2), Vector2(cx+2, base_y)]), Color("ffe95a"))
+		var hr := Rect2(entry[0], entry[1], entry[2], entry[3])
+		var vis := Rect2(hr.position.x - 2.0, hr.position.y - 8.0, hr.size.x + 4.0, hr.size.y + 8.0)
+		if hr.size.x >= 40.0:
+			draw_texture_rect(FIRE_WIDE, vis, false)
+		else:
+			var n: int = maxi(1, int(round(vis.size.x / (vis.size.y * 0.55))))
+			for k in range(n):
+				draw_texture_rect(FIRE_SINGLE, Rect2(vis.position.x + vis.size.x * k / n, vis.position.y, vis.size.x / n, vis.size.y), false)
 	# Finish: a FIRE-ESCAPE window. Data-driven from level.finish; LOCKED until both
 	# survivors are rescued, then it brightens with a "JUMP OUT" prompt.
 	var fr := Rect2(level.finish[0], level.finish[1], level.finish[2], level.finish[3])
@@ -436,15 +439,9 @@ func _draw() -> void:
 		var bw: float = bf[2]
 		var bbase: float = byy + float(bf[3])
 		if fire_active:
-			var ftop: float = bbase - fire_height()  # flame top rises as the fire burns down
-			var n: int = maxi(2, int(bw / 14.0))
-			for i in range(n):
-				var fcx: float = bx + bw * (float(i) + 0.5) / float(n)
-				var tip: float = ftop - 8.0 - (4.0 if i % 2 == 0 else 0.0)
-				var mid: float = minf(ftop + 4.0, bbase)
-				draw_colored_polygon(PackedVector2Array([Vector2(fcx-7, bbase), Vector2(fcx-4, mid), Vector2(fcx, tip), Vector2(fcx+4, mid), Vector2(fcx+7, bbase)]), Color("d0341a"))
-				draw_colored_polygon(PackedVector2Array([Vector2(fcx-4, bbase), Vector2(fcx, tip+8.0), Vector2(fcx+4, bbase)]), Color("f39a1e"))
-				draw_colored_polygon(PackedVector2Array([Vector2(fcx-2, bbase), Vector2(fcx, minf(ftop+1.0, bbase)), Vector2(fcx+2, bbase)]), Color("ffe95a"))
+			# ENV-FIRE tall cluster; it shrinks from the top with fire_height() as it's hosed.
+			var fh: float = fire_height()
+			draw_texture_rect(FIRE_TALL, Rect2(bx - 8.0, bbase - fh - 10.0, bw + 16.0, fh + 10.0), false)
 		if water_ticks > 0:
 			var tgt := Vector2(bx + bw / 2.0, bbase - maxf(fire_height() * 0.5, 6.0))
 			var src := player.position + Vector2(Player.NOZZLE.x * player.facing, Player.NOZZLE.y)
