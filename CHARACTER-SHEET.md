@@ -670,3 +670,92 @@ Pose: A formal kung-fu bow: his upper body bent forward at the waist about 45 de
 - **File:** `design/character/poses/pose12-celebrate.png`, resized to 800 px wide (0.78 factor).
 
 **Pose count:** 12 labeled pose images (idle, poses 1–9, 11, 12) plus the turnaround.
+
+---
+
+## Revision 2026-10-07 — final sheet: states in the game, silhouette, collision, palette, consistency
+
+Written after the character was built into the game and playtested twice (TEST-REPORT.md). The v1 sections above are kept as the original contract; this section records what was actually built and checked. Images below were made by Claude with `tools/make_sheet_extras.py` from the exact in-game images (`godot/art/character/`), so they show what the game draws.
+
+### Requirement change: one image per state
+
+The assignment was updated: animation is not required; each state is one static image that the game swaps in. The "Plays" column (loop / once) in the v1 pose table is therefore informational only.
+
+### Pose → game state, as built
+
+| State in the game | Image | When it shows |
+|---|---|---|
+| idle | `side-profile-game.png` (CHAR-REF-03) | on the floor, not moving |
+| run | `pose02-run.png` | on the floor, moving |
+| rising (flying kick) | `pose04-rising.png` | the whole jump, up and down (playtest 1: "too many poses in one jump") |
+| falling (meditating) | `pose05-falling.png` | in the air without jumping (walked off a ledge) |
+| landing | `pose06-landing.png` | 20 ticks (0.33 s) after touching down from real air time |
+| hose | `pose07-hose.png` | standing still while the water pours; the water starts at its nozzle tip |
+| rescue grab | `pose08-grab.png` | 15 ticks at the moment of a rescue |
+| rescue toss | `pose09-toss.png` | 30 ticks after the grab, while the survivor flies up |
+| burned | `pose11-burned.png` | fire death (`DYING`), 0.9 s until the retry |
+| respawn / ready | `pose01-respawn.png` | after a retry, until he moves (max 30 ticks) |
+| celebrate (bow) | `pose12-celebrate.png` | level complete (`COMPLETE`); the end card waits 1.25 s so the bow is seen |
+| jump crouch (crane) | `pose03-jump-crouch.png` | **sheet only**: dropped from the jump in playtest 1 |
+
+12 distinct labeled poses plus the turnaround; 11 of them are used in the game.
+
+### Size
+
+**64 px tall** (idle) in the 640×360 game, which is **128 px in the 1280×720 window**. Every pose uses one scale factor, so proportions match across poses (the v1 "about 32 px" is replaced; the A1 size hid all the art's detail, see CHAR-REF-03). Still to confirm in my next playtest.
+
+### Silhouette at on-screen size
+
+`design/character/silhouette.png` (1×, the real size) and `silhouette-x4.png` (enlarged to inspect), all 12 states in solid black.
+
+- Every state has its own shape: the run and landing are long and low, the kick is horizontal, the fall is a compact ball, the hose has a straight bar forward, the toss has one arm straight up, burned has both elbows up at the helmet, the bow leans forward.
+- The helmet and the headband tails read in every state, so he stays one character.
+- **Weakest:** idle, burned, toss, and bow are all upright, and differ only by the arms and head. At game size burned also loses its soot detail on the dark backdrop (predicted failure F3); it reads by shape.
+
+### Orientation
+
+Drawn facing **right**; facing left is the same image mirrored at runtime (`player.gd`, the art holder's x scale is negative). No left-facing images were generated. Unchanged from v1.
+
+### Collision overlay
+
+`design/character/collision.png`: every state with the collision box at the same scale (4×), the box bottom-center on the character's origin.
+
+- **Box: 20 × 40 px** (v1 said 18 × 28, unchanged from A1). Changed because the character is bigger. **My decision, option A** (2026-10-06): the crouching poses (run, landing, hose, respawn) are only 41–49 px tall, so a box as tall as the standing idle (≈58 px) would sit above his head while running, and a flame could kill him without visibly touching him.
+- **Art beyond the box, and why it's fair:**
+  - Standing poses: the head and helmet stick out about 24 px above the box. A flame can brush his helmet without killing him. That only forgives.
+  - Headband tails behind him, the kick leg, the hose nozzle, the reaching or raised arms (grab, toss, respawn), and the stretched back leg in the run and landing: all outside the box, all forgiving.
+  - Falling (meditating): the box is centered on his body, so his crossed legs hang a few px below the box. When he touches down, the landing pose (feet on the box bottom) replaces it.
+- **Nothing in the box is empty art in a way that kills unfairly:** the box sits on the torso and legs in every pose.
+- The level's tests still pass with the bigger box (TEST-REPORT, steps 1–2), including the flame-clearance check.
+
+### Palette (final hex values)
+
+Sampled from the idle image; `design/character/palette.png` shows each color with its contrast ratio against the backdrop and the level.
+
+| Color | Hex | Role |
+|---|---|---|
+| Suit red | `#be1a16` | most of the body |
+| Suit shadow | `#77110c` | folds, shaded side |
+| Helmet yellow | `#f1bc27` | helmet, reflective stripes |
+| Outline / mask | `#0e0a08` | outline, face mask, boots |
+| Gear brown | `#705340` | belt pouch, wraps, straps |
+
+**Check against the environment** (luminance contrast; 1.0 = identical brightness):
+- **Near the flames:** suit red vs flame red 1.3, helmet yellow vs flame orange 1.3 and flame core 1.4. The suit and helmet alone would vanish in the fire (predicted failure F2). **The dark outline carries him there:** outline vs flames 3.9 to 16.0.
+- **On the ENV-BG backdrop:** the outline is weak on the dark fog (1.6), but the helmet yellow (7.0 on fog, 3.4 on the glow) and the suit red (2.0 on fog) carry him. The weakest spot is the red suit on the orange horizon glow (1.1).
+- These are brightness ratios only; red on blue-gray also differs in hue, which helps. Judged in the game, he reads against the backdrop (TEST-REPORT, ENV-BG).
+- This is v1's palette **option A** (keep red and yellow, rely on a dark outline), and no recolor was needed.
+
+### Consistency rules: check of the accepted images
+
+Checked by Claude against `side-profile-game.png`; each note was already logged when the pose was accepted.
+
+| Rule | Result |
+|---|---|
+| Same proportions and height | Every pose is filed at the same 0.78 scale and shrunk by one factor for the game. Standing heights: idle 128, toss 129, burned 128, jump crouch 124 texture px (within 3%). |
+| Same helmet, mask, headband, tank, axe | Holds in all 12. **Drift:** pose 8 (grab) has an extra thigh pouch (accepted as is, my decision). |
+| Side view, facing right | Holds, except pose 1 (respawn, about three-quarter, accepted for a brief state) and pose 4b (rising, some chest showing). |
+| Eye line, grumpy default face | Not visible at game size. Several poses came back stern rather than grumpy (accepted; the face doesn't read at 64 px). |
+| Outline weight | All generated with the same dark outline from CHAR-REF-03; at game size it is about 1 px. |
+| Feet on the same baseline | In the game, the feet of every grounded pose sit on the origin (anchors in `godot/art/character/anchors.json`). |
+| Only palette colors | Painted art, so not literally 5 colors; the five above are the main colors in every pose. Pose 11 adds soot and gray smoke by design. |
