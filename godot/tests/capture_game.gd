@@ -44,6 +44,17 @@ func run() -> void:
 	await capture("state-respawn")
 	for i in range(35): await step()
 	await capture("state-idle")
+	# Orientation: run right, then left (the art mirrors at runtime), and stand facing left.
+	game.player.test_axis = 1.0
+	for i in range(30): await step()
+	game.player.test_axis = -1.0
+	for i in range(15): await step()
+	await capture("facing-left-run")
+	game.player.test_axis = 0.0
+	for i in range(40): await step()
+	await capture("facing-left-idle")
+	game.restart_attempt()
+	await step()
 	var route = Route.new()
 	var gap_captured := false
 	var seen := {}
