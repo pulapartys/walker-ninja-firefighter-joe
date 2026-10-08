@@ -2,7 +2,6 @@
 
 An asset slice for CSYE 7270 Assignment 2: **Extinguisho**, a deadpan ninja firefighter, has 40 seconds to rescue a person and a dog from two burning buildings: kung-fu jump over flames, hose the fire blocking the way, toss the survivors into his bag, and escape off the roof. The art (and, in progress, the sound and music) is generated with generative models and wired into a playable Godot scene.
 
-> Status 2026-10-07: character art, the background, the flames, sound effects, the music loop, and mute are in the slice; the film is in progress. Sections marked *(in progress)* will be updated before submission.
 
 ## Started from
 
@@ -56,6 +55,7 @@ Automated tests (from `godot/`):
 
 - The character's face doesn't read at game size (64 px); attitude comes through the poses. The burned pose is dark and subtle on the dark background.
 - The level, survivors, rescue bag, and HUD are code-drawn (from A1), not generated.
+- Muted, the fire death is understood mainly through its on-screen text ("The fire got you."); the burn sound carries part of that moment (muted playtest).
 - The run is slower and the jump floatier than A1 (changed after playtest 2); a fire death holds 2 s (playtest 3), longer than A1's 1 s retry.
 - The background was regenerated (ENV-BG v2, cool blue-gray) after playtest 3 so the red-and-yellow character stands out; the burning city now reads through smoke columns and the game's flames rather than an orange sky.
 - ChatGPT does not expose seeds, so regenerating an image from its logged prompt gives a similar, not identical, result.
@@ -63,7 +63,12 @@ Automated tests (from `godot/`):
 
 ## Film
 
-*(in progress)*: final film link, filename, and SHA-256 will be added here.
+Brutalist `godot-gamedev` explainer, `walker` mode, native 4K: *Extinguisho: Generated Art, Sound, and Music in Godot*. Source shown: revision `241c3f2`. Film source (script, beat sheet, evidence, capture driver): [`youtube/claude-liam-walker-ninja-firefighter-joe-gamedev/`](youtube/claude-liam-walker-ninja-firefighter-joe-gamedev/).
+
+- **Link (Northeastern SharePoint, course media storage):** https://northeastern-my.sharepoint.com/:f:/g/personal/pulaparty_s_northeastern_edu/IgAIP7WoCQfYQqLBHNgRfXv8ATHXvgLoeUTGjfj3LlelU8w?e=g5m7aQ
+- **Filename:** `claude-liam-walker-ninja-firefighter-joe-gamedev.mp4` (3840×2160, 30 fps, 6 min 3 s, 54 MB)
+- **SHA-256:** `7c0d484b7aba9e780f0f04dbb1f24b2f9f0551a38210db6a8458ac846c296230`
+- The folder name `youtube/` is just Brutalist's name for a film project folder: the film is **not** on YouTube, and the MP4 is not in git (course rule).
 
 ## Credits
 

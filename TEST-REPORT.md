@@ -14,7 +14,7 @@
 | Storyboard against the slice | **done**: every panel beside the matching in-engine moment; differences and uncovered parts listed | `evidence/compare/storyboard-vs-slice.jpg`, "Storyboard against the slice" below |
 | Sound events: exactly one sound per occurrence | **automated: pass** (held key, rapid repeats, W mashing, duplicate death); human: sounds fit, playtest 3 | `tests/test_audio.gd`; "Playtest 3" |
 | Music loop and pause/end behavior | **automated: pass** (`music-behaviour`, `music-loops`); listened with the effects: fine | "music loop in the slice" |
-| Muted play | automated: muting / missing sounds change nothing (`mute-changes-nothing`, `missing-sounds-change-nothing`); **human muted playtest: pending** | — |
+| Muted play | automated: muting / missing sounds change nothing; **human: done** (rescues clear; the fire death clear only through its on-screen text) | "Muted playtest" below |
 | Automated check added by me | **done**: `tests/test_audio.gd` (14 checks) + 5 keyboard checks | "full automated suite" |
 | Inspect-and-revise cycles | **done, several**: playtests 1–3 (poses, speed, hold times, close-ups), ENV-BG v2 (ΔE 31 → 85), siren removed, screenshot-found HUD bug | sections below |
 | Predicted failures F1–F8 | **done**: outcome of each | "Predictions vs results" below |
@@ -233,7 +233,15 @@ Still needed from a human: Playtest 3 with sound **on** (does each sound fit its
 
 ## 2026-10-07 — fresh-copy run
 
-- **What:** exactly the files of the commit "Add full-session screenshots, character/storyboard comparisons, predictions vs results, fresh-copy run; fix mute HUD overlap" (exported from the git index with `git checkout-index` into an empty folder: no `.godot/` cache, no local files) on macOS, Godot 4.7.2.
+- **What:** the game files of commit `241c3f2` (exported from the git index with `git checkout-index` into an empty folder: no `.godot/` cache, no local files) on macOS, Godot 4.7.2. Only TEST-REPORT.md and FRICTIONAL.md were edited after this run, before the commit; the game was identical. The film's capture copy (`git archive 241c3f2`) re-ran all three suites: 41/14/14.
 - **Commands (from the fresh `godot/`):** `godot --headless --path . --import` → 0 errors; `-s tests/test_game.gd` → **41/41**; `-s tests/test_keyboard.gd` → **14/14**; `-s tests/test_audio.gd` → **14/14**; `godot --headless --path . --quit-after 120` (runs the main scene) → no errors, exit 0.
 - **Assets present:** all 12 character images, the two close-ups, ENV-BG v2, three flames, five sound effects, and the music loop load (the tests play every sound and the music; the screenshots show every image).
 - **To repeat** on the final submitted commit before submitting.
+
+## 2026-10-07 — muted playtest and sound-on comparison (human: me)
+
+I played many times during development; this records the muted check and how it compared with sound on.
+
+- **Muted (N + B):** saving the victims was understandable (the HELP bubble, the grab and toss, SAVED!, the heads in the bag). The fire death was understandable **only because of the on-screen text "The fire got you."**; without it, the burned moment alone would be easy to miss.
+- **Sound on:** the music added urgency to the whole game. The sounds also explained the visuals: the hose sound made it clear the water was putting out the fire, and the burn sound and the claps at the end made those moments clearer.
+- **What this means for F8 (unreadable muted):** the slice is readable muted, but the fire death leans on its text; the sound carries part of the explanation. A next step would be a clearer visual for the burn itself (e.g. a flash or smoke), so muted players don't depend on reading.

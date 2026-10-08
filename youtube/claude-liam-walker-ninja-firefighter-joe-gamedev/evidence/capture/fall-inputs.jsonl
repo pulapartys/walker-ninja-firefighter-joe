@@ -1,0 +1,8 @@
+{"input":"confirm","tick":30,"value":true}
+{"input":"axis","tick":50,"value":1.0}
+{"input":"axis","tick":80,"value":-1.0}
+{"input":"axis","tick":105,"value":0.0}
+{"input":"axis","tick":145,"value":1.0}
+{"input":"jump","tick":173,"value":true}
+{"input":"jump","tick":250,"value":true}
+{"input":"axis","tick":364,"value":0.0}

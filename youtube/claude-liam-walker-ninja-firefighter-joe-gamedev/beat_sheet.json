@@ -1,0 +1,1135 @@
+{
+  "metadata": {
+    "slug": "claude-liam-walker-ninja-firefighter-joe-gamedev",
+    "title": "Extinguisho: Generated Art, Sound, and Music in Godot",
+    "persona": "Liam",
+    "palette": "claude",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "fps": 30,
+    "width": 3840,
+    "height": 2160,
+    "aspect_ratio": "16:9",
+    "caption_policy": "no burned captions",
+    "fit": "pad",
+    "skill": "godot-gamedev",
+    "modifier": "walker",
+    "source_revision": "241c3f2",
+    "human_review_approved": false,
+    "authorization": "Student's Assignment 2 explainer; local 4K master for course submission; no publication.",
+    "build": {
+      "at": "2026-10-07T22:27:36",
+      "cut": "master",
+      "filled": 24,
+      "of": 24,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "heading": "The prompt",
+      "narration_text": "Please use Walker to turn a game design into a playable Godot slice, with generated art, sound, and music. I'm Liam, the narrator voice of the Brutalist toolkit. This is Assignment Two for C S Y E seventy-two seventy, and the game is called Extinguisho.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The prompt",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The prompt"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Please use Walker to convert my game design document\nabout a deadpan ninja firefighter racing a forty-second clock\ninto a playable Godot asset slice with generated art, sound, and music.",
+            "topic": "Illustrative reconstruction, not a session transcript",
+            "segment": "Extinguisho: Generated Art, Sound, and Music in Godot",
+            "greeting": "Hello",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 15.5
+          }
+        }
+      },
+      "audio_file": "audio/B00.wav",
+      "actual_duration_s": 15.5,
+      "render_duration_s": 15.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "heading": "What was built",
+      "narration_text": "Extinguisho is Sreeja's game. It grew out of her Assignment One firefighter platformer: one level, two burning buildings, a forty-second clock, now played by a generated ninja firefighter, with a generated skyline and flames, five generated sound effects, and a looping track. This is an asset slice, not the full game.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What was built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What was built"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "A coded character, now generated.",
+            "triggerWords": "coded",
+            "replacementWords": "painted",
+            "fontSize": 80,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "charMs": 55,
+            "jitter": 0,
+            "seed": "claude-liam-walker-ninja-firefighter-joe-gamedev",
+            "face": "serif",
+            "align": "center",
+            "durationSeconds": 18.766666666666666
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-08T02:21:45.986254+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "audio_file": "audio/B01.wav",
+      "actual_duration_s": 18.766666666666666,
+      "render_duration_s": 18.766666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "heading": "Four pillars, designed first",
+      "narration_text": "Extinguisho is grumpy, unimpressed, and fast. Four pillars set the bar for every asset: race the flames, too cool to care, every move is a kata, and failure is a punchline. The storyboard came first, as the specification for every prompt. Its text was committed two minutes after the first sketch; the log says so.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Four pillars, designed first",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Four pillars, designed first"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Four pillars, designed first",
+            "status": "CONCEPT.md · STORYBOARD.md · design before generation",
+            "image": "B02-figure.png",
+            "imageLabel": "",
+            "source": "CONCEPT.md · STORYBOARD.md · design before generation",
+            "cards": [
+              {
+                "label": "1",
+                "text": "The six storyboard panels (3a–3c: the rescue b"
+              }
+            ],
+            "durationSeconds": 17.666666666666668
+          }
+        },
+        "evidence_media": "media/stills/B02-figure.png"
+      },
+      "audio_file": "audio/B02.wav",
+      "actual_duration_s": 17.666666666666668,
+      "render_duration_s": 17.666666666666668,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "heading": "The character sheet as a contract",
+      "narration_text": "The character sheet is the contract: twelve labeled poses, a silhouette at real game size, a collision overlay, a five-colour palette, and consistency rules. Every pose came from one reference image, attached to each prompt, so proportions held.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The character sheet as a contract",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The character sheet as a contract"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The character sheet as a contract",
+            "status": "CHARACTER-SHEET.md · silhouette at game size (64 px), enlarged",
+            "image": "B03-figure.png",
+            "imageLabel": "",
+            "source": "CHARACTER-SHEET.md · silhouette at game size (64 px), enlarged",
+            "cards": [
+              {
+                "label": "1",
+                "text": "Every state in solid black at its game size, e"
+              }
+            ],
+            "durationSeconds": 14.066666666666666
+          }
+        },
+        "evidence_media": "media/stills/B03-figure.png"
+      },
+      "audio_file": "audio/B03.wav",
+      "actual_duration_s": 14.066666666666666,
+      "render_duration_s": 14.066666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "heading": "One asset, traced: the design",
+      "narration_text": "Let's trace one asset. Storyboard panel three-b is the rescue: he tosses the survivor into his bag without looking, mid-yawn. The first generation did exactly that, sideways. Looking at it, Sreeja changed the idea: the toss should go straight up, sky-high.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "One asset, traced: the design",
+        "show": [
+          {
+            "at": "beat",
+            "event": "One asset, traced: the design"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "One asset, traced: the design",
+            "status": "Storyboard sketch → prompt → raw generation (rejected)",
+            "image": "B04-figure.png",
+            "imageLabel": "",
+            "source": "Storyboard sketch → prompt → raw generation (rejected)",
+            "cards": [
+              {
+                "label": "1",
+                "text": "Panel 3b (ChatGPT sketch)"
+              },
+              {
+                "label": "2",
+                "text": "The pose prompt"
+              },
+              {
+                "label": "3",
+                "text": "Raw output, try 1 (rejected)"
+              }
+            ],
+            "durationSeconds": 14.466666666666667
+          }
+        },
+        "evidence_media": "media/stills/B04-figure.png"
+      },
+      "audio_file": "audio/B04.wav",
+      "actual_duration_s": 14.466666666666667,
+      "render_duration_s": 14.466666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "heading": "The edit, then the texture",
+      "narration_text": "So the next step was an edit, not a new prompt: keep the character and the view, change only the throwing arm. Then a script removes the cream background with a flood fill, scales every pose by one shared factor, and records an anchor at the feet. A hundred and twenty-eight pixel texture, drawn at half size.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The edit, then the texture",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The edit, then the texture"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The edit, then the texture",
+            "status": "Edit prompt → edited generation (accepted) → game texture (tools/make_sprites.py)",
+            "image": "B05-figure.png",
+            "imageLabel": "",
+            "source": "Edit prompt → edited generation (accepted) → game texture (tools/make_sprites.py)",
+            "cards": [
+              {
+                "label": "1",
+                "text": "Edit 9b: change only the arm"
+              },
+              {
+                "label": "2",
+                "text": "Reference → accepted 9b → background removed, "
+              }
+            ],
+            "durationSeconds": 16.266666666666666
+          }
+        },
+        "evidence_media": "media/stills/B05-figure.png"
+      },
+      "audio_file": "audio/B05.wav",
+      "actual_duration_s": 16.266666666666666,
+      "render_duration_s": 16.266666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "heading": "One image per state",
+      "narration_text": "In Godot, a state is one static image. Show pose swaps the texture, places it by its feet anchor, and flips the holder's scale when he faces left. No animation: the state change is the image change.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "One image per state",
+        "show": [
+          {
+            "at": "beat",
+            "event": "One image per state"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One image per state",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/player.gd",
+            "source": "Godot editor reconstruction · exact source, revision 241c3f2 · next: the visible result",
+            "code": "func show_pose(state: String) -> void:\n\tpose = state\n\tsprite.texture = textures[state]\n\tvar a: Array = anchors[state]\n\tsprite.position = -Vector2(a[0], a[1])\n\tart.scale = Vector2(0.5 * facing, 0.5)\n\tqueue_redraw()  # the bag follows the pose",
+            "startLine": 71,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "State",
+                "value": "one texture per pose"
+              },
+              {
+                "label": "Facing",
+                "value": "negative x scale"
+              }
+            ],
+            "output": [
+              "features/player/player.gd lines 71–77"
+            ],
+            "cues": [],
+            "durationSeconds": 12.4
+          }
+        }
+      },
+      "audio_file": "audio/B06.wav",
+      "actual_duration_s": 12.4,
+      "render_duration_s": 12.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "heading": "The toss, in the running game",
+      "narration_text": "And here is that toss in play: the grab, the arm flung up, the survivor spinning skyward and dropping into the bag. The rescue counts the instant he touches the survivor; the arc is drawn afterwards, so it can never change what happens.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The toss, in the running game",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The toss, in the running game"
+          }
+        ],
+        "evidence_media": "media/B07.mp4"
+      },
+      "gameplay_take": "rescue",
+      "audio_file": "audio/B07.wav",
+      "actual_duration_s": 13.0,
+      "render_duration_s": 13.0,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot gameplay fills the frame; not a slide with title-safe margins."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "heading": "Choosing the state",
+      "narration_text": "Update pose decides which image shows. Timed action poses come first, then air, then ground. A jump is one kick from takeoff to touchdown, then a landing held for a third of a second. That rule came from a playtest where three poses flashed in one jump.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Choosing the state",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Choosing the state"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Choosing the state",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/player.gd",
+            "source": "Godot editor reconstruction · exact source, revision 241c3f2 · next: the visible result",
+            "code": "func _update_pose() -> void:\n\tvar on_floor := is_on_floor()\n\tif on_floor:\n\t\tif not was_on_floor and air_ticks > 10:\n\t\t\tland_ticks = LAND_TICKS\n\t\tair_ticks = 0\n\t\tjumped_this_air = false\n\telse:\n\t\tair_ticks += 1\n\twas_on_floor = on_floor\n\tif land_ticks > 0:\n\t\tland_ticks -= 1\n\tif not action_queue.is_empty() and action_cancel_on_move and (absf(velocity.x) > 8.0 or not on_floor):\n\t\taction_queue.clear()\n\tif not action_queue.is_empty():\n\t\tshow_pose(action_queue[0][0])\n\t\taction_queue[0][1] -= 1\n\t\tif action_queue[0][1] <= 0:\n\t\t\taction_queue.pop_front()\n\telif not on_floor:\n\t\t# A jump is one flying kick all the way; walking off a ledge is the meditating fall.\n\t\tshow_pose(\"rising\" if jumped_this_air else \"falling\")\n\telif land_ticks > 0:\n\t\tshow_pose(\"landing\")\n\telif absf(velocity.x) > 8.0:\n\t\tshow_pose(\"run\")\n\telif hosing:\n\t\tshow_pose(\"hose\")",
+            "startLine": 85,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Air",
+                "value": "kick, or the fall if no jump"
+              },
+              {
+                "label": "Ground",
+                "value": "landing → run → hose → idle"
+              }
+            ],
+            "output": [
+              "features/player/player.gd lines 85–112"
+            ],
+            "cues": [],
+            "durationSeconds": 14.666666666666666
+          }
+        }
+      },
+      "audio_file": "audio/B08.wav",
+      "actual_duration_s": 14.666666666666666,
+      "render_duration_s": 14.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "heading": "Every state in play",
+      "narration_text": "Every state, in real play: the respawn stance, idle, run, the flying kick, the landing, the hose, the grab and the toss, the bow, facing left, the meditating fall after a missed jump, and burned. The crane crouch stayed on the sheet; in play it flashed by too fast to read.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Every state in play",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Every state in play"
+          }
+        ],
+        "evidence_media": "media/B09.mp4"
+      },
+      "gameplay_take": "montage",
+      "audio_file": "audio/B09.wav",
+      "actual_duration_s": 15.333333333333334,
+      "render_duration_s": 15.333333333333334,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot gameplay fills the frame; not a slide with title-safe margins."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "heading": "The collision box",
+      "narration_text": "Collision is a separate object from the art. The box is twenty by forty game units, centred twenty above the feet, sized from the crouching poses so it never floats above his head while he runs.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The collision box",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The collision box"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The collision box",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/player.gd",
+            "source": "Godot editor reconstruction · exact source, revision 241c3f2 · next: the visible result",
+            "code": "\tcollision_layer = 2\n\tcollision_mask = 1\n\tfloor_snap_length = 1.0\n\tvar shape := RectangleShape2D.new()\n\tshape.size = BOX\n\tvar collider := CollisionShape2D.new()\n\tcollider.shape = shape\n\tcollider.position = Vector2(0, -BOX.y / 2.0)\n\tadd_child(collider)",
+            "startLine": 48,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Box",
+                "value": "20 × 40, feet at the origin"
+              },
+              {
+                "label": "Not the art",
+                "value": "a separate shape"
+              }
+            ],
+            "output": [
+              "features/player/player.gd lines 48–56"
+            ],
+            "cues": [],
+            "durationSeconds": 11.2
+          }
+        }
+      },
+      "audio_file": "audio/B10.wav",
+      "actual_duration_s": 11.2,
+      "render_duration_s": 11.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "heading": "Art against the box",
+      "narration_text": "Drawn on real screenshots, the helmet, the kick, and the hose reach past the box. That only forgives the player. Art smaller than the box would kill without visible contact; there is none.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Art against the box",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Art against the box"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Art against the box",
+            "status": "Diagnostic overlay on in-engine screenshots (cyan = collision box) · evidence/compare",
+            "image": "B11-figure.png",
+            "imageLabel": "",
+            "source": "Diagnostic overlay on in-engine screenshots (cyan = collision box) · evidence/compare",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Diagnostic overlay on in-engine screenshots (c"
+              }
+            ],
+            "durationSeconds": 10.766666666666667
+          }
+        },
+        "evidence_media": "media/stills/B11-figure.png"
+      },
+      "audio_file": "audio/B11.wav",
+      "actual_duration_s": 10.766666666666667,
+      "render_duration_s": 10.766666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "heading": "A background that hid him",
+      "narration_text": "The environment is generated too: a skyline behind the level and three flame images keyed out from flat green. One change shows cause and effect. The first background's orange glow sat at his height and hid his red suit. Regenerated as a cool blue-grey haze, the colour difference at the worst spot rose from thirty-one to eighty-five.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "A background that hid him",
+        "show": [
+          {
+            "at": "beat",
+            "event": "A background that hid him"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "A background that hid him",
+            "status": "Screenshots: ENV-BG v1 (2026-10-06 build) → ENV-BG v2 (revision 241c3f2)",
+            "image": "B12-figure.png",
+            "imageLabel": "",
+            "source": "Screenshots: ENV-BG v1 (2026-10-06 build) → ENV-BG v2 (revision 241c3f2)",
+            "cards": [
+              {
+                "label": "1",
+                "text": "v1: suit vs background, worst spot ΔE 31"
+              },
+              {
+                "label": "2",
+                "text": "v2: ΔE 85, same character"
+              }
+            ],
+            "durationSeconds": 17.966666666666665
+          }
+        },
+        "evidence_media": "media/stills/B12-figure.png"
+      },
+      "audio_file": "audio/B12.wav",
+      "actual_duration_s": 17.966666666666665,
+      "render_duration_s": 17.966666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "heading": "Five sounds, cleaned the same way",
+      "narration_text": "Five sound events: jump, hose, rescue, the fire death, and the win. Each was trimmed to start instantly, brought to minus fourteen L U F S with a limiter just under full scale, and saved as Ogg Vorbis.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Five sounds, cleaned the same way",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Five sounds, cleaned the same way"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Five sounds, cleaned the same way",
+            "status": "ElevenLabs Sound Effects (elevenlabs.io) → tools/make_audio.sh → godot/audio",
+            "image": "B13-figure.png",
+            "imageLabel": "",
+            "source": "ElevenLabs Sound Effects (elevenlabs.io) → tools/make_audio.sh → godot/audio",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "ElevenLabs Sound Effects (elevenlabs.io) → too"
+              }
+            ],
+            "durationSeconds": 12.633333333333333
+          }
+        },
+        "evidence_media": "media/stills/B13-figure.png"
+      },
+      "audio_file": "audio/B13.wav",
+      "actual_duration_s": 12.633333333333333,
+      "render_duration_s": 12.633333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "heading": "A sound follows its event",
+      "narration_text": "Each sound plays from the code that already represents its event, after the state changes: the burn plays once the game is already dying. The guards that stop a double death also stop a double sound, and nothing in the game reads a sound back.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "A sound follows its event",
+        "show": [
+          {
+            "at": "beat",
+            "event": "A sound follows its event"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "A sound follows its event",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "game/session.gd",
+            "source": "Godot editor reconstruction · exact source, revision 241c3f2 · next: the visible result",
+            "code": "\tif fatal:\n\t\tstate = State.DYING\n\t\tdeaths += 1\n\t\tretry_remaining = 0.55\n\t\tplayer.enabled = false\n\t\tplayer.velocity = Vector2.ZERO\n\t\tif death_reason == \"The fire got you.\":\n\t\t\tplayer.show_pose(\"burned\")\n\t\t\tplay_sfx(\"burn\")\n\t\t\tretry_remaining = FIRE_DEATH_HOLD  # burned pose + DEVASTATED pop-up stay up; R skips the wait\n\telif finished:\n\t\tstate = State.COMPLETE\n\t\tlast_finish_time = elapsed\n\t\tplayer.enabled = false\n\t\tplayer.velocity = Vector2.ZERO\n\t\tplayer.show_pose(\"celebrate\")\n\t\tcomplete_ticks = 0\n\t\tplay_sfx(\"win\")",
+            "startLine": 194,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Order",
+                "value": "state first, then the sound"
+              },
+              {
+                "label": "Guard",
+                "value": "only while PLAYING"
+              }
+            ],
+            "output": [
+              "game/session.gd lines 194–211"
+            ],
+            "cues": [],
+            "durationSeconds": 13.7
+          }
+        }
+      },
+      "audio_file": "audio/B14.wav",
+      "actual_duration_s": 13.7,
+      "render_duration_s": 13.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "heading": "Burned, then back",
+      "narration_text": "Here is that branch in play: the fire touches him, the burned pose and the devastated close-up hold for two seconds, and he is back at the start in his ready stance.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Burned, then back",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Burned, then back"
+          }
+        ],
+        "evidence_media": "media/B15.mp4"
+      },
+      "gameplay_take": "fire",
+      "audio_file": "audio/B15.wav",
+      "actual_duration_s": 9.733333333333333,
+      "render_duration_s": 9.733333333333333,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot gameplay fills the frame; not a slide with title-safe margins."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "heading": "Game audio, no narration",
+      "narration_text": "",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Game audio, no narration",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Game audio, no narration"
+          }
+        ],
+        "evidence_media": "media/B16.mp4"
+      },
+      "gameplay_take": "audio",
+      "clock": "source",
+      "audio_policy": "preserve",
+      "actual_duration_s": 29.921354,
+      "render_duration_s": 29.933333333333334,
+      "kind": "source_report",
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "heading": "Sixteen bars that loop",
+      "narration_text": "For the music, Sreeja kept the second version, with the taiko drums and plucked strings the ninja idea needed. At a hundred and fifty beats per minute one bar is one point six seconds; sixteen bars were cut where the last bar best matches the first, with a ten millisecond crossfade at the seam.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Sixteen bars that loop",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Sixteen bars that loop"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Sixteen bars that loop",
+            "status": "Eleven Music recording → loop 14.10–39.70 s → godot/audio/music_loop.ogg",
+            "image": "B17-figure.png",
+            "imageLabel": "",
+            "source": "Eleven Music recording → loop 14.10–39.70 s → godot/audio/music_loop.ogg",
+            "cards": [
+              {
+                "label": "1",
+                "text": "The recording; the highlighted window becomes "
+              },
+              {
+                "label": "2",
+                "text": "The loop: 25.6 s, crossfaded seam"
+              }
+            ],
+            "durationSeconds": 16.466666666666665
+          }
+        },
+        "evidence_media": "media/stills/B17-figure.png"
+      },
+      "audio_file": "audio/B17.wav",
+      "actual_duration_s": 16.466666666666665,
+      "render_duration_s": 16.466666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B17.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "heading": "The music follows the game",
+      "narration_text": "Music and effects run on two separate audio buses. The music plays while you play, pauses in place, dips under the burn, carries on after a retry without restarting, and stops at the win. N mutes the music, B the effects.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The music follows the game",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The music follows the game"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The music follows the game",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "game/session.gd",
+            "source": "Godot editor reconstruction · exact source, revision 241c3f2 · next: the visible result",
+            "code": "func _process(_delta: float) -> void:\n\tif music == null or music.stream == null:\n\t\treturn\n\tmatch state:\n\t\tState.PLAYING:\n\t\t\tmusic.volume_db = 0.0\n\t\t\tmusic.stream_paused = false\n\t\t\tif not music.playing:\n\t\t\t\tmusic.play()\n\t\tState.DYING:\n\t\t\tmusic.volume_db = MUSIC_DIP_DB\n\t\tState.PAUSED:\n\t\t\tmusic.stream_paused = true\n\t\t_:\n\t\t\tmusic.stop()",
+            "startLine": 561,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Buses",
+                "value": "Music and SFX, muted separately"
+              },
+              {
+                "label": "Keys",
+                "value": "N music · B effects"
+              }
+            ],
+            "output": [
+              "game/session.gd lines 561–575"
+            ],
+            "cues": [],
+            "durationSeconds": 12.8
+          }
+        }
+      },
+      "audio_file": "audio/B18.wav",
+      "actual_duration_s": 12.8,
+      "render_duration_s": 12.8,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B18.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "heading": "Readable with the sound off",
+      "narration_text": "With both muted, the game still reads: music off and sound off in the corner, a help bubble at the window, saved when he grabs someone, and every death names its reason on screen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Readable with the sound off",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Readable with the sound off"
+          }
+        ],
+        "evidence_media": "media/B19.mp4"
+      },
+      "gameplay_take": "muted",
+      "audio_file": "audio/B19.wav",
+      "actual_duration_s": 10.2,
+      "render_duration_s": 10.2,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot gameplay fills the frame; not a slide with title-safe margins."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B19.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "heading": "What the tests prove",
+      "narration_text": "Verification ran from a fresh copy. The added sound test steps the game one physics tick at a time: thirteen jumps make thirteen jump sounds, one hose, two rescues, one win. Muted, or with every sound file removed, the route ends the same, tick for tick. Whether the sounds feel right took a human listen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What the tests prove",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What the tests prove"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "What the tests prove",
+            "status": "Recorded test output, not a reconstruction",
+            "image": "B20-figure.png",
+            "imageLabel": "",
+            "source": "Recorded test output, not a reconstruction",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Recorded test output, not a reconstruction"
+              }
+            ],
+            "durationSeconds": 17.2
+          }
+        },
+        "evidence_media": "media/stills/B20-figure.png"
+      },
+      "audio_file": "audio/B20.wav",
+      "actual_duration_s": 17.2,
+      "render_duration_s": 17.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B20.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "heading": "Verdict",
+      "narration_text": "The verdict. Working: eleven generated states on real events, a generated environment, five sounds that each fire once, a seamless loop, and separate mutes. Limits: his face doesn't read at sixty-four pixels, so the punchlines live in two close-ups, and the level and survivors are still drawn in code. ChatGPT made the images, ElevenLabs the sounds and music, Claude Code the code and tests. The choices were Sreeja's. Revision two-four-one-c-three-f-two.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Verdict",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Verdict"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Assignment 2 · verdict",
+            "artifactHeading": "Generated, wired, tested",
+            "artifactLines": [
+              "11 generated states · ENV-BG v2 · 3 flames",
+              "5 sounds, one per event · 16-bar loop · N/B mutes",
+              "Limits: face unreadable at 64 px; level drawn in code",
+              "Images: ChatGPT · Sound: elevenlabs.io · Music: created in collaboration with ElevenLabs",
+              "Code, prompts, tests: Claude Code · Film: Brutalist",
+              "Source revision 241c3f2"
+            ],
+            "durationSeconds": 26.966666666666665
+          }
+        }
+      },
+      "audio_file": "audio/B21.wav",
+      "actual_duration_s": 26.966666666666665,
+      "render_duration_s": 26.966666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B21.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "heading": "Your turn",
+      "narration_text": "Your turn, one step toward the full game: falling deaths are silent today. Ask Walker for a fall pose and its own sound, wired into the state that already exists. Predict what could fire twice, and let the sound test prove it. This has been Liam, from Brutalist.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Your turn",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Your turn"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Read my CHANGE-BRIEF and add a fall state and sound for 'You fell.':\ngenerate the pose from my side-profile reference, wire the sound\nto the existing DYING branch, and predict which test catches a double sound.",
+            "topic": "Your turn · one bounded change plus a prediction",
+            "segment": "Extinguisho: Generated Art, Sound, and Music in Godot",
+            "greeting": "Your turn",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 14.6
+          }
+        }
+      },
+      "audio_file": "audio/B22.wav",
+      "actual_duration_s": 14.6,
+      "render_duration_s": 14.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B22.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "heading": "Outro",
+      "narration_text": "Extinguisho: Generated Art, Sound, and Music in Godot. At Nik Bear Brown.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Outro",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Outro"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Extinguisho: Generated Art, Sound, and Music in Godot",
+            "slug": "claude-liam-walker-ninja-firefighter-joe-gamedev",
+            "durationSeconds": 6.466666666666667
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_hold_s": 1.0,
+      "audio_file": "audio/B23.wav",
+      "actual_duration_s": 6.466666666666667,
+      "render_duration_s": 6.466666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B23.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T22:27:36"
+      }
+    }
+  ]
+}

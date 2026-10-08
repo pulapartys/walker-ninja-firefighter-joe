@@ -1,0 +1,8 @@
+$ godot --headless --path . -s tests/test_game.gd   →   41 pass, 0 fail
+$ godot --headless --path . -s tests/test_keyboard.gd   →   14 pass, 0 fail
+$ godot --headless --path . -s tests/test_audio.gd   →   14 pass, 0 fail
+held-jump-one-sound: PASS
+route-one-sound-per-event: PASS  jumps 13, sfx jump 13, hose 1, rescue 2, win 1, burn 0
+w-mashing-one-hose: PASS
+mute-changes-nothing: PASS  unmuted 1269 ticks = muted 1269 ticks
+missing-sounds-change-nothing: PASS

@@ -1,0 +1,128 @@
+[
+  {
+    "beat": "B07",
+    "segments": [
+      {
+        "take": "route",
+        "start_s": 9.017,
+        "end_s": 18.517,
+        "label": "Hose, jump to the window, grab, toss up, into the bag"
+      }
+    ],
+    "played_s": 9.5,
+    "tail_hold_s": 3.5,
+    "output_duration_s": 13.0,
+    "retimed": false,
+    "output_sha256": "6fe66ce6e7b2b9c16a6f5033c28e6a6c3e2db44ac8929477c50c1ab5780b197c"
+  },
+  {
+    "beat": "B09",
+    "segments": [
+      {
+        "take": "route",
+        "start_s": 0.6,
+        "end_s": 1.6,
+        "label": "Respawn stance \u2192 idle"
+      },
+      {
+        "take": "route",
+        "start_s": 1.6,
+        "end_s": 4.4,
+        "label": "Run \u00b7 flying kick \u00b7 landing"
+      },
+      {
+        "take": "route",
+        "start_s": 10.517,
+        "end_s": 12.017,
+        "label": "Hose"
+      },
+      {
+        "take": "route",
+        "start_s": 15.417,
+        "end_s": 16.917,
+        "label": "Grab \u2192 toss"
+      },
+      {
+        "take": "route",
+        "start_s": 21.633,
+        "end_s": 23.033,
+        "label": "Bow (level complete)"
+      },
+      {
+        "take": "fall",
+        "start_s": 1.35,
+        "end_s": 2.55,
+        "label": "Facing left (mirrored)"
+      },
+      {
+        "take": "fall",
+        "start_s": 5.267,
+        "end_s": 6.867,
+        "label": "Missed jump: meditating fall"
+      },
+      {
+        "take": "fire",
+        "start_s": 1.267,
+        "end_s": 2.967,
+        "label": "Burned"
+      }
+    ],
+    "played_s": 12.7,
+    "tail_hold_s": 2.633,
+    "output_duration_s": 15.333333333333334,
+    "retimed": false,
+    "output_sha256": "4495dcdfceb497cccf633a865294a24eed62b387f4364753cf1ea4331bac6a72"
+  },
+  {
+    "beat": "B15",
+    "segments": [
+      {
+        "take": "fire",
+        "start_s": 0.0,
+        "end_s": 4.233,
+        "label": "Fire death: burned + close-up, 2 s hold, then the retry"
+      }
+    ],
+    "played_s": 4.233,
+    "tail_hold_s": 5.5,
+    "output_duration_s": 9.733333333333333,
+    "retimed": false,
+    "output_sha256": "90486d5557ae531b067cc85d2c58ad4256eff8b47307a1a5576372992b264d0c"
+  },
+  {
+    "beat": "B16",
+    "segments": [
+      {
+        "take": "route",
+        "start_s": 0.0,
+        "end_s": 25.667,
+        "label": "GAME AUDIO \u2014 no narration \u00b7 full run: jumps, hose, rescues, music, win"
+      },
+      {
+        "take": "fire",
+        "start_s": 0.0,
+        "end_s": 4.233,
+        "label": "GAME AUDIO \u2014 no narration \u00b7 fire death: the burn"
+      }
+    ],
+    "audio": "the game's own sound, preserved; no narration",
+    "retimed": false,
+    "output_sha256": "c092f74cd7e060e9c3868e281bc170156c2c522bf77028c0c8abecb6da0acfa4"
+  },
+  {
+    "beat": "B19",
+    "segments": [
+      {
+        "take": "muted",
+        "start_s": 1.5,
+        "end_s": 11.0,
+        "label": "Muted: MUSIC OFF \u00b7 SOUND OFF"
+      }
+    ],
+    "played_s": 9.5,
+    "tail_hold_s": 0.7,
+    "output_duration_s": 10.2,
+    "retimed": false,
+    "output_sha256": "3b09fd8f9c78868e78249d5fdec2165cdc85910f5e01d3e5a3fdfa42ab834f29"
+  }
+]

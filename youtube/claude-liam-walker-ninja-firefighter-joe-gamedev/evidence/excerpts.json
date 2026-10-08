@@ -1,0 +1,61 @@
+{
+  "excerpts": [
+    {
+      "beat_id": "B06",
+      "path": "features/player/player.gd",
+      "start_line": 71,
+      "end_line": 77,
+      "text": "func show_pose(state: String) -> void:\n\tpose = state\n\tsprite.texture = textures[state]\n\tvar a: Array = anchors[state]\n\tsprite.position = -Vector2(a[0], a[1])\n\tart.scale = Vector2(0.5 * facing, 0.5)\n\tqueue_redraw()  # the bag follows the pose"
+    },
+    {
+      "beat_id": "B08",
+      "path": "features/player/player.gd",
+      "start_line": 85,
+      "end_line": 112,
+      "text": "func _update_pose() -> void:\n\tvar on_floor := is_on_floor()\n\tif on_floor:\n\t\tif not was_on_floor and air_ticks > 10:\n\t\t\tland_ticks = LAND_TICKS\n\t\tair_ticks = 0\n\t\tjumped_this_air = false\n\telse:\n\t\tair_ticks += 1\n\twas_on_floor = on_floor\n\tif land_ticks > 0:\n\t\tland_ticks -= 1\n\tif not action_queue.is_empty() and action_cancel_on_move and (absf(velocity.x) > 8.0 or not on_floor):\n\t\taction_queue.clear()\n\tif not action_queue.is_empty():\n\t\tshow_pose(action_queue[0][0])\n\t\taction_queue[0][1] -= 1\n\t\tif action_queue[0][1] <= 0:\n\t\t\taction_queue.pop_front()\n\telif not on_floor:\n\t\t# A jump is one flying kick all the way; walking off a ledge is the meditating fall.\n\t\tshow_pose(\"rising\" if jumped_this_air else \"falling\")\n\telif land_ticks > 0:\n\t\tshow_pose(\"landing\")\n\telif absf(velocity.x) > 8.0:\n\t\tshow_pose(\"run\")\n\telif hosing:\n\t\tshow_pose(\"hose\")"
+    },
+    {
+      "beat_id": "B10",
+      "path": "features/player/player.gd",
+      "start_line": 48,
+      "end_line": 56,
+      "text": "\tcollision_layer = 2\n\tcollision_mask = 1\n\tfloor_snap_length = 1.0\n\tvar shape := RectangleShape2D.new()\n\tshape.size = BOX\n\tvar collider := CollisionShape2D.new()\n\tcollider.shape = shape\n\tcollider.position = Vector2(0, -BOX.y / 2.0)\n\tadd_child(collider)"
+    },
+    {
+      "beat_id": "B14",
+      "path": "game/session.gd",
+      "start_line": 194,
+      "end_line": 211,
+      "text": "\tif fatal:\n\t\tstate = State.DYING\n\t\tdeaths += 1\n\t\tretry_remaining = 0.55\n\t\tplayer.enabled = false\n\t\tplayer.velocity = Vector2.ZERO\n\t\tif death_reason == \"The fire got you.\":\n\t\t\tplayer.show_pose(\"burned\")\n\t\t\tplay_sfx(\"burn\")\n\t\t\tretry_remaining = FIRE_DEATH_HOLD  # burned pose + DEVASTATED pop-up stay up; R skips the wait\n\telif finished:\n\t\tstate = State.COMPLETE\n\t\tlast_finish_time = elapsed\n\t\tplayer.enabled = false\n\t\tplayer.velocity = Vector2.ZERO\n\t\tplayer.show_pose(\"celebrate\")\n\t\tcomplete_ticks = 0\n\t\tplay_sfx(\"win\")"
+    },
+    {
+      "beat_id": "B18",
+      "path": "game/session.gd",
+      "start_line": 561,
+      "end_line": 575,
+      "text": "func _process(_delta: float) -> void:\n\tif music == null or music.stream == null:\n\t\treturn\n\tmatch state:\n\t\tState.PLAYING:\n\t\t\tmusic.volume_db = 0.0\n\t\t\tmusic.stream_paused = false\n\t\t\tif not music.playing:\n\t\t\t\tmusic.play()\n\t\tState.DYING:\n\t\t\tmusic.volume_db = MUSIC_DIP_DB\n\t\tState.PAUSED:\n\t\t\tmusic.stream_paused = true\n\t\t_:\n\t\t\tmusic.stop()"
+    }
+  ],
+  "pairs": [
+    [
+      "B06",
+      "B07"
+    ],
+    [
+      "B08",
+      "B09"
+    ],
+    [
+      "B10",
+      "B11"
+    ],
+    [
+      "B14",
+      "B15"
+    ],
+    [
+      "B18",
+      "B19"
+    ]
+  ]
+}

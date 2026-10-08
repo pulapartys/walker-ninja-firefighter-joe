@@ -1,0 +1,735 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "source_revision": "241c3f2",
+  "files": [
+    {
+      "path": "art/character/anchors.json",
+      "sha256": "273694cf16f6ca103a60533732b651ded5f45e1eba048e8a5364fe8de3b39860",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/burned.png",
+      "sha256": "ea086187a5383fb7478569d1dbf69aaab50be87ab94259631c0d5c4cd27390b2",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/burned.png.import",
+      "sha256": "ccff6c6d278260df65396383d8b0d0b5fcd055164d43ae476595784b1b6b093c",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/celebrate.png",
+      "sha256": "2949c12128e9c3b779d78ce3ed2d3fe107f2411f200ad6d080efa9d769b13767",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/celebrate.png.import",
+      "sha256": "cd64801b3df024b48cfbeb209c12565ea8fdcec27befd4d5487080092d933f32",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/celebrate_portrait.png",
+      "sha256": "4f11570c56ee19ecc5e9e970e4307760aa8fedf22deb59e97b4e912b7bde24fe",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/celebrate_portrait.png.import",
+      "sha256": "4651a15f57e3435352f66b16fa94e4a50d6537621d016dc8848ff77e4ca0c8cf",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/devastated_portrait.png",
+      "sha256": "a4d58857558fe4542e88b07e401e723333396a36d96f0ff9dc8ea3be52ce7037",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/devastated_portrait.png.import",
+      "sha256": "66fb0b8579e4add1b18278375e30212906cd24a70fdc8e73b3545cec875c11aa",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/falling.png",
+      "sha256": "c937f250e99e9f2ebd53c0f1e9d88ef3f0e6c4e8a83027d48a41ba0ecc9787b3",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/falling.png.import",
+      "sha256": "b85aaa823c20063a4ef8c0bb3386808d52b070c8049ad30e05c9b402407eef28",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/grab.png",
+      "sha256": "0855b13cc7739dc694b11c7ce44fda7b0be262e348e17229e834e2ed75387c77",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/grab.png.import",
+      "sha256": "ccb290152847d9b193952274622c4dc0a0f7e256f21727863e2d188d50ac7f87",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/hose.png",
+      "sha256": "f0f5363e1240dfe83d94fad7effaf0325e934655831a66ee1d71d998ce4e6f76",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/hose.png.import",
+      "sha256": "0d76cdf45ad22f9ae93f8120acf6fa1a7f2fa28966d462f8a9ca1c5654b59d05",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/idle.png",
+      "sha256": "3f2002aaed05d16fc637ed990c3a5b2d850d2e14b7497a9be617ab7d21a9f432",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/idle.png.import",
+      "sha256": "16ab430a9ad76e37b71cfc1e60dbd9c4a47a3defb8feffd286db4378eef1b971",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/jump_crouch.png",
+      "sha256": "9ebd03956c9ac0ae81cda060cb03d43297c073159ed3e5632be6713cf379ba9a",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/jump_crouch.png.import",
+      "sha256": "8340afb25587faee4c7a8cc889e7ee6c5a70b266e33585a170455a428fe90758",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/landing.png",
+      "sha256": "1add9499981d1c4529cf605e0f7a839fd1522b626d887ea0d56aeb1037b7e45c",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/landing.png.import",
+      "sha256": "05a9ec8c0a8318818ae246c13e580919b1645c8b77ab11f04df4b9ecc0f0fb72",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/respawn.png",
+      "sha256": "281d76db6c06b69e62219e3494b98c0499fac1cc629621c9b9b25fa7f2192c2c",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/respawn.png.import",
+      "sha256": "bc8b7734bde231ad5411f89aa7798c7649298ad213f7cc23c2c9bf6444c19e71",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/rising.png",
+      "sha256": "56a376acf6b914ca0531d9856e36c00e922083a22a52d0f90d48219c5f72f4d2",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/rising.png.import",
+      "sha256": "7789d6b178ff75b082ff26310b2074ee2c9011f0395004966e6799a935845bfd",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/run.png",
+      "sha256": "a62893e713f16d5272e1bdb2d8608bc04cecd65439656f422163abd20c960dd5",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/run.png.import",
+      "sha256": "7de8bced1833194896c5898939b73da446b3a7b68303f2c7d976e7422868b4b8",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/toss.png",
+      "sha256": "e6b63679429d01c5baffa35f5ae27234fd2993afc5ee272aad69fcec73e9f29f",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/character/toss.png.import",
+      "sha256": "a6ec0947e9b880163637544d0e8a115988a013ed44214baa0de93671e29e19f7",
+      "role": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "component_ids": [
+        "character-art"
+      ]
+    },
+    {
+      "path": "art/env/env_bg.png",
+      "sha256": "a4aaf3ce2a3c596387d2e47ab12ac50555467d064e66bd70b758e184b4295a04",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/env_bg.png.import",
+      "sha256": "477878dcdb8269aaff42b408986cc6b2f8014f99cad415b4be6e417aa7350fad",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/fire_single.png",
+      "sha256": "deb986a13b58bac906127347cac1cfe8fd4b8fb4ed04a075fc640bfd22fdecea",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/fire_single.png.import",
+      "sha256": "b705bb60849a7f2615586fe9c7ac0d9bc5eaec9d942ebd46236cd498ad77fb58",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/fire_tall.png",
+      "sha256": "0d6e405f7b098ab3ee85e0a4ea918aff33ca8fada129194ac474abde2a966d1a",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/fire_tall.png.import",
+      "sha256": "35c54d26f0da657c43c57f521092a9fee920b788f0e41b647651d87733341512",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/fire_wide.png",
+      "sha256": "39dfb4f2a5d7688acdb31997801e73779bda7fd5b28a5bf54053877e08f688bf",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "art/env/fire_wide.png.import",
+      "sha256": "e885480bd89617296fd7a3cc1283f5e8b09e83654a73590ea242b8009c3f068d",
+      "role": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "component_ids": [
+        "environment-art"
+      ]
+    },
+    {
+      "path": "audio/music_loop.ogg",
+      "sha256": "31de07e341f4c10de842fc1ea2acc83565e7f65b1799e3d44c71f87f6102f6bd",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/music_loop.ogg.import",
+      "sha256": "5d3065c488a8776ce416e1d4e8cd01ea6ceaf818d10517c59fb0155c023e0a63",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_burn.ogg",
+      "sha256": "5ddfdf618368fd24a7061c0c3ab1cd1c59d3d7c72aaa773b300ce7a8815b5c5b",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_burn.ogg.import",
+      "sha256": "2dba64b9b5d0e7a862a598d7257836a39aa635ddac3b36e7d925d6952b3f20ef",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_hose.ogg",
+      "sha256": "6685647379d2f2d8639d065d07817b3ef99f7925d71869680b7ee5330de7bb94",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_hose.ogg.import",
+      "sha256": "1f6335bd026c92f0c0ed970406ed46ff90bcd2df52287262f2d2bb3013c96b9b",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_jump.ogg",
+      "sha256": "c7c2de081a83308dff5e5cd98bafd4ac73523c153162bdcd621e40456498e03c",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_jump.ogg.import",
+      "sha256": "21117708bbcfdb0e031711eaca1b0355363ff94aa72c69b44039733bcfdab100",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_rescue.ogg",
+      "sha256": "a8a9dfc97dbe9579c1edd990512b1bd344cf7e59a8ac44cc1115e14140d071e9",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_rescue.ogg.import",
+      "sha256": "6b93a515e79947839cc3857e2826e1cc7f52d51dda02a1abfa61d96c9ac403e3",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_win.ogg",
+      "sha256": "ad547b55fd319144fe2d13da6d0518bb587228d8ab1dbf8cf16f2bb2d46e2227",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "audio/sfx_win.ogg.import",
+      "sha256": "bdbafc334e46183e62ccea26cc51ff03a0d815c2573acd4bac272821aeea0ebd",
+      "role": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "component_ids": [
+        "audio-assets"
+      ]
+    },
+    {
+      "path": "features/player/player.gd",
+      "sha256": "31a13fcd0a1811a2399dff79304d91110f97fd60b5dfc58bc25805971277c1b9",
+      "role": "The player body",
+      "component_ids": [
+        "player-states"
+      ]
+    },
+    {
+      "path": "features/player/tuning.gd",
+      "sha256": "1cb3a04eda7734e182a513662a8f5c65897fb141a6669baf6f60209d0f7c2e36",
+      "role": "The player body",
+      "component_ids": [
+        "player-states"
+      ]
+    },
+    {
+      "path": "game/main.tscn",
+      "sha256": "017da6e141ad6f6199a9219208483c82cacd257210dbaa6b1184a27157a63a2f",
+      "role": "The game session",
+      "component_ids": [
+        "session-events-audio"
+      ]
+    },
+    {
+      "path": "game/session.gd",
+      "sha256": "67be2a7d7ac23ec9b56722ed2b521b51d6b7285dd0dc6039a369a42c90833a4b",
+      "role": "The game session",
+      "component_ids": [
+        "session-events-audio"
+      ]
+    },
+    {
+      "path": "levels/first_steps.json",
+      "sha256": "d435a1b6ba5eff47fe283e69329c6dea00f34a8299eeebb196c84e549d279b69",
+      "role": "The level as data",
+      "component_ids": [
+        "level-data"
+      ]
+    },
+    {
+      "path": "project.godot",
+      "sha256": "18b80fb608279ceda4a94c998aea4ec6f5bb8d79c1969a9a6c4ac7a1552e47cf",
+      "role": "Project settings",
+      "component_ids": [
+        "project-config"
+      ]
+    },
+    {
+      "path": "tests/capture_game.gd",
+      "sha256": "130ffe2f89d47f26e27837ef458525934ccba9c9e472d7566b1935b561ede64f",
+      "role": "Automated checks",
+      "component_ids": [
+        "tests"
+      ]
+    },
+    {
+      "path": "tests/route_driver.gd",
+      "sha256": "f5fec4a09d52541cecf7553044bcd12169a8651fdb4e0ae891744bd0a60efc49",
+      "role": "Automated checks",
+      "component_ids": [
+        "tests"
+      ]
+    },
+    {
+      "path": "tests/test_audio.gd",
+      "sha256": "d17a92fcedb7c29aeb6787e5cd61e46785113567c7cba86cbd518c831052af42",
+      "role": "Automated checks",
+      "component_ids": [
+        "tests"
+      ]
+    },
+    {
+      "path": "tests/test_game.gd",
+      "sha256": "5733fc7fa06ae20449c7276d3a03e5f0d891254c9443c8bf35339441c7c05f69",
+      "role": "Automated checks",
+      "component_ids": [
+        "tests"
+      ]
+    },
+    {
+      "path": "tests/test_keyboard.gd",
+      "sha256": "0a47dd9b1f069ccf411fcbc994b8a9cfbf0b1f1d692e5d98cdf93fcf41aa0c8a",
+      "role": "Automated checks",
+      "component_ids": [
+        "tests"
+      ]
+    },
+    {
+      "path": "ui/hud.gd",
+      "sha256": "2534bdcff40fc0e0c28f7f0e64c79fe5e867af9d3c550b3239a4a9a2d0e23610",
+      "role": "The HUD",
+      "component_ids": [
+        "hud"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "player-states",
+      "explanation": "The player body: movement tuning, the 20\u00d740 collision box, and one generated image per state chosen by _update_pose and shown by show_pose (mirrored when facing left).",
+      "beat_ids": [
+        "B06",
+        "B08",
+        "B10"
+      ],
+      "files": [
+        "features/player/player.gd",
+        "features/player/tuning.gd"
+      ]
+    },
+    {
+      "id": "character-art",
+      "explanation": "The generated character images as game textures (background removed, one shared scale, 128 px tall, drawn at half size) with their feet anchors, plus the two generated close-ups.",
+      "beat_ids": [
+        "B05",
+        "B09"
+      ],
+      "files": [
+        "art/character/anchors.json",
+        "art/character/burned.png",
+        "art/character/burned.png.import",
+        "art/character/celebrate.png",
+        "art/character/celebrate.png.import",
+        "art/character/celebrate_portrait.png",
+        "art/character/celebrate_portrait.png.import",
+        "art/character/devastated_portrait.png",
+        "art/character/devastated_portrait.png.import",
+        "art/character/falling.png",
+        "art/character/falling.png.import",
+        "art/character/grab.png",
+        "art/character/grab.png.import",
+        "art/character/hose.png",
+        "art/character/hose.png.import",
+        "art/character/idle.png",
+        "art/character/idle.png.import",
+        "art/character/jump_crouch.png",
+        "art/character/jump_crouch.png.import",
+        "art/character/landing.png",
+        "art/character/landing.png.import",
+        "art/character/respawn.png",
+        "art/character/respawn.png.import",
+        "art/character/rising.png",
+        "art/character/rising.png.import",
+        "art/character/run.png",
+        "art/character/run.png.import",
+        "art/character/toss.png",
+        "art/character/toss.png.import"
+      ]
+    },
+    {
+      "id": "environment-art",
+      "explanation": "ENV-BG v2 behind the level and the three generated flames drawn over the unchanged hazard rectangles.",
+      "beat_ids": [
+        "B12"
+      ],
+      "files": [
+        "art/env/env_bg.png",
+        "art/env/env_bg.png.import",
+        "art/env/fire_single.png",
+        "art/env/fire_single.png.import",
+        "art/env/fire_tall.png",
+        "art/env/fire_tall.png.import",
+        "art/env/fire_wide.png",
+        "art/env/fire_wide.png.import"
+      ]
+    },
+    {
+      "id": "session-events-audio",
+      "explanation": "The game session: state machine, hazards, rescue toss, sound playback after each state change, two audio buses, and music that follows the state.",
+      "beat_ids": [
+        "B14",
+        "B18"
+      ],
+      "files": [
+        "game/main.tscn",
+        "game/session.gd"
+      ]
+    },
+    {
+      "id": "level-data",
+      "explanation": "The level as data: ledges, buildings, hazard rectangles (which still decide what burns), survivors, and the exit.",
+      "beat_ids": [
+        "B12"
+      ],
+      "files": [
+        "levels/first_steps.json"
+      ]
+    },
+    {
+      "id": "hud",
+      "explanation": "The HUD: controls including N/B mute, mute indicators, death reasons, and the DEVASTATED and bow close-ups.",
+      "beat_ids": [
+        "B15",
+        "B19"
+      ],
+      "files": [
+        "ui/hud.gd"
+      ]
+    },
+    {
+      "id": "audio-assets",
+      "explanation": "The five generated sound effects and the 16-bar music loop (Loop on in its import settings).",
+      "beat_ids": [
+        "B13",
+        "B17"
+      ],
+      "files": [
+        "audio/music_loop.ogg",
+        "audio/music_loop.ogg.import",
+        "audio/sfx_burn.ogg",
+        "audio/sfx_burn.ogg.import",
+        "audio/sfx_hose.ogg",
+        "audio/sfx_hose.ogg.import",
+        "audio/sfx_jump.ogg",
+        "audio/sfx_jump.ogg.import",
+        "audio/sfx_rescue.ogg",
+        "audio/sfx_rescue.ogg.import",
+        "audio/sfx_win.ogg",
+        "audio/sfx_win.ogg.import"
+      ]
+    },
+    {
+      "id": "tests",
+      "explanation": "Automated checks: the A1 mechanics suite, real keyboard events, the added sound test (one sound per event; mute and missing files change nothing), and the screenshot capture.",
+      "beat_ids": [
+        "B20"
+      ],
+      "files": [
+        "tests/capture_game.gd",
+        "tests/route_driver.gd",
+        "tests/test_audio.gd",
+        "tests/test_game.gd",
+        "tests/test_keyboard.gd"
+      ]
+    },
+    {
+      "id": "project-config",
+      "explanation": "Project settings: 640\u00d7360 game in a 1280\u00d7720 window, physics at 60 Hz, the main scene.",
+      "beat_ids": [
+        "B01"
+      ],
+      "files": [
+        "project.godot"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B06",
+      "path": "features/player/player.gd",
+      "start_line": 71,
+      "end_line": 77,
+      "text": "func show_pose(state: String) -> void:\n\tpose = state\n\tsprite.texture = textures[state]\n\tvar a: Array = anchors[state]\n\tsprite.position = -Vector2(a[0], a[1])\n\tart.scale = Vector2(0.5 * facing, 0.5)\n\tqueue_redraw()  # the bag follows the pose"
+    },
+    {
+      "beat_id": "B08",
+      "path": "features/player/player.gd",
+      "start_line": 85,
+      "end_line": 112,
+      "text": "func _update_pose() -> void:\n\tvar on_floor := is_on_floor()\n\tif on_floor:\n\t\tif not was_on_floor and air_ticks > 10:\n\t\t\tland_ticks = LAND_TICKS\n\t\tair_ticks = 0\n\t\tjumped_this_air = false\n\telse:\n\t\tair_ticks += 1\n\twas_on_floor = on_floor\n\tif land_ticks > 0:\n\t\tland_ticks -= 1\n\tif not action_queue.is_empty() and action_cancel_on_move and (absf(velocity.x) > 8.0 or not on_floor):\n\t\taction_queue.clear()\n\tif not action_queue.is_empty():\n\t\tshow_pose(action_queue[0][0])\n\t\taction_queue[0][1] -= 1\n\t\tif action_queue[0][1] <= 0:\n\t\t\taction_queue.pop_front()\n\telif not on_floor:\n\t\t# A jump is one flying kick all the way; walking off a ledge is the meditating fall.\n\t\tshow_pose(\"rising\" if jumped_this_air else \"falling\")\n\telif land_ticks > 0:\n\t\tshow_pose(\"landing\")\n\telif absf(velocity.x) > 8.0:\n\t\tshow_pose(\"run\")\n\telif hosing:\n\t\tshow_pose(\"hose\")"
+    },
+    {
+      "beat_id": "B10",
+      "path": "features/player/player.gd",
+      "start_line": 48,
+      "end_line": 56,
+      "text": "\tcollision_layer = 2\n\tcollision_mask = 1\n\tfloor_snap_length = 1.0\n\tvar shape := RectangleShape2D.new()\n\tshape.size = BOX\n\tvar collider := CollisionShape2D.new()\n\tcollider.shape = shape\n\tcollider.position = Vector2(0, -BOX.y / 2.0)\n\tadd_child(collider)"
+    },
+    {
+      "beat_id": "B14",
+      "path": "game/session.gd",
+      "start_line": 194,
+      "end_line": 211,
+      "text": "\tif fatal:\n\t\tstate = State.DYING\n\t\tdeaths += 1\n\t\tretry_remaining = 0.55\n\t\tplayer.enabled = false\n\t\tplayer.velocity = Vector2.ZERO\n\t\tif death_reason == \"The fire got you.\":\n\t\t\tplayer.show_pose(\"burned\")\n\t\t\tplay_sfx(\"burn\")\n\t\t\tretry_remaining = FIRE_DEATH_HOLD  # burned pose + DEVASTATED pop-up stay up; R skips the wait\n\telif finished:\n\t\tstate = State.COMPLETE\n\t\tlast_finish_time = elapsed\n\t\tplayer.enabled = false\n\t\tplayer.velocity = Vector2.ZERO\n\t\tplayer.show_pose(\"celebrate\")\n\t\tcomplete_ticks = 0\n\t\tplay_sfx(\"win\")"
+    },
+    {
+      "beat_id": "B18",
+      "path": "game/session.gd",
+      "start_line": 561,
+      "end_line": 575,
+      "text": "func _process(_delta: float) -> void:\n\tif music == null or music.stream == null:\n\t\treturn\n\tmatch state:\n\t\tState.PLAYING:\n\t\t\tmusic.volume_db = 0.0\n\t\t\tmusic.stream_paused = false\n\t\t\tif not music.playing:\n\t\t\t\tmusic.play()\n\t\tState.DYING:\n\t\t\tmusic.volume_db = MUSIC_DIP_DB\n\t\tState.PAUSED:\n\t\t\tmusic.stream_paused = true\n\t\t_:\n\t\t\tmusic.stop()"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".gitignore",
+      "reason": "Repository hygiene (engine cache and local files ignored); not part of the running slice."
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B06",
+      "result_beat": "B07",
+      "observation": "The grab, the toss pose with the arm flung up, and the survivor spinning up and into the bag, in real play.",
+      "media": {
+        "path": "media/B07.mp4",
+        "sha256": "6fe66ce6e7b2b9c16a6f5033c28e6a6c3e2db44ac8929477c50c1ab5780b197c"
+      }
+    },
+    {
+      "code_beat": "B08",
+      "result_beat": "B09",
+      "observation": "Each state image appears on its real event: respawn, idle, run, kick, landing, hose, grab, toss, bow, facing left, the fall, burned.",
+      "media": {
+        "path": "media/B09.mp4",
+        "sha256": "4495dcdfceb497cccf633a865294a24eed62b387f4364753cf1ea4331bac6a72"
+      }
+    },
+    {
+      "code_beat": "B10",
+      "result_beat": "B11",
+      "observation": "On real screenshots the cyan 20\u00d740 box sits on the torso and legs; helmet, kick, and hose extend past it.",
+      "media": {
+        "path": "media/stills/B11-figure.png",
+        "sha256": "467794bdd7c00d6782b609bf39fdc0ac5bf1bfcc32e81f6b9385470ba5d47539"
+      }
+    },
+    {
+      "code_beat": "B14",
+      "result_beat": "B15",
+      "observation": "The fire death shows the burned pose and the DEVASTATED close-up for 2 s, then the respawn stance at the start.",
+      "media": {
+        "path": "media/B15.mp4",
+        "sha256": "90486d5557ae531b067cc85d2c58ad4256eff8b47307a1a5576372992b264d0c"
+      }
+    },
+    {
+      "code_beat": "B18",
+      "result_beat": "B19",
+      "observation": "With both buses muted the HUD shows MUSIC OFF and SOUND OFF and the run plays the same.",
+      "media": {
+        "path": "media/B19.mp4",
+        "sha256": "3b09fd8f9c78868e78249d5fdec2165cdc85910f5e01d3e5a3fdfa42ab834f29"
+      }
+    }
+  ]
+}
