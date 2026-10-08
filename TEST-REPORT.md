@@ -2,21 +2,22 @@
 
 - **Engine:** Godot 4.7.2.stable.official (ed1daf0bf), GL Compatibility renderer
 - **OS:** macOS (Darwin 25.6.0)
-- **How to run the automated tests** (from `godot/`): `godot --headless --path . -s tests/test_game.gd` and `godot --headless --path . -s tests/test_keyboard.gd`
+- **How to run the automated tests** (from `godot/`): `godot --headless --path . -s tests/test_game.gd`, `... -s tests/test_keyboard.gd`, `... -s tests/test_audio.gd`; screenshots (with a visible window): `godot --path . -s tests/capture_game.gd`, then `python3 tools/make_comparisons.py` from the game folder.
 - Each test below names the source revision it ran on. Results are recorded as they happened, newest last.
 
-## Checks required by the assignment
+## Checks required by the assignment (status, updated 2026-10-07)
 
-| Check | Status |
-|---|---|
-| Startup and controls (fresh copy) | pending |
-| Character against the sheet (in-engine screenshot per state) | pending (step 2 adds the remaining states) |
-| Storyboard against the slice | pending |
-| Sound events: exactly one sound per occurrence | pending (sound not added yet) |
-| Music loop and pause/end behavior | automated: pass (`music-behaviour`, `music-loops`); listened with the effects: fine (playtest 3) |
-| Muted play | pending |
-| Automated check added by me | pending (planned: sound-trigger count per event) |
-| Inspect-and-revise cycle | **Playtest 1 below** |
+| Check | Status | Where |
+|---|---|---|
+| Startup and controls (fresh copy) | **done**: fresh copy of the submitted files imported and run; all suites pass | "Fresh-copy run" below |
+| Character against the sheet | **done**: every used state + facing left, sheet pose beside the in-engine crop with the collision box | `evidence/compare/character-vs-sheet.jpg`, "Character against the sheet" below |
+| Storyboard against the slice | **done**: every panel beside the matching in-engine moment; differences and uncovered parts listed | `evidence/compare/storyboard-vs-slice.jpg`, "Storyboard against the slice" below |
+| Sound events: exactly one sound per occurrence | **automated: pass** (held key, rapid repeats, W mashing, duplicate death); human: sounds fit, playtest 3 | `tests/test_audio.gd`; "Playtest 3" |
+| Music loop and pause/end behavior | **automated: pass** (`music-behaviour`, `music-loops`); listened with the effects: fine | "music loop in the slice" |
+| Muted play | automated: muting / missing sounds change nothing (`mute-changes-nothing`, `missing-sounds-change-nothing`); **human muted playtest: pending** | — |
+| Automated check added by me | **done**: `tests/test_audio.gd` (14 checks) + 5 keyboard checks | "full automated suite" |
+| Inspect-and-revise cycles | **done, several**: playtests 1–3 (poses, speed, hold times, close-ups), ENV-BG v2 (ΔE 31 → 85), siren removed, screenshot-found HUD bug | sections below |
+| Predicted failures F1–F8 | **done**: outcome of each | "Predictions vs results" below |
 
 ---
 
@@ -165,3 +166,74 @@ Still needed from a human: Playtest 3 with sound **on** (does each sound fit its
 - **Result, in my words:** "after listening to the sounds together they seem fine." Music at 0 dB with the effects: no change needed, so the final volume is 0 dB.
 - Covered by that listen: the effects over the music. Not reported separately: the seam at 25.6 s / 51.2 s by ear (measured clean in the file and the loop is tested), the siren with the music at the start, and muted play (N/B work in `test_keyboard.gd`; whether muted play is still understandable is a human judgment).
 - **Change from this playtest (my decision):** the fire-truck siren at the start was too much, so it was removed from the game (kept as a rejected take). Sound checks updated: `siren-once-on-start` → `silent-start` (no sound at all when a session starts), `siren-session-not-retry` → `retry-and-restart-silent` (retries and new sessions add no sounds of their own). Re-run: `test_game.gd` 41/41, `test_keyboard.gd` 14/14, `test_audio.gd` 14/14.
+
+## 2026-10-07 — full-session screenshots (my request) and a HUD bug they found
+
+- **Why:** I asked for screenshots of the whole play experience, not just the first frame of each pose: the rescues a few seconds later, missing a jump and falling, and the final state at the exit.
+- **Change:** `tests/capture_game.gd` now saves **39** in-engine screenshots (`evidence/screens/`, small copies in `evidence/screens-web/`): menu; fire death (at once and 1 s later, with the close-up) and the retry; respawn, idle, facing left (run and idle); pause card; muted indicators; **a missed jump** (input only: jump the step and the flame, then don't jump at the gap) and "You fell."; **the clock running out** (input only: standing still 40 s) under 10 s and "Out of time!"; the hose start / half way / fire out; **each rescue in five steps** (grab, toss, flying up, falling into the bag, in the bag) for the person and the dog; every state image; the bow with its close-up and then the end card. Pause and mute are fixtures (the script calls the same functions as Esc/N/B); the fire death starts from a fixture position; everything else is normal input.
+- **What the screenshots caught (inspect → revise):**
+  1. **HUD bug:** muted, "MUSIC OFF / SOUND OFF" was drawn on top of "FIRST ALARM", unreadable. Moved between the title and "FIRST ALARM" (`ui/hud.gd`).
+  2. **Script bug:** the clock shots were wrong (29 s left, and no "Out of time!" card) because the script counted rendered frames, and a frame can hold more than one physics tick. It now waits on the game's own clock.
+  3. **Script bug:** the "missed jump" run first burned in the ground flame before reaching the gap (its own assertion caught it); it now jumps the flame and skips only the gap jump.
+  4. The clean route showed "RETRIES 05" carried over from the staged failures; it now starts a fresh session (RETRIES 00, completes with 0 deaths).
+- **Note:** a run stalled once when the Godot window was hidden (macOS stops drawing hidden windows); re-run with the window visible.
+- **Automated after the HUD fix:** `test_game.gd` 41/41, `test_keyboard.gd` 14/14, `test_audio.gd` 14/14.
+
+## 2026-10-07 — character against the sheet
+
+`evidence/compare/character-vs-sheet.jpg` (made by `tools/make_comparisons.py` from the screenshots and their recorded character positions): left, the accepted sheet pose; right, the in-engine screenshot around the character with the **20×40 collision box drawn at his origin** (cyan).
+
+| State | Matches the sheet? | Art vs. collision box |
+|---|---|---|
+| idle | yes | head/helmet ~24 px above the box (forgiving, as the sheet says) |
+| run | yes | long back leg and tails outside; body in the box |
+| rising (whole jump) | yes (4b: slight chest showing, as logged) | kick leg and tails outside |
+| falling (walked off a ledge) | yes | crossed legs hang a little below the box (airborne box centered on the body) |
+| landing | yes | back leg and hand outside |
+| hose | yes; the water starts at the nozzle tip | nozzle and hose outside |
+| rescue grab / toss | yes (grab: extra thigh pouch, accepted) | reaching / raised arm outside; the code-drawn bag sits on his back |
+| burned | yes | hands and smoke above the box |
+| respawn | yes, but three-quarter view (pose 1, accepted for a brief state) | arms outside |
+| celebrate (bow) | yes (palms together, as logged) | head forward of the box |
+| **facing left** (run, idle) | yes: the same images **mirrored at runtime**, no left images generated | same as facing right, mirrored |
+| jump crouch | — | **not in the game** (sheet only, playtest 1) |
+
+**Mismatch with the collision shape:** none where art is *smaller* than the box (which would be unfair); everywhere the art goes past it, it only forgives.
+
+## 2026-10-07 — storyboard against the slice
+
+`evidence/compare/storyboard-vs-slice.jpg`: each panel beside the in-engine moment.
+
+| Panel | In-engine moment | Differences and why |
+|---|---|---|
+| 1 First look (wide, eye level, design view, slow pan) | `01-menu` | Title card over the start; **no slow pan** (fixed camera at the start). The street of burning brownstones became the code-drawn level in front of ENV-BG v2 (cool smoky skyline); his look is the generated character, not the sketch. |
+| 2 Hosing (medium, eye level, gameplay) | `09b-hose-half-way` | Matches: hose pose, water to the fire, flames shrinking. The game camera is wider than the sketch's medium shot; the water is a thin code-drawn stream. |
+| 3a Grab (medium, low angle, design view) | `10-rescue-1-person-a-grab` | Grab pose at the window, "SAVED!" pops. Seen from the side (gameplay camera), not from a low angle; the survivor is small and code-drawn. |
+| 3b Toss (design view) | `10-rescue-1-person-c-flying-up` | **Design change (2026-10-05):** the survivor flies **straight up** and drops into the bag; the sketch still shows the old sideways toss. |
+| 3c In the bag (design view) | `10-rescue-1-person-e-in-the-bag` | A small head in the bag on his back; no dazed face (too small to draw at game size). |
+| 4 Burned (close-up, Dutch angle, design view) | `02b-failure-held-1s` | The gameplay view shows the small burned pose; the **close-up reaches the player as the DEVASTATED pop-up** (added after playtest 2). No camera shake or tilt. |
+| 5 Retry (wide, high angle, design view) | `02c-retry-respawn` | Back at the start in the ready stance, instantly (R) or after 2 s. Side view, not a high angle: the game is 2D. |
+| 6 End (medium, low angle, design view) | `04-complete`, `04b-complete-card` | He **bows at the exit** with the bow close-up, then the card. **No leap out** through the fire escape (the level ends on reaching the exit), and the bag holds one person and a dog, not two people. The planned gong is now a crowd cheer. |
+
+**Not covered by the slice:** panel 1's camera pan, panel 4's camera shake and Dutch angle, panel 5's high angle, panel 6's leap out of the window. Those were design views; the slice keeps the gameplay camera.
+
+## 2026-10-07 — predictions vs results (CHANGE-BRIEF F1–F8)
+
+| # | Prediction | What happened | How it was checked |
+|---|---|---|---|
+| F1 | Poses drift in proportion or view | **Happened:** pose 1 and pose 4 turned three-quarter (4 fixed by the 4b edit), the pose 11b edit drifted (rejected), pose 8 gained a pouch (accepted). Proportions held: one reference, one scale. | each pose against `side-profile-game.png` (CHARACTER-SHEET); consistency check |
+| F2 | Red suit / yellow helmet disappear against the flames | **Partly:** brightness contrast vs flames 1.3–1.4, but the dark outline carries him. The bigger real problem was ENV-BG v1's orange glow (suit worst-spot ΔE 31) → regenerated v2 (ΔE 85). | `palette.png`; playtest 3; screenshots |
+| F3 | Faces unreadable at small size | **Happened**, even at 64 px. → bigger character, and the faces moved into the DEVASTATED and bow close-ups. | size tests; playtests 2–3 |
+| F4 | A sound fires twice on one event | **Did not happen.** | `test_audio.gd` (held key, rapid repeats, W mashing, duplicate death) |
+| F5 | The music loop clicks at the seam | **Did not happen as far as measured:** seam crossfaded (step 387 vs 736 typical); the loop wraps in-engine; "seems fine" by ear. | sound session measurement; `music-loops`; playtest 3 |
+| F6 | Sprite doesn't line up with the collision box | **Did not happen:** feet sit on the box bottom in every grounded state. | `collision.png`; `character-vs-sheet.jpg` (box drawn in-engine) |
+| F7 | Pixel art blurs | **Not applicable:** the art is painted; drawn at half its texture size in a 2× window, so it stays sharp. | screenshots |
+| F8 | Unreadable with sound muted | **Expected not to:** every event also has text or an image ("HELP!", "SAVED!", the death reason, the close-ups, "Rescue complete"); muting changes nothing in play. **Human muted playtest still pending.** | `mute-changes-nothing`; screenshots |
+
+
+## 2026-10-07 — fresh-copy run
+
+- **What:** exactly the files of the commit "Add full-session screenshots, character/storyboard comparisons, predictions vs results, fresh-copy run; fix mute HUD overlap" (exported from the git index with `git checkout-index` into an empty folder: no `.godot/` cache, no local files) on macOS, Godot 4.7.2.
+- **Commands (from the fresh `godot/`):** `godot --headless --path . --import` → 0 errors; `-s tests/test_game.gd` → **41/41**; `-s tests/test_keyboard.gd` → **14/14**; `-s tests/test_audio.gd` → **14/14**; `godot --headless --path . --quit-after 120` (runs the main scene) → no errors, exit 0.
+- **Assets present:** all 12 character images, the two close-ups, ENV-BG v2, three flames, five sound effects, and the music loop load (the tests play every sound and the music; the screenshots show every image).
+- **To repeat** on the final submitted commit before submitting.

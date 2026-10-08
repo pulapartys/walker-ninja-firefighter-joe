@@ -27,7 +27,7 @@ func _draw() -> void:
 	text_at("A/D or arrows: move   Space: jump   W: hose   R: retry   Esc: pause   N/B: mute music/sound", Vector2(22,50), 12)
 	var mutes := ("MUSIC OFF  " if game.is_muted("Music") else "") + ("SOUND OFF" if game.is_muted("SFX") else "")
 	if mutes != "":
-		text_at(mutes, Vector2(470,27), 11, Color("a23e36"))
+		text_at(mutes, Vector2(330,27), 11, Color("a23e36"))  # between the title and FIRST ALARM (was 470: overlapped it)
 	draw_rect(Rect2(22,63,596,3), Color("daddd6"))
 	var progress: float = clampf((game.player.position.x-64)/maxf(1.0, float(game.level.finish[0])-64.0), 0, 1)
 	draw_rect(Rect2(22,63,596*progress,3), Color("287c68"))
