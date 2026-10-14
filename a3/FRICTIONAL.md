@@ -63,6 +63,31 @@
 - **Traceability:** CHANGE-BRIEF v1 and BLENDER-NOTES were first committed at 10:01 today in the class repo (`7578374` on my fork, branch `sreeja-p/assignment-3`, PR #15), before building; they are copied here unchanged.
 - **What Claude or another person contributed:** Claude found the mismatch when I asked it to check the requirements, laid out the options, and moved the files; I chose to make the new repository.
 
+### 2026-10-14 — building the fire hydrant (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 12:15–12:35. Asset 1, through the Blender MCP in my open Blender.
+- **I tried / expected:** Claude proposed a plan first (6 parts with sizes, segment counts and a triangle count of 356, colours, join + origin + apply, no export); I approved it with "ok". I expected the numbers to match the brief.
+- **What happened:**
+  - Claude built it in 8 MCP calls: one per part, then join / origin / apply, then save. It reported location, size, rotation and scale after each part; the two outlets carried a 90° rotation until it was applied in the join step.
+  - Result: **356 triangles** (budget ≤ 400), **0.40 × 0.36 × 0.80 m**, origin (0, 0, 0), rotation 0, scale 1, 1, 1, bottom at Z 0, top at Z 0.8.
+  - Claude pointed out before building that the bottom half of the cap sphere sits inside the body (~60 triangles that are never seen); I left it, since it is under budget.
+- **What I did:** Orbited around it in my viewport and checked it: it reads as a hydrant (`a3/evidence/hydrant-my-viewport-check.png`).
+- **What Claude or another person contributed:** Claude wrote the plan and all the Blender code; I approved the plan and did the visual check.
+- **Evidence:** `tools/blender/build_hydrant.py` (every call, in order), `blender/hydrant.blend`, `a3/evidence/hydrant-angles-v1.png`; commit `0a2b161`.
+
+### 2026-10-14 — the rescue bag: barrel → duffel → backpack (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 12:36–12:56. Asset 2.
+- **What happened, version by version:**
+  - **v1** (cylinder on its side, a flap, one ring handle; my "ok"): every number passed (264 triangles, 0.60 × 0.28 × 0.30 m, scale 1, origin at the base). But Claude's `look` showed the handle was **almost entirely buried inside the body**, and when I looked in my viewport I said it **"doesn't look anything like a bag", it looks like a barrel**. Numbers can't catch that. → CHANGE-BRIEF Revision 1.
+  - **v2** (oval body, two strap handles, a zip line; "ok build v2"): 248 triangles, 0.60 × 0.30 × 0.33 m. Looked like a bag. Then I asked what the bag is actually for: in my game it rides **on Extinguisho's back** and the survivors are tossed into it, so **I suggested a backpack** instead.
+  - **v3** (boxy backpack; "lets try and see what we like"): 292 triangles, 0.38 × 0.35 × 0.59 m. It read as a backpack but **"more like a box"**. I also noticed it is **tiny in the viewport**: a grid square is 1 m and a 0.6 m bag is about half a square; I had to zoom in on every version.
+  - **v4** (rounded backpack; "no i need you to make it look less boxy"): oval tapered body, rounded flap, rounded pocket, two shoulder straps, grab handle. **296 triangles** (budget ≤ 300), **0.36 × 0.31 × 0.61 m**, origin at the base, scale 1. **I chose this one** ("ok this one is better"). → CHANGE-BRIEF Revision 2.
+- **What I learned:** a check that the numbers are right is not a check that the thing is right; v1 passed every number and was still wrong. And the object should match how the game uses it (worn, not carried).
+- **What Claude or another person contributed:** Claude wrote every plan and all the Blender code, and spotted the buried handle in its own render. I judged each version in my viewport (barrel, boxy), asked what the bag is for, suggested the backpack, and chose the final version.
+- **Still open:** from straight in front, the rounded flap looks a bit like a jar lid (Claude's observation); a candidate for my hand edit.
+- **Evidence:** `tools/blender/build_rescue_bag.py` (all 21 calls, v1–v4), `blender/rescue_bag.blend` (v4), `blender/rescue_bag_v2_duffel.blend`, pictures `a3/evidence/bag-*`; commits `704f4e5`, `dad6bc4`.
+
 ## MCP connection attempts
 
 <!-- Log every attempt and every error, verbatim. If it is not connected after ~2 hours of honest effort, switch to the script route and say so here. -->
