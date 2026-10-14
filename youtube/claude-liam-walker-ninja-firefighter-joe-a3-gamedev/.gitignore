@@ -1,0 +1,21 @@
+# Large or machine-specific film files stay out of git (course rule: no MP3/MP4; files < 25 MB).
+media/
+mp3/
+audio/
+capture/*.avi
+capture/*.mp4
+exports/
+_qc/frames/
+remotion/node_modules
+remotion/src/brutalist
+remotion/public/*.png
+remotion/public/*.jpg
+# Scratch and compiler work folders (rebuildable)
+_pilot/
+_render/
+clips/
+remotion/public/
+remotion/consumers.json
+build-state.json
+remotion/.remotion/
+remotion/.cache/

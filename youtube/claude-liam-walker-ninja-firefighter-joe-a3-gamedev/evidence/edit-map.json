@@ -1,0 +1,75 @@
+[
+  {
+    "beat": "B02",
+    "take": "screen",
+    "source": "media/screens/why.png",
+    "source_sha256": "49a3ee2d3072c1cb12cd32600e6cf85deeac9f7c03d040bbd61a94928387f0b6",
+    "output_duration_s": 14.266666666666667,
+    "retimed": false,
+    "output_sha256": "0811480c976851bc3537f64e5b439ecaf3f6726596d9a140286ff2cc5877ed09"
+  },
+  {
+    "beat": "B04",
+    "take": "screen",
+    "source": "media/screens/blender-session.png",
+    "source_sha256": "bc330e82d0bd58f9d37e76c452754c45dbfed2574d09a86d7bfef4d90b4e69ae",
+    "output_duration_s": 14.133333333333333,
+    "retimed": false,
+    "output_sha256": "18675ee8cf77ff3bfbbb991d86573ff8385926ff9756d50f2aa2625a59e40475"
+  },
+  {
+    "beat": "B05",
+    "take": "screen",
+    "source": "media/screens/mcp.png",
+    "source_sha256": "20531fe58887a45e157bfa88af0c41bb3d498642528d7fb6e47445b48ecb8927",
+    "output_duration_s": 15.366666666666667,
+    "retimed": false,
+    "output_sha256": "bb003d168987d0652cf76b2082dce097c54c7f3e0a58c2a90551eb171178758f"
+  },
+  {
+    "beat": "B06",
+    "take": "screen",
+    "source": "media/screens/hydrant.png",
+    "source_sha256": "1bf8b4166897c2ca63ad8e482b61efc17e0c3d78bb11b1e6936bfff26d5c8721",
+    "output_duration_s": 19.766666666666666,
+    "retimed": false,
+    "output_sha256": "28d92f5481f7404bb7f2399509019ce353077c93a857b712f88436dac4d6ac95"
+  },
+  {
+    "beat": "B07",
+    "take": "screen",
+    "source": "media/screens/bag.png",
+    "source_sha256": "a3b756163cd9a97cb7f32eff696ab762894b9e775cb44c75b6b76a3334f7e94e",
+    "output_duration_s": 17.266666666666666,
+    "retimed": false,
+    "output_sha256": "b829f2bf961b355bd9fc7f33abcf7d96b64edd13532f0618cf4c617ac7eeeca2"
+  },
+  {
+    "beat": "B10",
+    "take": "screen",
+    "source": "media/screens/hand-edit.png",
+    "source_sha256": "44299294d29f35836de4a2cda7aca73f0dbc33502a980307d78b1a051baeadc3",
+    "output_duration_s": 15.933333333333334,
+    "retimed": false,
+    "output_sha256": "c4cb1c8a8134600c7a7bac63356e4edd44232947499c24af0d7e06c32d211b4f"
+  },
+  {
+    "beat": "B12",
+    "take": "orbit",
+    "played_s": 14.033,
+    "tail_hold_s": 0.0,
+    "output_duration_s": 14.033333333333333,
+    "retimed": false,
+    "source_sha256": "f542c73a8e14789837b30ca4f1b6edc9552c282cb86244a9919cf7379ff8a8fd",
+    "output_sha256": "cf580b0517496aa7c7dacb29fcc73df6502f930ac32ed831d4c218c712872afa"
+  },
+  {
+    "beat": "B15",
+    "take": "screen",
+    "source": "media/screens/godot-look.png",
+    "source_sha256": "8c4bddb7699c20eee52af4f09f6eda905246aab0e80163c28a9d676352fffa20",
+    "output_duration_s": 16.733333333333334,
+    "retimed": false,
+    "output_sha256": "0f77f578f30b45794b870146ed886585f47f45116066f3c64106f4cda04265ec"
+  }
+]

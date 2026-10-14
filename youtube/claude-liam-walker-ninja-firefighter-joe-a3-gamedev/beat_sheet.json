@@ -1,0 +1,1002 @@
+{
+  "metadata": {
+    "slug": "claude-liam-walker-ninja-firefighter-joe-a3-gamedev",
+    "title": "Extinguisho's First 3D Props",
+    "persona": "Liam",
+    "palette": "claude",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "fps": 30,
+    "width": 3840,
+    "height": 2160,
+    "aspect_ratio": "16:9",
+    "caption_policy": "no burned captions",
+    "fit": "pad",
+    "skill": "godot-gamedev",
+    "modifier": "walker",
+    "source_revision": "71a24c0",
+    "human_review_approved": false,
+    "authorization": "Student's Assignment 3 explainer; script approved by Sreeja; local 4K master for course submission; no publication.",
+    "build": {
+      "at": "2026-10-14T18:54:59",
+      "cut": "master",
+      "filled": 19,
+      "of": 19,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "heading": "The prompt",
+      "narration_text": "Please use Walker to turn a 2D firefighter game into its first three 3D props. I'm Liam, the narrator voice of the Brutalist toolkit. This is Assignment Three for C S Y E seventy-two seventy.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The prompt",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The prompt"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Please use Walker to convert my game design document\nabout a deadpan ninja firefighter into three simple 3D props:\na fire hydrant, a rescue backpack and a flame.",
+            "topic": "Illustrative reconstruction, not a session transcript",
+            "segment": "Extinguisho's First 3D Props",
+            "greeting": "Hello",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 12.533333333333333
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-14T22:44:03.713189+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B00.wav",
+      "actual_duration_s": 12.533333333333333,
+      "render_duration_s": 12.533333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "heading": "What was built",
+      "narration_text": "Extinguisho is Sreeja's Godot game. For this assignment she directed Claude Code through the Blender M C P server, driving a live Blender five point two session, to model three low-poly props: a fire hydrant, a rescue backpack and a flame. Each was exported as binary glTF and verified in a Godot four point seven 3D scene.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What was built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What was built"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Three props, sketched in 2D.",
+            "triggerWords": "sketched in 2D",
+            "replacementWords": "built in 3D",
+            "fontSize": 80,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "charMs": 55,
+            "jitter": 0,
+            "seed": "claude-liam-walker-ninja-firefighter-joe-a3-gamedev",
+            "face": "serif",
+            "align": "center",
+            "durationSeconds": 20.966666666666665
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-14T22:44:03.714033+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "audio_file": "audio/B01.wav",
+      "actual_duration_s": 20.966666666666665,
+      "render_duration_s": 20.966666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "heading": "Why these three",
+      "narration_text": "Each prop maps to something in the game. The flame is the core hazard. The backpack is the rescue bag drawn on his back, where survivors land. The hydrant belongs on the burning street. The game is 2D, so the props live in a separate 3D scene for now.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Why these three",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Why these three"
+          }
+        ],
+        "evidence_media": "media/B02.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "why.png",
+      "screen_title": "My screenshot of the 2D game (A2) · the three props rendered in Godot (A3)",
+      "screen_sub": "evidence/screens-web/03-jump.jpg · a3/evidence/godot-props-scene-camera.png",
+      "audio_file": "audio/B02.wav",
+      "actual_duration_s": 14.266666666666667,
+      "render_duration_s": 14.266666666666667,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "heading": "The brief came first",
+      "narration_text": "Before any geometry, Sreeja committed a brief. Extinguisho is sixty-four pixels tall; she fixed him at one point eight metres, about two point eight centimetres per pixel. Each prop got dimensions in metres, a bottom-centre origin, flat colours and a triangle budget under five hundred, plus four predicted failures, each with a check.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The brief came first",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The brief came first"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The brief came first",
+            "status": "a3/CHANGE-BRIEF.md · v1 commit 7578374, 10:01, before building",
+            "image": "B03-figure.png",
+            "imageLabel": "",
+            "source": "a3/CHANGE-BRIEF.md · v1 commit 7578374, 10:01, before building",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "a3/CHANGE-BRIEF.md"
+              }
+            ],
+            "durationSeconds": 19.066666666666666
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-14T22:44:03.714680+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B03-figure.png"
+      },
+      "audio_file": "audio/B03.wav",
+      "actual_duration_s": 19.066666666666666,
+      "render_duration_s": 19.066666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "heading": "Learning the window",
+      "narration_text": "First she explored Blender by hand. Blender is Z-up; Godot is Y-up. And the default cube's origin sits at its centre, so its base is one metre below the grid. That observation became prediction two: a prop that sinks into the floor.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Learning the window",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Learning the window"
+          }
+        ],
+        "evidence_media": "media/B04.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "blender-session.png",
+      "screen_title": "My screenshot · my own Blender 5.2.2 session, before any prompting",
+      "screen_sub": "a3/BLENDER-NOTES.md · a3/evidence/blender-session.png",
+      "audio_file": "audio/B04.wav",
+      "actual_duration_s": 14.133333333333333,
+      "render_duration_s": 14.133333333333333,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "heading": "Connecting the M C P",
+      "narration_text": "The setup line in the assignment failed: Claude Code's dash e option accepts several values, and swallowed the server name. Putting the name first fixed it. The add-on listened on localhost, port nine eight seven six, with every asset library and generator disabled.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Connecting the M C P",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Connecting the M C P"
+          }
+        ],
+        "evidence_media": "media/B05.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "mcp.png",
+      "screen_title": "My screenshot · MCP for Blender 1.8 panel: services off",
+      "screen_sub": "a3/FRICTIONAL.md, MCP table · server mcp-for-blender 2.1.9",
+      "audio_file": "audio/B05.wav",
+      "actual_duration_s": 15.366666666666667,
+      "render_duration_s": 15.366666666666667,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "heading": "A prompt and what it built",
+      "narration_text": "One asset per request, plan first. For the hydrant Claude proposed six primitives with reduced segment counts: three hundred fifty-six triangles, against a default sphere's nine hundred sixty. After her approval, each part was one execute blender code call, then a join, an origin set to the world origin, and transform apply, leaving scale at one.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "A prompt and what it built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "A prompt and what it built"
+          }
+        ],
+        "evidence_media": "media/B06.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "hydrant.png",
+      "screen_title": "Claude's render (MCP look) · my viewport check (my screenshot) · the plan I approved",
+      "screen_sub": "tools/blender/build_hydrant.py · a3/evidence/hydrant-*.png",
+      "audio_file": "audio/B06.wav",
+      "actual_duration_s": 19.766666666666666,
+      "render_duration_s": 19.766666666666666,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "heading": "Barrel to backpack",
+      "narration_text": "The bag shows the limit of numbers. Version one matched its brief dimensions within two centimetres, yet read as a barrel, with the handle torus buried inside the body. Sreeja asked what the bag is for: it rides on his back. Three revisions later it is a rounded backpack, two hundred ninety-six triangles.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Barrel to backpack",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Barrel to backpack"
+          }
+        ],
+        "evidence_media": "media/B07.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "bag.png",
+      "screen_title": "Claude's renders (MCP look) · rescue bag v1 → v4",
+      "screen_sub": "tools/blender/build_rescue_bag.py · CHANGE-BRIEF Revisions 1–2",
+      "audio_file": "audio/B07.wav",
+      "actual_duration_s": 17.266666666666666,
+      "render_duration_s": 17.266666666666666,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "heading": "Ledge to flame",
+      "narration_text": "Her third prop began as a ledge derived from the level data, ninety by sixteen pixels. It matched the brief, and was, in her words, nothing interesting, so she swapped it for a flame. Built from stacked primitives, version after version read as a Christmas tree, crystals or spikes.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Ledge to flame",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Ledge to flame"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Ledge to flame",
+            "status": "Claude's renders (MCP look) · CHANGE-BRIEF Revisions 3–5",
+            "image": "B08-figure.png",
+            "imageLabel": "",
+            "source": "Claude's renders (MCP look) · CHANGE-BRIEF Revisions 3–5",
+            "cards": [
+              {
+                "label": "1",
+                "text": "The ledge (swapped)"
+              },
+              {
+                "label": "2",
+                "text": "Flame v1: a tree"
+              },
+              {
+                "label": "3",
+                "text": "v6: spikes"
+              },
+              {
+                "label": "4",
+                "text": "v8c: crystals"
+              }
+            ],
+            "durationSeconds": 15.9
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-14T22:44:03.715294+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B08-figure.png"
+      },
+      "audio_file": "audio/B08.wav",
+      "actual_duration_s": 15.9,
+      "render_duration_s": 15.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "heading": "One flame first",
+      "narration_text": "So she changed the method. One mesh, built in bmesh from hexagonal cross-sections with independent left and right widths, approved in grey before colour. Faces were coloured by height and by normal direction, brighter in the centre. Forty-eight triangles.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "One flame first",
+        "show": [
+          {
+            "at": "beat",
+            "event": "One flame first"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "One flame first",
+            "status": "My brief → grey shape I approved → colours · CHANGE-BRIEF Revision 6",
+            "image": "B09-figure.png",
+            "imageLabel": "",
+            "source": "My brief → grey shape I approved → colours · CHANGE-BRIEF Revision 6",
+            "cards": [
+              {
+                "label": "1",
+                "text": "My brief"
+              },
+              {
+                "label": "2",
+                "text": "Approved in grey"
+              },
+              {
+                "label": "3",
+                "text": "Final colours"
+              }
+            ],
+            "durationSeconds": 14.3
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-10-14T22:44:03.715914+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B09-figure.png"
+      },
+      "audio_file": "audio/B09.wav",
+      "actual_duration_s": 14.3,
+      "render_duration_s": 14.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "heading": "Her hand edit",
+      "narration_text": "Then her own edit, in the viewport. Edit mode, vertex select, the tip vertex, G then X: a constrained move along global X of nought point one nine metres. On screen the drag ran toward the centre, because an axis's screen direction depends on the view. She kept the straighter flame.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Her hand edit",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Her hand edit"
+          }
+        ],
+        "evidence_media": "media/B10.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "hand-edit.png",
+      "screen_title": "My screenshots · my hand edit in Blender, by mouse",
+      "screen_sub": "a3/evidence/hand-edit-flame-*.png · CHANGE-BRIEF Revision 7",
+      "audio_file": "audio/B10.wav",
+      "actual_duration_s": 15.933333333333334,
+      "render_duration_s": 15.933333333333334,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "heading": "Three props in one scene",
+      "narration_text": "Export used the glTF exporter with plus Y up and transforms applied. In the scene file each prop is an instanced dot G L B with an identity basis; only the origin column moves. No rotation, no scale. A one point eight metre cylinder stands in for Extinguisho.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Three props in one scene",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Three props in one scene"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Three props in one scene",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "scenes3d/props_room.tscn",
+            "source": "Godot editor reconstruction · exact source, revision 71a24c0 · next: the visible result",
+            "code": "[node name=\"Hydrant\" parent=\".\" instance=ExtResource(\"1_hydrant\")]\ntransform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0)\n\n[node name=\"RescueBag\" parent=\".\" instance=ExtResource(\"2_bag\")]\ntransform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)\n\n[node name=\"Flame\" parent=\".\" instance=ExtResource(\"3_flame\")]\ntransform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0)",
+            "startLine": 48,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Basis",
+                "value": "identity: no rotation, scale 1"
+              },
+              {
+                "label": "Origin",
+                "value": "x −0.8 / 0 / 0.8, y 0"
+              }
+            ],
+            "output": [
+              "godot/scenes3d/props_room.tscn lines 48–55"
+            ],
+            "cues": [],
+            "durationSeconds": 17.033333333333335
+          },
+          "rendered": {
+            "out": "media/B11.mp4",
+            "at": "2026-10-14T22:44:03.716495+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B11.wav",
+      "actual_duration_s": 17.033333333333335,
+      "render_duration_s": 17.033333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "heading": "In the engine",
+      "narration_text": "This is the running engine, recorded by Movie Maker at a fixed thirty frames per second. Upright, grounded, at game scale beside the pole. Blender's Z-up became Godot's Y-up, so prediction one did not happen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "In the engine",
+        "show": [
+          {
+            "at": "beat",
+            "event": "In the engine"
+          }
+        ],
+        "evidence_media": "media/B12.mp4"
+      },
+      "gameplay_take": "orbit",
+      "audio_file": "audio/B12.wav",
+      "actual_duration_s": 14.033333333333333,
+      "render_duration_s": 14.033333333333333,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / held-frame plate",
+            "box": [
+              0.06,
+              0.056,
+              0.94,
+              0.162
+            ]
+          }
+        ],
+        "contrast_reason": "Godot's dark background and grey floor are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "heading": "The headless check",
+      "narration_text": "The headless check pushes every mesh's bounding box through its global transform, so a rotated or scaled node can't hide behind a correct mesh. Then it tests size within a centimetre of the brief, every scale at one, height along Y, the bottom against the floor surface, and the triangle count.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The headless check",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The headless check"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The headless check",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "tests/check_props.gd",
+            "source": "Godot editor reconstruction · exact source, revision 71a24c0 · next: the visible result",
+            "code": "\t\tvar all_one: bool = scales.all(func(s): return s.is_equal_approx(Vector3.ONE))\n\t\tvar tallest: String = \"X\" if size.x >= size.y and size.x >= size.z else (\"Y\" if size.y >= size.z else \"Z\")\n\t\tvar bottom_gap: float = box.position.y - floor_y\n\t\tvar on_floor: bool = absf(bottom_gap) <= TOL\n\t\tvar diff: Vector3 = (size - brief).abs()\n\t\tvar size_ok: bool = diff.x <= TOL and diff.y <= TOL and diff.z <= TOL\n\t\tvar upright: bool = tallest == \"Y\" and node.global_transform.basis.y.normalized().is_equal_approx(Vector3.UP)\n\t\tvar ok: bool = size_ok and all_one and upright and on_floor and tris <= budget",
+            "startLine": 51,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Pass if",
+                "value": "size, scale, upright, on floor, tris"
+              },
+              {
+                "label": "Tolerance",
+                "value": "0.01 m"
+              }
+            ],
+            "output": [
+              "godot/tests/check_props.gd lines 51–58"
+            ],
+            "cues": [],
+            "durationSeconds": 16.866666666666667
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-10-14T22:44:03.717121+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B13.wav",
+      "actual_duration_s": 16.866666666666667,
+      "render_duration_s": 16.866666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "heading": "The numbers, labelled headless",
+      "narration_text": "Headless, all three pass, matching the brief to the millimetre. Mutation mode plants three faults: a hydrant rotated ninety degrees, a bag scaled two times, a flame lowered twenty centimetres. All three fail. And one trap: Godot exited with code zero when the script failed to parse, so the runner now requires a printed pass.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The numbers, labelled headless",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The numbers, labelled headless"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The numbers, labelled headless",
+            "status": "Recorded headless output · a3/evidence/check-props-output.txt, check-props-mutate.txt",
+            "image": "B14-figure.png",
+            "imageLabel": "",
+            "source": "Recorded headless output · a3/evidence/check-props-output.txt, check-props-mutate.txt",
+            "cards": [
+              {
+                "label": "1",
+                "text": "Real scene: RESULT PASS"
+              },
+              {
+                "label": "2",
+                "text": "Planted faults: all three FAIL"
+              }
+            ],
+            "durationSeconds": 18.0
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-10-14T22:44:03.717707+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B14-figure.png"
+      },
+      "audio_file": "audio/B14.wav",
+      "actual_duration_s": 18.0,
+      "render_duration_s": 18.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "heading": "What the check can't see",
+      "narration_text": "The check proves geometry, not appearance. Sreeja's own review in the editor: the fire's colour shades read as realistic, the hydrant is basic, the backpack's shape and colours could improve, and the backpack and flame could be larger. Materials survived the export, so prediction three did not happen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What the check can't see",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What the check can't see"
+          }
+        ],
+        "evidence_media": "media/B15.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "godot-look.png",
+      "screen_title": "My screenshot · my human check in the Godot 4.7.2 editor",
+      "screen_sub": "a3/TEST-REPORT.md §7 · a3/evidence/godot-my-human-check.png",
+      "audio_file": "audio/B15.wav",
+      "actual_duration_s": 16.733333333333334,
+      "render_duration_s": 16.733333333333334,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "A real screenshot of Blender's / Godot's own UI fills the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The app's dark UI is captured evidence, not our typography; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "media",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "heading": "Verdict",
+      "narration_text": "The verdict. Verified in Blender and headless Godot: dimensions, unit scale, Y-up orientation, grounded origins and triangle budgets. Uncertain: whether the props suit the game's art style. Claude's errors: a buried handle, spiky flames, a camera basis written in the wrong order, and a check that passed without running. Sreeja directed, decided and reviewed; Claude Code proposed and implemented. Source revision on screen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Verdict",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Verdict"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Assignment 3 · verdict",
+            "artifactHeading": "Three props, measured and reviewed",
+            "artifactLines": [
+              "Verified: size · scale 1 · Y-up · origin on floor · tris 356 / 296 / 48",
+              "Uncertain: does it suit the game's art style?",
+              "Claude got wrong: buried handle · spiky flames · camera basis · exit-0 check",
+              "Next: bigger, better backpack (my Godot check)",
+              "Sreeja: directed, decided, reviewed · Claude Code: proposed, implemented",
+              "Source revision 71a24c0"
+            ],
+            "durationSeconds": 22.466666666666665
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": "2026-10-14T22:45:25.842998+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B16.wav",
+      "actual_duration_s": 22.466666666666665,
+      "render_duration_s": 22.466666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "heading": "Your turn",
+      "narration_text": "Your turn. Take the backpack Sreeja flagged. Ask Walker for a plan that improves its shape and colours and scales it up, then update the brief and predict which assertion in the headless check would catch a mistake. This has been Liam, from Brutalist.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Your turn",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Your turn"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Read my CHANGE-BRIEF and plan a better backpack: rounder shape,\na second colour band, scaled up. Update the brief first, then predict\nwhich assertion in check_props.gd would catch a mistake.",
+            "topic": "Your turn · one prop, one brief revision, one prediction",
+            "segment": "Extinguisho's First 3D Props",
+            "greeting": "Your turn",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 13.533333333333333
+          },
+          "rendered": {
+            "out": "media/B17.mp4",
+            "at": "2026-10-14T22:45:25.844101+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B17.wav",
+      "actual_duration_s": 13.533333333333333,
+      "render_duration_s": 13.533333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B17.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-14T18:54:59"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "heading": "Outro",
+      "narration_text": "Extinguisho's First 3D Props. At Nik Bear Brown.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Outro",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Outro"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Extinguisho's First 3D Props",
+            "slug": "claude-liam-walker-ninja-firefighter-joe-a3-gamedev",
+            "durationSeconds": 5.0
+          },
+          "rendered": {
+            "out": "media/B18.mp4",
+            "at": "2026-10-14T22:45:25.844802+00:00"
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_hold_s": 1.0,
+      "audio_file": "audio/B18.wav",
+      "actual_duration_s": 5.0,
+      "render_duration_s": 5.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B18.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-10-14T18:54:59"
+      }
+    }
+  ]
+}
