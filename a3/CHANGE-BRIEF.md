@@ -72,3 +72,10 @@ Extinguisho is **64 px** tall in my 640×360 game. I treat him as **1.8 m**, a n
 - **What I saw:** v1 (a cylinder lying on its side, a flap, one ring handle) passed every number (264 triangles, 0.60 × 0.28 × 0.30 m, scale 1, origin at the base), but in my own viewport check it read as a barrel or a log, not a bag. The ring handle was almost entirely buried inside the body; only ~1.5 cm showed. Evidence: `evidence/bag-v1-my-viewport-check.png`, `evidence/bag-angles-v1.png`.
 - **Change:** v2 has an oval body (wider than tall, 0.30 × 0.24), **two strap handles** arching over the top, and a dark **zip line** along the top; the flap is gone. 4 shapes, 248 triangles (budget still ≤ 300).
 - **New size:** 0.60 × 0.30 × **0.33 m** (height 0.30 → 0.33 because the handles now stand above the body). Colours: orange `#e67e22` body, dark `#1b2230` handles and zip.
+
+### Revision 2 — 2026-10-14, rescue bag becomes a backpack
+
+- **Why:** v2 read as a bag, but I asked what the bag is *for*: in my game it rides on Extinguisho's back in every pose and the survivors are tossed into it. A backpack fits that better than a carried duffel.
+- **v3 (boxy backpack):** 292 triangles, 0.38 × 0.35 × 0.59 m. It read as a backpack from the back and side, but "more like a box" (`evidence/bag-v3-my-viewport-check.png`). I also noticed it is tiny in the viewport: a grid square is 1 m (`evidence/bag-v3-tiny-in-viewport.png`).
+- **v4 (rounded backpack, final):** an oval, slightly tapered body, a rounded top flap, a rounded front pocket, two shoulder straps on the back and a grab handle. 6 shapes, **296 triangles** (budget ≤ 300), **0.36 × 0.31 × 0.61 m** (a third of Extinguisho's 1.8 m height, a real backpack size). Colours unchanged: orange `#e67e22`, darker `#b8621b`, dark `#1b2230`. Origin bottom centre.
+- The duffel v2 is kept as `blender/rescue_bag_v2_duffel.blend`.
