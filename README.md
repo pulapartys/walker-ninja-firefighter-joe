@@ -2,21 +2,54 @@
 
 My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props, in progress; work on branch `a3-build`, PR #1).
 
-## Assignment 3 — first 3D assets (in progress)
+## Assignment 3 — first 3D assets
 
-Three props for the game, built in Blender through the Blender MCP and shown in a small Godot 3D scene: a fire hydrant, the rescue bag (a backpack), and a flame. Docs in [`a3/`](a3/): [CHANGE-BRIEF](a3/CHANGE-BRIEF.md) (committed before building) · [BLENDER-NOTES](a3/BLENDER-NOTES.md) · [FRICTIONAL](a3/FRICTIONAL.md) · [SOURCES](a3/SOURCES.md). Blender sources go in `blender/` and `tools/blender/`; the props and the 3D scene go into the same Godot project in `godot/`.
+Three props for my game, built in Blender by directing Claude Code through the Blender MCP, exported as `.glb`, and shown together in a small Godot 3D scene: a **fire hydrant**, the **rescue bag** (a backpack — it rides on Extinguisho's back), and a **flame** (the game's main hazard). My game is 2D, so the props live in their own 3D scene (`godot/scenes3d/props_room.tscn`), which Assignments 4 and 5 reuse; it is not connected to the 2D game yet.
 
-Versions: Blender 5.2.2 LTS · MCP for Blender server 2.1.9 / add-on 1.8 · Godot 4.7.2.
+**Docs** in [`a3/`](a3/): [CHANGE-BRIEF](a3/CHANGE-BRIEF.md) (v1 committed before building; Revisions 1–7) · [BLENDER-NOTES](a3/BLENDER-NOTES.md) · [TEST-REPORT](a3/TEST-REPORT.md) · [FRICTIONAL](a3/FRICTIONAL.md) · [SOURCES](a3/SOURCES.md) · evidence in `a3/evidence/`.
 
-| Prop | Status | Size (m) | Triangles |
+**Versions:** Blender 5.2.2 LTS · MCP for Blender server `mcp-for-blender` 2.1.9 / add-on 1.8 (MCP route for all three props) · Godot 4.7.2 stable · macOS 26.6.2 (Apple M1).
+
+### What this assignment added
+
+| Path | What |
+|---|---|
+| `blender/hydrant.blend`, `rescue_bag.blend`, `flame.blend` | the three props' Blender sources (dropped/earlier versions: `rooftop_ledge.blend`, `rescue_bag_v2_duffel.blend`, `flame_v8c_backup.blend`) |
+| `tools/blender/build_*.py`, `export_props.py` | every piece of code Claude ran through the MCP, in order, with my prompt for each |
+| `godot/props3d/*.glb` (+ `.import`) | the exported props (+Y Up, transforms applied) |
+| `godot/scenes3d/props_room.tscn` | floor, one sun, camera, the three props side by side, a 1.8 m pole for Extinguisho's height |
+| `godot/tests/check_props.gd`, `run_check_props.sh`, `capture_props.gd` | the headless check, its strict runner, and the screenshot capture |
+
+| Prop | Size W × D × H (m) | Triangles (budget) | Result |
 |---|---|---|---|
-| Fire hydrant | built (MCP) | 0.40 × 0.36 × 0.80 | 356 |
-| Rescue bag | built (MCP); v1 barrel → v2 duffel → **v4 rounded backpack** | 0.36 × 0.31 × 0.61 | 296 |
-| Flame | built (MCP); **replaced the rooftop ledge** (CHANGE-BRIEF Revision 3); many versions (Christmas tree, spikes, crystals) → **one curved flame** from my own design brief (Revisions 4–6) | 0.36 × 0.27 × 0.62 | 48 |
+| Fire hydrant | 0.40 × 0.36 × 0.80 | 356 (≤ 400) | PASS: size = brief, scale 1, upright, on the floor |
+| Rescue bag (backpack) | 0.36 × 0.31 × 0.61 | 296 (≤ 300) | PASS |
+| Flame | 0.36 × 0.27 × 0.62 | 48 (≤ 400) | PASS |
 
-Hand edit (mine, by mouse): moved the flame's tip 0.19 m along X — a straighter, more balanced flame.
+**My hand edit** (by mouse, in Blender): moved the flame's tip 0.19 m along X — a straighter, more balanced flame.
 
-Still to do: `.glb` export, the Godot 3D scene and headless check, TEST-REPORT, the film, the `a3` tag.
+### Run the check and open the scene
+
+```
+# from the repository root; Godot 4.7 (macOS: ~/Downloads/Godot.app/Contents/MacOS/Godot or /Applications/Godot.app/...)
+godot --headless --path godot --import                                         # once, after cloning
+timeout 120 godot --headless --path godot --script res://tests/check_props.gd --fixed-fps 60
+GODOT=/path/to/Godot godot/tests/run_check_props.sh          # passes only if it prints "RESULT: PASS"
+GODOT=/path/to/Godot godot/tests/run_check_props.sh mutate   # planted faults: must FAIL
+```
+
+`timeout` comes from Homebrew's coreutils on macOS. **Open the scene:** Godot → Import → `godot/project.godot` → double-click `scenes3d/props_room.tscn` (3D tab). The 2D game still runs as before (`res://game/main.tscn`); its A2 tests still pass.
+
+### Known limitations
+
+- The flame is **one shaped mesh** built from placed cross-sections, not a combination of Blender's basic shapes (eight primitive-based versions read as spikes or crystals).
+- My human check in Godot: the hydrant is **basic**, the backpack's **shape and colours** could be better, and the backpack and flame could be **bigger** next to Extinguisho.
+- My hand edit straightened the flame, a little against my own brief.
+- The headless check proves size, scale, orientation, floor contact and triangle counts; it cannot judge looks or colours (TEST-REPORT §11).
+
+### Film
+
+*(A3 explainer: link, filename and SHA-256 to be added.)*
 
 ### Iteration history (every version, what I saw, what I changed)
 
