@@ -33,3 +33,7 @@ evidence/screens/
 # Local working docs (not part of the submission)
 REMAINING-WORK.md
 SOUND-PROMPTS.md
+
+# Blender backups (Assignment 3: do not commit)
+*.blend1
+*.blend2

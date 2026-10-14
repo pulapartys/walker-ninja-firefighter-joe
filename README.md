@@ -1,5 +1,13 @@
 # walker-ninja-firefighter-joe
 
+My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props, in progress).
+
+## Assignment 3 — first 3D assets (in progress)
+
+Three props for the game, built in Blender through the Blender MCP and shown in a small Godot 3D scene: a fire hydrant, the rescue bag, and a rooftop ledge. Docs in [`a3/`](a3/): [CHANGE-BRIEF](a3/CHANGE-BRIEF.md) (committed before building) · [BLENDER-NOTES](a3/BLENDER-NOTES.md) · [FRICTIONAL](a3/FRICTIONAL.md). Blender sources go in `blender/` and `tools/blender/`; the props and the 3D scene go into the same Godot project in `godot/`.
+
+## Assignment 2 — asset slice
+
 An asset slice for CSYE 7270 Assignment 2: **Extinguisho**, a deadpan ninja firefighter, has 40 seconds to rescue a person and a dog from two burning buildings: kung-fu jump over flames, hose the fire blocking the way, toss the survivors into his bag, and escape off the roof. The art (and, in progress, the sound and music) is generated with generative models and wired into a playable Godot scene.
 
 
