@@ -119,6 +119,12 @@
 - **Who did what:** the scene contents, the size pole, the human check and the decision not to change the props are mine; Claude implemented the export, the scene and the check, and I reviewed the results.
 - **Evidence:** `godot/scenes3d/props_room.tscn`, `godot/tests/check_props.gd`, `run_check_props.sh`, `a3/evidence/check-props-*.txt`, `godot-props-*.png`, `godot-my-human-check*.png`; TEST-REPORT.md.
 
+### 2026-10-14 — the explainer film
+
+- **What happened:** I asked Claude Code to make the required Brutalist `godot-gamedev` walker film, and to **pause at the script** so I could review it. I asked for v2 to "sound a little more technical", then approved it. Claude recorded a 4K Movie Maker orbit of my props scene (first take came out 1280×720 because of my project's window override; fixed), voiced my approved script with Liam, and rendered native 4K. The toolkit's text gate flagged four beats: a verdict heading that read as truncated (reworded) and three figures where the pictures themselves (my game's pixel text, Blender's UI, the bag renders) read as overlapping labels (shown full-frame with a provenance plate instead). All gates then passed: gamedev check, GATE T, Gate V.
+- **Result:** `claude-liam-walker-ninja-firefighter-joe-a3-gamedev.mp4`, 5 min 03 s, 3840×2160, SHA-256 `166c184fe0a0663c884d82bac9a53a82f2db8294532a970affcfed98740593b1`, source revision `71a24c0`. Not in git (course rule); link in README and SUBMISSION.
+- **Who did what:** I set the review point, asked for the technical tone, and approved the script; Claude Code wrote the script, beat sheet and build scripts and rendered it. I watch the final export before submitting.
+
 ## MCP connection attempts
 
 | Date / time | Step tried | Exact error or result | What I changed next |
@@ -140,3 +146,4 @@
 | 2026-10-14 | A3: log the push of the three built props and my first hand edit (PR) *(this repository, branch a3-build, PR #1)* |
 | 2026-10-14 | A3: log the push of the docs update (decisions, iteration history) *(branch a3-build, PR #1)* |
 | 2026-10-14 | A3: log the push of the export, Godot scene, headless check and TEST-REPORT *(branch a3-build, PR #2)* |
+| 2026-10-14 | A3: log the push of the film source *(branch a3-build, PR #2)* |
