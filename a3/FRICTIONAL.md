@@ -97,8 +97,8 @@
   - Claude checked how big flames are in my game: a small hazard is drawn 18 × 22 px, about 0.35 × 0.6 m. It laid out two options: swap the ledge for the flame (still three assets) or add the flame as a fourth. **I chose to swap**, because of the deadline.
   - **Flame**: Claude's first plan had nested layers; before building it changed the design to stacked layers (yellow bulb, orange middle, red tip) because nested opaque shapes would hide the inner colours. 5 MCP calls. **336 triangles** (budget ≤ 400), **0.43 × 0.34 × 0.62 m**, origin at the base, scale 1.
 - **What Claude or another person contributed:** Claude wrote both plans and all the code, measured the game's flame size from `session.gd`, and laid out the swap/add options. The decision to drop the ledge and make a flame was mine. → CHANGE-BRIEF Revision 3.
-- **Still open:** Claude's own read of the flame render is that it looks stiff and symmetrical (a bit like a candy corn or a crown); that is where I plan to make my hand edit.
-- **Evidence:** `tools/blender/build_rooftop_ledge.py`, `blender/rooftop_ledge.blend` (dropped), `tools/blender/build_flame.py`, `blender/flame.blend`, `a3/evidence/ledge-*`, `a3/evidence/flame-angles-v1.png`.
+- **Flame v1 → v2:** in my viewport the flame "doesn't look like a flame, looks like a christmas tree with 2 spikes". Claude named why (straight cones stacked on one axis, mirrored spikes) and rebuilt it as five uneven tongues with bent tips: 320 triangles, 0.41 × 0.35 × 0.62 m. → CHANGE-BRIEF Revision 4. Second time a version passed every number and failed my look (after the bag barrel).
+- **Evidence:** `tools/blender/build_rooftop_ledge.py`, `blender/rooftop_ledge.blend` (dropped), `tools/blender/build_flame.py` (v1 and v2), `blender/flame.blend` (v2), `a3/evidence/ledge-*`, `a3/evidence/flame-*`.
 
 ## MCP connection attempts
 

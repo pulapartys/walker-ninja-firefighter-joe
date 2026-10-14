@@ -97,3 +97,8 @@ Extinguisho is **64 px** tall in my 640×360 game. I treat him as **1.8 m**, a n
 | **Triangle budget** | **≤ 400** (it came out at 336). |
 
 - **Predictions P1–P3 apply to the flame too.** A flame is also likely to look **too stiff and symmetrical** (it is built from identical teardrops); that is my hand-edit target.
+
+### Revision 4 — 2026-10-14, flame v1 → v2 (after looking)
+
+- **What I saw:** flame v1 (three stacked straight teardrops on one axis plus two mirrored side spikes; 336 triangles) "doesn't look like a flame, looks like a christmas tree with 2 spikes" (`evidence/flame-v1-my-viewport-check.png`).
+- **Change:** v2 is five uneven tongues of different heights whose tips bend sideways (left and right), on a round yellow base, so nothing is mirrored and the tips lick like fire. 5 shapes, **320 triangles** (budget ≤ 400), **0.41 × 0.35 × 0.62 m**, origin at the base. Same colours. (`evidence/flame-angles-v2.png`)
