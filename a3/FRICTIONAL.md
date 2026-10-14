@@ -109,6 +109,16 @@
 - **Checked afterwards (through the MCP):** still 48 triangles, 0.36 × 0.27 × 0.62 m (the tip stays inside the width), bottom at Z 0, scale 1. This edit goes a little against my own brief ("a tip that curls noticeably sideways"); I chose the look over the brief.
 - **Evidence:** `a3/evidence/hand-edit-flame-1-tip-selected.png`, `…-2-moving-along-x.png`, `…-3-saved.png`.
 
+### 2026-10-14 — export, the Godot scene, the check, and my look in Godot
+
+- **What happened:**
+  - Exported the three props to `.glb` with +Y Up through the MCP; the first try (open + export in one call) failed with `'Context' object has no attribute 'active_object'`, so each prop was opened and exported in two calls. Godot imported all three with no errors.
+  - I asked for a small 3D scene in my existing Godot project (my 2D game untouched): floor, one sun, camera, the three props, and a **1.8 m pole for Extinguisho's height** (my choice). The camera first looked upward (rotation rows written in the wrong order); fixed.
+  - Headless check: **PASS** for all three (sizes = brief, scale 1, upright, on the floor, within budget). It FAILS all three planted faults. Godot exited 0 when the check script had a parse error, so the runner now requires `RESULT: PASS`. My A2 tests still pass.
+  - **My look in Godot:** I like the fire's different shades (more realistic); the hydrant is basic; the backpack's shape and colours could be better; the backpack and flame could be bigger. Colours survived the export. I decided to record these as limitations and next steps rather than change the props before the deadline.
+- **Who did what:** the scene contents, the size pole, the human check and the decision not to change the props are mine; Claude implemented the export, the scene and the check, and I reviewed the results.
+- **Evidence:** `godot/scenes3d/props_room.tscn`, `godot/tests/check_props.gd`, `run_check_props.sh`, `a3/evidence/check-props-*.txt`, `godot-props-*.png`, `godot-my-human-check*.png`; TEST-REPORT.md.
+
 ## MCP connection attempts
 
 | Date / time | Step tried | Exact error or result | What I changed next |
