@@ -63,6 +63,66 @@
 - **Traceability:** CHANGE-BRIEF v1 and BLENDER-NOTES were first committed at 10:01 today in the class repo (`7578374` on my fork, branch `sreeja-p/assignment-3`, PR #15), before building; they are copied here unchanged.
 - **What Claude or another person contributed:** Claude found the mismatch when I asked it to check the requirements, laid out the options, and moved the files; I chose to make the new repository.
 
+### 2026-10-14 — building the fire hydrant (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 12:15–12:35. Asset 1, through the Blender MCP in my open Blender.
+- **I tried / expected:** Claude proposed a plan first (6 parts with sizes, segment counts and a triangle count of 356, colours, join + origin + apply, no export); I approved it with "ok". I expected the numbers to match the brief.
+- **What happened:**
+  - Claude built it in 8 MCP calls: one per part, then join / origin / apply, then save. It reported location, size, rotation and scale after each part; the two outlets carried a 90° rotation until it was applied in the join step.
+  - Result: **356 triangles** (budget ≤ 400), **0.40 × 0.36 × 0.80 m**, origin (0, 0, 0), rotation 0, scale 1, 1, 1, bottom at Z 0, top at Z 0.8.
+  - Claude pointed out before building that the bottom half of the cap sphere sits inside the body (~60 triangles that are never seen); I left it, since it is under budget.
+- **What I did:** Orbited around it in my viewport and checked it: it reads as a hydrant (`a3/evidence/hydrant-my-viewport-check.png`).
+- **What Claude or another person contributed:** Claude wrote the plan and all the Blender code; I approved the plan and did the visual check.
+- **Evidence:** `tools/blender/build_hydrant.py` (every call, in order), `blender/hydrant.blend`, `a3/evidence/hydrant-angles-v1.png`; commit `0a2b161`.
+
+### 2026-10-14 — the rescue bag: barrel → duffel → backpack (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 12:36–12:56. Asset 2.
+- **What happened, version by version:**
+  - **v1** (cylinder on its side, a flap, one ring handle; my "ok"): every number passed (264 triangles, 0.60 × 0.28 × 0.30 m, scale 1, origin at the base). But Claude's `look` showed the handle was **almost entirely buried inside the body**, and when I looked in my viewport I said it **"doesn't look anything like a bag", it looks like a barrel**. Numbers can't catch that. → CHANGE-BRIEF Revision 1.
+  - **v2** (oval body, two strap handles, a zip line; "ok build v2"): 248 triangles, 0.60 × 0.30 × 0.33 m. Looked like a bag. Then I asked what the bag is actually for: in my game it rides **on Extinguisho's back** and the survivors are tossed into it, so **I suggested a backpack** instead.
+  - **v3** (boxy backpack; "lets try and see what we like"): 292 triangles, 0.38 × 0.35 × 0.59 m. It read as a backpack but **"more like a box"**. I also noticed it is **tiny in the viewport**: a grid square is 1 m and a 0.6 m bag is about half a square; I had to zoom in on every version.
+  - **v4** (rounded backpack; "no i need you to make it look less boxy"): oval tapered body, rounded flap, rounded pocket, two shoulder straps, grab handle. **296 triangles** (budget ≤ 300), **0.36 × 0.31 × 0.61 m**, origin at the base, scale 1. **I chose this one** ("ok this one is better"). → CHANGE-BRIEF Revision 2.
+- **What I learned:** a check that the numbers are right is not a check that the thing is right; v1 passed every number and was still wrong. And the object should match how the game uses it (worn, not carried).
+- **What Claude or another person contributed:** Claude wrote every plan and all the Blender code, and spotted the buried handle in its own render. I judged each version in my viewport (barrel, boxy), asked what the bag is for, suggested the backpack, and chose the final version.
+- **Still open:** from straight in front, the rounded flap looks a bit like a jar lid (Claude's observation); a candidate for my hand edit.
+- **Evidence:** `tools/blender/build_rescue_bag.py` (all 21 calls, v1–v4), `blender/rescue_bag.blend` (v4), `blender/rescue_bag_v2_duffel.blend`, pictures `a3/evidence/bag-*`; commits `704f4e5`, `dad6bc4`.
+
+### 2026-10-14 — the rooftop ledge, then swapping it for a flame (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 12:58–13:10. Asset 3.
+- **What happened:**
+  - **Ledge** (plan approved: "build ledge"): 4 MCP calls, two boxes. 24 triangles, 2.5 × 1.0 × 0.45 m, the game's concrete `#b8b2a6` and green 4 px strip `#438e7d`, origin at the base, scale 1. It matched the brief exactly.
+  - Looking at it in my viewport: "seems fine but it's just a ledge, nothing interesting". **I suggested making a flame instead.**
+  - Claude checked how big flames are in my game: a small hazard is drawn 18 × 22 px, about 0.35 × 0.6 m. It laid out two options: swap the ledge for the flame (still three assets) or add the flame as a fourth. **I chose to swap**, because of the deadline.
+  - **Flame**: Claude's first plan had nested layers; before building it changed the design to stacked layers (yellow bulb, orange middle, red tip) because nested opaque shapes would hide the inner colours. 5 MCP calls. **336 triangles** (budget ≤ 400), **0.43 × 0.34 × 0.62 m**, origin at the base, scale 1.
+- **Flame v2 → v3, my design (about 13:09–13:16):** v2 was "not a flame again too". After two Claude designs failed my look, **I designed it myself**: symmetrical, a cone base layer, the two bent side spikes as before, and the bent top flame directly on top of the cone. Claude built that; the top flame sat on the cone like a hat, so **I asked to extend it down to meet the side spikes halfway**. Result: 336 triangles, 0.40 × 0.34 × 0.62 m. My verdict: "not the best but we can keep it as a basic version and improve on it later". → CHANGE-BRIEF Revision 5.
+- **What I learned:** describing the shape I wanted in my own words (base, spikes, where the top goes) worked better than letting Claude guess what "a flame" looks like from basic shapes. Flames are hard to make from a few low-poly shapes.
+- **What Claude or another person contributed:** Claude wrote the plans and all the code for every version, measured the game's flame size from `session.gd`, and laid out the swap/add options. Dropping the ledge, making a flame, and the v3 design were mine. → CHANGE-BRIEF Revisions 3–5.
+- **Flame v1 → v2 (about 13:05–13:09):** in my viewport the flame "doesn't look like a flame, looks like a christmas tree with 2 spikes". Claude named why (straight cones stacked on one axis, mirrored spikes) and rebuilt it as five uneven tongues with bent tips: 320 triangles, 0.41 × 0.35 × 0.62 m. → CHANGE-BRIEF Revision 4. Second time a version passed every number and failed my look (after the bag barrel).
+- **Evidence:** `tools/blender/build_rooftop_ledge.py`, `blender/rooftop_ledge.blend` (dropped), `tools/blender/build_flame.py` (v1 and v2), `blender/flame.blend` (v2), `a3/evidence/ledge-*`, `a3/evidence/flame-*`.
+
+### 2026-10-14 — the flame, part 2: from spikes to one curved flame (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 15:20–15:56. Improving the flame before my hand edits.
+- **I tried / expected:** I gave Claude a low-poly flame reference sheet I generated in ChatGPT (`evidence/flame-reference.png`) and expected it to copy the look.
+- **What happened:**
+  - v4 / v4b (three nested star layers, twisted): looked like a closed bud or a rocket; only red showed. I asked "youre doing somethign wrong, do you need me to give you a prompt or id the reference image enough". Claude listed its mistakes: everything twisted into one tip, base too narrow, and nested shells hide the inner colours in 3D.
+  - v5 / v5b (wide bowl + 6 side flames + main flame, colour zones by height): closer, but angular. **My idea:** "layer more spikes until the top around the main centre cone like a star from the top view" → v6 (three rings of spikes). Too thin and pointy; I asked for curvier, fuller tongues → v7 (fat tongues, 380 triangles). Still crystals.
+  - **I wrote a full design brief** (7–8 broad curved tongues, irregular, red outside / yellow inside, 100–150 triangles). Claude rebuilt it from scratch (v8 → v8c, 169 triangles); it still looked like **sharp crystals / triangular blades** in my viewport. Claude also found its own bug along the way: the centre flame curled towards the back, so from the front it looked straight.
+  - **I changed the approach with a second brief:** back up and delete, build **only one** flame from deliberately placed cross-sections, show it in grey, and stop for my approval. v1 looked like "a bent horn"; I gave specific changes (bulbous base, S-shaped asymmetric middle, gradual curl, more depth, widest at the lower third). v2b: I approved the shape, then said "ok now add the colours", then "this is good enough".
+- **What I did:** judged every version in my own viewport (screenshots in `a3/evidence/flame-*my*`), wrote both design briefs, chose the method change and the final version.
+- **What Claude or another person contributed:** Claude wrote and ran all the Blender code (calls 14–29 in `tools/blender/build_flame.py`), explained what was wrong with its own attempts, and chose the colour rule (height + which way a face points). ChatGPT generated the reference image.
+- **What I understand now / still do not understand:** asking for "more" (more spikes, more layers) kept making it worse; asking for **one** shape with specific curves, approved before adding anything, worked. With few triangles, the outline (silhouette) matters more than the number of parts. Still open: whether a single flame reads as "fire" at game size next to the other props (to check in Godot).
+- **Evidence:** `blender/flame.blend` (final), `blender/flame_v8c_backup.blend`, `a3/evidence/flame-*`; CHANGE-BRIEF Revision 6.
+
+### 2026-10-14 — my hand edit 1: the flame tip (by mouse, in Blender)
+
+- **What I changed:** in Edit Mode, vertex select, I clicked the single tip point and moved it with **G then X** (dragging), about **0.19 m along X towards the centre**: the tip went from X −0.15 to X +0.04. The flame got straighter and more balanced, and I liked it better than the strongly hooked tip, so I kept it and saved (`blender/flame.blend`, Save As → Overwrite).
+- **What it taught me / what was hard:** it was pretty easy once I knew how (Edit Mode → vertex select → G + an axis). Claude had told me to drag "to the right" to make the hook stronger, but my drag went towards the centre: in a 3D view the screen direction of an axis depends on where you look from, so the header readout ("D: 0.188830 m along global X") is what tells you what really happened. Typing a number (G, X, -0.06) would have been exact. The move only locks in when you click; the "Move" box then appears at the bottom left.
+- **Checked afterwards (Claude, through the MCP):** still 48 triangles, 0.36 × 0.27 × 0.62 m (the tip stays inside the width), bottom at Z 0, scale 1. Note: this edit goes a little against my own brief ("a tip that curls noticeably sideways"); I chose the look over the brief.
+- **Evidence:** `a3/evidence/hand-edit-flame-1-tip-selected.png`, `…-2-moving-along-x.png`, `…-3-saved.png`.
+
 ## MCP connection attempts
 
 <!-- Log every attempt and every error, verbatim. If it is not connected after ~2 hours of honest effort, switch to the script route and say so here. -->
@@ -75,6 +135,7 @@
 | 10:11 | `uvx mcp-for-blender install-addon` | `Installed MCP for Blender addon to …/Blender/5.2/scripts/addons/blender_mcp.py` (add-on `bl_info` version 1.8) | — |
 | 10:12 | `claude mcp add blender -e DISABLE_TELEMETRY=true -- uvx mcp-for-blender` | `Added stdio MCP server blender …`; `claude mcp get blender`: Connected, `DISABLE_TELEMETRY=true`; server package mcp-for-blender 2.1.9 | enable the add-on in Blender |
 | 10:13–10:15 | In Blender: Preferences → Add-ons → ticked "MCP for Blender" (1.8; Allow Telemetry left off); N panel → MCP for Blender tab | "Connected on port 9876"; Poly Haven, Sketchfab, Poly Pizza, Hyper3D Rodin, Tencent Hunyuan 3D all unticked; Tripo not shown (premium only). The server started on its own when I enabled the add-on; no Start button needed. Screenshots: `evidence/mcp-addon-enabled.png`, `evidence/mcp-panel-services-off.png` | restart Claude Code so it loads the server |
+| ~10:40 | Restarted Claude Code (`/exit`, `claude --continue` in the same folder) so it loads the server | Claude's tools now include `get_addon_status`, `get_scene_info`, `execute_blender_code`, `look`. `get_addon_status`: Blender 5.2.2 LTS, add-on 1.8 up to date, protocol 13 = expected 13; polyhaven/sketchfab/polypizza off, hunyuan3d/hyper3d off, tripo off (Premium only); telemetry_consent false. `get_scene_info`: Cube, Light, Camera, mode EDIT_MESH | **Connected.** Prediction P4 (MCP won't connect) did not happen, after one fix to the `claude mcp add` line |
 
 ## GitHub pushes
 
@@ -82,3 +143,4 @@
 |---|---|
 | 2026-10-14 | A3: log the push of my brief and Blender notes before building *(class repo fork, PR #15)* |
 | 2026-10-14 | A3: log the first push of my walker- repository *(this repository)* |
+| 2026-10-14 | A3: log the push of the three built props and my first hand edit (PR) *(this repository, branch a3-build)* |
