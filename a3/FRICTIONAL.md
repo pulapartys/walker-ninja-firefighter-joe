@@ -139,3 +139,4 @@
 | 2026-10-14 | A3: log the first push of my walker- repository *(this repository)* |
 | 2026-10-14 | A3: log the push of the three built props and my first hand edit (PR) *(this repository, branch a3-build, PR #1)* |
 | 2026-10-14 | A3: log the push of the docs update (decisions, iteration history) *(branch a3-build, PR #1)* |
+| 2026-10-14 | A3: log the push of the export, Godot scene, headless check and TEST-REPORT *(branch a3-build, PR #2)* |
