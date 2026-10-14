@@ -4,7 +4,7 @@ My CSYE 7270 game, built up one assignment at a time. Each assignment is a git t
 
 ## Assignment 3 — first 3D assets (in progress)
 
-Three props for the game, built in Blender through the Blender MCP and shown in a small Godot 3D scene: a fire hydrant, the rescue bag, and a rooftop ledge. Docs in [`a3/`](a3/): [CHANGE-BRIEF](a3/CHANGE-BRIEF.md) (committed before building) · [BLENDER-NOTES](a3/BLENDER-NOTES.md) · [FRICTIONAL](a3/FRICTIONAL.md) · [SOURCES](a3/SOURCES.md). Blender sources go in `blender/` and `tools/blender/`; the props and the 3D scene go into the same Godot project in `godot/`.
+Three props for the game, built in Blender through the Blender MCP and shown in a small Godot 3D scene: a fire hydrant, the rescue bag (a backpack), and a flame. Docs in [`a3/`](a3/): [CHANGE-BRIEF](a3/CHANGE-BRIEF.md) (committed before building) · [BLENDER-NOTES](a3/BLENDER-NOTES.md) · [FRICTIONAL](a3/FRICTIONAL.md) · [SOURCES](a3/SOURCES.md). Blender sources go in `blender/` and `tools/blender/`; the props and the 3D scene go into the same Godot project in `godot/`.
 
 Versions: Blender 5.2.2 LTS · MCP for Blender server 2.1.9 / add-on 1.8 · Godot 4.7.2.
 
@@ -12,9 +12,9 @@ Versions: Blender 5.2.2 LTS · MCP for Blender server 2.1.9 / add-on 1.8 · Godo
 |---|---|---|---|
 | Fire hydrant | built (MCP) | 0.40 × 0.36 × 0.80 | 356 |
 | Rescue bag | built (MCP); v1 barrel → v2 duffel → **v4 rounded backpack** | 0.36 × 0.31 × 0.61 | 296 |
-| Rooftop ledge | next | — | — |
+| Flame | built (MCP); **replaced the rooftop ledge** (built, but plain: CHANGE-BRIEF Revision 3) | 0.43 × 0.34 × 0.62 | 336 |
 
-Still to do: the ledge, my hand edit, `.glb` export, the Godot 3D scene and headless check, TEST-REPORT, the film, the `a3` tag.
+Still to do: my hand edit, `.glb` export, the Godot 3D scene and headless check, TEST-REPORT, the film, the `a3` tag.
 
 ## Assignment 2 — asset slice
 

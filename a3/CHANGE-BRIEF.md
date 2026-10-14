@@ -79,3 +79,21 @@ Extinguisho is **64 px** tall in my 640×360 game. I treat him as **1.8 m**, a n
 - **v3 (boxy backpack):** 292 triangles, 0.38 × 0.35 × 0.59 m. It read as a backpack from the back and side, but "more like a box" (`evidence/bag-v3-my-viewport-check.png`). I also noticed it is tiny in the viewport: a grid square is 1 m (`evidence/bag-v3-tiny-in-viewport.png`).
 - **v4 (rounded backpack, final):** an oval, slightly tapered body, a rounded top flap, a rounded front pocket, two shoulder straps on the back and a grab handle. 6 shapes, **296 triangles** (budget ≤ 300), **0.36 × 0.31 × 0.61 m** (a third of Extinguisho's 1.8 m height, a real backpack size). Colours unchanged: orange `#e67e22`, darker `#b8621b`, dark `#1b2230`. Origin bottom centre.
 - The duffel v2 is kept as `blender/rescue_bag_v2_duffel.blend`.
+
+### Revision 3 — 2026-10-14, asset 3: the rooftop ledge is replaced by a flame
+
+- **What happened:** the ledge was built exactly to the brief (24 triangles, 2.5 × 1.0 × 0.45 m, the game's concrete and green strip, origin at the base, scale 1; `evidence/ledge-angles-v1.png`, `evidence/ledge-my-viewport-check.png`). Looking at it, I found it "fine but it's just a ledge, nothing interesting".
+- **Decision (mine):** replace it with a **flame**, the main hazard of my game (Extinguisho's whole job is putting fires out). I kept the count at three assets rather than adding a fourth, because of the deadline. The ledge stays in the repo as a dropped asset (`blender/rooftop_ledge.blend`, `tools/blender/build_rooftop_ledge.py`).
+
+#### Asset 3 — Flame
+
+| | |
+|---|---|
+| **What / where** | A fire hazard: the flames burning on the ledges and in the street that kill Extinguisho on touch and that he hoses down. |
+| **Size (W × D × H)** | about 0.43 × 0.34 × **0.62 m** |
+| **Why that size** | In my game a small fire hazard is a 14 × 14 px rectangle, drawn 18 × 22 px with the flame art (`game/session.gd`): 22 × 0.028 ≈ 0.62 m tall, about a third of Extinguisho's height, low enough to jump over. |
+| **Origin** | Bottom centre, so it burns on the floor like the game's hazards. |
+| **Look** | Stacked, not nested, so every colour shows from every side: a yellow bulb at the bottom `#f1c40f`, an orange middle `#e67e22`, a red tip `#c0392b`, plus two side tongues (orange and red) leaning outwards. 5 shapes, each a low-poly sphere reshaped into a teardrop (round bottom, pointed top). |
+| **Triangle budget** | **≤ 400** (it came out at 336). |
+
+- **Predictions P1–P3 apply to the flame too.** A flame is also likely to look **too stiff and symmetrical** (it is built from identical teardrops); that is my hand-edit target.

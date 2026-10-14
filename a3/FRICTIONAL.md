@@ -88,6 +88,18 @@
 - **Still open:** from straight in front, the rounded flap looks a bit like a jar lid (Claude's observation); a candidate for my hand edit.
 - **Evidence:** `tools/blender/build_rescue_bag.py` (all 21 calls, v1–v4), `blender/rescue_bag.blend` (v4), `blender/rescue_bag_v2_duffel.blend`, pictures `a3/evidence/bag-*`; commits `704f4e5`, `dad6bc4`.
 
+### 2026-10-14 — the rooftop ledge, then swapping it for a flame (MCP)
+
+- **Date and what I was working on:** 2026-10-14, about 12:58–13:10. Asset 3.
+- **What happened:**
+  - **Ledge** (plan approved: "build ledge"): 4 MCP calls, two boxes. 24 triangles, 2.5 × 1.0 × 0.45 m, the game's concrete `#b8b2a6` and green 4 px strip `#438e7d`, origin at the base, scale 1. It matched the brief exactly.
+  - Looking at it in my viewport: "seems fine but it's just a ledge, nothing interesting". **I suggested making a flame instead.**
+  - Claude checked how big flames are in my game: a small hazard is drawn 18 × 22 px, about 0.35 × 0.6 m. It laid out two options: swap the ledge for the flame (still three assets) or add the flame as a fourth. **I chose to swap**, because of the deadline.
+  - **Flame**: Claude's first plan had nested layers; before building it changed the design to stacked layers (yellow bulb, orange middle, red tip) because nested opaque shapes would hide the inner colours. 5 MCP calls. **336 triangles** (budget ≤ 400), **0.43 × 0.34 × 0.62 m**, origin at the base, scale 1.
+- **What Claude or another person contributed:** Claude wrote both plans and all the code, measured the game's flame size from `session.gd`, and laid out the swap/add options. The decision to drop the ledge and make a flame was mine. → CHANGE-BRIEF Revision 3.
+- **Still open:** Claude's own read of the flame render is that it looks stiff and symmetrical (a bit like a candy corn or a crown); that is where I plan to make my hand edit.
+- **Evidence:** `tools/blender/build_rooftop_ledge.py`, `blender/rooftop_ledge.blend` (dropped), `tools/blender/build_flame.py`, `blender/flame.blend`, `a3/evidence/ledge-*`, `a3/evidence/flame-angles-v1.png`.
+
 ## MCP connection attempts
 
 <!-- Log every attempt and every error, verbatim. If it is not connected after ~2 hours of honest effort, switch to the script route and say so here. -->
