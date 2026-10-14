@@ -66,3 +66,9 @@ Extinguisho is **64 px** tall in my 640×360 game. I treat him as **1.8 m**, a n
 ## Revisions
 
 <!-- Dated revisions go here. The v1 text above is not edited. -->
+
+### Revision 1 — 2026-10-14, rescue bag (after building and looking)
+
+- **What I saw:** v1 (a cylinder lying on its side, a flap, one ring handle) passed every number (264 triangles, 0.60 × 0.28 × 0.30 m, scale 1, origin at the base), but in my own viewport check it read as a barrel or a log, not a bag. The ring handle was almost entirely buried inside the body; only ~1.5 cm showed. Evidence: `evidence/bag-v1-my-viewport-check.png`, `evidence/bag-angles-v1.png`.
+- **Change:** v2 has an oval body (wider than tall, 0.30 × 0.24), **two strap handles** arching over the top, and a dark **zip line** along the top; the flap is gone. 4 shapes, 248 triangles (budget still ≤ 300).
+- **New size:** 0.60 × 0.30 × **0.33 m** (height 0.30 → 0.33 because the handles now stand above the body). Colours: orange `#e67e22` body, dark `#1b2230` handles and zip.

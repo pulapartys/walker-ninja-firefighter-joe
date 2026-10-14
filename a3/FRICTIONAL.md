@@ -75,6 +75,7 @@
 | 10:11 | `uvx mcp-for-blender install-addon` | `Installed MCP for Blender addon to …/Blender/5.2/scripts/addons/blender_mcp.py` (add-on `bl_info` version 1.8) | — |
 | 10:12 | `claude mcp add blender -e DISABLE_TELEMETRY=true -- uvx mcp-for-blender` | `Added stdio MCP server blender …`; `claude mcp get blender`: Connected, `DISABLE_TELEMETRY=true`; server package mcp-for-blender 2.1.9 | enable the add-on in Blender |
 | 10:13–10:15 | In Blender: Preferences → Add-ons → ticked "MCP for Blender" (1.8; Allow Telemetry left off); N panel → MCP for Blender tab | "Connected on port 9876"; Poly Haven, Sketchfab, Poly Pizza, Hyper3D Rodin, Tencent Hunyuan 3D all unticked; Tripo not shown (premium only). The server started on its own when I enabled the add-on; no Start button needed. Screenshots: `evidence/mcp-addon-enabled.png`, `evidence/mcp-panel-services-off.png` | restart Claude Code so it loads the server |
+| ~10:40 | Restarted Claude Code (`/exit`, `claude --continue` in the same folder) so it loads the server | Claude's tools now include `get_addon_status`, `get_scene_info`, `execute_blender_code`, `look`. `get_addon_status`: Blender 5.2.2 LTS, add-on 1.8 up to date, protocol 13 = expected 13; polyhaven/sketchfab/polypizza off, hunyuan3d/hyper3d off, tripo off (Premium only); telemetry_consent false. `get_scene_info`: Cube, Light, Camera, mode EDIT_MESH | **Connected.** Prediction P4 (MCP won't connect) did not happen, after one fix to the `claude mcp add` line |
 
 ## GitHub pushes
 
