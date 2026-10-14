@@ -102,3 +102,10 @@ Extinguisho is **64 px** tall in my 640×360 game. I treat him as **1.8 m**, a n
 
 - **What I saw:** flame v1 (three stacked straight teardrops on one axis plus two mirrored side spikes; 336 triangles) "doesn't look like a flame, looks like a christmas tree with 2 spikes" (`evidence/flame-v1-my-viewport-check.png`).
 - **Change:** v2 is five uneven tongues of different heights whose tips bend sideways (left and right), on a round yellow base, so nothing is mirrored and the tips lick like fire. 5 shapes, **320 triangles** (budget ≤ 400), **0.41 × 0.35 × 0.62 m**, origin at the base. Same colours. (`evidence/flame-angles-v2.png`)
+
+### Revision 5 — 2026-10-14, flame v2 → v3 (my own design)
+
+- **What I saw:** v2 (five uneven bent tongues) was "not a flame again too" (`evidence/flame-v2-my-viewport-check.png`).
+- **My design:** make it **symmetrical**: a cone-type base layer, the two bent spikes on the sides as before, and the bent top flame **directly on top of the cone** instead of off to the side. Then (after seeing it: the top flame sat on the cone like a hat) I asked to **extend the top flame down so it meets the side spikes halfway**.
+- **Result (v3, kept):** 5 shapes, **336 triangles** (budget ≤ 400), **0.40 × 0.34 × 0.62 m**, origin at the base, scale 1. Colours unchanged (yellow base, orange cone band, red flame and spikes). `evidence/flame-angles-v3.png` → `flame-angles-v3b.png`, my check `flame-v3b-my-viewport-check.png`.
+- **My verdict:** "not the best, but we can keep it as a basic version and improve on it later". **Known limitation** for TEST-REPORT: it reads as a stylised flame, not a convincing one.

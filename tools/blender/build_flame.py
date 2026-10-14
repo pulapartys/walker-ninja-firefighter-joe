@@ -6,7 +6,12 @@ v1 (calls 1-5): stacked straight teardrops + two symmetric side spikes. 336 tria
 In my viewport check it "doesn't look like a flame, looks like a chrismas tree with 2 spikes".
 v2 (calls 6-8, my prompt: "doesn't look like a flame, looks like a chrismas tree with 2 spikes"): five uneven tongues
 with tips bent sideways. 320 triangles, 0.41 x 0.35 x 0.62 m, origin (0, 0, 0), rotation 0, scale 1, min Z 0, max Z 0.62.
-This is the version before my hand edit. Calls 1 and 6-8 rebuild it.
+Still "not a flame" in my viewport (`flame-v2-my-viewport-check.png`).
+v3 (calls 9-13): MY design. Symmetrical: a cone base layer, two mirrored bent side spikes, the bent top flame centred on
+top of the cone, yellow base; then the top flame extended down to meet the spikes halfway (v3b).
+336 triangles, 0.40 x 0.34 x 0.62 m, origin (0, 0, 0), rotation 0, scale 1, min Z 0, max Z 0.62.
+This is the submitted flame ("not the best but we can keep it as a basic version and improve on it later").
+Calls 1, 9, 10, 11, 13 rebuild it (call 10 makes the first top flame, call 11 replaces it).
 """
 
 # --- Call 1: Flame Step 0: new empty scene, metric units, flat fire colours (yellow base, orange middle, red tip)
@@ -210,6 +215,121 @@ print("name", f.name, "| triangles", tris, "| dims", tuple(round(v, 3) for v in 
       "| location", tuple(f.location), "| rotation", tuple(f.rotation_euler), "| scale", tuple(f.scale),
       "| min_z", round(min(zs), 4), "max_z", round(max(zs), 4),
       "| x", round(min(xs), 3), round(max(xs), 3), "| y", round(min(ys), 3), round(max(ys), 3),
+      "| materials", [m.name for m in f.data.materials])
+path = os.path.expanduser("~/Desktop/repos/walker-ninja-firefighter-joe/blender/flame.blend")
+bpy.ops.wm.save_as_mainfile(filepath=path)
+print("saved", os.path.basename(path), os.path.getsize(path), "bytes")
+
+# ======================= v3 (my design, submitted) =======================
+# My prompt for calls 9-10: "nope not a flame again too, so let me tell you how we can do it lets try making a symmetrical flame, starting from a comes type shape as the base layer with 2 bent spikes just like how it is now, theninstead of the top bent flame being on the side, we put it directly on top of the cone and see if we like it"
+
+# --- Call 9: Flame v3 (my design): symmetrical. Clear v2 (kept as flame-angles-v2.png and my screenshot), keep the fire materials.
+import bpy
+for o in list(bpy.data.objects):
+    bpy.data.objects.remove(o, do_unlink=True)
+for d in list(bpy.data.meshes):
+    if d.users == 0:
+        bpy.data.meshes.remove(d)
+bpy.context.scene.cursor.location = (0, 0, 0)
+print("objects:", len(bpy.data.objects), "| materials:", sorted(m.name for m in bpy.data.materials))
+
+# --- Call 10: Flame v3 parts (each a low-poly UV sphere reshaped by its vertices; object scale stays 1):
+# 1 cone-type base layer, orange, centred: round bottom, pointed top at Z ~0.40
+# 2-3 two bent side spikes, red, mirrored at X -0.12 / +0.12, each tip curving outwards
+# 4 top bent flame, red, centred directly on top of the cone (base inside the cone's upper part), tip curling, top ~0.62
+# 5 yellow base under the cone (bright bottom)
+import bpy, bmesh
+
+def tongue(name, mat, r, base_z, bottom_h, top_h, bend, pos, segs=8, rings=6, pinch=0.8):
+    mesh = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    bmesh.ops.create_uvsphere(bm, u_segments=segs, v_segments=rings, radius=1.0)
+    for v in bm.verts:
+        x, y, z = v.co
+        if z >= 0:
+            k = (1.0 - z) ** pinch
+            v.co = (x * r * k + bend * z * z, y * r * k, z * top_h)
+        else:
+            v.co = (x * r, y * r, z * bottom_h)
+    bm.to_mesh(mesh)
+    bm.free()
+    o = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(o)
+    o.location = (pos[0], pos[1], base_z + bottom_h)
+    o.data.materials.append(bpy.data.materials[mat])
+    return o
+
+parts = [
+    # name            material        r     base  bottom top   bend   (x, y)        segs rings
+    tongue("F_cone",    "flame_orange", 0.17, 0.00, 0.10, 0.30,  0.00, ( 0.00, 0.0), 8, 6),   # cone base layer, Z 0 -> 0.40
+    tongue("F_spike_L", "flame_red",    0.07, 0.02, 0.06, 0.26, -0.08, (-0.12, 0.0), 8, 5),   # left spike, bends left
+    tongue("F_spike_R", "flame_red",    0.07, 0.02, 0.06, 0.26,  0.08, ( 0.12, 0.0), 8, 5),   # right spike, bends right (mirror)
+    tongue("F_top",     "flame_red",    0.09, 0.26, 0.06, 0.30,  0.07, ( 0.00, 0.0), 8, 5),   # top flame on the cone, tip curls
+    tongue("F_core",    "flame_yellow", 0.16, 0.00, 0.05, 0.14,  0.00, ( 0.00, 0.0), 8, 4),   # yellow base
+]
+bpy.context.view_layer.update()
+for o in parts:
+    zs = [(o.matrix_world @ v.co).z for v in o.data.vertices]
+    print(o.name, "loc", tuple(round(v, 3) for v in o.location), "dims", tuple(round(v, 3) for v in o.dimensions),
+          "Z", round(min(zs), 3), "->", round(max(zs), 3), "scale", tuple(o.scale))
+
+# --- Call 11 (my prompt: "ok now extend the upper bent cone to be longer in the bottom and meet the smaller spikes on the side halfway"):
+# Flame v3b: rebuild only the top bent flame, longer at the bottom and wider, so its sides meet the two side spikes
+# about halfway up them (spikes run Z 0.02 -> 0.34; halfway ~0.18). Tip stays at Z 0.62 and still curls.
+import bpy, bmesh
+old = bpy.data.objects.get("F_top")
+if old:
+    bpy.data.objects.remove(old, do_unlink=True)
+
+def tongue(name, mat, r, base_z, bottom_h, top_h, bend, pos, segs=8, rings=6, pinch=0.8):
+    mesh = bpy.data.meshes.new(name)
+    bm = bmesh.new()
+    bmesh.ops.create_uvsphere(bm, u_segments=segs, v_segments=rings, radius=1.0)
+    for v in bm.verts:
+        x, y, z = v.co
+        if z >= 0:
+            k = (1.0 - z) ** pinch
+            v.co = (x * r * k + bend * z * z, y * r * k, z * top_h)
+        else:
+            v.co = (x * r, y * r, z * bottom_h)
+    bm.to_mesh(mesh)
+    bm.free()
+    o = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(o)
+    o.location = (pos[0], pos[1], base_z + bottom_h)
+    o.data.materials.append(bpy.data.materials[mat])
+    return o
+
+t = tongue("F_top", "flame_red", 0.13, 0.13, 0.07, 0.42, 0.07, (0.0, 0.0), 8, 6)   # Z 0.13 -> 0.62, widest at Z 0.20
+bpy.context.view_layer.update()
+zs = [(t.matrix_world @ v.co).z for v in t.data.vertices]
+print(t.name, "loc", tuple(round(v, 3) for v in t.location), "dims", tuple(round(v, 3) for v in t.dimensions),
+      "Z", round(min(zs), 3), "->", round(max(zs), 3), "scale", tuple(t.scale))
+
+# --- Call 13 (my prompt: "not the best but we can keep it as a bsic verisonand imporve on it later"); call 12 was a `look` picture, not code.
+# Flame v3 Finish: join into one object "Flame", origin at bottom centre (world origin), apply transforms, report, save
+import bpy, bmesh, os
+parts = [o for o in bpy.data.objects if o.name.startswith("F_")]
+bpy.ops.object.select_all(action="DESELECT")
+for p in parts:
+    p.select_set(True)
+bpy.context.view_layer.objects.active = bpy.data.objects["F_cone"]
+bpy.ops.object.join()
+f = bpy.context.object
+f.name = f.data.name = "Flame"
+bpy.context.scene.cursor.location = (0, 0, 0)
+bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
+bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+
+bm = bmesh.new()
+bm.from_object(f, bpy.context.evaluated_depsgraph_get())
+bmesh.ops.triangulate(bm, faces=bm.faces[:])
+tris = len(bm.faces)
+zs = [v.co.z for v in bm.verts]
+bm.free()
+print("name", f.name, "| parts joined", len(parts), "| triangles", tris, "| dims", tuple(round(v, 3) for v in f.dimensions),
+      "| location", tuple(f.location), "| rotation", tuple(f.rotation_euler), "| scale", tuple(f.scale),
+      "| min_z", round(min(zs), 4), "max_z", round(max(zs), 4),
       "| materials", [m.name for m in f.data.materials])
 path = os.path.expanduser("~/Desktop/repos/walker-ninja-firefighter-joe/blender/flame.blend")
 bpy.ops.wm.save_as_mainfile(filepath=path)
