@@ -11,6 +11,10 @@ Assignment 2's sources (generative models, art and audio) are in [`../SOURCES.md
 - **All three props were built in Blender from basic shapes** (cylinders, UV spheres, tori, boxes; the flame and the backpack reshape them by moving their vertices), by Python code that Claude Code ran through the Blender MCP. Every code body is in `tools/blender/build_<asset>.py`.
 - **No downloaded models and no AI-generated meshes.** The add-on's Poly Haven, Sketchfab and Poly Pizza libraries and its Hyper3D Rodin, Hunyuan3D and Tripo generators were **off** the whole time (checked with `get_addon_status`; screenshot `evidence/mcp-panel-services-off.png`). `generate_3d`, `search_assets` and `import_asset` were never called.
 
+## Reference image (not a mesh)
+
+- `evidence/flame-reference.png`: a low-poly flame reference sheet (front/side/back/top views, colour zones, shape breakdown), **generated in ChatGPT** and given to Claude as a visual reference for the flame on 2026-10-14. Only used to describe the shape and colour layout; **no geometry was taken from it**: the flame is still built from reshaped basic shapes by code.
+
 ## Colours
 
 | Colour | Hex | Where it comes from |
@@ -20,9 +24,12 @@ Assignment 2's sources (generative models, art and audio) are in [`../SOURCES.md
 | Bag orange | `#e67e22` | my A2 game: `godot/features/player/player.gd` (the code-drawn rescue bag) |
 | Bag darker orange | `#b8621b` | same file (the bag's seam colour) |
 | Bag straps / handle | `#1b2230` | my A2 game's dark outline colour (`player.gd`, `game/session.gd`) |
-| Flame yellow (bottom) | `#f1c40f` | my choice, after the game's flame art (yellow core, orange body, red edge) |
-| Flame orange (middle, left tongue) | `#e67e22` | same orange as the bag |
-| Flame red (tip, right tongue) | `#c0392b` | same red as the hydrant |
+| Flame bright yellow | `#ffe14a` | final flame (v9); five fire colours chosen by Claude to my brief ("bright centre, darker outside, no muddy colours") |
+| Flame golden yellow | `#f8bb2c` | same |
+| Flame orange | `#f5901e` | same |
+| Flame red-orange | `#eb5223` | same |
+| Flame deep red | `#c62a1c` | same |
+| *(earlier flame versions)* | `#f1c40f`, `#e67e22`, `#c0392b` | flame v1–v7 (replaced) |
 | *(dropped)* Ledge concrete | `#b8b2a6` | my A2 game: `godot/game/session.gd` (how ledges are drawn) |
 | *(dropped)* Ledge green top strip | `#438e7d` | same file |
 
@@ -40,4 +47,4 @@ Assignment 2's sources (generative models, art and audio) are in [`../SOURCES.md
 
 ## Who did what
 
-I chose the three props, the scale, every size, colour and budget, and the predicted failures; I approved each build plan, judged every version in my own Blender viewport, and decided on the changes (the bag: barrel → duffel → backpack; asset 3: ledge → flame). Claude Code laid out options, wrote and ran all the Blender code through the MCP, and helped write these documents from my decisions and screenshots.
+I chose the three props, the scale, every size, colour and budget, and the predicted failures; I approved each build plan, judged every version in my own Blender viewport, and decided on the changes (the bag: barrel → duffel → backpack; asset 3: ledge → flame; the flame through many versions to one curved flame, from two design briefs I wrote). Claude Code laid out options, wrote and ran all the Blender code through the MCP, and helped write these documents from my decisions and screenshots.
