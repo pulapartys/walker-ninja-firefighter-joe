@@ -1,6 +1,6 @@
 # TEST-REPORT — Assignment 3: three 3D props
 
-> All checks run on 2026-10-14. **Blender 5.2.2 LTS**, **Godot 4.7.2 stable** (GL Compatibility renderer), **MCP for Blender** server 2.1.9 / add-on 1.8, **macOS 26.6** on an Apple M1.
+> All checks run on 2026-10-14. **Blender 5.2.2 LTS**, **Godot 4.7.2 stable** (GL Compatibility renderer), **MCP for Blender** server 2.1.9 / add-on 1.8, **macOS 26.6.2** on an Apple M1.
 > Numbers marked *Blender* were read from the object (the same values the sidebar's Dimensions shows) through the MCP; numbers marked *Godot (headless)* come from `godot/tests/check_props.gd`. My own visual checks are marked **HUMAN CHECK**.
 
 ## Summary
