@@ -551,11 +551,84 @@ for o in parts:
     print(o.name, "dims", tuple(round(v, 3) for v in o.dimensions), "Z", round(min(zs), 3), "->", round(max(zs), 3),
           "faces", len(o.data.polygons), "scale", tuple(o.scale))
 
-# --- Call 17 (same prompt): Flame v5b: shorter bowl, big side tongues, fatter main flame.
-# Identical to call 16 except: ring0 radius 0.70*R; ring1 at z 0.035; z2 = 0.08; gaps at 0.62*R; side-flame heights
-# [0.44, 0.33, 0.40, 0.30, 0.42, 0.35] with tips at 0.85*R turned +0.15 rad; crown colour: orange below z 0.20, red above;
-# tongues: F_main r 0.150 z0 0.02 bottom 0.08 top H-0.10 bend -0.07 (10x8, cuts 0.45/0.70);
-#          F_second r 0.100 z0 0.06 bottom 0.06 top 0.34 bend 0.07 at (0.07, -0.04) (8x6, cuts 0.40/0.66).
+# --- Call 17 (same prompt): Flame v5b: shorter bowl, big side tongues (about half the height, wide bases, rising up rather than out), fatter main flame
+import bpy, bmesh, math
+for o in list(bpy.data.objects):
+    bpy.data.objects.remove(o, do_unlink=True)
+for d in list(bpy.data.meshes):
+    if d.users == 0:
+        bpy.data.meshes.remove(d)
+MATS = ["flame_yellow", "flame_orange", "flame_red"]
+H, R = 0.62, 0.20
+
+def finish(name, bm, colour_of_face):
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    for f in bm.faces:
+        f.material_index = colour_of_face(f)
+    mesh = bpy.data.meshes.new(name)
+    bm.to_mesh(mesh)
+    bm.free()
+    o = bpy.data.objects.new(name, mesh)
+    bpy.context.collection.objects.link(o)
+    for m in MATS:
+        o.data.materials.append(bpy.data.materials[m])
+    return o
+
+def crown():
+    bm = bmesh.new()
+    K = 6
+    n = 2 * K
+    ang = [i * math.pi / K for i in range(n)]
+    ring0 = [bm.verts.new((0.70 * R * math.cos(a), 0.70 * R * math.sin(a), 0.0)) for a in ang]
+    ring1 = [bm.verts.new((1.00 * R * math.cos(a), 1.00 * R * math.sin(a), 0.035)) for a in ang]
+    z2 = 0.08
+    ring2 = [bm.verts.new(((1.0 if i % 2 == 0 else 0.62) * R * math.cos(a), (1.0 if i % 2 == 0 else 0.62) * R * math.sin(a), z2))
+             for i, a in enumerate(ang)]
+    heights = [0.44, 0.33, 0.40, 0.30, 0.42, 0.35]
+    tips = []
+    for j in range(K):
+        a = 2 * j * math.pi / K + 0.15
+        tips.append(bm.verts.new((0.85 * R * math.cos(a), 0.85 * R * math.sin(a), heights[j])))
+    bm.faces.new(list(reversed(ring0)))
+    for a_r, b_r in ((ring0, ring1), (ring1, ring2)):
+        for i in range(n):
+            bm.faces.new((a_r[i], a_r[(i + 1) % n], b_r[(i + 1) % n], b_r[i]))
+    centre = bm.verts.new((0.0, 0.0, z2 + 0.03))
+    for j in range(K):
+        p, gl, gr = ring2[2 * j], ring2[(2 * j - 1) % n], ring2[(2 * j + 1) % n]
+        t = tips[j]
+        bm.faces.new((gl, p, t)); bm.faces.new((p, gr, t))
+        bm.faces.new((gr, centre, t)); bm.faces.new((centre, gl, t))
+    def colour(f):
+        zc = f.calc_center_median().z
+        return 1 if zc < 0.20 else 2
+    return finish("F_crown", bm, colour)
+
+def tongue(name, r, z0, bottom_h, top_h, bend, pos, segs, rings, cuts):
+    bm = bmesh.new()
+    bmesh.ops.create_uvsphere(bm, u_segments=segs, v_segments=rings, radius=1.0)
+    for v in bm.verts:
+        x, y, z = v.co
+        if z >= 0:
+            k = (1.0 - z) ** 0.75
+            v.co = (x * r * k + bend * z * z + pos[0], y * r * k + pos[1], z0 + bottom_h + z * top_h)
+        else:
+            v.co = (x * r + pos[0], y * r + pos[1], z0 + bottom_h + z * bottom_h)
+    lo, hi = z0, z0 + bottom_h + top_h
+    def colour(f):
+        frac = (f.calc_center_median().z - lo) / (hi - lo)
+        return 0 if frac < cuts[0] else (1 if frac < cuts[1] else 2)
+    return finish(name, bm, colour)
+
+parts = [
+    crown(),
+    tongue("F_main",   0.150, 0.02, 0.08, H - 0.10, -0.07, (0.00,  0.00), 10, 8, (0.45, 0.70)),
+    tongue("F_second", 0.100, 0.06, 0.06, 0.34,      0.07, (0.07, -0.04),  8, 6, (0.40, 0.66)),
+]
+bpy.context.view_layer.update()
+for o in parts:
+    zs = [v.co.z for v in o.data.vertices]
+    print(o.name, "dims", tuple(round(v, 3) for v in o.dimensions), "Z", round(min(zs), 3), "->", round(max(zs), 3), "scale", tuple(o.scale))
 
 # --- Call 18 (my prompt: "layer more spikes until the top arounf the main centre cone like a star from the top view")
 # Flame v6: rings of spikes rising up around the main centre cone, each ring smaller and higher and turned
@@ -954,3 +1027,8 @@ print("name", o.name, "| triangles", sum(len(p.vertices) - 2 for p in o.data.pol
 path = os.path.expanduser("~/Desktop/repos/walker-ninja-firefighter-joe/blender/flame.blend")
 bpy.ops.wm.save_as_mainfile(filepath=path)
 # Result: Flame | 48 triangles | 0.36 x 0.265 x 0.62 m | location 0,0,0 | rotation 0 | scale 1 | min_z 0.0 max_z 0.62
+
+# --- After call 29: MY HAND EDIT, done with the mouse in Blender, not by code (so no code here):
+# Edit Mode -> vertex select -> clicked the tip vertex -> G, X, dragged: "D: 0.188830 m along global X" -> confirmed ->
+# Save As -> Overwrite blender/flame.blend. The tip moved from (-0.15, 0, 0.62) to (0.041, 0, 0.62).
+# Running this file therefore rebuilds the flame BEFORE my hand edit; blender/flame.blend is the edited, submitted version.

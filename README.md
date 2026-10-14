@@ -1,6 +1,6 @@
 # walker-ninja-firefighter-joe
 
-My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props, in progress).
+My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props, in progress; work on branch `a3-build`, PR #1).
 
 ## Assignment 3 — first 3D assets (in progress)
 
@@ -14,7 +14,33 @@ Versions: Blender 5.2.2 LTS · MCP for Blender server 2.1.9 / add-on 1.8 · Godo
 | Rescue bag | built (MCP); v1 barrel → v2 duffel → **v4 rounded backpack** | 0.36 × 0.31 × 0.61 | 296 |
 | Flame | built (MCP); **replaced the rooftop ledge** (CHANGE-BRIEF Revision 3); many versions (Christmas tree, spikes, crystals) → **one curved flame** from my own design brief (Revisions 4–6) | 0.36 × 0.27 × 0.62 | 48 |
 
-Still to do: my hand edit, `.glb` export, the Godot 3D scene and headless check, TEST-REPORT, the film, the `a3` tag.
+Hand edit (mine, by mouse): moved the flame's tip 0.19 m along X — a straighter, more balanced flame.
+
+Still to do: `.glb` export, the Godot 3D scene and headless check, TEST-REPORT, the film, the `a3` tag.
+
+### Iteration history (every version, what I saw, what I changed)
+
+Full detail in [FRICTIONAL](a3/FRICTIONAL.md) and [CHANGE-BRIEF](a3/CHANGE-BRIEF.md) revisions; pictures in `a3/evidence/`; every code call in `tools/blender/`.
+
+| Asset | Version | What it was | What I saw / decided | Tris |
+|---|---|---|---|---|
+| Hydrant | v1 (final) | base, body, rounded cap, top nut, two side outlets | reads as a hydrant; accepted | 356 |
+| Rescue bag | v1 | cylinder on its side + flap + one ring handle | numbers all passed, but it "looks like a barrel" and the handle was buried → Revision 1 | 264 |
+| | v2 | oval body, two strap handles, zip line | looks like a bag — but in my game it rides **on his back**, so I decided on a backpack | 248 |
+| | v3 | boxy backpack (body, pocket, lid, two straps, handle) | "more like a box"; also noticed how tiny 0.6 m is on a 1 m grid | 292 |
+| | **v4 (final)** | rounded backpack: oval tapered body, rounded flap and pocket, straps, handle | "this one is better" → Revision 2 | 296 |
+| Asset 3 | ledge | two boxes from the game's 90 × 16 px ledge, game colours | "fine but it's just a ledge, nothing interesting" → **I swapped it for a flame**, the game's main hazard → Revision 3 | 24 |
+| Flame | v1 | stacked yellow / orange / red + two side spikes | "looks like a christmas tree with 2 spikes" → Revision 4 | 336 |
+| | v2 | five uneven tongues with bent tips | "not a flame again" | 320 |
+| | v3 | **my design:** symmetrical cone base, two bent side spikes, bent top flame on top, extended down to meet the spikes | "not the best", kept as a basic version → Revision 5 | 336 |
+| | v4–v4b | three nested star layers from my ChatGPT reference sheet | bud / rocket shape, only red showing | ~360 |
+| | v5–v5b | wide bowl + ring of side flames + main flame, colour zones | closer but angular | — |
+| | v6 | **my idea:** rings of spikes rising round the centre cone, a star from the top | too thin and pointy | — |
+| | v7 | fat, curved overlapping tongues | still crystals | 380 |
+| | v8–v8c | rebuilt from scratch to **my written brief** (7 curved tongues, irregular, 100–150 tris) | still sharp crystals / blades | 169 |
+| | single v1 | **my second brief:** one flame from placed cross-sections, grey first | "a bent horn" | 40 |
+| | single v2–v2b | my changes: bulbous base, S-curve, gradual curl, more depth | shape approved; then my colour brief applied | 48 |
+| | **final** | single flame + **my hand edit** (tip moved 0.19 m) | "this is good enough" → Revision 6 | 48 |
 
 ## Assignment 2 — asset slice
 

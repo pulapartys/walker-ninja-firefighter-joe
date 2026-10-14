@@ -118,3 +118,8 @@ Extinguisho is **64 px** tall in my 640×360 game. I treat him as **1.8 m**, a n
 - **Final flame (v9):** one object, 6-sided cross-sections with separate left and right widths, **48 triangles** (budget ≤ 400; my target for the single shape was ~25–45), **0.36 × 0.27 × 0.62 m**, origin at the bottom centre, scale 1. Colours: five flat fire materials, each face coloured by its height and by whether it faces front/back or sideways, so it is **bright yellow in the lower middle, orange around it, red-orange to deep red on the sides and the curled tip** (no flat horizontal bands).
 - **Not done:** the planned 3–5 overlapping flames; I chose the single flame as good enough. Backups of the rejected versions: `blender/flame_v8c_backup.blend`, pictures in `evidence/`.
 - **Known limitation:** from the back the lower yellow looks darker (olive), because of the lighting on that side; it is the same material.
+- **Method note:** the final flame is one mesh shaped by placed cross-sections, not a combination of Blender primitives. I chose this after every primitive-based version (v1–v8) read as spikes or crystals; it is one shape, well under 6 shapes and 500 triangles.
+
+### Revision 7 — 2026-10-14, my hand edit to the flame
+
+- In Blender, by mouse (Edit Mode → vertex select → G, X), I moved the flame's tip **0.19 m along X towards the centre** (X −0.15 → +0.04). The flame is straighter and more balanced; I preferred it to the strong hook, even though v1 of my flame brief asked for a noticeable sideways curl. Size, triangles (48), origin and scale unchanged.
