@@ -116,6 +116,13 @@
 - **What I understand now / still do not understand:** asking for "more" (more spikes, more layers) kept making it worse; asking for **one** shape with specific curves, approved before adding anything, worked. With few triangles, the outline (silhouette) matters more than the number of parts. Still open: whether a single flame reads as "fire" at game size next to the other props (to check in Godot).
 - **Evidence:** `blender/flame.blend` (final), `blender/flame_v8c_backup.blend`, `a3/evidence/flame-*`; CHANGE-BRIEF Revision 6.
 
+### 2026-10-14 — my hand edit 1: the flame tip (by mouse, in Blender)
+
+- **What I changed:** in Edit Mode, vertex select, I clicked the single tip point and moved it with **G then X** (dragging), about **0.19 m along X towards the centre**: the tip went from X −0.15 to X +0.04. The flame got straighter and more balanced, and I liked it better than the strongly hooked tip, so I kept it and saved (`blender/flame.blend`, Save As → Overwrite).
+- **What it taught me / what was hard:** it was pretty easy once I knew how (Edit Mode → vertex select → G + an axis). Claude had told me to drag "to the right" to make the hook stronger, but my drag went towards the centre: in a 3D view the screen direction of an axis depends on where you look from, so the header readout ("D: 0.188830 m along global X") is what tells you what really happened. Typing a number (G, X, -0.06) would have been exact. The move only locks in when you click; the "Move" box then appears at the bottom left.
+- **Checked afterwards (Claude, through the MCP):** still 48 triangles, 0.36 × 0.27 × 0.62 m (the tip stays inside the width), bottom at Z 0, scale 1. Note: this edit goes a little against my own brief ("a tip that curls noticeably sideways"); I chose the look over the brief.
+- **Evidence:** `a3/evidence/hand-edit-flame-1-tip-selected.png`, `…-2-moving-along-x.png`, `…-3-saved.png`.
+
 ## MCP connection attempts
 
 <!-- Log every attempt and every error, verbatim. If it is not connected after ~2 hours of honest effort, switch to the script route and say so here. -->
