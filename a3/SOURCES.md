@@ -43,8 +43,18 @@ Assignment 2's sources (generative models, art and audio) are in [`../SOURCES.md
 | uv | Homebrew | runs the MCP server |
 | GNU coreutils | 9.12 (Homebrew) | `timeout` for the headless check |
 | Godot | 4.7.2 stable | the 3D scene and the headless check |
-| Claude Code | Claude Opus 5.5 | plans, all Blender Python, setup commands, document drafting |
+| Claude Code | Claude Opus 5.5 | plans, all Blender Python, setup commands, the Godot scene and check, the film's script and build, document drafting |
+| Brutalist toolkit (course-provided) | local checkout, `godot-gamedev` skill, walker mode | the explainer film: Remotion scenes, GATE T / Gate V checks, `./art final` |
+| Kokoro (am_onyx, "Liam") | via Brutalist `generate_audio_kokoro.py`, local, free | the film's narration |
+| Godot Movie Maker | Godot 4.7.2 | the film's engine footage (4K orbit of the props scene) |
+| ffmpeg, Pillow | Homebrew / Brutalist venv | film stills, cuts and checks |
 
 ## Who did what
 
-I chose the three props, the scale, every size, colour and budget, and the predicted failures; I approved each build plan, judged every version in my own Blender viewport, and decided on the changes (the bag: barrel → duffel → backpack; asset 3: ledge → flame; the flame through many versions to one curved flame, from two design briefs I wrote). Claude Code laid out options, wrote and ran all the Blender code through the MCP, and helped write these documents from my decisions and screenshots.
+**Me:** I directed the work. I chose the three props and the scale, set every size, colour and triangle budget, approved the predicted failures in the brief, approved each build plan before anything was built, judged every version in my own Blender viewport, and made every change of direction: the bag from barrel to duffel to backpack, swapping the plain rooftop ledge for a flame, the symmetrical flame design (v3), the "more spikes like a star" idea, the ChatGPT reference sheet, two written design briefs for the flame, the switch to building one curved flame first, the colours, and the final accept/reject calls. I made the hand edit (the flame tip) myself in Blender.
+
+**Claude Code (Claude Opus 5.5):** proposed options and plans when I asked, implemented my decisions as Blender Python through the MCP (every call is in `tools/blender/`), reported the numbers after each step, and helped write these documents from my decisions and screenshots. I reviewed everything.
+
+**ChatGPT:** generated the flame reference sheet I asked for (visual reference only; no geometry taken from it).
+
+**The film** (`youtube/claude-liam-walker-ninja-firefighter-joe-a3-gamedev/`): I asked for it, set a review point at the script, asked for a more technical tone, approved script v2, and watched the final export. Claude Code wrote the script and beat sheet, composed the visuals from my screenshots, Claude's Blender renders and the Godot capture, and built the film with the Brutalist toolkit; the narration is the AI voice "Liam" (Kokoro). No music and no generated images or video in the film.

@@ -1,0 +1,28 @@
+{
+  "excerpts": [
+    {
+      "beat_id": "B11",
+      "path": "scenes3d/props_room.tscn",
+      "start_line": 48,
+      "end_line": 55,
+      "text": "[node name=\"Hydrant\" parent=\".\" instance=ExtResource(\"1_hydrant\")]\ntransform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0)\n\n[node name=\"RescueBag\" parent=\".\" instance=ExtResource(\"2_bag\")]\ntransform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)\n\n[node name=\"Flame\" parent=\".\" instance=ExtResource(\"3_flame\")]\ntransform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0)"
+    },
+    {
+      "beat_id": "B13",
+      "path": "tests/check_props.gd",
+      "start_line": 51,
+      "end_line": 58,
+      "text": "\t\tvar all_one: bool = scales.all(func(s): return s.is_equal_approx(Vector3.ONE))\n\t\tvar tallest: String = \"X\" if size.x >= size.y and size.x >= size.z else (\"Y\" if size.y >= size.z else \"Z\")\n\t\tvar bottom_gap: float = box.position.y - floor_y\n\t\tvar on_floor: bool = absf(bottom_gap) <= TOL\n\t\tvar diff: Vector3 = (size - brief).abs()\n\t\tvar size_ok: bool = diff.x <= TOL and diff.y <= TOL and diff.z <= TOL\n\t\tvar upright: bool = tallest == \"Y\" and node.global_transform.basis.y.normalized().is_equal_approx(Vector3.UP)\n\t\tvar ok: bool = size_ok and all_one and upright and on_floor and tris <= budget"
+    }
+  ],
+  "pairs": [
+    [
+      "B11",
+      "B12"
+    ],
+    [
+      "B13",
+      "B14"
+    ]
+  ]
+}

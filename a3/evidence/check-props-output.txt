@@ -1,0 +1,7 @@
+# godot/tests/run_check_props.sh  (Godot 4.7.2, macOS, 2026-10-14)
+Floor surface at y = 0.0000 (plane (4.0, 4.0), its own scale (1.0, 1.0, 1.0))
+Hydrant   | size W×H×D 0.400 × 0.800 × 0.360 m (brief 0.400 × 0.800 × 0.360) ok | scale 1,1,1 | height along Y (upright) | bottom +0.0000 m vs floor on it | tris 356 / 400 ok | PASS
+RescueBag | size W×H×D 0.360 × 0.612 × 0.306 m (brief 0.360 × 0.612 × 0.306) ok | scale 1,1,1 | height along Y (upright) | bottom +0.0000 m vs floor on it | tris 296 / 300 ok | PASS
+Flame     | size W×H×D 0.360 × 0.620 × 0.265 m (brief 0.360 × 0.620 × 0.265) ok | scale 1,1,1 | height along Y (upright) | bottom +0.0000 m vs floor on it | tris 48 / 400 ok | PASS
+RESULT: PASS (0 of 3 props failing)
+exit=0

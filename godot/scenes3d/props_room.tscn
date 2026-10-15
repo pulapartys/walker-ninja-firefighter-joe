@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="PackedScene" path="res://props3d/hydrant.glb" id="1_hydrant"]
+[ext_resource type="PackedScene" path="res://props3d/rescue_bag.glb" id="2_bag"]
+[ext_resource type="PackedScene" path="res://props3d/flame.glb" id="3_flame"]
+
+[sub_resource type="PlaneMesh" id="floor_mesh"]
+size = Vector2(4, 4)
+
+[sub_resource type="StandardMaterial3D" id="floor_mat"]
+albedo_color = Color(0.42, 0.43, 0.45, 1)
+
+[sub_resource type="CylinderMesh" id="pole_mesh"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 1.8
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="pole_mat"]
+albedo_color = Color(0.75, 0.75, 0.75, 1)
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.17, 0.19, 0.23, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.6, 0.62, 0.68, 1)
+ambient_light_energy = 0.6
+
+[node name="PropsRoom" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("floor_mesh")
+surface_material_override/0 = SubResource("floor_mat")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.439385, 0.368688, 0, 0.642788, 0.766044, -0.573576, -0.627507, 0.526541, 0, 3, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0.35, 1.1, 2.7)
+current = true
+fov = 50.0
+
+[node name="Hydrant" parent="." instance=ExtResource("1_hydrant")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0)
+
+[node name="RescueBag" parent="." instance=ExtResource("2_bag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Flame" parent="." instance=ExtResource("3_flame")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0, 0)
+
+[node name="SizeReference_Extinguisho_1_8m" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.9, 0)
+mesh = SubResource("pole_mesh")
+surface_material_override/0 = SubResource("pole_mat")
+
+[node name="PoleLabel" type="Label3D" parent="SizeReference_Extinguisho_1_8m"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+text = "1.8 m = Extinguisho (size reference)"
+font_size = 24
