@@ -147,3 +147,4 @@
 | 2026-10-14 | A3: log the push of the docs update (decisions, iteration history) *(branch a3-build, PR #1)* |
 | 2026-10-14 | A3: log the push of the export, Godot scene, headless check and TEST-REPORT *(branch a3-build, PR #2)* |
 | 2026-10-14 | A3: log the push of the film source *(branch a3-build, PR #2)* |
+| 2026-10-14 | A3: add the film link and SHA-256; final submission docs *(branch a3-build, PR #2, then tag a3)* |

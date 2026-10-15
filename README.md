@@ -1,6 +1,6 @@
 # walker-ninja-firefighter-joe
 
-My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props, in progress; work on branch `a3-build`, PR #1).
+My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props).
 
 ## Assignment 3 — first 3D assets
 
@@ -49,7 +49,12 @@ GODOT=/path/to/Godot godot/tests/run_check_props.sh mutate   # planted faults: m
 
 ### Film
 
-*(A3 explainer: link, filename and SHA-256 to be added.)*
+Brutalist `godot-gamedev` explainer, `walker` mode, native 4K, 5 min 03 s, narrated by Liam: *Extinguisho's First 3D Props*. Source shown: revision `71a24c0` (no file under `godot/` changed after it).
+
+- **Link (Northeastern SharePoint):** https://northeastern-my.sharepoint.com/:f:/g/personal/pulaparty_s_northeastern_edu/IgCRRfU_jATkS6lt-3N-TiA9AWJaRIxoJsFlYlGGe0bTuFw?e=bZXYlw
+- **File:** `claude-liam-walker-ninja-firefighter-joe-a3-gamedev.mp4`
+- **SHA-256:** `166c184fe0a0663c884d82bac9a53a82f2db8294532a970affcfed98740593b1`
+- **Film source** (approved script, beat sheet, evidence ledger, capture and build scripts): [`youtube/claude-liam-walker-ninja-firefighter-joe-a3-gamedev/`](youtube/claude-liam-walker-ninja-firefighter-joe-a3-gamedev/). The MP4 is not in git (course rule).
 
 ### Iteration history (every version, what I saw, what I changed)
 
