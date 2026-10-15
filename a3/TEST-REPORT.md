@@ -79,7 +79,7 @@ Every prop was built around Blender's world origin with its base at Z = 0, origi
 | Rescue bag | ≤ 300 | 296 | 296 | 6 (body, flap, pocket, 2 straps, handle) |
 | Flame | ≤ 400 (Rev 3) | 48 | 48 | 1 shaped mesh |
 
-Course limit: 500 triangles and 6 shapes per asset. Blender's count was read by triangulating each object's mesh through the MCP (the same figure as Scene Statistics); Godot counts the imported triangles independently, and the two agree.
+Course limit: 500 triangles and 6 shapes per asset. Blender's count was read by triangulating each object's mesh through the MCP (Blender's Scene Statistics overlay was not used); Godot counts the imported triangles independently from the `.glb` index buffers, and the two agree.
 
 ## 6. Imports and appears
 
