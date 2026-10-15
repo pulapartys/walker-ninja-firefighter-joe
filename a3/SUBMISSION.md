@@ -1,0 +1,27 @@
+# SUBMISSION — Assignment 3
+
+- **Assignment:** Assignment 3 - Your First 3D Game Assets with Claude, the Blender MCP, and Blender
+- **Student:** Sreeja P
+- **Project name:** walker-ninja-firefighter-joe (Extinguisho)
+- **GitHub repository URL:** https://github.com/pulapartys/walker-ninja-firefighter-joe
+- **Git tag and submitted commit SHA:** tag `a3`; the submitted commit is the one this file is in, given in the Canvas copy of SUBMISSION.md (a commit cannot contain its own SHA).
+- **Game-source revision shown in the film:** `71a24c0` (verified: no file under `godot/` differs between `71a24c0` and the submitted commit).
+- **Godot version, Blender version, and operating system:** Godot 4.7.2 stable (GL Compatibility) · Blender 5.2.2 LTS · macOS 26.6.2, Apple M1.
+- **The three assets and what each is for:**
+  - **Fire hydrant** (0.40 × 0.36 × 0.80 m, 356 tris): a street prop on the burning street.
+  - **Rescue backpack** (0.36 × 0.31 × 0.61 m, 296 tris): the rescue bag Extinguisho carries on his back; survivors are tossed into it.
+  - **Flame** (0.36 × 0.27 × 0.62 m, 48 tris): the game's main hazard. It replaced the rooftop ledge in my brief (Revision 3).
+- **MCP project and version:** MCP for Blender (github.com/ahujasid/blender-mcp): server `mcp-for-blender` 2.1.9 run with `uvx`, Blender add-on 1.8. **MCP route for all three assets** (and the `.glb` export); no script route.
+- **My hand edit in Blender:** in Edit Mode, vertex select, I moved the flame's tip vertex 0.19 m along global X with G then X (tip X −0.15 → +0.04), making the flame straighter; saved in `blender/flame.blend` (CHANGE-BRIEF Revision 7, FRICTIONAL).
+- **Checks run (command and result):**
+  - `godot --headless --path godot --import` → all three `.glb` imported, no errors.
+  - `timeout 120 godot --headless --path godot --script res://tests/check_props.gd --fixed-fps 60` → **RESULT: PASS** (3 of 3: size = brief within 0.001 m, scale 1,1,1, height along Y, bottom +0.0000 m vs floor, tris within budget).
+  - `godot/tests/run_check_props.sh mutate` → **FAIL** for all three planted faults (rotated, scaled ×2, sunk 0.2 m), as intended.
+  - A2 tests: `tests/test_game.gd` 41 checks / 0 failures; `tests/test_keyboard.gd` all PASS; `tests/test_audio.gd` 0 failures.
+  - Fresh clone of the pushed branch: import, check and A2 tests repeated with the same results.
+  - Film: `./art godot-gamedev --check` PASS · GATE T PASS · Gate V 0 blockers / 0 major.
+- **Final film URL and filename:** *(SharePoint link to be added)* · `claude-liam-walker-ninja-firefighter-joe-a3-gamedev.mp4`
+- **Final film SHA-256:** `166c184fe0a0663c884d82bac9a53a82f2db8294532a970affcfed98740593b1`
+- **Summary of my changes:** I chose three props for my game, set the scale (Extinguisho = 1.8 m) and every size, origin, colour and budget, and committed my brief before building. I connected the Blender MCP with the manual setup (and logged the setup line that failed), then directed Claude Code to build each prop, approving each plan and judging every version in my own viewport. I changed the rescue bag from a barrel-looking duffel to a backpack, swapped the plain ledge for a flame, and took the flame through many versions to one curved flame from my own design briefs. I made a hand edit in Blender, exported the props to `.glb`, and added a Godot 3D scene with a 1.8 m size pole and a headless check that I read critically and tested against planted faults. I did my own visual check in Godot and wrote it up in TEST-REPORT.md. Claude Code implemented my decisions and wrote the code, check and film; I reviewed all of it.
+- **Known limitations:** the flame is one shaped mesh, not a combination of basic shapes; the hydrant is basic and the backpack's shape and colours could be better; the backpack and flame could be bigger next to Extinguisho (my Godot check); my hand edit straightened the flame against my own brief; the 3D scene is not connected to the 2D game yet.
+- **Changed games since Assignment 2:** no (same game; A3 is added on top of my A2 game in its own `walker-` repository, tag `a2` = my submitted A2).

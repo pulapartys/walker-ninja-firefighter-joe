@@ -43,7 +43,11 @@ Assignment 2's sources (generative models, art and audio) are in [`../SOURCES.md
 | uv | Homebrew | runs the MCP server |
 | GNU coreutils | 9.12 (Homebrew) | `timeout` for the headless check |
 | Godot | 4.7.2 stable | the 3D scene and the headless check |
-| Claude Code | Claude Opus 5.5 | plans, all Blender Python, setup commands, document drafting |
+| Claude Code | Claude Opus 5.5 | plans, all Blender Python, setup commands, the Godot scene and check, the film's script and build, document drafting |
+| Brutalist toolkit (course-provided) | local checkout, `godot-gamedev` skill, walker mode | the explainer film: Remotion scenes, GATE T / Gate V checks, `./art final` |
+| Kokoro (am_onyx, "Liam") | via Brutalist `generate_audio_kokoro.py`, local, free | the film's narration |
+| Godot Movie Maker | Godot 4.7.2 | the film's engine footage (4K orbit of the props scene) |
+| ffmpeg, Pillow | Homebrew / Brutalist venv | film stills, cuts and checks |
 
 ## Who did what
 
@@ -52,3 +56,5 @@ Assignment 2's sources (generative models, art and audio) are in [`../SOURCES.md
 **Claude Code (Claude Opus 5.5):** proposed options and plans when I asked, implemented my decisions as Blender Python through the MCP (every call is in `tools/blender/`), reported the numbers after each step, and helped write these documents from my decisions and screenshots. I reviewed everything.
 
 **ChatGPT:** generated the flame reference sheet I asked for (visual reference only; no geometry taken from it).
+
+**The film** (`youtube/claude-liam-walker-ninja-firefighter-joe-a3-gamedev/`): I asked for it, set a review point at the script, asked for a more technical tone, approved script v2, and watched the final export. Claude Code wrote the script and beat sheet, composed the visuals from my screenshots, Claude's Blender renders and the Godot capture, and built the film with the Brutalist toolkit; the narration is the AI voice "Liam" (Kokoro). No music and no generated images or video in the film.
