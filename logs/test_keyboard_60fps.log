@@ -1,0 +1,20 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+{"id":"enter-start","observed":"state=1","status":"PASS"}
+{"id":"keyboard-move","observed":"x=85.7333297729492","status":"PASS"}
+{"id":"keyboard-jump","observed":"jumps=1","status":"PASS"}
+{"id":"escape-pause","observed":"state=2","status":"PASS"}
+{"id":"enter-resume","observed":"state=1","status":"PASS"}
+{"id":"r-retry","observed":"position=(64.0, 320.0)","status":"PASS"}
+{"id":"enter-replay","observed":"state=1","status":"PASS"}
+{"id":"pause-main-menu","observed":"state=0","status":"PASS"}
+{"id":"menu-start-again","observed":"state=1","status":"PASS"}
+{"id":"n-mutes-music-only","observed":"music=true sfx=false","status":"PASS"}
+{"id":"b-mutes-sfx","observed":"music=true sfx=true","status":"PASS"}
+{"id":"n-b-unmute","observed":"state=1","status":"PASS"}
+{"id":"no-jump-sound-while-paused","observed":"jump sounds=1","status":"PASS"}
+{"id":"r-skips-fire-wait","observed":"died=true state=1","status":"PASS"}
+WARNING: 18 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 8 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

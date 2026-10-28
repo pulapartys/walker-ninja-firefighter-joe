@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+{"id":"launch-grounded","observed":{"engine":"4.7.2-stable (official)","position":"(64.0, 320.0)"},"status":"PASS"}
+{"id":"speed-cap","observed":{"velocity_x":120.0},"status":"PASS"}
+{"id":"neutral-stop","observed":{"velocity_x":0.0},"status":"PASS"}
+{"id":"simultaneous-directions","observed":{"velocity_x":0.0},"status":"PASS"}
+{"id":"left-wall","observed":{"x":10.003830909729},"status":"PASS"}
+{"id":"fixed-jump-and-no-double","observed":{"jumps":1,"rise_px":66.7413940429688},"status":"PASS"}
+{"id":"held-jump-no-bounce","observed":{"jumps":1},"status":"PASS"}
+{"id":"coyote-5","observed":{"age":5,"jumps":1},"status":"PASS"}
+{"id":"coyote-6","observed":{"age":6,"jumps":1},"status":"PASS"}
+{"id":"coyote-7","observed":{"age":7,"jumps":0},"status":"PASS"}
+{"id":"buffer-5","observed":{"age":5,"jumps":1},"status":"PASS"}
+{"id":"buffer-6","observed":{"age":6,"jumps":1},"status":"PASS"}
+{"id":"buffer-7","observed":{"age":7,"jumps":0},"status":"PASS"}
+{"id":"low-ceiling","observed":{"jumps":1,"minimum_feet_y":312.016418457031},"status":"PASS"}
+{"id":"pause-freezes","observed":{"elapsed":0.133333333333333,"position":"(64.0, 295.4808)"},"status":"PASS"}
+{"id":"focus-loss-pauses","observed":{"state":2},"status":"PASS"}
+{"id":"actual-spike-collision","observed":{"deaths":1,"state":3},"status":"PASS"}
+{"id":"duplicate-death-ignored","observed":{"deaths":1},"status":"PASS"}
+{"id":"respawn","observed":{"position":"(64.0, 320.0)","state":1},"status":"PASS"}
+{"id":"manual-restart-not-death","observed":{"deaths":1},"status":"PASS"}
+{"id":"twenty-retries","observed":{"deaths":21,"max_retry_ticks":121},"status":"PASS"}
+{"id":"death-before-finish","observed":{"state":3},"status":"PASS"}
+{"id":"fall-boundary","observed":{"state":3},"status":"PASS"}
+{"id":"complete-real-route","observed":{"deaths":0,"marks":13,"pos":"(2055.394, 163.9253)","rescued":2,"state":4,"ticks":1268},"status":"PASS"}
+{"id":"route-beats-timer","observed":{"elapsed":21.1833333333334,"limit":40.0},"status":"PASS"}
+{"id":"reached-b2-roof-both-rescued","observed":{"pos":"(2055.394, 163.9253)","rescued":2},"status":"PASS"}
+{"id":"flame-clearance-positive","observed":{"B1L1":18.7424621582031,"B2L1":18.7424621582031,"B2L2":18.7424926757812,"street":1.40914916992188},"status":"PASS"}
+{"id":"exit-locked-without-rescues","observed":{"rescued":0,"state":1},"status":"PASS"}
+{"id":"survivor-removed-on-rescue","observed":{"bag":1,"person_rescued":true,"still_monitoring":false},"status":"PASS"}
+{"id":"walk-into-flame-B1L1","observed":{"state":3},"status":"PASS"}
+{"id":"walk-into-flame-B2L1","observed":{"state":3},"status":"PASS"}
+{"id":"walk-into-flame-B2L2","observed":{"state":3},"status":"PASS"}
+{"id":"replay-idempotent","observed":{"deaths":0,"jumps":0,"state":1},"status":"PASS"}
+{"id":"timer-expiry-fails","observed":{"reason":"Out of time!","state":3},"status":"PASS"}
+{"id":"timer-resets-on-retry","observed":{"elapsed":0.233333333333333,"state":1},"status":"PASS"}
+{"id":"hose-extinguishes-fire","observed":{"extinguish_ticks":0,"fire_active":false,"lit_at_3.5s":true},"status":"PASS"}
+{"id":"hose-out-of-range-noop","observed":{"fire_active":true},"status":"PASS"}
+{"id":"blocking-fire-kills-on-touch","observed":{"state":3},"status":"PASS"}
+{"id":"half-size-fire-still-kills","observed":{"fire_active":true,"state":3,"ticks_at_touch":120},"status":"PASS"}
+{"id":"person-rescue-blocked-until-extinguished","observed":{"person_rescued":false,"state":3},"status":"PASS"}
+{"id":"extinguish-resets-on-retry","observed":{"fire_active":true,"state":1},"status":"PASS"}
+WALKER TESTS: 41 checks / 0 failures
+WARNING: 14 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 6 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

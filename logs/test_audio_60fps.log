@@ -1,0 +1,21 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+{"id":"silent-start","observed":{"burn":0,"hose":0,"jump":0,"rescue":0,"win":0},"status":"PASS"}
+{"id":"held-jump-one-sound","observed":{"jumps":1,"sfx":{"burn":0,"hose":0,"jump":1,"rescue":0,"win":0}},"status":"PASS"}
+{"id":"rapid-jumps-match","observed":{"jumps":5,"sfx":{"burn":0,"hose":0,"jump":5,"rescue":0,"win":0}},"status":"PASS"}
+{"id":"burn-once-per-death","observed":{"deaths":1,"sfx":{"burn":1,"hose":0,"jump":0,"rescue":0,"win":0}},"status":"PASS"}
+{"id":"no-burn-after-retry","observed":{"sfx":{"burn":1,"hose":0,"jump":0,"rescue":0,"win":0},"state":1},"status":"PASS"}
+{"id":"route-one-sound-per-event","observed":{"deaths":0,"jumps":13,"pos":"(2055.0, 164.0)","rescued":2,"sfx":{"burn":0,"hose":1,"jump":13,"rescue":2,"win":1},"state":4,"ticks":1269},"status":"PASS"}
+{"id":"w-mashing-one-hose","observed":{"extinguish_ticks":209,"sfx":{"burn":0,"hose":1,"jump":8,"rescue":0,"win":0}},"status":"PASS"}
+{"id":"mute-changes-nothing","observed":{"muted":{"deaths":0,"jumps":13,"pos":"(2055.0, 164.0)","rescued":2,"sfx":{"burn":0,"hose":1,"jump":13,"rescue":2,"win":1},"state":4,"ticks":1269},"unmuted":{"deaths":0,"jumps":13,"pos":"(2055.0, 164.0)","rescued":2,"sfx":{"burn":0,"hose":1,"jump":13,"rescue":2,"win":1},"state":4,"ticks":1269}},"status":"PASS"}
+{"id":"sound-after-state-change","observed":{"wrong":[]},"status":"PASS"}
+{"id":"retry-and-restart-silent","observed":{"burn":1,"hose":0,"jump":0,"rescue":0,"win":1},"status":"PASS"}
+{"id":"no-burn-for-fall-or-timeout","observed":{"burns":[0,0],"fell":"You fell.","timeout":"Out of time!"},"status":"PASS"}
+{"id":"missing-sounds-change-nothing","observed":{"no_sound_files":{"deaths":0,"jumps":13,"pos":"(2055.0, 164.0)","rescued":2,"state":4,"ticks":1269},"reference":{"deaths":0,"jumps":13,"pos":"(2055.0, 164.0)","rescued":2,"sfx":{"burn":0,"hose":1,"jump":13,"rescue":2,"win":1},"state":4,"ticks":1269}},"status":"PASS"}
+{"id":"music-behaviour","observed":{"back_without_restart":false,"dipped":true,"paused":true,"playing":true,"stopped_on_win":true},"status":"FAIL"}
+{"id":"music-loops","observed":{"length_s":25.5987300872803,"loop":true,"playing":true,"wrapped":false},"status":"FAIL"}
+AUDIO TESTS: 2 failures
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
