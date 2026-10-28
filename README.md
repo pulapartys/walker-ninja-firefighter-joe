@@ -131,7 +131,7 @@ Automated tests (from `godot/`):
 - **Failure punchline and win:** on a fire death (held 2 s; R retries at once) the generated DEVASTATED close-up pops up next to "The fire got you."; on the win, the bow close-up pops up.
 - **Sound:** generated sound effects on real game events: jump, hose, rescue toss, fire death, level complete. Each fires exactly once per event (`tests/test_audio.gd`). Muting changes nothing in play.
 - **Music:** a 16-bar, 150 BPM generated loop (ElevenLabs Music) that pauses on pause, dips on a fire death, continues on retry, and stops on the win (`tests/test_audio.gd`).
-- **Design and evidence:** CONCEPT.md, STORYBOARD.md, CHARACTER-SHEET.md, CHANGE-BRIEF.md (plan and predictions), SOURCES.md (models and asset log), TEST-REPORT.md, ../FRICTIONAL.md (design log), rejected outputs in `rejected/`, in-engine screenshots in `evidence/screens-web/`.
+- **Design and evidence:** CONCEPT.md, STORYBOARD.md, CHARACTER-SHEET.md, a2/CHANGE-BRIEF.md (plan and predictions; moved from the root for Assignment 5, which needs its own brief at that path), SOURCES.md (models and asset log), TEST-REPORT.md, ../FRICTIONAL.md (design log), rejected outputs in `rejected/`, in-engine screenshots in `evidence/screens-web/`.
 
 ## Known limitations
 
