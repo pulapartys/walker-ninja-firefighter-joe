@@ -195,3 +195,9 @@ They differ in two values (`rust_amount`, `roughness_scale`), share the shader a
 ## Revisions
 
 <!-- Dated revisions go here. The v1 text above is not edited. -->
+
+### Revision 1 — 2026-10-28, rule R7 names the wrong function
+
+- **What I found:** reviewing the agent's CLAUDE.md draft against `godot/game/session.gd`, the function that resets `water_ticks` to 0 is `restart_attempt()`, not `start_session()`. `start_session()` calls it; so do the R key handler and the DYING timeout. The rule's behaviour is unchanged (the water stops the same frame and `glow` ramps down from its current value); only the name was wrong.
+- **R7 now reads:** on a fire death, the DYING timeout or R during hosing, `session.restart_attempt()` resets `water_ticks` to 0 the same frame, `player.hosing` goes false, and `glow` ramps down from its current value over at most 0.25 s. It never jumps.
+- The v1 text above is kept as written.
