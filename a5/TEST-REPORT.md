@@ -158,6 +158,13 @@
 - **Mutation 3, `source_color` removed from `albedo_tex`:** `sampler-hints hydrant_surface.gdshader` FAIL, 35 / 1 failures, **exit 1** (`mutation-3-source_color_60fps.log`). Shader restored with `git checkout`, diff empty, clean rerun 35 / 0.
 - **Import setting the importer rewrote:** `godot/props3d/hydrant.glb.import` gained `"use_external/fallback_path": "res://materials/hydrant_fresh.tres"` on the first reimport after I wrote only `use_external/enabled` and `use_external/path`; the importer fills the fallback from the path. The committed file already carries it; the test asserts both keys.
 
+## In play — HUMAN CHECK (2026-10-29)
+
+- **Revision:** `7a2d2d3`, the game run windowed (`godot --path godot`), keyboard, by me. Screenshots: `a5/evidence/playtest-hosing.png`, `a5/evidence/playtest-fire-death-while-hosing.png` (OS screenshots of the game window, labelled as such; not used for pixel values).
+- **My words, per check:** (1) hosing: "1 worked". (2) second W during the glow: "yes" (nothing restarted). (3) R while glowing: "i pressed r when he was glowing and the game restarted" (the fade-down is not visible in play because R also respawns him at the start; the test proves R7). (4) Esc during hosing: "the game paused and asked if i wanted to resume" (glow held). (5) the bag with glow: "this will never happen because rescues are after the hose" (recorded as not observable in play; F5 is checked by a controlled capture instead, below). Fire death while hosing: he stays blue-white through the 2 s hold, as does the water column (CHANGE-BRIEF Revision 3).
+- **Look verdict (my words):** "is the firefighter when hosing just supposed to look icy blue or glow and fade non stop", "are we supposed to see his suit" → decision **make it breathe** (Revision 3: band 0.4–0.8, period 1.0 s). This is the inspect-and-revise cycle driven by an observation.
+- **Boundaries:** movement, jumps, fires, HUD, sounds as before.
+
 ## Open items
 
 - In play (HUMAN CHECK): trigger hosing by normal play several times; boundaries hold.
