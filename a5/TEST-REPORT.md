@@ -188,3 +188,18 @@
 ## Screenshots (2026-10-29)
 
 - The two OS screenshots named above were whole-desktop captures; they are now cropped to the game window (888 × 545 of the original 2000 × 1250) so the evidence folder holds only the game. Nothing else about them changed; they were never used for pixel values.
+
+## Fresh clone of tag `a5` (2026-10-29)
+
+- **Revision:** `b3f457b` (the tagged commit; `godot/` and `scripts/` are byte-identical to `e8c2a30`, the revision shown in the film), cloned from GitHub into an empty folder, `godot --headless --path godot --import` once, then every test through `scripts/run-test.sh` at its pinned frame rate. This entry is committed after the tag, so the tag holds everything except this note.
+
+| Test | Result | Matches this report |
+|---|---|---|
+| `test_hose_glow.gd` 30 / 60 / 144 | 15 checks / 0 failures at each rate | yes |
+| `test_materials.gd` 60 | 35 checks / 0 failures | yes |
+| `test_game.gd` 60 | 41 checks / 0 failures | yes (baseline) |
+| `test_keyboard.gd` 60 | 14 PASS / 0 FAIL | yes (baseline) |
+| `test_audio.gd` 60 | 2 failures (`music-behaviour`, `music-loops`) | yes: the pinned-fps baseline is 12 / 14, explained under Baseline |
+| `check_props.gd` 60 | RESULT: PASS (0 of 3 props failing) | yes |
+
+- No `SHADER ERROR` or `SCRIPT ERROR` in any log. A working local folder is not proof that everything was posted; this is.
