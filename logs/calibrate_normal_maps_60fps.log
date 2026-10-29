@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+gl file: 1024x1024 format=5  curl_ratio directx=false: 0.5419  directx=true: 1.4581
+dx file: 1024x1024 format=5  curl_ratio directx=false: 1.4584  directx=true: 0.5416
+PASS calibration: GL file reads as GL (true), DX file reads as DX (true)
+NORMAL MAP CALIBRATION: 0 failures (stride 4)
