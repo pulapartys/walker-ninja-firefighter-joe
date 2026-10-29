@@ -76,8 +76,8 @@
 - Every difference is within the tolerance the brief set (±3 at P1, ±5 at P2, ±15 at P3); the small offsets at glow 0 are the sub-pixel blend of painted neighbours the brief predicted.
 - **`hint_range` does not clamp a value set from code:** `set_shader_parameter("glow", 2.0)` read back 2.0 and the pixels overshot to cyan with green and blue clipped at 255, exactly the A4 arithmetic. Prediction confirmed.
 - **F3 ruled out:** at glow 1.0 the pixel is exactly (153, 217, 255), so `source_color` did not convert the uniform to linear in 2D under Compatibility without HDR 2D.
-- **OS screenshot comparison:** to do once (TEST-REPORT entry pending).
-- **What I saw (my words):** _pending: my verdict on glow_0.5.png and glow_1.0.png._
+- **OS screenshot comparison:** `a5/evidence/playtest-hosing.png` is an OS screenshot of the game window (Retina, 2× scaled, display colour profile applied) taken during play; the in-engine captures are 1280 × 720 viewport reads. The OS screenshot is used only to show what I saw; every pixel value in this report comes from the in-engine captures, because the OS image is scaled and colour-managed and its pixel at a predicted coordinate is not the engine's pixel.
+- **What I saw (my words):** before Revision 3, at 1.0 he was "a block of ice blue"; the fixed-value captures still match the arithmetic. The in-play verdict after the breathing change is in the Revision 3 driver section.
 
 ## Import settings and texture data (2026-10-28)
 
@@ -148,7 +148,7 @@
 - **Edit one value in one material** (`material_edit_rust_0`): `rust_amount` set to 0.0 on the rusty material at runtime; the rusty body went from (130, 121, 103) to (99, 29, 21), the fresh body stayed (115, 43, 33). Only one changed.
 - **Edit one line of the shader** (`shader_edited`): the `ALBEDO` line temporarily multiplied by `vec3(0.5, 1.0, 1.5)` in `hydrant_surface.gdshader`, captured, then the file restored with `git checkout` (diff empty). Fresh body (115, 43, 33) → (57, 43, 48); rusty body (130, 121, 103) → (63, 121, 157). Both changed.
 - **Interface sweep (rusty material):** `rust_amount` swings the body from fully painted red (99, 29, 21) to the raw photo (133, 131, 113); `paint_tint` black → white moves it the same way at the painted fraction; `uv_scale` 0.25 makes one big smear of the sheet (129, 108, 76) and 8 a fine tile. `roughness_scale` and `normal_strength` move the sampled point by only 1–3 levels because they change highlight position and shading across the surface, not one spot: judged by eye below.
-- **What I saw (my words):** _pending: my verdict on side_by_side.png, the roughness and normal-strength sweeps, and any setting that breaks the look._
+- **What I saw (my words, 2026-10-29):** side by side: "the first hydrant looks very realistic compared to the second, the second looks more like a cartoon" (first = rusty at x = −1.6, second = fresh red). Roughness and normal-strength sweeps: no difference I could see between min and max under this one sun; the sampled pixels moved 1–3 levels, so the sliders are wired (the test and `rust_amount`/`uv_scale` prove the material reaches the shader) but this lighting does not show them. Nothing looked broken in any of the five captures. "Irrespective I think we need to improve the structure of the hydrant": a mesh change, out of this assignment's bounds (the A3 model files must not change); recorded as a known limitation and the next step.
 
 ## Material wiring — fresh cache and the source_color mutation (2026-10-28)
 
