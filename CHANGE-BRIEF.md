@@ -201,3 +201,10 @@ They differ in two values (`rust_amount`, `roughness_scale`), share the shader a
 - **What I found:** reviewing the agent's CLAUDE.md draft against `godot/game/session.gd`, the function that resets `water_ticks` to 0 is `restart_attempt()`, not `start_session()`. `start_session()` calls it; so do the R key handler and the DYING timeout. The rule's behaviour is unchanged (the water stops the same frame and `glow` ramps down from its current value); only the name was wrong.
 - **R7 now reads:** on a fire death, the DYING timeout or R during hosing, `session.restart_attempt()` resets `water_ticks` to 0 the same frame, `player.hosing` goes false, and `glow` ramps down from its current value over at most 0.25 s. It never jumps.
 - The v1 text above is kept as written.
+
+### Revision 2 — 2026-10-28, rule R6: the game's pause is not a tree pause
+
+- **What I found:** reviewing the driver plan, `session.set_paused()` changes `state` to PAUSED, which stops the session's physics writes, but it is not `get_tree().paused`, so a driver's `_process` keeps running. A ramp already in flight when the game pause lands finishes its remaining ≤ 0.25 s and then holds; during the 5 s hold the value is already 1.0 and stays 1.0. A true tree pause (`get_tree().paused = true`) freezes `glow` outright because `_process` stops.
+- **R6 now reads:** scaled time (physics ticks for the hold, `_process` `delta` for the ramps). Under the game's own pause, `glow` holds its value, except that a ramp in flight completes its last ≤ 0.25 s first. Under a tree pause, `glow` freezes at once. The test checks the game pause during the hold (value stays 1.0); the mid-ramp case is a human check, if at all.
+- Freezing mid-ramp under the game pause would need the driver to read `session.state` in addition to `player.hosing`, which widens the boundary; not done.
+- The v1 text above is kept as written.
