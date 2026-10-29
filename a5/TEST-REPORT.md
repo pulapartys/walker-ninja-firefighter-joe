@@ -165,6 +165,22 @@
 - **Look verdict (my words):** "is the firefighter when hosing just supposed to look icy blue or glow and fade non stop", "are we supposed to see his suit" → decision **make it breathe** (Revision 3: band 0.4–0.8, period 1.0 s). This is the inspect-and-revise cycle driven by an observation.
 - **Boundaries:** movement, jumps, fires, HUD, sounds as before.
 
+## Driver, Revision 3: the breathing glow (2026-10-29)
+
+- **Revision:** `20fe512` (agent, `a5/sessions/session-4-breathe.jsonl`: 33 turns, ended normally, 3 allowlist denials; shader, `player.gd`, `session.gd` untouched). The driver's target while hosing is now 0.6 + 0.2·sin(2π·t) on a `delta`-accumulated clock; the ramps are unchanged. `test_hose_glow.gd` moved its hold expectations with the revision (12 → 15 checks) in the same commit, reason given there; no pre-existing test changed.
+
+| Run | Result | Into the band | Maxima | Peak-to-peak | Band min / max |
+|---|---|---|---|---|---|
+| 30 fps | 15 / 0 | 4 frames = 0.133 s (tolerance 0.033) | 5 at 1.0 s gaps | 1.0, 1.0, 1.0, 1.0 | 0.4006 / 0.7994 |
+| 60 fps | 15 / 0 | 6 frames = 0.100 s | 5 | all 1.0 | 0.4000 / 0.8000 |
+| 144 fps | 15 / 0 | 15 frames = 0.104 s | 5 | all 1.0 | 0.4000 / 0.8000 |
+
+- Existing suites unchanged (41/41, 14/14, 12/14 audio baseline, props PASS); no SHADER/SCRIPT ERROR.
+- **Finding (agent, confirmed by me from the logs):** under the game's `set_paused()` the glow keeps breathing inside the band (0.667–0.8 over the 10 paused frames at 60 fps), because the driver's `_process` is not paused. The brief's "holds its value" wording was unattainable; **Revision 4** records it as accepted. The test asserts what is true: state PAUSED, `water_ticks` frozen, every paused sample in band.
+- **Mutations re-run against the 15-check test:** semicolon → `SHADER ERROR`, 3 failures, exit 1; rename → 4 failures, exit 1; restored, 15/0 (`a5/evidence/mutations/`).
+- **F5, the bag (controlled capture, since play cannot show it):** `capture_glow.gd -- bag` puts a rescued person in the bag as a fixture, freezes the driver and sets `glow` 0 / 0.5 / 1.0 / 2.0: the bag pixel is **(230, 126, 34)** at all four values while P1 beside it goes (227, 29, 25) → (190, 123, 140) → (153, 217, 255) → (79, 255, 255). The material is on the sprite only. Captures `a5/evidence/captures/bag_glow_*.png`, samples in `capture_glow_bag_output.jsonl`.
+- **In play, breathing (HUMAN CHECK):** _pending: my words after replaying._
+
 ## Open items
 
 - In play (HUMAN CHECK): trigger hosing by normal play several times; boundaries hold.

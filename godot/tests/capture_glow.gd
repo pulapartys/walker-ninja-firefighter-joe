@@ -56,6 +56,16 @@ func run() -> void:
 	var driver: Node = player.get_node("HoseGlow")
 	var mat: ShaderMaterial = sprite.material
 	print("pose=%s facing=%d player=%s window=%s" % [player.pose, int(player.facing), player.position, get_root().size])
+	# `-- bag`: CHANGE-BRIEF F5. Rescues happen after the hose in this level, so the bag with a survivor
+	# in it is never on screen while he glows in normal play. For the controlled capture only, put a
+	# rescued person in the bag (a test fixture on the player, the same fields the session sets), so
+	# the code-drawn bag can be sampled next to the glowing sprite: it must stay orange (230, 126, 34).
+	var bag_mode := "bag" in OS.get_cmdline_user_args()
+	if bag_mode:
+		player.bag_types = ["person"]
+		player.rescued = 1
+		player.queue_redraw()
+		await steps(2)
 	# Freeze the driver (it writes glow every _process); the session keeps running so the water pours.
 	driver.set_process(false)
 	for v in VALUES:
@@ -63,7 +73,7 @@ func run() -> void:
 		await RenderingServer.frame_post_draw
 		await RenderingServer.frame_post_draw
 		var img: Image = get_root().get_texture().get_image()
-		var path := OUT + "glow_%s.png" % String.num(v, 1)
+		var path := OUT + ("bag_glow_%s.png" if bag_mode else "glow_%s.png") % String.num(v, 1)
 		img.save_png(path)
 		# canvas coords are the 640x360 game space; the final transform applies the canvas_items
 		# stretch to the 1280x720 window the image was read from.
@@ -82,6 +92,13 @@ func run() -> void:
 					var n := img.get_pixel(pi.x + dx, pi.y + dy)
 					neigh.append([n.r8, n.g8, n.b8])
 			row[name] = {"texel": [t.x, t.y], "window_px": [pi.x, pi.y], "rgb": [c.r8, c.g8, c.b8], "neighbours_3x3": neigh}
+		if bag_mode:
+			# bag centre for the hose pose: player.gd BAG["hose"] = (-10, -19) game px, facing right
+			var bag_world: Vector2 = player.get_global_transform_with_canvas() * Vector2(-10.0 * player.facing, -19.0)
+			var bp: Vector2 = get_root().get_final_transform() * bag_world
+			var bpi := Vector2i(int(floor(bp.x)), int(floor(bp.y)))
+			var bc := img.get_pixel(bpi.x, bpi.y)
+			row["bag"] = {"window_px": [bpi.x, bpi.y], "rgb": [bc.r8, bc.g8, bc.b8], "expected": [230, 126, 34]}
 		print(JSON.stringify(row))
 	driver.set_process(true)
 	print("CAPTURE DONE: %d files in %s" % [VALUES.size(), OUT])
