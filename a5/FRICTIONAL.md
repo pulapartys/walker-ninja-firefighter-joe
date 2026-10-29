@@ -58,7 +58,7 @@
 - **What happened, attempt 1:** every sample was sky-blue and identical across glow values. The script had pressed W during the 30-tick respawn stance, so the sprite was `respawn.png`, not `hose.png`, and the pose changed between captures. Fix: wait for `pose == "hose"`.
 - **Attempt 2:** still sky. The sprite transform I used gives 640 × 360 game coordinates, but the frame is 1280 × 720; every sample was 220 px left of him. Fix: apply the viewport's final transform. The same mistake happened again in the hint-experiment capture and was fixed the same way.
 - **Attempt 3:** P1 (227, 29, 25) / (190, 123, 140) / (153, 217, 255) / (79, 255, 255) against predicted (229, 29, 25) / (191, 123, 140) / (153, 217, 255) / (77, 255, 255); P2 and P3 likewise within tolerance. **`hint_range` does not clamp** a value set from code (2.0 stored, cyan overshoot). **`source_color` did not convert** the uniform in 2D.
-- **Unresolved:** my verdict on the look. At glow 0.5 he goes ghostly against the sky (the brief's contrast arithmetic predicted 1.27 : 1); at 1.0 he is a flat blue-white silhouette with no detail. Options on the table: keep, or cap the target at ~0.7 (driver edit + Revision 3 + test expectation change). _Decision: pending._
+- **Unresolved:** my verdict on the look. At glow 0.5 he goes ghostly against the sky (the brief's contrast arithmetic predicted 1.27 : 1); at 1.0 he is a flat blue-white silhouette with no detail. Options on the table: keep, or cap the target at ~0.7 (driver edit + Revision 3 + test expectation change). _Decision (2026-10-29, after the playtest): neither; make it breathe, 0.4–0.8 at a 1 s period in the driver. My words: "looks good, the blue breathes and this is better than a block of ice blue". See the playtest entry below and CHANGE-BRIEF Revision 3._
 
 ### Textures, import settings, and the normal-map check
 
@@ -74,7 +74,7 @@
 ### Two materials from one shader
 
 - **What happened:** the fresh material goes through the glb importer's Use External (so a reimport keeps it) and the rusty one through a surface override on a second instance; a headless probe showed both resolve. Captures: `rust_amount` 0 → 1 moves the rusty body from (99, 29, 21) to (133, 131, 113); setting one value on one material changed only that hydrant; scaling one `ALBEDO` line in the shader (temporarily, restored with `git checkout`) changed both.
-- **Observation:** `roughness_scale` and `normal_strength` barely move the one sampled point (1–3 levels); they change highlights and shading across the surface. Judged by eye in TEST-REPORT. _My verdict: pending._
+- **Observation:** `roughness_scale` and `normal_strength` barely move the one sampled point (1–3 levels); they change highlights and shading across the surface. Judged by eye in TEST-REPORT. _My verdict (2026-10-29): side by side, "the first hydrant looks very realistic compared to the second, the second looks more like a cartoon"; the roughness and normal-strength sweeps showed no difference I could see under this one sun, and nothing looked broken. "I think we need to improve the structure of the hydrant" is a mesh change the assignment forbids here, so it is the known limitation and next step._
 
 ### 2026-10-29 — my playtest, and the glow becomes a breath
 
@@ -89,6 +89,7 @@
 
 - **What happened:** I asked Claude to write `a5/LANGUAGE-NOTES.md` for me, several times. It declined every time, on the assignment's own rule that the answers are mine and a TA can ask them face to face, and offered to explain any line instead. It gave a plain-English crib for each question pointed at lines in my shaders. I then wrote the eight answers myself in chat and sent them over.
 - **Division of work:** the answers are my words, pasted in unchanged. Claude filled the section 1 line-number table from the generated file, added the _Lines:_ note under each answer, and verified every line reference with `sed`/`grep` against the shader files before committing. One path it first cited for the driver was wrong (`godot/scripts/`), caught by that check and corrected to `godot/features/player/hose_glow.gd`.
+- **The annotated generated shader:** I asked Claude to write the line-by-line annotation of `standard_generated.gdshader`; it is in `a5/STANDARD-GENERATED-ANNOTATED.md`, labelled as agent-written and reviewed by me. The assignment names the shaders, the hint shader and the language notes as the parts I must write myself, and this annotation of Godot's own code is outside that list; I still have to be able to explain each line. Claude also closed the two "pending" verdict lines above by copying my recorded words from TEST-REPORT.
 
 ## Human / AI contributions
 
@@ -100,4 +101,5 @@
 | Driver, tests, captures, audit | approved, read the test for the recorded mistake, performed the mutations' commands through Claude | wrote all of it |
 | Test report, this log, sources | reviewed; verdict lines are mine to fill | drafted from the session |
 | Language notes | wrote all eight answers | filled the line-number table, added and verified the line references; declined to write the answers |
+| Annotated generated shader | asked for it, reviewed it | wrote `a5/STANDARD-GENERATED-ANNOTATED.md` from Godot's file, labelled as such |
 | Rejected | Claude declined to record agent-typed shader code as mine; I then typed it | — |

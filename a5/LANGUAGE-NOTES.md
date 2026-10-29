@@ -1,6 +1,6 @@
 # LANGUAGE-NOTES — Assignment 5, Step 4
 
-> The answers in section 2 are mine, pasted in word for word from what I typed in chat. Claude Code filled the line-number table in section 1 from the generated file, added the _Lines:_ note under each answer, and checked that every reference points where it says (recorded in FRICTIONAL.md). The generated file is `godot/shaders/standard_generated.gdshader` (48 lines, Godot 4.7.2, converted from a StandardMaterial3D with an albedo texture, a normal map and a roughness texture, scene `godot/scenes3d/scratch_standard.tscn`). My three shaders: `godot/shaders/hose_glow.gdshader`, `godot/shaders/hint_experiment.gdshader`, `godot/shaders/hydrant_surface.gdshader`.
+> The answers in section 2 are mine, pasted in word for word from what I typed in chat. Claude Code filled the line-number table in section 1 from the generated file, added the _Lines:_ note under each answer, and checked that every reference points where it says (recorded in FRICTIONAL.md). The generated file is `godot/shaders/standard_generated.gdshader` (48 lines, Godot 4.7.2, converted from a StandardMaterial3D with an albedo texture, a normal map and a roughness texture, scene `godot/scenes3d/scratch_standard.tscn`). My three shaders: `godot/shaders/hose_glow.gdshader`, `godot/shaders/hint_experiment.gdshader`, `godot/shaders/hydrant_surface.gdshader`. The line-by-line annotation of the generated file is `a5/STANDARD-GENERATED-ANNOTATED.md`.
 
 ## 1. Line numbers in `standard_generated.gdshader`
 
