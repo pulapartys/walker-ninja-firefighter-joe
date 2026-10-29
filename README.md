@@ -56,7 +56,7 @@ Logs land in `logs/`. **Play it:** `godot --path godot`; W next to the big fire 
 
 Brutalist `godot-gamedev` explainer, `walker` mode, native 4K, 6 min 22 s, 32 MB, narrated by Liam: *Extinguisho's Hand-Written Shaders*. Source shown: revision `e8c2a30` (no file under `godot/` changed after it).
 
-- **Link (Northeastern SharePoint):** _to be added when uploaded_
+- **Link (Northeastern SharePoint, course media storage):** https://northeastern-my.sharepoint.com/:f:/g/personal/pulaparty_s_northeastern_edu/IgCzqn1JsKZORIVL8gL8oe0KAUD2cXE4KHod2yt1IJlg6G8?e=DaGz30
 - **File:** `claude-liam-walker-ninja-firefighter-joe-a5-gamedev.mp4`
 - **SHA-256:** `67d77d0a7632e78b341f2ee3e997df2f2e7bcf3e902dea5f263ee1bfc45a52da`
 - **Film source** (approved script, beat sheet, evidence ledger, capture and build scripts): [`youtube/claude-liam-walker-ninja-firefighter-joe-a5-gamedev/`](youtube/claude-liam-walker-ninja-firefighter-joe-a5-gamedev/). The MP4 and the Movie Maker AVI are not in git (course rule).
