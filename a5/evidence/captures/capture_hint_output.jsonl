@@ -1,0 +1,4 @@
+image 1280x720 tonemap_mode=0 exposure=1.0 file=/Users/joe/Desktop/repos/walker-ninja-firefighter-joe/godot/../a5/evidence/captures/hint_experiment.png
+{"band_128":{"r_min_max_5x5":[128,128],"rgb":[128,128,128],"window_px":[429,360]},"band_192":{"r_min_max_5x5":[192,192],"rgb":[192,192,192],"window_px":[546,360]},"band_64":{"r_min_max_5x5":[64,64],"rgb":[64,64,64],"window_px":[312,360]},"quad":"QuadAsColor","use_color":true}
+{"band_128":{"r_min_max_5x5":[128,128],"rgb":[128,128,128],"window_px":[850,360]},"band_192":{"r_min_max_5x5":[192,192],"rgb":[192,192,192],"window_px":[967,360]},"band_64":{"r_min_max_5x5":[64,64],"rgb":[64,64,64],"window_px":[733,360]},"quad":"QuadAsData","use_color":false}
+CAPTURE DONE

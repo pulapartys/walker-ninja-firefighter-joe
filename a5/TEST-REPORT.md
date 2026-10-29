@@ -103,6 +103,21 @@
 - The GL file reads low as GL and high as DX, the DX file the mirror image, so the sign convention is right as given (no flip). The values sit at 0.54 / 1.46 rather than ~0 / ~2 because Godot loads the 16-bit PNGs as 8-bit and the quantization noise pulls both toward 1, as the assignment's calibration note predicts. **Threshold set from the pair:** a map bound to a material must score below 1.0 with `directx = false` and above 1.0 with `directx = true`; the bound file is `_nor_gl` (0.54 / 1.46).
 - The grey strip: `write_grey_strip.gd` wrote 3 × 1 RGB8 and read back `[64, 128, 192]`.
 
+## Hint experiment — HUMAN CHECK (2026-10-28)
+
+- **Revision:** the "Materials and scenes for Part B/C" commit; capture by `tests/capture_hint.gd` (windowed, real frame read from the viewport texture): `a5/evidence/captures/hint_experiment.png`, samples in `capture_hint_output.jsonl`. Scene: `scenes3d/hint_experiment.tscn`, `tonemap_mode=0` (Linear), `tonemap_exposure=1.0`, glow/fog/adjustments off, background 0.25 grey (= 64, which is why the first sampling attempt that landed on the background read 64 everywhere; fixed by applying the window stretch to the unprojected point, same mistake as the glow capture).
+
+| Band in file | Colour quad (`use_color = true`, `source_color`) predicted | measured | Data quad (`use_color = false`) predicted (Forward+/Mobile) | measured |
+|---|---|---|---|---|
+| 64 | 64 | **64** | 137 | **64** |
+| 128 | 128 | **128** | 188 | **128** |
+| 192 | 192 | **192** | 225 | **192** |
+
+- 5 × 5 neighbourhood around each sample is flat (min = max), so these are band values, not edges.
+- **What I saw:** two identical quads. The colour quad matches its prediction; the data quad does **not** match the Forward+/Mobile prediction. This is CHANGE-BRIEF F10, the Compatibility case the brief said to measure before explaining.
+- **Explanation (after measuring):** the GL Compatibility renderer shades 3D in sRGB ("gamma") space, not linear. There is no linear stage, so `source_color` has nothing to decode into and the sampler returns the stored 8-bit value; and the output is written to the sRGB framebuffer as-is, with no encode step. Both paths are identity, so both quads show the file. The prediction's two steps (decode on sample, encode on display) both exist only in Forward+ and Mobile. Under this renderer the `source_color` hint changes how the Inspector and importer treat the texture, not the value the shader receives (LANGUAGE-NOTES question 4 cites this).
+- **What this does not change:** the hint is still required and still correct for the colour textures; on Forward+ or Mobile the same project would show 137/188/225 on the data quad.
+
 ## Open items
 
 - In play (HUMAN CHECK): trigger hosing by normal play several times; boundaries hold.
