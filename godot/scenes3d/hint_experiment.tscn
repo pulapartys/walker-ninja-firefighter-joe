@@ -37,10 +37,10 @@ surface_material_override/0 = ExtResource("2_data")
 
 [node name="LabelColor" type="Label3D" parent="QuadAsColor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
-text = "use_color = true (source_color)"
-font_size = 28
+text = "source_color"
+font_size = 24
 
 [node name="LabelData" type="Label3D" parent="QuadAsData"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
-text = "use_color = false (data)"
-font_size = 28
+text = "data (no hint)"
+font_size = 24
