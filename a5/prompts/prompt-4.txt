@@ -1,0 +1,30 @@
+Read CLAUDE.md first, then CHANGE-BRIEF.md including Revision 3 at the
+bottom, which is the contract for this change. The shader in
+godot/shaders/ is hand-written by me and is not yours to edit: do not
+edit any .gdshader file. If Revision 3 cannot be met without changing
+the shader, say so and stop.
+
+Task: implement Revision 3 in the driver and its test, and nothing else.
+1. godot/features/player/hose_glow.gd: while player.hosing holds, the
+   target is 0.6 + 0.2 * sin(TAU * t), where t is game seconds since
+   hosing began, accumulated from _process delta in the driver (reset
+   when hosing ends). The 0.25 s ramps (into the band when hosing
+   begins, to 0.0 when it ends) keep using move_toward with delta / 0.25.
+   The driver still reads only player.hosing and writes only "glow".
+   Show the diff.
+2. godot/tests/test_hose_glow.gd: update only the assertions that
+   Revision 3 changes. The hold checks must now assert: every sample
+   while hosing (after the first 0.25 s) lies in [0.4, 0.8] within
+   epsilon; the signal oscillates (at least 4 local maxima during the
+   5 s hold); the period, measured peak to peak from the samples times
+   the frame delta, is 1.0 s within one frame period at the run's frame
+   rate; and the retrigger, pause (value frozen while paused), down-ramp
+   and R-mid-ramp checks still hold with the band replacing 1.0 where
+   they assumed it. Keep every other check as it is. Keep driving the
+   state through real input; never call the driver. Show the diff.
+3. Run ./scripts/run-test.sh test_hose_glow.gd at 30, 60 and 144, and
+   the four existing tests at 60. Show the real output including any
+   SHADER ERROR or SCRIPT ERROR lines. State what the test now proves
+   and what remains a human check.
+Do not edit any other file. Do not commit. Notes for this machine:
+`godot` is not on PATH; the wrapper finds the binary.

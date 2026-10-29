@@ -6,13 +6,16 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"driver-param-declared","observed":{"driver_writes":"glow","shader_declares":["glow","glow_color"]},"status":"PASS"}
 {"id":"material-on-sprite","observed":{"art_material":"<Object#null>","player_material":"<Object#null>","shader":"res://shaders/hose_glow.gdshader","sprite_material":"():<ShaderMaterial#-9223372001941387674>"},"status":"PASS"}
 {"id":"glow-starts-zero","observed":{"frames":6,"last":{"d":0.00666666666666667,"g":0.0,"h":false}},"status":"PASS"}
-{"id":"ramp-up-time","observed":{"delta":0.00694444444444444,"expected":0.25,"fps_from_delta":144.0,"frames":36,"hosing_at_first_rise":true,"max_glow":1.0,"seconds":0.25,"tolerance":0.00694444444444444},"status":"PASS"}
-{"id":"ramp-up-monotonic","observed":{"from":7,"max_step":0.0277777777777778,"to":43,"worst_step":0.0322222222222222},"status":"PASS"}
-{"id":"retrigger-ignored","observed":{"hose_sounds":1,"near_fire":true,"samples_since":7,"water_ticks_after":281,"water_ticks_before":284},"status":"PASS"}
-{"id":"pause-holds","observed":{"frames_paused":24,"state":2,"water_ticks":281},"status":"PASS"}
-{"id":"hold-is-game-time","observed":{"down_frames":36,"down_seconds":0.25,"hold_frames":707,"hold_seconds":4.90972222222222,"hosing_at_last_one":true,"hosing_next_frame":false,"last":0.0,"monotone":true,"tolerance":0.00694444444444444,"water_ticks":0,"worst_step":0.0277777777777778},"status":"PASS"}
+{"id":"ramp-up-time","observed":{"delta":0.00694444444444444,"expected_at_ramp_rate":0.1,"fps_from_delta":144.0,"frames":15,"hosing_at_first_rise":true,"max_glow":0.475555555555556,"seconds":0.104166666666667,"tolerance":0.00694444444444444,"within":0.25},"status":"PASS"}
+{"id":"ramp-up-monotonic","observed":{"from":7,"max_step":0.0277777777777778,"to":22,"worst_step":0.0322222222222222},"status":"PASS"}
+{"id":"retrigger-ignored","observed":{"hose_sounds":1,"near_fire":true,"samples_since":7,"water_ticks_after":289,"water_ticks_before":292},"status":"PASS"}
+{"id":"pause-holds","observed":{"frames_paused":24,"glow_max_while_paused":0.799997258449485,"glow_min_while_paused":0.697777777777778,"glow_moved_while_paused":true,"state":2,"water_ticks":289},"status":"PASS"}
+{"id":"hold-in-band","observed":{"band":[0.4,0.8],"band_eps":0.0001,"band_from":44,"hold_frames":742,"hold_seconds":5.15277777777778,"hosing_from":8,"last_hosing":749,"max":0.799997258449485,"min":0.400002741550515},"status":"PASS"}
+{"id":"hold-breathes","observed":{"max":0.799997258449485,"maxima":5,"maxima_at":[44,188,332,476,620],"maxima_values":[0.799997258449485,0.799997258449485,0.799997258449485,0.799997258449485,0.799997258449485],"min":0.400002741550515,"reach_eps":0.01},"status":"PASS"}
+{"id":"hold-period","observed":{"expected":1.0,"peak_to_peak_seconds":[1.0,1.0,1.0,1.0],"tolerance":0.00694444444444444,"worst_error":0.0},"status":"PASS"}
+{"id":"hold-is-game-time","observed":{"down_frames":28,"down_seconds":0.194444444444444,"expected":0.189826495901226,"glow_at_last_hosing":0.759305983604903,"hold_frames":742,"hold_seconds":5.15277777777778,"hosing_at_last":true,"hosing_next_frame":false,"last":0.0,"monotone":true,"tolerance":0.00694444444444444,"water_ticks":0,"worst_step":0.0277777777777778},"status":"PASS"}
 {"id":"restart-mid-ramp","observed":{"down_frames":13,"down_seconds":0.0902777777777778,"frames_until_descent":1,"glow_at_R":0.333333333333333,"monotone":true,"peak":0.361111111111111,"restarted":true,"state":1,"water_ticks":0,"worst_step":0.0277777777777778},"status":"PASS"}
-HOSE GLOW TESTS: 12 checks / 0 failures (process delta 0.006944 s)
+HOSE GLOW TESTS: 15 checks / 0 failures (process delta 0.006944 s)
 WARNING: 12 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 4 resources still in use at exit (run with --verbose for details).
