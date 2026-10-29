@@ -216,3 +216,9 @@ They differ in two values (`rust_amount`, `roughness_scale`), share the shader a
 - **R7 wording corrected:** on a **fire death** the session enters DYING and `restart_attempt()` runs only after `FIRE_DEATH_HOLD` (2.0 s); during that hold `water_ticks` is not counted down, `player.hosing` stays true, and the glow (and the game's own water visual) stay on the burned pose. The reset "the same frame" applies to R and to the DYING timeout. **Accepted as is:** the glow follows the water visual, which the game already freezes during the hold; making the driver read `session.state` as well would widen the boundary for a cosmetic gain.
 - **Predicted pixel table (A4):** unchanged. The controlled captures freeze the driver and set `glow` from code, so 0.0 / 0.5 / 1.0 / 2.0 remain the test points; 1.0 is no longer reached in play.
 - The v1 text above is kept as written.
+
+### Revision 4 — 2026-10-29, R6 under the game's pause, after the breathing change
+
+- **What the test showed:** with the breathing hold, the game's `set_paused()` no longer "holds the value": the driver's `_process` keeps running (Revision 2 already recorded that the game pause is not a tree pause), so `glow` keeps breathing inside 0.4–0.8 on the pause screen; `water_ticks` is frozen and every paused sample stays in the band (`test_hose_glow.gd` `pause-holds`, all three frame rates).
+- **R6 now reads:** under the game's own pause, `glow` stays within the breathing band and keeps breathing; under a tree pause it freezes. **Accepted:** stopping it would need the driver to read `session.state`, declined in Revisions 2 and 3 for widening the boundary; the pause menu showing him breathing is harmless.
+- The v1 text above is kept as written.
