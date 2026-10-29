@@ -42,7 +42,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"person-rescue-blocked-until-extinguished","observed":{"person_rescued":false,"state":3},"status":"PASS"}
 {"id":"extinguish-resets-on-retry","observed":{"fire_active":true,"state":1},"status":"PASS"}
 WALKER TESTS: 41 checks / 0 failures
-WARNING: 14 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
-ERROR: 6 resources still in use at exit (run with --verbose for details).
+ERROR: 4 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

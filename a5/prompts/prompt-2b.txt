@@ -1,0 +1,88 @@
+Read CLAUDE.md first. The specification in CHANGE-BRIEF.md is the
+contract for this change; its headless facts describe what a test on
+this machine can observe. The shader in godot/shaders/ is hand-written
+by me and is not yours to edit: do not edit any .gdshader file. If you
+believe it is wrong or cannot meet the spec, say so and stop.
+
+First propose the smallest plan that meets the spec: the code that gives
+the object a ShaderMaterial using my shader, the code that sets each
+uniform from game state, and a new headless test in godot/tests/. Say
+which spec rule each test assertion covers, and which rules only a human
+can check. Do not edit yet.
+
+After I approve a step, implement only that step and show the diff.
+Rules:
+- Do not edit the existing tests or change their expectations.
+- The test asserts the shader's uniform names and types with
+  get_shader_uniform_list(), and reads defaults from the shader source
+  text, because a headless engine does not report them.
+- The test drives the state through the real game loop and real input,
+  not by calling the update function directly, and checks the retrigger
+  rule.
+- Sample the uniform from a node with a high process_priority, so it
+  reads after every other _process() in the frame.
+- Run every test with ./scripts/run-test.sh: the existing ones at 60,
+  and the new one at 30, 60 and 144. Show the real output, including any
+  SHADER ERROR lines.
+- Say exactly what your test proves and what it cannot prove in a
+  headless run, and list the human checks needed to judge the look.
+- Do not commit.
+
+
+This is invocation 2 of 2. In invocation 1 you proposed the plan quoted
+below. I approve Steps 1, 2 and 3 of that plan as written, including the
+colour-line check. CHANGE-BRIEF.md now carries Revision 2 for rule R6
+(the game's set_paused is not a tree pause); read it. Implement the
+approved steps now, in order, showing the diff of each file you create or
+change. Notes for this machine: `godot` is not on PATH; always run tests
+through ./scripts/run-test.sh (it finds the binary). New .gd files need no
+reimport. Do not edit any .gdshader file, CHANGE-BRIEF.md, CLAUDE.md,
+scripts/run-test.sh, or any existing test. Do not commit.
+
+=== APPROVED PLAN (from invocation 1) ===
+Plan only, nothing created or edited. I read the shader, `player.gd`, `session.gd`, the two existing test harnesses, the runner and the level data.
+
+**One spec reading to flag first.** The shader matches A2 exactly (two uniforms, the one colour line), so it can meet the spec. The only soft spot is R6: the game's own pause (`set_paused`) is not a tree pause. It stops physics writes but `_process` keeps running, so a ramp already in flight when the pause lands finishes its remaining ≤0.25 s and then holds. A tree pause freezes `glow` outright, since the driver's `_process` stops. The brief's evidence row names `set_paused` in the hold phase, where the value is 1.0 and frozen either way, so the test follows that. Freezing mid-ramp under the game pause would need the driver to read something besides `player.hosing`, which the brief forbids. I'd record this under Revisions rather than widen the driver.
+
+## Step 1: driver and hook
+
+New file `godot/features/player/hose_glow.gd`, `extends Node`, about 25 lines:
+
+- Constants `SHADER := preload("res://shaders/hose_glow.gdshader")`, `PARAM := "glow"`, `RAMP_SECONDS := 0.25`. State `var glow := 0.0`, `var material: ShaderMaterial`.
+- `_ready()`: `material = ShaderMaterial.new()`, `material.shader = SHADER`, `get_parent().sprite.material = material`, write `glow` 0.0. One material per player instance, created here (R8, F5: it goes on `player.sprite` only).
+- `_process(delta)`: `target = 1.0 if get_parent().hosing else 0.0`, `glow = move_toward(glow, target, delta / RAMP_SECONDS)`, `material.set_shader_parameter(PARAM, glow)`. Reads `player.hosing`, writes one parameter, nothing else (R1, R2, R3, R4, R7 by construction). `_process` runs after the physics ticks of the same frame, so it sees the fresh `hosing` value.
+
+Hook in `godot/features/player/player.gd` `_ready()`, after the sprite is created: three lines that instance the driver and `add_child` it. No physics, input or tuning lines touched. `session.gd` is not edited. The material survives texture swaps in `show_pose` because it is a CanvasItem property, so the glow also tints the run pose during the +60 linger if he walks off early, which is the "water is on" meaning the brief wants.
+
+## Step 2: new headless test `godot/tests/test_hose_glow.gd`
+
+`extends SceneTree`, same `fresh()` / `steps()` / `check()` shape as `test_game.gd`, with `test_control` left false so the session reads real Input. A `Sampler` node on root with `process_priority = 100` records, every `_process`, the pair of `player.sprite.material.get_shader_parameter("glow")` and `delta`. W and R presses are synthetic `InputEventKey` taps through `Input.parse_input_event`, the path `test_keyboard.gd` already proves reaches `is_action_just_pressed` in physics headlessly. The test never calls the driver or touches its fields.
+
+| Check id | Assertion | Rule |
+|---|---|---|
+| shader-uniforms | `get_shader_uniform_list()` on the loaded shader has exactly `glow` (TYPE_FLOAT) and `glow_color` (TYPE_COLOR, which is how a `source_color` vec4 is reported); the raw list is printed | A2, F4 |
+| shader-defaults | regex on the source text: `glow` default `0.0`, `glow_color` default `vec4(0.6, 0.85, 1.0, 1.0)` | A2 |
+| colour-line | the source text contains `mix(COLOR.rgb, glow_color.rgb, glow)` so the A4 predictions apply. Beyond your ask; strike it if unwanted | A2, A4 |
+| material-on-sprite | `player.sprite.material` is a ShaderMaterial whose shader path is `res://shaders/hose_glow.gdshader`; `player.material` and `player.art.material` are null | A2, F5, R8 |
+| driver-param-declared | the name the driver writes (`PARAM`) is in the uniform list | F4 |
+| glow-starts-zero | player at (1220, 240), three settle steps, all samples 0.0 before W | R1 |
+| ramp-up-time | after tapping W: frames from the last 0.0 sample to the first 1.0 sample, times the measured delta, equals 0.25 s within one delta. Expected 8 frames at 30, 15 at 60, 36 at 144 | R1, R3, R4, F1 |
+| ramp-up-monotonic | each step increases by at most delta/0.25 plus epsilon, never decreases | R3 |
+| retrigger-ignored | at glow 1.0 tap W again, step 3 frames: `water_ticks` strictly below its pre-tap value and not 300, `sfx_counts.hose` still 1, no sample below 1.0 | R5, F2 |
+| pause-holds | `set_paused(true)` during the hold, 10 steps, every sample 1.0, then unpause | R6 |
+| hold-is-game-time | glow stays 1.0 until `player.hosing` goes false, then ramp-down frames times delta equals 0.25 s within one delta, last sample 0.0 | R2, R3 |
+| restart-mid-ramp | fresh run, tap R when a sample is in (0.3, 0.7): samples descend monotonically from that value to 0.0, no frame drops more than delta/0.25 plus epsilon | R7 |
+
+Hold timing is 300 physics ticks, so the test runs instantly under `--fixed-fps`. The test reports each delta it measured so the 30 and 144 logs show the step actually used.
+
+## Step 3: runs and report
+
+Existing four tests at 60 and the new one at 30, 60 and 144, all through `scripts/run-test.sh`, real output shown including any `SHADER ERROR` lines. The `test_audio` 12/14 baseline is expected and left alone.
+
+**What the test proves.** The shader parses and declares the two names and types the brief fixes. The driver puts one material on the sprite only, writes a name the shader declares, and drives it from the real game loop and real key events with 0.25 s ramps at three frame rates, ignoring a retrigger, holding under pause, and ramping down from mid-value on R.
+
+**What it cannot prove.** Any pixel: the dummy renderer draws nothing. So it cannot show the GL compiler accepts the shader, the P1 to P3 values at glow 0, 0.5 and 1.0, whether `source_color` linearizes in 2D (F3), whether `hint_range` clamps 2.0 (A4), that the bag and heads stay their colours (F5), or that `COLOR` carries modulate as predicted. A set-then-get round trip proves nothing, which is why the uniform-list check stands alone for names.
+
+**Human checks in the editor.** P1 to P3 captures at the three glow values against the A4 table. The glow 2.0 capture for the clamp prediction, set from a capture script or the remote inspector. The bag at (230, 126, 34) after a rescue at glow 1.0. `Engine.time_scale = 0.5` making the ramp take 0.5 s. Mid-glow contrast against the sky and whether it reads as water. R8 by reading.
+
+Awaiting approval of Step 1.

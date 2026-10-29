@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal jumped  # emitted once per real jump (the session plays SFX-JUMP; sound never feeds back)
 
 const Tuning = preload("res://features/player/tuning.gd")
+const HoseGlow = preload("res://features/player/hose_glow.gd")  # A5: glow material on `sprite`, driven from `hosing`
 var tuning = Tuning.new()
 var enabled: bool = false
 var tick: int = 0
@@ -65,6 +66,7 @@ func _ready() -> void:
 	sprite.centered = false
 	art.add_child(sprite)
 	show_pose("idle")
+	add_child(HoseGlow.new())  # visual only; the driver reads `hosing` and writes the shader's `glow`
 
 # Swap the state image. The anchor (bottom-center of the collision box in texture px)
 # lands on the origin; the holder's negative x scale mirrors the art when facing left.
