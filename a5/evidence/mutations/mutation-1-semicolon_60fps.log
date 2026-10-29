@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+--Main Shader--
+    6 | void fragment() {
+    7 |  COLOR.rgb = mix(COLOR.rgb, glow_color.rgb, glow)
+E   8-> }
+SHADER ERROR: Expected a ';'.
+          at: (null) (:8)
+          GDScript backtrace (most recent call first):
+              [0] run (res://tests/test_hose_glow.gd:116)
+ERROR: Shader compilation failed.
+   at: shader_set_code (servers/rendering/dummy/storage/material_storage.cpp:192)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/test_hose_glow.gd:116)
+{"id":"shader-uniforms","observed":{"TYPE_COLOR":20,"TYPE_FLOAT":3,"uniforms":[]},"status":"FAIL"}
+{"id":"shader-defaults","observed":{"glow_color_default_line":true,"glow_default_line":true,"source_bytes":218},"status":"PASS"}
+{"id":"colour-line","observed":{"a2_colour_line_present":false},"status":"FAIL"}
+{"id":"driver-param-declared","observed":{"driver_writes":"glow","shader_declares":[]},"status":"FAIL"}
+{"id":"material-on-sprite","observed":{"art_material":"<Object#null>","player_material":"<Object#null>","shader":"res://shaders/hose_glow.gdshader","sprite_material":"():<ShaderMaterial#-9223372001907833242>"},"status":"PASS"}
+{"id":"glow-starts-zero","observed":{"frames":3,"last":{"d":0.0166666666666667,"g":0.0,"h":false}},"status":"PASS"}
+{"id":"ramp-up-time","observed":{"delta":0.0166666666666667,"expected":0.25,"fps_from_delta":60.0,"frames":15,"hosing_at_first_rise":true,"max_glow":1.0,"seconds":0.25,"tolerance":0.0166666666666667},"status":"PASS"}
+{"id":"ramp-up-monotonic","observed":{"from":3,"max_step":0.0666666666666667,"to":18,"worst_step":0.0666666666666667},"status":"PASS"}
+{"id":"retrigger-ignored","observed":{"hose_sounds":1,"near_fire":true,"samples_since":3,"water_ticks_after":281,"water_ticks_before":284},"status":"PASS"}
+{"id":"pause-holds","observed":{"frames_paused":10,"state":2,"water_ticks":281},"status":"PASS"}
+{"id":"hold-is-game-time","observed":{"down_frames":15,"down_seconds":0.25,"hold_frames":295,"hold_seconds":4.91666666666667,"hosing_at_last_one":true,"hosing_next_frame":false,"last":0.000000000000000194289029309402,"monotone":true,"tolerance":0.0166666666666667,"water_ticks":0,"worst_step":0.0666666666666667},"status":"PASS"}
+{"id":"restart-mid-ramp","observed":{"down_frames":6,"down_seconds":0.1,"frames_until_descent":1,"glow_at_R":0.333333333333333,"monotone":true,"peak":0.4,"restarted":true,"state":1,"water_ticks":0,"worst_step":0.0666666666666667},"status":"PASS"}
+HOSE GLOW TESTS: 12 checks / 3 failures (process delta 0.016667 s)
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
