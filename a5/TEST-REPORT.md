@@ -118,6 +118,38 @@
 - **Explanation (after measuring):** the GL Compatibility renderer shades 3D in sRGB ("gamma") space, not linear. There is no linear stage, so `source_color` has nothing to decode into and the sampler returns the stored 8-bit value; and the output is written to the sRGB framebuffer as-is, with no encode step. Both paths are identity, so both quads show the file. The prediction's two steps (decode on sample, encode on display) both exist only in Forward+ and Mobile. Under this renderer the `source_color` hint changes how the Inspector and importer treat the texture, not the value the shader receives (LANGUAGE-NOTES question 4 cites this).
 - **What this does not change:** the hint is still required and still correct for the colour textures; on Forward+ or Mobile the same project would show 137/188/225 on the data quad.
 
+## One shader, two materials + interface sweep — HUMAN CHECK (2026-10-28)
+
+- **Revision:** the "Materials and scenes for Part B/C" commit; captures by `tests/capture_hydrant.gd` (windowed, real frames): `a5/evidence/captures/hydrant/*.png`, sampled body pixels (5 × 5 mean at a point 0.45 m up the front of each body) in `hydrant_output.jsonl`. Lighting: the props room's own `Sun` (shadows on) and `Environment` (flat background, ambient 0.6), nothing else, as CHANGE-BRIEF C1 says. Camera moved to frame the two hydrants; nothing else in the scene touched.
+- The fresh hydrant (x = −0.8) gets `hydrant_fresh.tres` through the glb importer's Use External; the rusty one (x = −1.6) gets `hydrant_rusty.tres` through a surface override on the instance. Both report the same `Shader` object at runtime.
+
+| Capture | fresh body mean RGB | rusty body mean RGB |
+|---|---|---|
+| `side_by_side` | (115, 43, 33) | (130, 121, 103) |
+| `sweep_rust_amount_min` | (115, 43, 33) | (99, 29, 21) |
+| `sweep_rust_amount_default` | (115, 43, 33) | (109, 58, 47) |
+| `sweep_rust_amount_max` | (115, 43, 33) | (133, 131, 113) |
+| `sweep_roughness_scale_min` | (115, 43, 33) | (127, 117, 99) |
+| `sweep_roughness_scale_default` | (115, 43, 33) | (130, 121, 104) |
+| `sweep_roughness_scale_max` | (115, 43, 33) | (128, 119, 101) |
+| `sweep_normal_strength_min` | (115, 43, 33) | (130, 120, 103) |
+| `sweep_normal_strength_default` | (115, 43, 33) | (130, 121, 103) |
+| `sweep_normal_strength_max` | (115, 43, 33) | (130, 121, 104) |
+| `sweep_uv_scale_min` | (115, 43, 33) | (129, 108, 76) |
+| `sweep_uv_scale_default` | (115, 43, 33) | (130, 121, 103) |
+| `sweep_uv_scale_max` | (115, 43, 33) | (129, 118, 98) |
+| `sweep_paint_tint_min` | (115, 43, 33) | (119, 118, 101) |
+| `sweep_paint_tint_default` | (115, 43, 33) | (130, 121, 103) |
+| `sweep_paint_tint_max` | (115, 43, 33) | (133, 131, 113) |
+| `material_edit_rust_0` | (115, 43, 33) | (99, 29, 21) |
+| `shader_edited` | (57, 43, 48) | (63, 121, 157) |
+
+- **Two materials, one shader:** `side_by_side`: red painted vs rusty raw metal under the same sun. They differ in `rust_amount` (0.1 vs 0.9) and `roughness_scale` (0.7 vs 1.4).
+- **Edit one value in one material** (`material_edit_rust_0`): `rust_amount` set to 0.0 on the rusty material at runtime; the rusty body went from (130, 121, 103) to (99, 29, 21), the fresh body stayed (115, 43, 33). Only one changed.
+- **Edit one line of the shader** (`shader_edited`): the `ALBEDO` line temporarily multiplied by `vec3(0.5, 1.0, 1.5)` in `hydrant_surface.gdshader`, captured, then the file restored with `git checkout` (diff empty). Fresh body (115, 43, 33) → (57, 43, 48); rusty body (130, 121, 103) → (63, 121, 157). Both changed.
+- **Interface sweep (rusty material):** `rust_amount` swings the body from fully painted red (99, 29, 21) to the raw photo (133, 131, 113); `paint_tint` black → white moves it the same way at the painted fraction; `uv_scale` 0.25 makes one big smear of the sheet (129, 108, 76) and 8 a fine tile. `roughness_scale` and `normal_strength` move the sampled point by only 1–3 levels because they change highlight position and shading across the surface, not one spot: judged by eye below.
+- **What I saw (my words):** _pending: my verdict on side_by_side.png, the roughness and normal-strength sweeps, and any setting that breaks the look._
+
 ## Open items
 
 - In play (HUMAN CHECK): trigger hosing by normal play several times; boundaries hold.
