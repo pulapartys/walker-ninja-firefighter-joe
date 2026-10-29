@@ -150,6 +150,14 @@
 - **Interface sweep (rusty material):** `rust_amount` swings the body from fully painted red (99, 29, 21) to the raw photo (133, 131, 113); `paint_tint` black → white moves it the same way at the painted fraction; `uv_scale` 0.25 makes one big smear of the sheet (129, 108, 76) and 8 a fine tile. `roughness_scale` and `normal_strength` move the sampled point by only 1–3 levels because they change highlight position and shading across the surface, not one spot: judged by eye below.
 - **What I saw (my words):** _pending: my verdict on side_by_side.png, the roughness and normal-strength sweeps, and any setting that breaks the look._
 
+## Material wiring — fresh cache and the source_color mutation (2026-10-28)
+
+- **Revision:** `264d18d` (audit committed unedited) and `35ef3ff` (my review). Audit transcript `a5/sessions/session-3-audit.jsonl`: 41 turns, ended normally, 6 Bash denials (all commands outside the allowlist), no shader, material, scene or `.import` edited.
+- **Review of the audit:** every line number, byte count and enum it cited was re-checked against the files and was right (`background_mode` 1 = `BG_COLOR`, `ambient_light_source` 2 = `AMBIENT_SOURCE_COLOR`, `tonemap_mode` 0 = `TONE_MAPPER_LINEAR`, property hint 17 = resource type, image formats 0/4/5 = L8/RGB8/RGBA8; the unused DX normal map's import cache is 1,058,664 bytes). Three corrections, in their own commit: F-5's linearisation claim is renderer-dependent and unverified under Compatibility; F-6's 16-bit claim is now verified with `file(1)`; F-7's VRAM megabyte estimates were computed, not measured, and are deleted.
+- **Fresh cache:** `godot/.godot` deleted, `--import` run, `./scripts/run-test.sh test_materials.gd 60`: **35 checks / 0 failures** (`a5/evidence/mutations/test_materials_fresh_cache_60fps.log`). No `.import` file changed under the reimport (`git status` clean for `*.import`).
+- **Mutation 3, `source_color` removed from `albedo_tex`:** `sampler-hints hydrant_surface.gdshader` FAIL, 35 / 1 failures, **exit 1** (`mutation-3-source_color_60fps.log`). Shader restored with `git checkout`, diff empty, clean rerun 35 / 0.
+- **Import setting the importer rewrote:** `godot/props3d/hydrant.glb.import` gained `"use_external/fallback_path": "res://materials/hydrant_fresh.tres"` on the first reimport after I wrote only `use_external/enabled` and `use_external/path`; the importer fills the fallback from the path. The committed file already carries it; the test asserts both keys.
+
 ## Open items
 
 - In play (HUMAN CHECK): trigger hosing by normal play several times; boundaries hold.

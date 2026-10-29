@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS hydrant-shader-uniform-list {"expected_count":8,"uniforms":{"albedo_tex":{"hint":17,"hint_string":"Texture2D","type":24},"normal_strength":{"hint":1,"hint_string":"0.0,2.0,0.0010000000475","type":3},"normal_tex":{"hint":17,"hint_string":"Texture2D","type":24},"paint_tint":{"hint":0,"hint_string":"","type":20},"rough_tex":{"hint":17,"hint_string":"Texture2D","type":24},"roughness_scale":{"hint":1,"hint_string":"0.0,2.0,0.0010000000475","type":3},"rust_amount":{"hint":1,"hint_string":"0.0,1.0,0.0010000000475","type":3},"uv_scale":{"hint":1,"hint_string":"0.25,8.0,0.0010000000475","type":3}}}
+PASS hydrant-shader-groups {"entries_with_groups":10,"groups":["paint","surface"]}
+PASS hint-shader-uniform-list {"uniforms":{"as_color":{"hint":17,"hint_string":"Texture2D","type":24},"as_data":{"hint":17,"hint_string":"Texture2D","type":24},"use_color":{"hint":0,"hint_string":"","type":1}}}
+PASS sampler-hints hydrant_surface.gdshader {"expected":{"albedo_tex":["source_color","filter_linear_mipmap"],"normal_tex":["hint_normal","filter_linear_mipmap"],"rough_tex":["hint_default_white","filter_linear_mipmap"]},"found":{"albedo_tex":["source_color","filter_linear_mipmap"],"normal_tex":["hint_normal","filter_linear_mipmap"],"rough_tex":["hint_default_white","filter_linear_mipmap"]}}
+PASS sampler-hints hint_experiment.gdshader {"expected":{"as_color":["source_color","filter_nearest"],"as_data":["filter_nearest"]},"found":{"as_color":["source_color","filter_nearest"],"as_data":["filter_nearest"]}}
+PASS hydrant-shader-defaults {"normal_strength":true,"paint_tint":true,"roughness_scale":true,"rust_amount":true,"spatial_lit":true,"uv_scale":true}
+PASS hydrant-shader-fragment-lines {"albedo":true,"base":true,"normal_map":true,"normal_map_depth":true,"roughness":true,"uv":true}
+PASS hint-shader-source {"color_branch":true,"data_branch":true,"spatial_unshaded":true,"use_color_default_false":true}
+PASS hydrant-materials-same-shader {"fresh":"res://shaders/hydrant_surface.gdshader","rusty":"res://shaders/hydrant_surface.gdshader","same_object":true}
+PASS material-values hydrant_fresh.tres {"albedo_tex":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_diff_1k.png","normal_strength":null,"normal_tex":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png","paint_tint":null,"rough_tex":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_rough_1k.png","roughness_scale":0.7,"rust_amount":0.1,"tres_sets":["rust_amount","roughness_scale","albedo_tex","rough_tex","normal_tex"],"uv_scale":null}
+PASS material-values hydrant_rusty.tres {"albedo_tex":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_diff_1k.png","normal_strength":null,"normal_tex":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png","paint_tint":null,"rough_tex":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_rough_1k.png","roughness_scale":1.4,"rust_amount":0.9,"tres_sets":["rust_amount","roughness_scale","albedo_tex","rough_tex","normal_tex"],"uv_scale":null}
+PASS hydrant-materials-differ-in-two {"differ":["rust_amount","roughness_scale"]}
+PASS material-values hint_as_color.tres {"as_color":"res://art/hint/grey_3x1.png","as_data":"res://art/hint/grey_3x1.png","shader":"res://shaders/hint_experiment.gdshader","tres_sets":["use_color","as_color","as_data"],"use_color":true}
+PASS material-values hint_as_data.tres {"as_color":"res://art/hint/grey_3x1.png","as_data":"res://art/hint/grey_3x1.png","shader":"res://shaders/hint_experiment.gdshader","tres_sets":["use_color","as_color","as_data"],"use_color":false}
+PASS import rusty_metal_sheet_diff_1k.png {"compress/mode":0,"compress/normal_map":2,"detect_3d/compress_to":0,"importer":"texture","load":"OK","mipmaps/generate":true,"process/normal_map_invert_y":false}
+PASS import rusty_metal_sheet_rough_1k.png {"compress/mode":0,"compress/normal_map":2,"detect_3d/compress_to":0,"importer":"texture","load":"OK","mipmaps/generate":true,"process/normal_map_invert_y":false}
+PASS import rusty_metal_sheet_nor_gl_1k.png {"compress/mode":0,"compress/normal_map":1,"detect_3d/compress_to":0,"importer":"texture","load":"OK","mipmaps/generate":true,"process/normal_map_invert_y":false}
+PASS import rusty_metal_sheet_nor_dx_1k.png {"compress/mode":0,"compress/normal_map":1,"detect_3d/compress_to":0,"importer":"texture","load":"OK","mipmaps/generate":true,"process/normal_map_invert_y":false}
+PASS import grey_3x1.png {"compress/mode":0,"compress/normal_map":2,"detect_3d/compress_to":0,"importer":"texture","load":"OK","mipmaps/generate":false,"process/normal_map_invert_y":false}
+PASS imported-format rusty_metal_sheet_diff_1k.png {"class":"CompressedTexture2D","format":4,"mipmaps":true,"size":[1024,1024]}
+PASS imported-format rusty_metal_sheet_rough_1k.png {"class":"CompressedTexture2D","format":0,"mipmaps":true,"size":[1024,1024]}
+PASS imported-format rusty_metal_sheet_nor_gl_1k.png {"class":"CompressedTexture2D","format":5,"mipmaps":true,"size":[1024,1024]}
+PASS imported-format rusty_metal_sheet_nor_dx_1k.png {"class":"CompressedTexture2D","format":5,"mipmaps":true,"size":[1024,1024]}
+PASS imported-format grey_3x1.png {"class":"CompressedTexture2D","format":4,"mipmaps":false,"size":[3,1]}
+PASS glb-use-external {"ensure_tangents":true,"hydrant_red":{"use_external/enabled":true,"use_external/fallback_path":"res://materials/hydrant_fresh.tres","use_external/path":"res://materials/hydrant_fresh.tres"},"materials/extract":0,"subresource_materials":["hydrant_red"]}
+PASS hydrant-mesh-surfaces {"mesh":"res://props3d/hydrant.glb::ArrayMesh_aonqv","shared":true,"surfaces":["hydrant_red","hydrant_grey"]}
+PASS props-hydrant-fresh {"surface0_active":"res://materials/hydrant_fresh.tres","surface0_mesh_material":"res://materials/hydrant_fresh.tres","surface0_override":"","surface1_active":"res://props3d/hydrant.glb::StandardMaterial3D_nwqcv","surface1_name":"hydrant_grey","x":-0.800000011920929}
+PASS props-hydrant-rusty {"surface0_active":"res://materials/hydrant_rusty.tres","surface0_override":"res://materials/hydrant_rusty.tres","surface1_active":"res://props3d/hydrant.glb::StandardMaterial3D_nwqcv","surface1_name":"hydrant_grey","surface1_override":"","x":-1.60000002384186}
+PASS props-environment {"adjustment":false,"ambient_energy":0.600000023841858,"ambient_source":2,"background_mode":1,"fog":false,"glow":false,"sdfgi":false,"ssao":false,"ssil":false,"ssr":false,"tonemap_exposure":1.0,"tonemap_mode":0,"tonemap_white":1.0}
+PASS props-sun {"color":[1.0,1.0,1.0],"direction":[-0.368687778711319,-0.76604425907135,-0.526541113853455],"energy":1.0,"indirect":1.0,"lights":1,"shadows":true,"specular":1.0}
+PASS hint-scene {"adjustment":false,"background_mode":1,"color_quad":"res://materials/hint_as_color.tres","color_x":-0.600000023841858,"data_quad":"res://materials/hint_as_data.tres","data_x":0.600000023841858,"fog":false,"glow":false,"lights":0,"tonemap_exposure":1.0,"tonemap_mode":0}
+PASS grey-strip-source {"bands":[[64,64,64],[128,128,128],[192,192,192]]}
+curl_ratio rusty_metal_sheet_nor_gl_1k.png: directx=false 0.5419  directx=true 1.4581  (1024x1024 format 5, stride 4)
+PASS curl rusty_metal_sheet_nor_gl_1k.png {"bound_to_material":true,"directx_false":0.541917931210848,"directx_true":1.45808206878879,"expected":"GL convention"}
+curl_ratio rusty_metal_sheet_nor_dx_1k.png: directx=false 1.4584  directx=true 0.5416  (1024x1024 format 5, stride 4)
+PASS curl rusty_metal_sheet_nor_dx_1k.png {"bound_to_material":false,"directx_false":1.45836785338606,"directx_true":0.541632146613573,"expected":"DX convention"}
+PASS normal-map-bound-is-gl {"fresh_binds":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png","rusty_binds":"res://art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png"}
+MATERIALS TESTS: 35 checks / 0 failures
