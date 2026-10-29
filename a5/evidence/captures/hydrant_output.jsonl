@@ -1,0 +1,20 @@
+fresh material=res://materials/hydrant_fresh.tres rusty material=res://materials/hydrant_rusty.tres same shader=true
+{"capture":"side_by_side","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,121,103],"rgb":[131,120,102],"window_px":[441,344]}}
+{"capture":"sweep_rust_amount_min","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[99,29,21],"rgb":[100,28,20],"window_px":[441,344]}}
+{"capture":"sweep_rust_amount_default","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[109,58,47],"rgb":[110,58,46],"window_px":[441,344]}}
+{"capture":"sweep_rust_amount_max","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[133,131,113],"rgb":[134,131,111],"window_px":[441,344]}}
+{"capture":"sweep_roughness_scale_min","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[127,117,99],"rgb":[128,117,98],"window_px":[441,344]}}
+{"capture":"sweep_roughness_scale_default","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,121,104],"rgb":[131,121,102],"window_px":[441,344]}}
+{"capture":"sweep_roughness_scale_max","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[128,119,101],"rgb":[129,118,99],"window_px":[441,344]}}
+{"capture":"sweep_normal_strength_min","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,120,103],"rgb":[130,120,102],"window_px":[441,344]}}
+{"capture":"sweep_normal_strength_default","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,121,103],"rgb":[131,120,102],"window_px":[441,344]}}
+{"capture":"sweep_normal_strength_max","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,121,104],"rgb":[131,121,102],"window_px":[441,344]}}
+{"capture":"sweep_uv_scale_min","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[129,108,76],"rgb":[129,106,73],"window_px":[441,344]}}
+{"capture":"sweep_uv_scale_default","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,121,103],"rgb":[131,120,102],"window_px":[441,344]}}
+{"capture":"sweep_uv_scale_max","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[129,118,98],"rgb":[128,116,96],"window_px":[441,344]}}
+{"capture":"sweep_paint_tint_min","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[119,118,101],"rgb":[120,117,100],"window_px":[441,344]}}
+{"capture":"sweep_paint_tint_default","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[130,121,103],"rgb":[131,120,102],"window_px":[441,344]}}
+{"capture":"sweep_paint_tint_max","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[133,131,113],"rgb":[134,131,111],"window_px":[441,344]}}
+{"capture":"material_edit_rust_0","fresh":{"mean_5x5":[115,43,33],"rgb":[116,43,32],"window_px":[838,344]},"rusty":{"mean_5x5":[99,29,21],"rgb":[100,28,20],"window_px":[441,344]}}
+CAPTURE DONE in /Users/joe/Desktop/repos/walker-ninja-firefighter-joe/godot/../a5/evidence/captures/hydrant/
+{"capture":"shader_edited","fresh":{"mean_5x5":[57,43,48],"rgb":[58,43,45],"window_px":[838,344]},"rusty":{"mean_5x5":[63,121,157],"rgb":[64,120,154],"window_px":[441,344]}}
