@@ -85,6 +85,11 @@
 - **Rejected:** the `TIME`-based pulse (would move the colour line) and reading `session.state` in the driver to stop the glow on death (widens the boundary for a cosmetic gain).
 - **Traceability:** Revision 3 commit; the driver/test change is the agent's `session-4-breathe.jsonl`; screenshots `a5/evidence/playtest-*.png` (OS screenshots, labelled, not used for pixel values).
 
+### 2026-10-29 — the language notes
+
+- **What happened:** I asked Claude to write `a5/LANGUAGE-NOTES.md` for me, several times. It declined every time, on the assignment's own rule that the answers are mine and a TA can ask them face to face, and offered to explain any line instead. It gave a plain-English crib for each question pointed at lines in my shaders. I then wrote the eight answers myself in chat and sent them over.
+- **Division of work:** the answers are my words, pasted in unchanged. Claude filled the section 1 line-number table from the generated file, added the _Lines:_ note under each answer, and verified every line reference with `sed`/`grep` against the shader files before committing. One path it first cited for the driver was wrong (`godot/scripts/`), caught by that check and corrected to `godot/features/player/hose_glow.gd`.
+
 ## Human / AI contributions
 
 | | Human (me) | AI (Claude Code, `claude-fable-5-1`) |
@@ -94,4 +99,5 @@
 | Brief, CLAUDE.md | read and reviewed; the two revisions were found by Claude and accepted by me | drafted both from my decisions and the code; the CLAUDE.md draft came from a read-only `claude -p` run, the review edits from the interactive session |
 | Driver, tests, captures, audit | approved, read the test for the recorded mistake, performed the mutations' commands through Claude | wrote all of it |
 | Test report, this log, sources | reviewed; verdict lines are mine to fill | drafted from the session |
+| Language notes | wrote all eight answers | filled the line-number table, added and verified the line references; declined to write the answers |
 | Rejected | Claude declined to record agent-typed shader code as mine; I then typed it | — |
