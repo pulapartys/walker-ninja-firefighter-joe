@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="PackedScene" path="res://props3d/hydrant.glb" id="1_hydrant"]
 [ext_resource type="PackedScene" path="res://props3d/rescue_bag.glb" id="2_bag"]
 [ext_resource type="PackedScene" path="res://props3d/flame.glb" id="3_flame"]
+[ext_resource type="Material" path="res://materials/hydrant_rusty.tres" id="4_rusty"]
 
 [sub_resource type="PlaneMesh" id="floor_mesh"]
 size = Vector2(4, 4)
@@ -48,6 +49,12 @@ fov = 50.0
 [node name="Hydrant" parent="." instance=ExtResource("1_hydrant")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0, 0)
 
+[node name="HydrantRusty" parent="." instance=ExtResource("1_hydrant")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 0)
+
+[node name="Hydrant" parent="HydrantRusty" index="0"]
+surface_material_override/0 = ExtResource("4_rusty")
+
 [node name="RescueBag" parent="." instance=ExtResource("2_bag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
@@ -63,3 +70,5 @@ surface_material_override/0 = SubResource("pole_mat")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
 text = "1.8 m = Extinguisho (size reference)"
 font_size = 24
+
+[editable path="HydrantRusty"]

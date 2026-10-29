@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Material" path="res://materials/hint_as_color.tres" id="1_color"]
+[ext_resource type="Material" path="res://materials/hint_as_data.tres" id="2_data"]
+
+[sub_resource type="QuadMesh" id="quad"]
+size = Vector2(1, 1)
+
+[sub_resource type="Environment" id="env"]
+background_mode = 1
+background_color = Color(0.25, 0.25, 0.25, 1)
+tonemap_mode = 0
+tonemap_exposure = 1.0
+glow_enabled = false
+fog_enabled = false
+adjustment_enabled = false
+
+[node name="HintExperiment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.2)
+current = true
+fov = 50.0
+
+[node name="QuadAsColor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
+mesh = SubResource("quad")
+surface_material_override/0 = ExtResource("1_color")
+
+[node name="QuadAsData" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
+mesh = SubResource("quad")
+surface_material_override/0 = ExtResource("2_data")
+
+[node name="LabelColor" type="Label3D" parent="QuadAsColor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+text = "use_color = true (source_color)"
+font_size = 28
+
+[node name="LabelData" type="Label3D" parent="QuadAsData"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+text = "use_color = false (data)"
+font_size = 28
