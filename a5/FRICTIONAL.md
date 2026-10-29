@@ -91,6 +91,13 @@
 - **Division of work:** the answers are my words, pasted in unchanged. Claude filled the section 1 line-number table from the generated file, added the _Lines:_ note under each answer, and verified every line reference with `sed`/`grep` against the shader files before committing. One path it first cited for the driver was wrong (`godot/scripts/`), caught by that check and corrected to `godot/features/player/hose_glow.gd`.
 - **The annotated generated shader:** I asked Claude to write the line-by-line annotation of `standard_generated.gdshader`; it is in `a5/STANDARD-GENERATED-ANNOTATED.md`, labelled as agent-written and reviewed by me. The assignment names the shaders, the hint shader and the language notes as the parts I must write myself, and this annotation of Godot's own code is outside that list; I still have to be able to explain each line. Claude also closed the two "pending" verdict lines above by copying my recorded words from TEST-REPORT.
 
+### 2026-10-29 — building the film, and two things it turned up
+
+- **What happened:** the film (Brutalist `godot-gamedev`, walker) was built from the record: script in four drafts (v2 more technical at my request, v3 plainer, v4 the 5½-minute cut), approved by me; a Movie Maker take of the real game with scripted key presses (`youtube/…-a5-gamedev/capture/film_capture.gd`), labelled as scripted, not as my playtest. The first take paused itself at 1.35 s because the game pauses on window-focus loss and Movie Maker runs unfocused; `test_mode` turns only that off.
+- **Two things it turned up:** (1) my two playtest screenshots were whole-desktop captures with other windows around the game; Claude noticed while composing the film and cropped both to the game window (TEST-REPORT "Screenshots"). (2) The brief's evidence split lists `Engine.time_scale = 0.5` as a check for my eyes, and I have not done it; TEST-REPORT now says so under Open items instead of leaving it implied.
+- **Division of work:** Claude Code wrote the script from my decisions and words, the stills from the committed captures and logs, the capture driver, the beat sheet and the build; I chose the register and length and approved the script. Narration is Liam (Kokoro), not me.
+- **Gates:** the first export was refused twice. Once because the toolkit's gate scripts ran under a Python without Pillow (fixed by putting the toolkit venv on PATH), then because the type gate flagged four beats: captured game pixels inside figure cards, and the game's own HUD text at the frame edge of the footage, both read as if they were the film's typography. The fix kept the rule rather than loosening it: the three capture-based figures became full-frame screen composites with a provenance plate (how the A3 film showed screenshots) and the take is typed as raw video. Second export: GATE T PASS, Gate V clean, 6 min 22 s.
+
 ## Human / AI contributions
 
 | | Human (me) | AI (Claude Code, `claude-fable-5-1`) |
@@ -102,4 +109,5 @@
 | Test report, this log, sources | reviewed; verdict lines are mine to fill | drafted from the session |
 | Language notes | wrote all eight answers | filled the line-number table, added and verified the line references; declined to write the answers |
 | Annotated generated shader | asked for it, reviewed it | wrote `a5/STANDARD-GENERATED-ANNOTATED.md` from Godot's file, labelled as such |
+| Film | chose register and length, approved script v4, will watch the export | script, stills, scripted-input capture, beat sheet, render, QC (`youtube/claude-liam-walker-ninja-firefighter-joe-a5-gamedev/`) |
 | Rejected | Claude declined to record agent-typed shader code as mine; I then typed it | — |

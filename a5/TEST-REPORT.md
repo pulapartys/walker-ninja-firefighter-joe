@@ -183,7 +183,8 @@
 
 ## Open items
 
-- In play (HUMAN CHECK): trigger hosing by normal play several times; boundaries hold.
-- `Engine.time_scale = 0.5` by eye.
-- The bag at (230, 126, 34) after a rescue at glow 1.0 (F5).
-- Hint experiment, textured shader, materials, language notes: not started.
+- `Engine.time_scale = 0.5` by eye (CHANGE-BRIEF R6, "eyes for time scale"): **not performed.** The ramps and the breath run on scaled `delta`, and the test proves the game-time arithmetic, but no one has watched the glow at half speed. Recorded as an open human check, not as done.
+
+## Screenshots (2026-10-29)
+
+- The two OS screenshots named above were whole-desktop captures; they are now cropped to the game window (888 × 545 of the original 2000 × 1250) so the evidence folder holds only the game. Nothing else about them changed; they were never used for pixel values.

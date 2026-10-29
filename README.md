@@ -1,6 +1,65 @@
 # walker-ninja-firefighter-joe
 
-My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props).
+My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props), **`a5`** (two hand-written shaders, their materials, and the Godot shading language).
+
+## Assignment 5 — shaders, materials, and the Godot shading language
+
+Two shaders I typed by hand, and the materials that use them. **Extinguisho glows pale blue while he hoses** (a `canvas_item` shader on his sprite, driven from the game's `player.hosing` state by a small script Claude Code wrote), and the **A3 hydrant gets a real surface** (a `spatial` shader that reads Poly Haven's rusty-metal colour, roughness and normal maps, with two materials: freshly painted and rusty). A third small shader is the **hint experiment** (one grey strip sampled as colour and as data), and a fourth is Godot's own, generated from a StandardMaterial3D, which I read and annotated.
+
+**Docs:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (v1 committed before any shader or prompt; Revisions 1–4) · [CLAUDE.md](CLAUDE.md) (agent draft, then my review) · [`a5/`](a5/): [TEST-REPORT](a5/TEST-REPORT.md) · [LANGUAGE-NOTES](a5/LANGUAGE-NOTES.md) · [STANDARD-GENERATED-ANNOTATED](a5/STANDARD-GENERATED-ANNOTATED.md) · [FRICTIONAL](a5/FRICTIONAL.md) · [SOURCES](a5/SOURCES.md) · evidence (captures, mutation logs, playtest screenshots) in `a5/evidence/`, prompts in `a5/prompts/`, `claude -p` transcripts in `a5/sessions/` · [`godot/MATERIALS.md`](godot/MATERIALS.md) (the audit) · texture credits in [`godot/art/textures/rusty_metal_sheet/ATTRIBUTION.md`](godot/art/textures/rusty_metal_sheet/ATTRIBUTION.md).
+
+**Versions:** Godot 4.7.2 stable, GL Compatibility renderer · macOS 26.6.2 (Apple M1) · Claude Code 2.1.285 (`claude-fable-5-1`) for the driver, tests, audit and film.
+
+### What this assignment added
+
+| Path | What |
+|---|---|
+| `godot/shaders/hose_glow.gdshader` | **mine**, 8 lines: `glow` (float, `hint_range`) and `glow_color` (`source_color`); the colour line `COLOR.rgb = mix(COLOR.rgb, glow_color.rgb, glow);` |
+| `godot/features/player/hose_glow.gd` (+ 2-line hook in `player.gd`) | the driver (agent): one `ShaderMaterial` on the sprite; `glow` ramps 0 → band in 0.25 s, breathes 0.4–0.8 at 1 s while hosing, ramps to 0 in 0.25 s after; scaled `delta`, never writes game state |
+| `godot/shaders/hydrant_surface.gdshader` | **mine**, 25 lines: `albedo_tex : source_color`, `rough_tex : hint_default_white`, `normal_tex : hint_normal`; five dials in `paint` and `surface` groups |
+| `godot/materials/hydrant_fresh.tres`, `hydrant_rusty.tres` | two materials, one shader: rust 0.1 / roughness 0.7 vs 0.9 / 1.4; fresh bound through the glb importer's Use External, rusty as a surface override on a second hydrant in `props_room.tscn` |
+| `godot/art/textures/rusty_metal_sheet/` | Poly Haven *Rusty Metal Sheet* (Amal Kumar, CC0), `diff` / `rough` / `nor_gl` bound, `nor_dx` for calibration only; explicit `.import` settings; `ATTRIBUTION.md` |
+| `godot/shaders/hint_experiment.gdshader`, `materials/hint_as_*.tres`, `scenes3d/hint_experiment.tscn`, `tests/write_grey_strip.gd`, `art/hint/grey_3x1.png` | **mine** (the shader): the hint experiment, Linear tonemap at exposure 1.0 |
+| `godot/shaders/standard_generated.gdshader`, `scenes3d/scratch_standard.tscn` | Godot's generated shader from a converted StandardMaterial3D; nothing in the game uses it |
+| `godot/tests/test_hose_glow.gd` | agent: 15 checks through real input events at 30 / 60 / 144 fps |
+| `godot/tests/test_materials.gd`, `normal_map_check.gd`, `calibrate_normal_maps.gd` | agent audit test (35 checks), the assignment's curl check, its calibration on the GL / DX pair |
+| `godot/tests/capture_glow.gd`, `capture_hint.gd`, `capture_hydrant.gd` | windowed in-engine captures (viewport reads) behind every pixel value in TEST-REPORT |
+| `scripts/run-test.sh` | the test wrapper (timeout, pinned fps, log, fails on SHADER / SCRIPT ERROR) |
+
+### Run the tests
+
+```
+# from the repository root; Godot 4.7 on PATH as `godot` (macOS: ~/Downloads/Godot.app/Contents/MacOS/Godot)
+godot --headless --path godot --import                      # once, after cloning
+./scripts/run-test.sh test_hose_glow.gd 30                  # 15 checks; also at 60 and 144
+./scripts/run-test.sh test_hose_glow.gd 60
+./scripts/run-test.sh test_hose_glow.gd 144
+./scripts/run-test.sh test_materials.gd 60                  # 35 checks
+./scripts/run-test.sh test_game.gd 60                       # A2 baseline: 41 checks
+./scripts/run-test.sh test_keyboard.gd 60                   # 14
+./scripts/run-test.sh test_audio.gd 60                      # 12 / 14 with the fps pin (TEST-REPORT baseline explains the two)
+./scripts/run-test.sh check_props.gd 60                     # A3: RESULT: PASS
+```
+
+Logs land in `logs/`. **Play it:** `godot --path godot`; W next to the big fire starts the water and the glow. **See the hydrants:** open `godot/project.godot` in the editor and run `scenes3d/props_room.tscn`; the hint experiment is `scenes3d/hint_experiment.tscn`.
+
+### Known limitations
+
+- Under this project's **GL Compatibility** renderer the hint experiment's two quads are identical: 3D is shaded in sRGB space, so `source_color` changes nothing on screen here. The hint is still required and the prediction for Forward+/Mobile stands (TEST-REPORT).
+- The **roughness and normal-strength sliders show no visible difference** under the props room's single sun; the sampled pixel moves 1–3 levels. A second light would be the next experiment.
+- The hydrant mesh is the basic A3 one; "improve the structure of the hydrant" is my next step, outside this assignment (the A3 model files must not change).
+- The glow is on the sprite only; the code-drawn rescue bag stays orange (checked by a controlled capture, since rescues come after the hose in play).
+- `Engine.time_scale = 0.5` by eye is an **open** human check (TEST-REPORT Open items).
+- Headless tests prove parse, uniform names and types, timing and material wiring; every look is a human check in TEST-REPORT.
+
+### Film
+
+Brutalist `godot-gamedev` explainer, `walker` mode, native 4K, 6 min 22 s, 32 MB, narrated by Liam: *Extinguisho's Hand-Written Shaders*. Source shown: revision `e8c2a30` (no file under `godot/` changed after it).
+
+- **Link (Northeastern SharePoint):** _to be added when uploaded_
+- **File:** `claude-liam-walker-ninja-firefighter-joe-a5-gamedev.mp4`
+- **SHA-256:** `67d77d0a7632e78b341f2ee3e997df2f2e7bcf3e902dea5f263ee1bfc45a52da`
+- **Film source** (approved script, beat sheet, evidence ledger, capture and build scripts): [`youtube/claude-liam-walker-ninja-firefighter-joe-a5-gamedev/`](youtube/claude-liam-walker-ninja-firefighter-joe-a5-gamedev/). The MP4 and the Movie Maker AVI are not in git (course rule).
 
 ## Assignment 3 — first 3D assets
 

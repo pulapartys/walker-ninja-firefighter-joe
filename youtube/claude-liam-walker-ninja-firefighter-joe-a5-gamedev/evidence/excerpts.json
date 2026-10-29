@@ -1,0 +1,50 @@
+{
+  "excerpts": [
+    {
+      "beat_id": "B04",
+      "path": "shaders/hose_glow.gdshader",
+      "start_line": 1,
+      "end_line": 8,
+      "text": "shader_type canvas_item;\n\nuniform float glow : hint_range(0.0, 1.0) = 0.0;\nuniform vec4 glow_color : source_color = vec4(0.6, 0.85, 1.0, 1.0);\n\nvoid fragment() {\n      COLOR.rgb = mix(COLOR.rgb, glow_color.rgb, glow);\n}"
+    },
+    {
+      "beat_id": "B06",
+      "path": "features/player/hose_glow.gd",
+      "start_line": 28,
+      "end_line": 36,
+      "text": "\tvar target := 0.0\n\tif get_parent().hosing:\n\t\t# t = 0 on the first frame hosing is seen (target 0.6), then accumulates per frame.\n\t\ttarget = BREATH_CENTRE + BREATH_AMPLITUDE * sin(TAU * hose_time / BREATH_PERIOD)\n\t\those_time += delta\n\telse:\n\t\those_time = 0.0\n\tglow = move_toward(glow, target, delta / RAMP_SECONDS)\n\tmaterial.set_shader_parameter(PARAM, glow)"
+    },
+    {
+      "beat_id": "B09",
+      "path": "shaders/hydrant_surface.gdshader",
+      "start_line": 3,
+      "end_line": 16,
+      "text": "uniform sampler2D albedo_tex : source_color, filter_linear_mipmap;\nuniform sampler2D rough_tex : hint_default_white, filter_linear_mipmap;\nuniform sampler2D normal_tex : hint_normal, filter_linear_mipmap;\n\ngroup_uniforms paint;\nuniform vec4 paint_tint : source_color = vec4(0.75, 0.22, 0.17, 1.0);\nuniform float rust_amount : hint_range(0.0, 1.0) = 0.3;\ngroup_uniforms;\n\ngroup_uniforms surface;\nuniform float roughness_scale : hint_range(0.0, 2.0) = 1.0;\nuniform float normal_strength : hint_range(0.0, 2.0) = 1.0;\nuniform float uv_scale : hint_range(0.25, 8.0) = 2.0;\ngroup_uniforms;"
+    },
+    {
+      "beat_id": "B12",
+      "path": "shaders/hint_experiment.gdshader",
+      "start_line": 3,
+      "end_line": 12,
+      "text": "uniform sampler2D as_color : source_color, filter_nearest;\nuniform sampler2D as_data : filter_nearest;\nuniform bool use_color = false;\n\nvoid fragment() {\n      if (use_color) {\n              ALBEDO = texture(as_color, UV).rgb;\n      } else {\n              ALBEDO = texture(as_data, UV).rgb;\n      }"
+    }
+  ],
+  "pairs": [
+    [
+      "B04",
+      "B05"
+    ],
+    [
+      "B06",
+      "B07"
+    ],
+    [
+      "B09",
+      "B10"
+    ],
+    [
+      "B12",
+      "B13"
+    ]
+  ]
+}

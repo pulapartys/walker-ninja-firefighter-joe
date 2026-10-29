@@ -1,0 +1,48 @@
+[
+  {
+    "beat": "B02",
+    "take": "screen",
+    "source": "media/screens/game.png",
+    "source_sha256": "879c4d53878c7e95bf24584795c18f6a8b570a4bc226f04bd95bfd10e25b60e9",
+    "output_duration_s": 19.333333333333332,
+    "retimed": false,
+    "output_sha256": "5ce0b32089de689ecde6e341e1e1d7bef39679cb1181097e439f03a966990e91"
+  },
+  {
+    "beat": "B05",
+    "take": "screen",
+    "source": "media/screens/glow.png",
+    "source_sha256": "8f8d9a5a979b04fd209fd6558dcd1798cab93402b1a1f65b993d1d5f182a8a63",
+    "output_duration_s": 17.566666666666666,
+    "retimed": false,
+    "output_sha256": "72f7772f1bc7e1c2e08f91312dc370009cff021ae8dfd267cc6b6fbe1224b921"
+  },
+  {
+    "beat": "B07",
+    "take": "hose",
+    "played_s": 16.8,
+    "tail_hold_s": 4.3,
+    "output_duration_s": 21.1,
+    "retimed": false,
+    "source_sha256": "916c7b9618653212b3f200936ba4f5692d5b69f69c7b3e70a93428f92be72bd6",
+    "output_sha256": "2df3bc3d6262c0c92349e3ab1cfb4bc1d318577fa477e431097eb557d2d942ce"
+  },
+  {
+    "beat": "B10",
+    "take": "screen",
+    "source": "media/screens/sweep.png",
+    "source_sha256": "7442b4798680b469b7f5ed1534213a93004694c9117dcd0943674ef3300bc27c",
+    "output_duration_s": 20.766666666666666,
+    "retimed": false,
+    "output_sha256": "d591e9cd8ac65a1469ed58751940d0883cd0b22d5bf683bfabef5afca9c27b33"
+  },
+  {
+    "beat": "B11",
+    "take": "screen",
+    "source": "media/screens/two.png",
+    "source_sha256": "e8236409504fe522fcd210598bff91f01cf91feeda0f89e122ae5f88e3d623c1",
+    "output_duration_s": 20.0,
+    "retimed": false,
+    "output_sha256": "485e711946ea1571728ac24e1c41f40d6672410b50beb86240e6f3cfcaa280af"
+  }
+]

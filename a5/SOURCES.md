@@ -37,7 +37,8 @@ No agent session edited any file under `godot/shaders/` (`git diff --stat godot/
 | Claude Code | 2.1.285, model `claude-fable-5-1` (from the session transcripts) | the interactive session; three non-interactive `claude -p` runs with scoped tools (`a5/prompts/`, transcripts in `a5/sessions/`) |
 | GNU `timeout` (coreutils, Homebrew) | — | `scripts/run-test.sh` |
 | TextEdit (macOS) | — | typing the shaders |
-| Brutalist `godot-gamedev` skill, walker modifier | (version recorded in the film folder's SOURCES) | the explainer film |
+| Brutalist `godot-gamedev` skill, walker modifier | checkout `6a8380a` of github.com/nikbearbrown/brutalist.art (details in `youtube/claude-liam-walker-ninja-firefighter-joe-a5-gamedev/SOURCES.md`) | the explainer film |
+| Kokoro (`kokoro-onnx`, voice `am_onyx`, "Liam") | local, free, Apache-2.0 model | the film's narration |
 
 ## What AI contributed
 
@@ -48,6 +49,7 @@ No agent session edited any file under `godot/shaders/` (`git diff --stat godot/
 - **Capture and helper scripts:** `capture_glow.gd`, `capture_hint.gd`, `capture_hydrant.gd`, `write_grey_strip.gd`, `calibrate_normal_maps.gd`; `normal_map_check.gd` is the assignment's code, copied.
 - **Materials and scenes:** the four `.tres` materials, `hint_experiment.tscn`, the second hydrant and the Use External import setting.
 - **Docs:** drafts of CHANGE-BRIEF (from my decisions), TEST-REPORT, FRICTIONAL, this file, the film script and narration.
+- **Film:** the script (four drafts, the last approved by me), the evidence stills from the committed captures and logs, the scripted-input Movie Maker capture, the beat sheet, the render and its QC. Narration is Kokoro's Liam voice; no words in it are presented as spoken by me, and my quoted words are marked as mine.
 
 ## What I did
 

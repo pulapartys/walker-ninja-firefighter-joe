@@ -1,0 +1,1089 @@
+{
+  "metadata": {
+    "slug": "claude-liam-walker-ninja-firefighter-joe-a5-gamedev",
+    "title": "Extinguisho's Hand-Written Shaders",
+    "persona": "Liam",
+    "palette": "claude",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "fps": 30,
+    "width": 3840,
+    "height": 2160,
+    "aspect_ratio": "16:9",
+    "caption_policy": "no burned captions",
+    "fit": "pad",
+    "skill": "godot-gamedev",
+    "modifier": "walker",
+    "source_revision": "e8c2a30",
+    "human_review_approved": false,
+    "authorization": "Student's Assignment 5 explainer; script v4 approved by Sreeja; local 4K master for course submission; no publication.",
+    "build": {
+      "at": "2026-10-29T16:32:12",
+      "cut": "master",
+      "filled": 20,
+      "of": 20,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "heading": "The prompt",
+      "narration_text": "Please use Walker to turn my firefighter game's hosing state into a glow on the character, and give its hydrant a real surface. This is Liam, in for Bear. Assignment Five for C S Y E seventy-two seventy.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The prompt",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The prompt"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Please use Walker to convert my game design document\nabout a deadpan ninja firefighter into two hand-written shaders:\na glow while he hoses, and a textured hydrant.",
+            "topic": "Illustrative reconstruction, not a session transcript",
+            "segment": "Extinguisho's Hand-Written Shaders",
+            "greeting": "Hello",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 12.933333333333334
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-10-29T19:45:08.529388+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B00.wav",
+      "actual_duration_s": 12.933333333333334,
+      "render_duration_s": 12.933333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "heading": "What was built",
+      "narration_text": "Two hand-written shaders for a two-D Godot game. The idea underneath: a texture is not a picture the shader shows. It is a table of numbers the shader reads, and one word on the sampler decides whether those numbers are colour or data.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What was built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What was built"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Two hand-written shaders for a Godot game.\nA texture is a picture the shader shows.",
+            "triggerWords": "picture shows",
+            "replacementWords": "table reads",
+            "fontSize": 72,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "charMs": 55,
+            "jitter": 0,
+            "seed": "claude-liam-walker-ninja-firefighter-joe-a5-gamedev",
+            "face": "serif",
+            "align": "center",
+            "durationSeconds": 14.7
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-10-29T19:46:00.560345+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "audio_file": "audio/B01.wav",
+      "actual_duration_s": 14.7,
+      "render_duration_s": 14.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "heading": "The game, the state, the object",
+      "narration_text": "Extinguisho is Sreeja's deadpan ninja firefighter, Godot four point seven, Compatibility renderer. One state drives the effect: player dot hosing, true while the water runs on the fire that blocks the first survivor. The shader only reads it. The three-D object is the Assignment Three hydrant in the props room, because the game itself is two-D.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The game, the state, the object",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The game, the state, the object"
+          }
+        ],
+        "evidence_media": "media/B02.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "game.png",
+      "screen_title": "My screenshot of the game while hosing · engine capture of the two hydrants (viewport read)",
+      "screen_sub": "a5/evidence/playtest-hosing.png · a5/evidence/captures/hydrant/side_by_side.png",
+      "audio_file": "audio/B02.wav",
+      "actual_duration_s": 19.333333333333332,
+      "render_duration_s": 19.333333333333332,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (her screenshot of the game, an engine capture) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "heading": "The brief came first",
+      "narration_text": "Before any shader or any prompt, Sreeja committed a brief. It names the one line of shading language that makes the effect, two uniforms with type, hint and default, and rules a test can measure: a quarter-second ramp at any frame rate, a second W ignored, a fade from wherever the value is. Each rule says whether a test or her eyes will check it.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The brief came first",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The brief came first"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The brief came first",
+            "status": "CHANGE-BRIEF.md · v1 committed 2026-10-28 · before any shader or prompt",
+            "image": "B03-figure.png",
+            "imageLabel": "",
+            "source": "CHANGE-BRIEF.md · v1 committed 2026-10-28 · before any shader or prompt",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "CHANGE-BRIEF.md"
+              }
+            ],
+            "durationSeconds": 18.866666666666667
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-10-29T19:47:14.966019+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B03-figure.png"
+      },
+      "audio_file": "audio/B03.wav",
+      "actual_duration_s": 18.866666666666667,
+      "render_duration_s": 18.866666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "heading": "What a shader is",
+      "narration_text": "A shader is a small program the G P U runs for every pixel at once, and it remembers nothing between pixels. Sreeja typed these eight lines herself. Line three declares a dial called glow, with a range and a default. Line seven is the whole effect: slide this pixel's colour toward pale blue by however far the dial is turned. Alpha is untouched, so his outline keeps its shape.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What a shader is",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What a shader is"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "What a shader is",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "shaders/hose_glow.gdshader",
+            "source": "Godot editor reconstruction · exact source, revision e8c2a30 · next: the visible result",
+            "code": "shader_type canvas_item;\n\nuniform float glow : hint_range(0.0, 1.0) = 0.0;\nuniform vec4 glow_color : source_color = vec4(0.6, 0.85, 1.0, 1.0);\n\nvoid fragment() {\n      COLOR.rgb = mix(COLOR.rgb, glow_color.rgb, glow);\n}",
+            "startLine": 1,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Line 3",
+                "value": "the dial: float, 0–1, default 0"
+              },
+              {
+                "label": "Line 7",
+                "value": "the colour line from the brief"
+              }
+            ],
+            "output": [
+              "godot/shaders/hose_glow.gdshader lines 1–8"
+            ],
+            "cues": [],
+            "durationSeconds": 20.533333333333335
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-10-29T19:48:33.504052+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B04.wav",
+      "actual_duration_s": 20.533333333333335,
+      "render_duration_s": 20.533333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "heading": "The colour line, measured",
+      "narration_text": "From that one line, the brief worked out by hand what three named pixels should become. The engine captures, read from the viewport rather than screenshots, match within a few levels. Then glow set to two from code: the pixels overshoot to cyan. The range hint shapes the Inspector slider; it does not clamp what the game sets.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The colour line, measured",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The colour line, measured"
+          }
+        ],
+        "evidence_media": "media/B05.mp4"
+      },
+      "audio_file": "audio/B05.wav",
+      "actual_duration_s": 17.566666666666666,
+      "render_duration_s": 17.566666666666666,
+      "gameplay_take": "screen",
+      "screen_still": "glow.png",
+      "screen_title": "Engine captures · viewport reads, driver frozen · magnified 3×, pixels kept · predicted vs measured",
+      "screen_sub": "a5/evidence/captures/glow_*.png · CHANGE-BRIEF A4 · a5/TEST-REPORT.md",
+      "screen_card_below": true,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (her screenshot of the game, an engine capture) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "heading": "The driver",
+      "narration_text": "Claude Code wrote the driver, with the shader folder locked. One material per player, on the sprite only, so the rescue bag on his back stays orange. Each frame it reads hosing and picks a target: zero, or a gentle breath between point four and point eight, then moves toward it by the frame's delta, so the ramp takes the same game time at any frame rate. It never writes game state.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The driver",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The driver"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The driver",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/hose_glow.gd",
+            "source": "Godot editor reconstruction · exact source, revision e8c2a30 · next: the visible result",
+            "code": "\tvar target := 0.0\n\tif get_parent().hosing:\n\t\t# t = 0 on the first frame hosing is seen (target 0.6), then accumulates per frame.\n\t\ttarget = BREATH_CENTRE + BREATH_AMPLITUDE * sin(TAU * hose_time / BREATH_PERIOD)\n\t\those_time += delta\n\telse:\n\t\those_time = 0.0\n\tglow = move_toward(glow, target, delta / RAMP_SECONDS)\n\tmaterial.set_shader_parameter(PARAM, glow)",
+            "startLine": 28,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Reads",
+                "value": "player.hosing (never writes it)"
+              },
+              {
+                "label": "Line 35",
+                "value": "move_toward by delta / 0.25 s"
+              }
+            ],
+            "output": [
+              "godot/features/player/hose_glow.gd lines 28–36"
+            ],
+            "cues": [],
+            "durationSeconds": 19.866666666666667
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-10-29T19:51:15.659060+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B06.wav",
+      "actual_duration_s": 19.866666666666667,
+      "render_duration_s": 19.866666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "heading": "In play, and her revision",
+      "narration_text": "The running game, recorded by Movie Maker with scripted key presses, labelled as such. W at the fire: the water starts and he brightens into a pale blue breath, the suit still visible at the low end. When the water stops, a quarter-second fade. The breath is her revision: at a held full glow she called him a block of ice blue, so revision three changed the number the game feeds the dial. The shader did not change.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "VIDEO",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "In play, and her revision",
+        "show": [
+          {
+            "at": "beat",
+            "event": "In play, and her revision"
+          }
+        ],
+        "evidence_media": "media/B07.mp4"
+      },
+      "gameplay_take": "hose",
+      "audio_file": "audio/B07.wav",
+      "actual_duration_s": 21.1,
+      "render_duration_s": 21.1,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / held-frame plate",
+            "box": [
+              0.06,
+              0.194,
+              0.94,
+              0.301
+            ]
+          }
+        ],
+        "contrast_reason": "The game's sky and street are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "heading": "Textures as information",
+      "narration_text": "Three textures from Poly Haven, C C zero, by Amal Kumar, with source, licence and date in a credits file beside them. The colour map is a photo of rusting steel. The roughness map and the normal map look like pictures too, but they are tables: how matte each spot is, which way it slopes. Import settings set by hand, not left on Detect, and the OpenGL normal map, the convention Godot expects.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Textures as information",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Textures as information"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Textures as information",
+            "status": "The real files · godot/art/textures/rusty_metal_sheet/ · ATTRIBUTION.md",
+            "image": "B08-figure.png",
+            "imageLabel": "",
+            "source": "The real files · godot/art/textures/rusty_metal_sheet/ · ATTRIBUTION.md · .import files",
+            "cards": [
+              {
+                "label": "1",
+                "text": "diff: colour (source_color)"
+              },
+              {
+                "label": "2",
+                "text": "rough: data, near white = matte"
+              },
+              {
+                "label": "3",
+                "text": "nor_gl: data, slopes as colour"
+              }
+            ],
+            "durationSeconds": 21.7
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-10-29T19:53:05.706296+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B08-figure.png"
+      },
+      "audio_file": "audio/B08.wav",
+      "actual_duration_s": 21.7,
+      "render_duration_s": 21.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "heading": "The textured shader",
+      "narration_text": "Her spatial shader. Line three samples the photo as colour, with source colour. Lines four and five have no such hint: the roughness and normal maps are read exactly as stored. That one word is the difference between a picture and information. Below, five dials with ranges and defaults in two Inspector groups, paint and surface; the fragment function below them mixes paint and rust and hands roughness and normal to Godot's lighting.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The textured shader",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The textured shader"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The textured shader",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "shaders/hydrant_surface.gdshader",
+            "source": "Godot editor reconstruction · exact source, revision e8c2a30 · next: the visible result",
+            "code": "uniform sampler2D albedo_tex : source_color, filter_linear_mipmap;\nuniform sampler2D rough_tex : hint_default_white, filter_linear_mipmap;\nuniform sampler2D normal_tex : hint_normal, filter_linear_mipmap;\n\ngroup_uniforms paint;\nuniform vec4 paint_tint : source_color = vec4(0.75, 0.22, 0.17, 1.0);\nuniform float rust_amount : hint_range(0.0, 1.0) = 0.3;\ngroup_uniforms;\n\ngroup_uniforms surface;\nuniform float roughness_scale : hint_range(0.0, 2.0) = 1.0;\nuniform float normal_strength : hint_range(0.0, 2.0) = 1.0;\nuniform float uv_scale : hint_range(0.25, 8.0) = 2.0;\ngroup_uniforms;",
+            "startLine": 3,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Line 3",
+                "value": "colour: source_color"
+              },
+              {
+                "label": "Lines 4–5",
+                "value": "data: read as stored"
+              }
+            ],
+            "output": [
+              "godot/shaders/hydrant_surface.gdshader lines 3–16"
+            ],
+            "cues": [],
+            "durationSeconds": 22.433333333333334
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-10-29T19:54:32.606617+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B09.wav",
+      "actual_duration_s": 22.433333333333334,
+      "render_duration_s": 22.433333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "heading": "The interface sweep",
+      "narration_text": "Every dial at its minimum, default and maximum, captured in the engine under the scene's single sun. Rust amount walks the body from painted red to the raw photo. U V scale goes from one big smear to a fine tile. Roughness and bump strength barely moved the sampled pixel, and by eye she saw no difference: wired, the test shows that, but this lighting does not show them. Recorded as found.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The interface sweep",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The interface sweep"
+          }
+        ],
+        "evidence_media": "media/B10.mp4"
+      },
+      "audio_file": "audio/B10.wav",
+      "actual_duration_s": 20.766666666666666,
+      "render_duration_s": 20.766666666666666,
+      "gameplay_take": "screen",
+      "screen_still": "sweep.png",
+      "screen_title": "Engine captures · the rusty hydrant at each dial's min / default / max · props_room Sun + ambient only",
+      "screen_sub": "a5/evidence/captures/hydrant/sweep_*.png · a5/TEST-REPORT.md",
+      "screen_card_below": true,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (her screenshot of the game, an engine capture) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "heading": "Two materials, one shader",
+      "narration_text": "Here is how a material differs from a shader. One shader; two resource files, each holding its own dial values and textures. Fresh is mostly paint and slightly glossy; rusty is mostly photo and matte. Edit one value in one file: one hydrant changes. Edit one line of the shader: both change. Her verdict: the rusty one reads real, the red one reads cartoon.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Two materials, one shader",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Two materials, one shader"
+          }
+        ],
+        "evidence_media": "media/B11.mp4"
+      },
+      "audio_file": "audio/B11.wav",
+      "actual_duration_s": 20.0,
+      "render_duration_s": 20.0,
+      "gameplay_take": "screen",
+      "screen_still": "two.png",
+      "screen_title": "Engine captures · rusty (left, x = −1.6) and fresh (right, x = −0.8) · one shader, two .tres files",
+      "screen_sub": "a5/evidence/captures/hydrant/ · godot/materials/hydrant_*.tres",
+      "screen_card_below": true,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (her screenshot of the game, an engine capture) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "heading": "The hint experiment",
+      "narration_text": "The experiment, in its own scene. A committed script writes a three-pixel grey strip. Two samplers bind that same file, one marked as colour, one not, and a switch picks which paints the quad. Two unshaded quads, a linear tonemap at exposure one. The brief predicted the data quad would come out lighter, if the renderer does its maths in linear light.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The hint experiment",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The hint experiment"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The hint experiment",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "shaders/hint_experiment.gdshader",
+            "source": "Godot editor reconstruction · exact source, revision e8c2a30 · next: the visible result",
+            "code": "uniform sampler2D as_color : source_color, filter_nearest;\nuniform sampler2D as_data : filter_nearest;\nuniform bool use_color = false;\n\nvoid fragment() {\n      if (use_color) {\n              ALBEDO = texture(as_color, UV).rgb;\n      } else {\n              ALBEDO = texture(as_data, UV).rgb;\n      }",
+            "startLine": 3,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Line 3 vs 4",
+                "value": "same file, one hint apart"
+              },
+              {
+                "label": "Scene",
+                "value": "Linear tonemap, exposure 1.0, unshaded"
+              }
+            ],
+            "output": [
+              "godot/shaders/hint_experiment.gdshader lines 3–12"
+            ],
+            "cues": [],
+            "durationSeconds": 18.4
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-10-29T19:58:55.676816+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B12.wav",
+      "actual_duration_s": 18.4,
+      "render_duration_s": 18.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "heading": "Predicted, measured",
+      "narration_text": "Measured: the two quads are identical. The prediction assumed Forward Plus. This project runs Compatibility, which shades in s R G B space: nothing is decoded going in or encoded coming out, so the hint changes nothing on screen here. The brief had this down as a predicted failure case: measure first, then explain.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Predicted, measured",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Predicted, measured"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Predicted, measured",
+            "status": "Engine capture · a5/evidence/captures/hint_experiment.png",
+            "image": "B13-figure.png",
+            "imageLabel": "",
+            "source": "Engine capture · a5/evidence/captures/hint_experiment.png · samples in capture_hint_output.jsonl",
+            "cards": [
+              {
+                "label": "1",
+                "text": "left: as colour (source_color) · right: as dat"
+              }
+            ],
+            "durationSeconds": 17.433333333333334
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-10-29T19:59:59.551894+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B13-figure.png"
+      },
+      "audio_file": "audio/B13.wav",
+      "actual_duration_s": 17.433333333333334,
+      "render_duration_s": 17.433333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "heading": "Godot's own shader",
+      "narration_text": "Godot can write a shader from a Standard Material; Sreeja converted one in the editor. Line seven: the albedo sampler, marked as colour, her line three. Line nineteen: the normal sampler, marked as data under a different hint name, her line five. This is what the Godot shading language is: G L S L with a shader type instead of main, named outputs like albedo and roughness, and hints that shape the Inspector.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Godot's own shader",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Godot's own shader"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Godot's own shader",
+            "status": "Exact lines from both files at revision e8c2a30",
+            "image": "B14-figure.png",
+            "imageLabel": "",
+            "source": "Exact lines from both files at revision e8c2a30 · standard_generated.gdshader (Godot) · hydrant_surface.gdshader (hers)",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Exact lines from both files at revision e8c2a3"
+              }
+            ],
+            "durationSeconds": 21.833333333333332
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-10-29T20:01:24.645076+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B14-figure.png"
+      },
+      "audio_file": "audio/B14.wav",
+      "actual_duration_s": 21.833333333333332,
+      "render_duration_s": 21.833333333333332,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "heading": "What the tests proved",
+      "narration_text": "The glow test presses W and R as real input and samples the dial every frame; fifteen checks at thirty, sixty and one forty-four. The material test, written after an audit she reviewed, pins shader paths, sampler hints and import settings, and passes from an empty cache. Three sabotages: a deleted semicolon, a renamed uniform, source colour removed. All three exit one. Proven: parse, names, timing, wiring. Not proven: a single pixel.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What the tests proved",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What the tests proved"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "What the tests proved",
+            "status": "Recorded headless output · logs/ and a5/evidence/mutations/ · nothing retyped",
+            "image": "B15-figure.png",
+            "imageLabel": "",
+            "source": "Recorded headless output · logs/ and a5/evidence/mutations/ · nothing retyped",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Recorded headless output"
+              }
+            ],
+            "durationSeconds": 23.866666666666667
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": "2026-10-29T20:02:58.151800+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B15-figure.png"
+      },
+      "audio_file": "audio/B15.wav",
+      "actual_duration_s": 23.866666666666667,
+      "render_duration_s": 23.866666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "heading": "What Claude got wrong",
+      "narration_text": "The agent's mistakes, caught in review. The capture script sampled sky twice. The audit claimed a colour conversion this renderer never performs, and quoted memory figures nobody measured; both corrected. The brief's own pause rule turned out unattainable; the test showed it, revision four says so. After every session, the shader folder's diff was empty.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What Claude got wrong",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What Claude got wrong"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "What Claude got wrong",
+            "status": "As recorded · a5/FRICTIONAL.md · godot/MATERIALS.md · CHANGE-BRIEF.md Revision 4",
+            "image": "B16-figure.png",
+            "imageLabel": "",
+            "source": "As recorded · a5/FRICTIONAL.md · godot/MATERIALS.md · CHANGE-BRIEF.md Revision 4",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "As recorded"
+              }
+            ],
+            "durationSeconds": 19.033333333333335
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": "2026-10-29T20:04:12.699357+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B16-figure.png"
+      },
+      "audio_file": "audio/B16.wav",
+      "actual_duration_s": 19.033333333333335,
+      "render_duration_s": 19.033333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "heading": "Verdict",
+      "narration_text": "The verdict. Verified: three hand-typed shaders parse and match their spec; the pixel predictions hold; the driver at three frame rates through real events; three mutations fail; the materials survive a reimport. Uncertain: whether roughness above one is clamped, and whether a source-colour uniform converts under Compatibility. Next, in her words: a better hydrant mesh. Sreeja specified, typed, looked and decided; Claude Code drafted, drove, tested and audited. Source revision on screen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Verdict",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Verdict"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Assignment 5 · verdict",
+            "artifactHeading": "Two shaders, predicted and measured",
+            "artifactLines": [
+              "Verified: 3 shaders parse · colour line = spec · pixels within tolerance · 15/15 at 30/60/144 · 3 mutations exit 1 · materials survive reimport",
+              "Uncertain: ROUGHNESS > 1 clamped? · source_color uniform under Compatibility?",
+              "Claude got wrong: sky samples ×2 · unverified linearisation claim · computed VRAM figures",
+              "Next: a better hydrant mesh (my words)",
+              "Sreeja: specified, typed, looked, decided · Claude Code: drafted, drove, tested, audited",
+              "Source revision e8c2a30"
+            ],
+            "durationSeconds": 28.1
+          },
+          "rendered": {
+            "out": "media/B17.mp4",
+            "at": "2026-10-29T20:06:01.049853+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B17.wav",
+      "actual_duration_s": 28.1,
+      "render_duration_s": 28.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B17.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "heading": "Your turn",
+      "narration_text": "Your turn. Read my change brief. The roughness and normal-strength sliders showed nothing under one sun. Plan a second light for the props room, predict which hydrant pixel changes most, and name the assertion in test materials that must not change. One bounded change, one prediction, one test kept honest. This has been Liam, in for Bear.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Your turn",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Your turn"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Read my CHANGE-BRIEF. The roughness and normal-strength sliders showed\nnothing under one sun. Plan a second light for the props room, predict\nwhich hydrant pixel changes most, and name the assertion in\ntest_materials.gd that must not change.",
+            "topic": "Your turn · one bounded change, one prediction, one test kept honest",
+            "segment": "Extinguisho's Hand-Written Shaders",
+            "greeting": "Your turn",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 18.266666666666666
+          },
+          "rendered": {
+            "out": "media/B18.mp4",
+            "at": "2026-10-29T20:07:04.079487+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B18.wav",
+      "actual_duration_s": 18.266666666666666,
+      "render_duration_s": 18.266666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B18.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-10-29T16:32:12"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "heading": "Outro",
+      "narration_text": "Extinguisho's Hand-Written Shaders. At Nik Bear Brown.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Outro",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Outro"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Extinguisho's Hand-Written Shaders",
+            "slug": "claude-liam-walker-ninja-firefighter-joe-a5-gamedev",
+            "durationSeconds": 4.833333333333333
+          },
+          "rendered": {
+            "out": "media/B19.mp4",
+            "at": "2026-10-29T20:07:25.243347+00:00"
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_hold_s": 1.0,
+      "audio_file": "audio/B19.wav",
+      "actual_duration_s": 4.833333333333333,
+      "render_duration_s": 4.833333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B19.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-10-29T16:32:12"
+      }
+    }
+  ]
+}
