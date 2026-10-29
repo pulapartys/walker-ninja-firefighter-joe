@@ -179,7 +179,7 @@
 - **Finding (agent, confirmed by me from the logs):** under the game's `set_paused()` the glow keeps breathing inside the band (0.667–0.8 over the 10 paused frames at 60 fps), because the driver's `_process` is not paused. The brief's "holds its value" wording was unattainable; **Revision 4** records it as accepted. The test asserts what is true: state PAUSED, `water_ticks` frozen, every paused sample in band.
 - **Mutations re-run against the 15-check test:** semicolon → `SHADER ERROR`, 3 failures, exit 1; rename → 4 failures, exit 1; restored, 15/0 (`a5/evidence/mutations/`).
 - **F5, the bag (controlled capture, since play cannot show it):** `capture_glow.gd -- bag` puts a rescued person in the bag as a fixture, freezes the driver and sets `glow` 0 / 0.5 / 1.0 / 2.0: the bag pixel is **(230, 126, 34)** at all four values while P1 beside it goes (227, 29, 25) → (190, 123, 140) → (153, 217, 255) → (79, 255, 255). The material is on the sprite only. Captures `a5/evidence/captures/bag_glow_*.png`, samples in `capture_glow_bag_output.jsonl`.
-- **In play, breathing (HUMAN CHECK):** _pending: my words after replaying._
+- **In play, breathing (HUMAN CHECK, 2026-10-29, my words):** "looks good, the blue breathes and this is better than a block of ice blue". Judged in the real game window after `20fe512`.
 
 ## Open items
 
