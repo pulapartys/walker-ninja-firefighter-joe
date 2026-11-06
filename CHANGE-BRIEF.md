@@ -1,224 +1,257 @@
-# CHANGE-BRIEF — Assignment 5: hose glow shader, textured hydrant
+# CHANGE-BRIEF — Assignment 6: jump puff and hose steam (particle effects)
 
-> v1 · 2026-10-28 · written and committed before any shader exists and before the first Claude Code prompt of this assignment. Later revisions are added at the bottom with a date; the v1 text is not rewritten.
+> v1 · 2026-11-06 · written and committed before the first Claude Code prompt of this assignment and before any effect exists. Later revisions are added under **Revisions** with a date; the v1 text is not rewritten. The Assignment 5 brief is kept at tag `a5`.
 >
-> Game: **walker-ninja-firefighter-joe** (Extinguisho, a deadpan ninja firefighter; 2D, Godot 4.7.2, GL Compatibility). The 2D shader goes on Extinguisho in the game. The 3D parts go in the A3 props room (`godot/scenes3d/props_room.tscn`), because the game is 2D.
+> Game: **walker-ninja-firefighter-joe** (Extinguisho, a deadpan ninja firefighter; 2D, Godot 4.7.2, GL Compatibility, 640 × 360 viewport shown at 1280 × 720). Both effects are 2D and appear in the game itself.
 >
-> How this brief was written: I made every decision in it (the state, the glow colour, the timing shape, the hydrant, the textures, how the two materials differ). Claude Code read my game's code for me, listed options, and typed this document from my decisions; I reviewed it. The pixel and hint-experiment arithmetic is shown step by step so I can redo it by hand and be asked about it.
+> How this brief was written: I chose both effects, their jobs, the node types, the layers and the pause behaviour. Claude Code read my game's code, measured the background art, checked every property name below against Godot 4.7.2 with a headless probe, and typed sections A and B from my decisions; I reviewed them. Sections P (predicted failures), C (price and budget) and Q (short answers) are mine, in my own words.
+
+## What limits the choices (facts from my project)
+
+- **Renderer: GL Compatibility** (`godot/project.godot`). Godot's renderer comparison lists particle trails and 2D particle SDF collision as unsupported there, so neither effect uses them. I am not switching renderer, because that would change how my A5 shaders look.
+- **Visual Profiler:** the Godot docs say it is not supported with the Compatibility renderer on macOS. The GPU price is therefore taken by running the game once with a command-line renderer override to Mobile (Metal), and the report says it measured a different renderer from the one the game ships with.
+- **The game's pause is not a tree pause.** `session.gd` `set_paused()` changes `state` and disables the player; it never sets `get_tree().paused`. Esc therefore stops the game clock (`water_ticks`, `extinguish_ticks`) but not `_process` or particle simulation.
+- **Jump timing** (`godot/features/player/tuning.gd`): `jump_velocity` −320, `gravity` 800, so a jump on flat ground is 0.8 s in the air, and a jump onto a ledge 40 px higher lands after about 0.65 s. With the 6-tick jump buffer the next jump can start on the landing tick.
+- **Background value, measured** (relative luminance from the sRGB values, 0 = black, 1 = white; `env_bg.png` resized to the 640 × 360 viewport): tan building wall with its fire tint 0.55; ledge 0.45; sky behind the blocking fire 0.46 on average (0.25–0.69); lightest sky block 0.66; darkest skyline block 0.10 (lower left, street level). Contrast ratios below use the WCAG formula `(L1 + 0.05) / (L2 + 0.05)`.
 
 ---
 
-## Part A — the shader from code: Extinguisho glows while hosing
+## Effect A — jump puff
 
-### A1. The state
+### A1. The job
 
-- **What it communicates:** the water is on. Extinguisho is hosing the fire that blocks the first survivor. Today the only signs are the water sprite and the hose pose; his body does not react. A pale blue-white glow on him says "water is pouring, keep holding position" and makes the 5 seconds of standing still read as an action, not a freeze.
-- **Why the player needs it:** hosing costs about 4 of the 40 seconds. The player has to decide to stop and wait. A visible change on the character confirms the tap on W registered and the wait is working.
-- **Script and variable that hold it:** `godot/game/session.gd` sets `water_ticks = EXTINGUISH_TICKS + 60` (= 300) when W is pressed in range of the blocking fire, counts it down by one per physics tick in `_physics_process`, and writes `player.hosing = water_ticks > 0` every physics frame. The driver reads **`player.hosing`** (a bool on `godot/features/player/player.gd`). It never writes it.
-- **How the object is drawn:** Extinguisho is one `Sprite2D` (`player.sprite`) inside a holder `Node2D` (`player.art`) created in `player.gd` `_ready()`. The sprite's texture is swapped per pose (`show_pose`); while hosing it is `res://art/character/hose.png` (126 × 84 texels), drawn at scale 0.5, so 63 × 42 game px in the 640 × 360 viewport, which the window shows at 2× (1280 × 720). One texel is one window pixel.
+- **What it tells the player:** "your jump registered, and this is where you left the ground." It is a ninja's vanishing puff at his feet. The jump sound already confirms the press; the puff adds the place, which matters on the short rooftop ledges where a missed take-off means a fall.
+- **Event:** the `jumped` signal on `godot/features/player/player.gd`, emitted once per real jump inside `_physics_process` (after `velocity.y = tuning.jump_velocity`, before `move_and_slide()`). Position: the player's `global_position` at that emit, which is his feet (the collision box's bottom centre is the origin).
+- **It repeats:** about 13 jumps on a clean run (`test_audio` route log), more on a messy one.
 
-### A2. The effect specification
+### A2. Intent
 
-**The shader**
+- **Timing phases:** frame one is the strongest (a white flash disc and a tight cluster of puff balls at his feet). Outward phase, 0–0.2 s: the puff spreads sideways and a little upward, the dark specks kick up. Dissipation, 0.2–0.9 s: the puff stops spreading, grows, greys and fades; specks fall and are gone by 0.45 s. Faint by 0.6 s, gone by 0.9 s.
+- **Contrast against the real background:** the jump happens in front of the tan walls (0.55), the ledges (0.45), the sky, and the dark street-level skyline (0.10). No single value reads on all of them: white puff (0.91) is 6.5 : 1 on the dark skyline but only 1.6 : 1 on the wall; dark ink specks (`#25354a`, 0.03) are 7.1 : 1 on the wall and 8.4 : 1 on the light sky but 1.8 : 1 on the dark skyline. So the effect is two values on purpose: the white layers carry it on dark art, the dark specks carry it on light art.
+- **Scale against the character:** his collision box is 20 × 40 game px (40 × 80 window px). The puff is about 1.5–2× his width (30–40 game px across) and stays below his knees; specks rise no more than half his height.
+- **Change over life:** puff balls grow (0.6× → 1.3×), go from near-white to blue-grey, and fade from 0.95 to 0 alpha; the flash shrinks and fades in 0.12 s; specks keep their colour and fade out.
+- **Variation:** random speed, direction within the spread, size, rotation and spin, a ±0.02 hue shift, and 20–25 % lifetime randomness, so two puffs never look stamped.
+- **Layers (three emitters under one root):**
+  - `Flash` — one white disc, the strong first frame.
+  - `Puff` — ten soft balls, the body of the effect.
+  - `Specks` — six dark dust bits, the value contrast on light walls and sky.
 
-| | |
+### A3. Settings
+
+**Node type: `CPUParticles2D` for all three emitters, under a `Node2D` root.** Why: the puff needs only basic emission, velocity, damping, gravity and curves, which CPU nodes have, and pricing one CPU effect next to one GPU effect (B) shows what each instrument measures. Scene file: `godot/effects/jump_puff.tscn` (root `JumpPuff`, children `Flash`, `Puff`, `Specks`).
+
+| Setting | `Flash` | `Puff` | `Specks` |
+|---|---|---|---|
+| `amount` | 1 | 10 | 6 |
+| `one_shot` | true | true | true |
+| `explosiveness` | 1.0 | 1.0 | 1.0 |
+| `lifetime` | 0.12 | 0.9 | 0.45 |
+| `lifetime_randomness` | 0.0 | 0.2 | 0.25 |
+| `emission_shape` | point (0) | sphere (1), `emission_sphere_radius` 3.0 | sphere (1), `emission_sphere_radius` 4.0 |
+| `direction` | — | (0, −1) | (0, −1) |
+| `spread` | — | 80.0 | 60.0 |
+| `initial_velocity_min` / `_max` | 0 / 0 | 50 / 90 | 80 / 150 |
+| `gravity` | (0, 0) | (0, −20) | (0, 600) |
+| `damping_min` / `_max` | 0 / 0 | 250 / 300 | 0 / 0 |
+| `angle_min` / `_max` | 0 / 0 | 0 / 360 | 0 / 0 |
+| `angular_velocity_min` / `_max` | 0 / 0 | −90 / 90 | 0 / 0 |
+| `scale_amount_min` / `_max` | 0.6 / 0.6 | 0.35 / 0.55 | 0.08 / 0.14 |
+| `scale_amount_curve` | 1.0 → 0.3 | 0.6 at 0, 1.0 at 0.3, 1.3 at 1.0 | none |
+| `color_ramp` | white α 0.9 → white α 0 | (0.97, 0.96, 0.94, 0.95) at 0 → (0.85, 0.85, 0.88, 0.7) at 0.35 → (0.60, 0.62, 0.68, 0) at 1 | `#25354a` α 1 → α 0 |
+| `hue_variation_min` / `_max` | 0 / 0 | −0.02 / 0.02 | 0 / 0 |
+| `local_coords` | false | false | false |
+
+- **Damping check:** at 50–90 px/s and 250–300 px/s² the balls travel 4–16 px and stop within 0.17–0.36 s, which is the outward phase.
+- **Draw:** every emitter uses one `GradientTexture2D` defined in the scene file: 32 × 32, `fill` radial, `fill_from` (0.5, 0.5), `fill_to` (1.0, 0.5) so the disc reaches transparent at the edge (not the corners), gradient white α 1 → white α 0. No draw material: default mix blend. Mix, not additive, because additive only brightens and most of the background is already light. No image asset, so nothing to license; the texture's definition is committed in the scene.
+- **`local_coords` false, and why:** the puff belongs to the place he jumped from. Its root is added to the level node, not to the player, so it would stay put either way; false keeps particles in world space even if a future change parents it to something that moves.
+- **No `visibility_rect`** (CPU nodes don't have one). **No `preprocess`** (0): a puff must never exist before a jump.
+- **Preview only:** the preview scene sets `use_fixed_seed = true` and a `seed` on its own instance; the effect scene never does.
+
+### A4. Observable rules
+
+| # | Rule |
 |---|---|
-| Path | `godot/shaders/hose_glow.gdshader` |
-| `shader_type` | `canvas_item` |
-| `render_mode` | none (default blend, default light mode) |
-| Attached to | a `ShaderMaterial` on `player.sprite` (the driver creates it; no `.tres` needed for a 2D sprite) |
-| Textures of its own | none. The pose image arrives in `COLOR` through the built-in sampler. |
+| A-R1 | Every `jumped` emission creates one new `JumpPuff` whose root `global_position` equals the player's `global_position` at that emit. |
+| A-R2 | Never otherwise: not on scene load, not on start or R, not on landing, not when walking off a ledge, not while the game is in MENU, PAUSED, DYING or COMPLETE (no jump can happen there). |
+| A-R3 | **Retrigger rule: overlap.** A second jump while an earlier puff is alive adds a second, full puff; the first is not cut off or restarted. In play at most **2** are alive at once (puff life ≤ 0.9 s; fastest jump-to-jump about 0.65 s). Tested with two jumps inside 0.9 s. |
+| A-R4 | A puff stays where it was made: moving the player afterwards does not move it. |
+| A-R5 | Each `JumpPuff` frees itself when all three emitters have finished, within 0.9 s plus one frame of its jump. |
+| A-R6 | **Freed parent:** the puff's parent is the level node (`session.gd`'s `WalkerJumpman`), which lives for the whole session. The player is never freed (`restart_attempt()` teleports him), so nothing the puff could follow is freed on a jump. A puff alive during R finishes where it is. |
+| A-R7 | Tree paused (`get_tree().paused = true`): puffs in flight freeze in place and stay drawn. Game pause (Esc): no new jumps; puffs in flight finish. |
 
-**Uniforms**
+### A5. Frame strip (fixture)
 
-| Name | Type | Hint | Default | Set by |
-|---|---|---|---|---|
-| `glow` | `float` | `hint_range(0.0, 1.0)` | `0.0` | the driver, every frame, from `player.hosing` (see A3) |
-| `glow_color` | `vec4` | `source_color` | `vec4(0.6, 0.85, 1.0, 1.0)` | nobody at runtime; the Inspector/material default (pale blue-white) |
+- **Preview scene:** `godot/previews/jump_puff_preview.tscn`, at in-game camera scale over the real level art of building B1's rooftop: the ledge at x 1060–1150, y 280, with the tan wall behind and sky above (the hardest background for the white layers). The puff is triggered at (1105, 280).
+- **Trigger at frame 10**; with the retrigger export on, again at **frame 25** (0.5 s later, inside one lifetime).
+- **Capture:** 30 fps. Frames to read and what each should show:
 
-**The colour line** (the one line inside `fragment()` that changes the colour; the shader is written from it and every prediction below is computed from it):
-
-```glsl
-COLOR.rgb = mix(COLOR.rgb, glow_color.rgb, glow);
-```
-
-`COLOR.a` is left alone, so transparent texels stay transparent and the outline keeps its shape. At `glow = 0` the line is a no-op (the sprite looks as it does today). At `glow = 1` every opaque pixel is the glow colour.
-
-### A3. Observable rules
-
-| # | Rule | Value |
+| Frame | Time after trigger | Should show |
 |---|---|---|
-| R1 | `glow` when the state begins | rises from 0.0 and reaches **1.0** |
-| R2 | `glow` when the state ends | falls and reaches **0.0** |
-| R3 | How long a change takes | **0.25 s** up (0 → 1) and **0.25 s** down (1 → 0), tolerance one frame period. The hold in between is the game's own 5.0 s (`water_ticks` 300 at 60 physics ticks/s), not the driver's. |
-| R4 | Same game time at 30, 60 and 144 fps | yes. The driver advances `glow` by `delta / 0.25` per `_process` frame, so the ramp takes 0.25 s of game time whatever the frame rate. |
-| R5 | State begins again mid-transition | **ignore**. `session.gd` only starts hosing when `extinguish_ticks == 0` and the fire is still active, and the fire is out before the water stops, so a second W during the glow does nothing to the state and therefore nothing to `glow`. The test presses W again mid-glow and checks that nothing restarts. |
-| R6 | Scaled or unscaled time; paused | **scaled**. The hold is physics ticks (frozen when the tree pauses, slowed by `Engine.time_scale`), and the ramps use `_process` `delta`, which is also scaled. While the tree is paused `glow` keeps its value (pause-menu shows him glowing if he was). |
-| R7 | State ends before a transition finishes | the down-ramp starts from wherever `glow` is. On a fire death or R during hosing, `session.start_session()` resets `water_ticks` to 0 the same frame, `player.hosing` goes false, and `glow` ramps down from its current value over at most 0.25 s. It never jumps. |
-| R8 | Several instances | there is exactly one Extinguisho. The material is created per player instance in the driver, not shared from a `.tres`, so a second instance would get its own `glow`. |
-
-**Boundaries.** Collision, movement, input, the state machine and its timings (`EXTINGUISH_TICKS`, the +60 linger, `FIRE_DEATH_HOLD`), `session.gd`'s game logic, the existing tests and their expectations, the HUD, the fires, the survivors and the background stay unchanged. The driver only reads `player.hosing` and only writes the shader parameter. Presentation reads game state; it never writes it.
-
-**Evidence split**
-
-| Rule | Headless test or eyes | How |
-|---|---|---|
-| Shader parses; uniform names and types | test | `get_shader_uniform_list()` on the loaded shader must list `glow` (float) and `glow_color` (vec4); defaults read from the source text |
-| R1, R2 | test | a sampler node with high `process_priority` reads `glow` every frame through a real W press in range of the fire; first value 0, max 1.0, last value 0 |
-| R3, R4 | test at 30, 60, 144 fps | frames from first non-zero to 1.0 × frame period = 0.25 s ± one frame, at all three rates |
-| R5 | test | press W again while `glow` is 1; no restart, `water_ticks` not reset |
-| R6 | test for pause (value frozen); eyes for time scale | pause via `set_paused(true)` in the test and read `glow` across frames; `Engine.time_scale = 0.5` by eye, the glow should take 0.5 s to appear |
-| R7 | test | press R mid-hose; `glow` decreases monotonically to 0, never jumps |
-| R8 | eyes / reading | one player; noted, not tested |
-| The look (colour, strength, whether it reads as water) | eyes only | the controlled captures below and normal play |
-
-### A4. Controlled inputs and predicted pixel values
-
-Three uniform values: **0.0, 0.5, 1.0**. The glow colour as 8-bit sRGB: 0.6 → 153, 0.85 → 217, 1.0 → 255, i.e. **(153, 217, 255)**.
-
-Named pixels, given as texel (x, y) in `hose.png`, facing right (the capture maps a texel to window pixel `(2·player.x + x − 58.8, 2·player.y + y − 84)` from the anchor in `anchors.json`):
-
-| Pixel | Texel (x, y) | Where on him | File RGB at glow 0 |
-|---|---|---|---|
-| P1 | (77, 49) | the red heat suit, chest | (229, 29, 25) |
-| P2 | (51, 26) | the dark red of the suit in shadow, upper arm | (141, 14, 9) |
-| P3 | (63, 6) | the yellow helmet, crown | (210, 134, 47) |
-
-The art is painted, not flat: the 3 × 3 neighbourhood varies by up to 12 levels around P1, 17 around P2 and 68 around P3. The sprite sits at a fractional offset (anchor x = 58.8), so the on-screen pixel is a linear blend of neighbours. Expected tolerance: ±3 levels at P1, ±5 at P2, ±15 at P3. P3 is kept on purpose as the "hard" pixel; P1 and P2 carry the check.
-
-Predictions from `mix(a, b, t) = a + (b − a)·t`, computed on the 8-bit values as written (the project does not enable `rendering/viewport/hdr_2d`, so 2D blending happens on sRGB values and no linearization applies):
-
-| Pixel | glow 0.0 | glow 0.5 | glow 1.0 |
-|---|---|---|---|
-| P1 (229, 29, 25) | (229, 29, 25) | ((229+153)/2, (29+217)/2, (25+255)/2) = **(191, 123, 140)** | **(153, 217, 255)** |
-| P2 (141, 14, 9) | (141, 14, 9) | ((141+153)/2, (14+217)/2, (9+255)/2) = **(147, 116, 132)** | **(153, 217, 255)** |
-| P3 (210, 134, 47) | (210, 134, 47) | ((210+153)/2, (134+217)/2, (47+255)/2) = **(182, 176, 151)** | **(153, 217, 255)** |
-
-**Lighting:** none. A `canvas_item` shader with no lights in the scene is unlit, so the output is exactly the arithmetic above. The effect is not lit by the scene.
-
-**Contrast against the background.** Where he hoses, the sky behind his head is about (153, 162, 177) (`env_bg.png` texel (440, 400); the background is a fixed 640 × 360 `TextureRect` on a `CanvasLayer`). WCAG relative luminance, sRGB linearized: sky L ≈ 0.358; P1 at glow 0 L ≈ 0.176, at glow 0.5 L ≈ 0.271, at glow 1.0 L ≈ 0.636. Contrast ratio (L₁ + 0.05)/(L₂ + 0.05): **1.80 : 1** at glow 0, **1.27 : 1** at glow 0.5, **1.68 : 1** at glow 1.0. So mid-glow the suit sits closest to the sky. That is acceptable: the glow signals water, and his silhouette is carried by the dark outline, which the line also tints but which stays far darker than the sky. If the mid-glow frame looks washed out in play, Revision: lower `glow_color` toward (0.45, 0.75, 1.0) or cap `glow` at 0.8.
-
-**The hint_range question (predict now):** `hint_range(0.0, 1.0)` does **not** clamp a value set from code. `set_shader_parameter("glow", 2.0)` will store 2.0 and `mix` will extrapolate: P1 → (229 + (153−229)·2, 29 + (217−29)·2, 25 + (255−25)·2) = (77, 405, 485), clamped by the 8-bit output to **(77, 255, 255)**. The capture with glow = 2.0 should show that cyan, not the glow colour. If it shows (153, 217, 255), the hint clamped and the prediction was wrong.
-
-### A5. Predicted failure cases (Part A)
-
-| # | What could go wrong | Check that catches it |
-|---|---|---|
-| F1 | The driver ramps in physics ticks or counts frames, so 0.25 s becomes 0.5 s at 30 fps and 0.1 s at 144 fps. | the 30/60/144 runs of the new test: the ramp must be 0.25 s ± one frame at all three |
-| F2 | The driver restarts the ramp on a second W, or the test "passes" by calling the driver's update function directly instead of pressing W through the game loop. | the retrigger assertion, and reading the test: it must use `Input.action_press("water")` / the player's `test_water_pressed` hook, never call the driver |
-| F3 | `source_color` on `glow_color` converts the uniform to linear even in 2D, so glow 1.0 shows (81, 177, 255) instead of (153, 217, 255). | the glow-1.0 capture at P1: (153, 217, 255) means no conversion, (81, 177, 255) means the hint converted |
-| F4 | The driver sets a uniform the shader does not declare (typo), which raises no error. | the uniform-list assertion plus the rename mutation |
-| F5 | The ShaderMaterial is put on `player` or `player.art` instead of `player.sprite`, so the code-drawn rescue bag and survivor heads glow too. | the controlled capture after a rescue: the orange bag must stay (230, 126, 34) at glow 1.0 |
+| 10 | 0 | flash disc ~20 px, bright white; puff balls in a tight cluster at the feet; specks at the feet |
+| 12 | 0.067 s | flash about half faded; puff widening (~20 px across); specks rising |
+| 15 | 0.167 s | flash gone; puff near its widest (~30–40 px), still bright; specks near their peak |
+| 20 | 0.333 s | puff no longer spreading, balls larger and greyer, about 60 % opacity; specks falling or gone |
+| 30 | 0.667 s | faint blue-grey wisps only |
+| 50 | 1.333 s | nothing |
 
 ---
 
-## Part B — the hint experiment (its own scene)
+## Effect B — hose steam
 
-- `godot/tests/write_grey_strip.gd` (committed) writes `godot/art/hint/grey_3x1.png`: 3 × 1 texels, greys **64, 128, 192**, imported Lossless, mipmaps off.
-- `godot/shaders/hint_experiment.gdshader`: `shader_type spatial; render_mode unshaded;` two samplers of that one file, `uniform sampler2D as_color : source_color, filter_nearest;` and `uniform sampler2D as_data : filter_nearest;`, and `uniform bool use_color = false;` picking which one writes `ALBEDO`.
-- Two materials, one per bool value, on two `MeshInstance3D` quads facing the camera in `godot/scenes3d/hint_experiment.tscn`, with a `WorldEnvironment` whose tonemap is **Linear** at exposure **1.0**, glow, fog and adjustments off.
+### B1. The job
 
-**Predictions.** Values in the file as fractions: 64/255 = 0.251, 128/255 = 0.502, 192/255 = 0.753.
+- **Job: a feedback loop that follows a game value.** While the water is on, steam rises where it meets the fire, and the amount follows how much fire is left: thick when the water first hits, thinning as the flames shrink, none once the fire is out.
+- **What it tells the player:** "the water is working; keep holding position." The flames already shrink, but the steam makes the four seconds of standing still read as progress, at the fire, where the player is looking.
+- **Condition:** `player.hosing` on `godot/features/player/player.gd`, written every physics tick by `godot/game/session.gd` `_physics_process` as `water_ticks > 0` (300 ticks after a W press in range of the blocking fire).
+- **Game value:** `session.fire_height()` (`godot/game/session.gd`), the blocking fire's current height in px: 34 (`level.blocking_fire[3]`) when hosing starts, falling linearly to 0 over `EXTINGUISH_TICKS` = 240 ticks (4.0 s), then 0 while the water lingers for the last 60 ticks (1.0 s).
+- **Feature Effect A doesn't use:** `amount_ratio` driven by a game value; turbulence; a box-shaped emission area across the fire's width. (Also GPU particles and a `visibility_rect`.)
 
-- *Data quad (no `source_color`)*: the shader receives the stored numbers as if they were linear light. The display encodes linear to sRGB with encode(x) = 1.055·x^(1/2.4) − 0.055: 0.251 → 0.538 → **137**; 0.502 → 0.737 → **188**; 0.753 → 0.882 → **225**. The bands come out lighter than the file.
-- *Colour quad (`source_color`)*: the sampler decodes sRGB → linear first, the shader passes it through, the display re-encodes: **64, 128, 192**, unchanged. This is the quad I expect to show the file's values.
-- *Renderer caveat:* this project uses **GL Compatibility**. The assignment's predictions assume Forward+ or Mobile. I will measure both quads before explaining; if Compatibility does not keep a linear 3D pipeline for this scene, the data quad may land elsewhere and that is a finding to record, not a reason to edit the prediction.
+### B2. Intent
 
----
+- **Timing phases:** start — first wisps within a frame or two of the first W frame, building to a full column over about half a second (no burst, no pop). Steady — the thickest column in the first second, then thinning in step with the flames (about half by 2 s, a trickle by 3.5 s). End — no new steam after the fire goes out at 4 s; the last steam rises and fades over its 1.4–1.6 s life. Emitting stops when the water stops at 5 s.
+- **Contrast against the real background:** the steam starts in front of the tan wall (0.55) and rises into the sky behind the blocking fire (0.46 average, 0.69 lightest). White steam (0.89) is only 1.8 : 1 on that sky (1.3 : 1 on its lightest part) and 6.4 : 1 on the dark smoke clouds. So a darker `Haze` layer (grey 0.16) sits under it: 2.5 : 1 on the average sky, 3.6 : 1 on the lightest, 2.9 : 1 on the wall. Alpha below 1 lowers all of these; my eyes in the running game decide.
+- **Scale against the character:** the column is as wide as the fire (56 px) at its base, spreading to about 90 px, and rises about 50 px above the flames, a little more than his height (40 px).
+- **Change over life:** steam fades in fast (α 0 → 0.8 by 15 % of its life, so particles don't pop on), holds, then fades out; it grows 0.6× → 1.6× as it rises and cools. Haze fades in to α 0.5 and out, growing 0.6× → 1.8×.
+- **Variation:** turbulence curls each puff differently; random size and rotation; emission randomness 0.3.
+- **Layers (two emitters under one root):**
+  - `Haze` — fewer, larger, darker grey puffs, drawn first (underneath): the value contrast against the pale sky.
+  - `Steam` — white puffs, drawn on top: the steam itself.
 
-## Part C — the textured shader and its materials: the hydrant
+### B3. Settings
 
-### C1. Object and lighting
+**Node type: `GPUParticles2D` for both emitters, under a `Node2D` root.** Why: `amount_ratio` and turbulence exist only on GPU nodes in 4.7.2 (checked: `CPUParticles2D` has no `amount_ratio`). Scene file: `godot/effects/hose_steam.tscn` (root `HoseSteam`, children `Haze`, `Steam`).
 
-- **Object:** the **fire hydrant** in `godot/scenes3d/props_room.tscn` (node `Hydrant`, instancing `godot/props3d/hydrant.glb`, 356 triangles, with UVs in the export; the flame has no UVs, the backpack does). The material goes behind the importer's per-material **Use External** setting on the glb so a reimport keeps it; the second material goes on a second instance of the hydrant added to the scene at x = −1.6 (the existing one stays at x = −0.8), so both are judged under the same light.
-- **Lighting to judge under:** the scene's existing `Sun` (`DirectionalLight3D`, shadows on, energy 1) and the `Environment` (flat colour background, ambient 0.6 energy), nothing else. No SSAO, no glow, no SSIL (unavailable in Compatibility anyway). Tonemap left at the scene's default (Linear) so roughness and bump differences are not hidden by a curve.
-
-### C2. Textures
-
-Source: Poly Haven, asset **Rusty Metal Sheet** (`rusty_metal_sheet`), author Amal Kumar, licence **CC0** (no credit required; the course requires provenance anyway), 1K PNG, URL `https://polyhaven.com/a/rusty_metal_sheet`, date checked **2026-10-28**. Files go in `godot/art/textures/rusty_metal_sheet/` with `ATTRIBUTION.md` beside them. The normal map used is the **OpenGL** one (`_nor_gl`), which Godot expects; the `_nor_dx` twin is downloaded only for the curl-check calibration and is not bound to any material.
-
-| File | Role | What the numbers mean | Sampled as | Import settings I will set explicitly |
-|---|---|---|---|---|
-| `rusty_metal_sheet_diff_1k.png` | base colour | sRGB colour of painted, rusting steel | colour: `uniform sampler2D albedo_tex : source_color, filter_linear_mipmap;` | `compress/mode=0` (Lossless), `compress/normal_map=2` (Disabled), `mipmaps/generate=true` |
-| `rusty_metal_sheet_rough_1k.png` | roughness | 0 = mirror, 1 = matte, stored as-is | data: `uniform sampler2D rough_tex : hint_default_white, filter_linear_mipmap;` (no `source_color`) | `compress/mode=0`, `compress/normal_map=2`, `mipmaps/generate=true` |
-| `rusty_metal_sheet_nor_gl_1k.png` | tangent-space normal map | (x, y, z) slopes of the surface, packed 0–1, green = +Y (OpenGL) | data: `uniform sampler2D normal_tex : hint_normal, filter_linear_mipmap;` | `compress/mode=0`, `compress/normal_map=1` (Enable), `mipmaps/generate=true` |
-
-Lossless is chosen so the bytes the shader samples are the bytes in the file, which is also what the curl check reads. `compress/normal_map` only matters for VRAM compression, but it is set explicitly on every file so the editor's "Detect" has nothing to change later.
-
-### C3. The shader and its interface
-
-`godot/shaders/hydrant_surface.gdshader`, `shader_type spatial;`, no `render_mode` (lit, so the roughness and normal map show).
-
-| Group | Uniform | Type | Hint | Range | Default | What I expect to change across its range |
-|---|---|---|---|---|---|---|
-| `group_uniforms paint;` | `paint_tint` | `vec4` | `source_color` | — | `vec4(0.75, 0.22, 0.17, 1.0)` (the hydrant's red `#c0392b`) | the hue of the metal under the rust, from the raw photo colour (white tint) to deep red |
-| | `rust_amount` | `float` | `hint_range(0.0, 1.0)` | 0–1 | `0.3` | how much of the texture's rust shows through the paint: 0 = fully painted, 1 = the photo as is |
-| `group_uniforms surface;` | `roughness_scale` | `float` | `hint_range(0.0, 2.0)` | 0–2 | `1.0` | multiplies the roughness map: 0 = chrome, 2 = chalk |
-| | `normal_strength` | `float` | `hint_range(0.0, 2.0)` | 0–2 | `1.0` | `NORMAL_MAP_DEPTH`: 0 = smooth, 2 = exaggerated pitting |
-| | `uv_scale` | `float` | `hint_range(0.25, 8.0)` | 0.25–8 | `2.0` | how many times the sheet tiles around the hydrant |
-
-Fragment logic (not the colour line of Part A; written here so the audit can check it): `ALBEDO = mix(albedo_tex.rgb * paint_tint.rgb, albedo_tex.rgb, rust_amount)`; `ROUGHNESS = texture(rough_tex, uv).r * roughness_scale`; `NORMAL_MAP = texture(normal_tex, uv).rgb; NORMAL_MAP_DEPTH = normal_strength`.
-
-### C4. The two materials
-
-| Material | `paint_tint` | `rust_amount` | `roughness_scale` | `normal_strength` | Why |
-|---|---|---|---|---|---|
-| `godot/materials/hydrant_fresh.tres` | red (default) | **0.1** | **0.7** | 1.0 | a newly painted hydrant: mostly red, a little rust in the pits, slightly glossy |
-| `godot/materials/hydrant_rusty.tres` | red (default) | **0.9** | **1.4** | 1.0 | the same hydrant years later: the photo's rust dominates, matte |
-
-They differ in two values (`rust_amount`, `roughness_scale`), share the shader and all three textures, and sit side by side under the same sun. Editing one line of the shader must change both; editing one value in `hydrant_rusty.tres` must change only that one.
-
-### C5. Predicted failure cases (Parts B and C)
-
-| # | What could go wrong | Check that catches it |
+| Node setting | `Haze` | `Steam` |
 |---|---|---|
-| F6 | The roughness or normal map gets `source_color` by mistake (or the editor's Detect sets the normal map to sRGB), so the surface is too glossy and the bumps lean the wrong way. | `test_materials.gd` reads each sampler's hints from the source text; the `source_color` mutation on the colour sampler must exit 1 |
-| F7 | The DirectX normal map is bound instead of the OpenGL one, so lighting looks lit from below. | `normal_map_check.gd` curl ratio: the bound file must come out near 0 with `directx = false` and near 2 with `directx = true`, calibrated on the `_nor_gl` / `_nor_dx` pair |
-| F8 | The material is set on the imported glb's mesh directly, and a reimport wipes it. | delete `godot/.godot`, reimport, run `test_materials.gd`: both materials must still resolve to `hydrant_surface.gdshader` |
-| F9 | Lossless + `compress/normal_map=1` makes the importer swizzle the normal map into two channels, so `.rgb` is no longer (x, y, z). | the audit's `get_image().get_format()` on the imported normal texture must be RGB8/RGBA8, not an RG format; and the curl check reads the source PNG, not the import |
-| F10 | The data quad in the hint experiment shows 64/128/192 unchanged under Compatibility, because the 2D/3D colour pipeline differs from Forward+. | the measured capture of both quads beside the predicted table; a mismatch is recorded and explained, not edited away |
+| `amount` (fixed, never changed at runtime) | 14 | 40 |
+| `amount_ratio` (scene default; the driver writes it) | 1.0 | 1.0 |
+| `emitting` (scene default) | false | false |
+| `one_shot` | false | false |
+| `explosiveness` | 0.0 | 0.0 |
+| `randomness` | 0.3 | 0.3 |
+| `lifetime` | 1.6 | 1.4 |
+| `preprocess` | 0.0 | 0.0 |
+| `fixed_fps` / `interpolate` | 30 / true (defaults) | 30 / true (defaults) |
+| `local_coords` | false | false |
+| `visibility_rect` | Rect2(−70, −100, 140, 120), set by hand | same |
+
+| `ParticleProcessMaterial` setting | `Haze` | `Steam` |
+|---|---|---|
+| `emission_shape` | box (3), `emission_box_extents` (20, 3, 0) | box (3), `emission_box_extents` (24, 3, 0) |
+| `direction` / `spread` | (0, −1, 0) / 15 | (0, −1, 0) / 25 |
+| `initial_velocity_min` / `_max` | 12 / 25 | 20 / 40 |
+| `gravity` | (0, −10, 0) | (0, −15, 0) |
+| `damping_min` / `_max` | 1 / 3 | 2 / 6 |
+| `turbulence_enabled` | true | true |
+| `turbulence_influence_min` / `_max` | 0.03 / 0.08 | 0.05 / 0.15 |
+| `angle_min` / `_max` | 0 / 360 | 0 / 360 |
+| `scale_min` / `_max` | 0.6 / 0.8 | 0.4 / 0.6 |
+| `scale_curve` | 0.6 → 1.8 | 0.6 → 1.6 |
+| `color_ramp` | grey (0.42, 0.43, 0.47): α 0 at 0, 0.5 at 0.2, 0 at 1 | white (0.95, 0.95, 0.97): α 0 at 0, 0.8 at 0.15, 0.5 at 0.6, 0 at 1 |
+| `particle_flag_disable_z` | true | true |
+
+- **Draw:** each emitter uses a `GradientTexture2D` defined in the scene file, the same recipe as Effect A (32 × 32, radial, `fill_from` (0.5, 0.5), `fill_to` (1.0, 0.5), white α 1 → α 0). No draw material: default mix blend, for the same reason as A. No image asset.
+- **Position:** the root sits at the top centre of the blocking fire, (1278, 240 − `fire_height()`), and moves down as the flames shrink. `local_coords` false, so steam already released stays in the air while the emitter moves.
+- **`visibility_rect`:** set by hand, not generated. Steam rises at most about 50 px in 1.4 s and the emitter can move 34 px down after releasing it, so the rectangle reaches 100 px up and 70 px to each side. Checked by eye with the fire at the screen edge.
+- **`preprocess` 0, on purpose:** this effect must not exist before the first W of an attempt, so nothing should already be running when the scene loads.
+- **Preview only:** the preview scene sets `use_fixed_seed = true` and a `seed` on its own instances; the effect scene never does.
+
+### B4. Observable rules
+
+| # | Rule |
+|---|---|
+| B-R1 | **Start:** both emitters' `emitting` becomes true on the first frame `player.hosing` is true, never before (not on scene load, start, R or before the first W). |
+| B-R2 | **Stop:** `emitting` becomes false on the first frame `player.hosing` is false. Steam already in the air finishes its life; it is not cleared. |
+| B-R3 | **The loop:** while hosing, `amount_ratio` on both emitters = `fire_height() / 34`, clamped to 0–1, updated every frame: 1.0 at the first hosing frame, 0.5 after 2.0 s, 0.0 from 4.0 s. `amount` never changes (14 and 40). |
+| B-R4 | The root's position is (1278, 240 − `fire_height()`) while hosing. |
+| B-R5 | **Tree paused** (`get_tree().paused = true`): the session stops counting, so `hosing` and `fire_height()` hold; the particles freeze in place and stay drawn. **Game pause (Esc):** the session stops counting, so `amount_ratio` holds its value, but the steam keeps drifting and emitting at that strength, because Esc doesn't pause the tree (the same as my A5 glow, A5 Revision 4). |
+| B-R6 | **Hidden** (`visible = false` on the root): the driver ignores visibility and keeps writing `emitting` and `amount_ratio` from the game; nothing is drawn. |
+| B-R7 | **R during hosing:** `restart_attempt()` sets `water_ticks = 0`, so `emitting` goes false on the next frame. **Fire death during hosing:** the session only updates `player.hosing` while PLAYING, so it stays true through the 2.0 s DYING hold and the steam keeps going at the frozen strength until the restart. |
+
+### B5. Frame strip (fixture)
+
+- **Preview scene:** `godot/previews/hose_steam_preview.tscn`, at in-game camera scale over the real level art around the blocking fire: building B1's roof with the fire at x 1250–1306, the tan wall behind its base and the sky above, camera where the game puts it while hosing (player at about x 1215, camera x 1315).
+- **Condition starts at frame 10** (a W press in range), the fire is out at frame 130 (4.0 s at 30 fps), the condition ends at frame 160 (5.0 s).
+- **Capture:** 30 fps, `--quit-after 210`. Frames to read and what each should show:
+
+| Frame | Fire strength | Should show |
+|---|---|---|
+| 10 | 1.0 | condition starts; no steam yet, or the first one or two wisps at the flame tops |
+| 16 | 0.95 | first wisps rising, a thin start, no burst |
+| 40 | 0.75 | the full column: white steam over a darker haze, about 50 px tall |
+| 70 | 0.5 | a visibly thinner column; flames half their height |
+| 100 | 0.25 | a trickle |
+| 130 | 0.0 | fire out; no new steam; the last steam high up and fading |
+| 165 | 0.0 | condition ended; at most a few faint wisps |
+| 200 | 0.0 | nothing |
 
 ---
 
-## Short answers
+## Boundaries
 
-1. **Renderer:** `godot/project.godot` names `renderer/rendering_method="gl_compatibility"`. That rules out decals and compute shaders (Forward+/Mobile only) and VoxelGI, SDFGI and SSIL (unavailable in Mobile and Compatibility). Everything in this brief works in Compatibility.
-2. **What colour arrives in `fragment()`:** in `canvas_item`, `COLOR` arrives as the sprite's texel at this pixel already multiplied by the node's `modulate`/`self_modulate` and vertex colour. The tempting alternative, `texture(TEXTURE, UV)`, gives the raw texel with no modulate, so a `modulate` tint on the node would be lost.
-3. **canvas_item, `texture(TEXTURE, UV)` vs `COLOR`:** the un-modulated texel; `COLOR` is the texel times modulate.
-4. **spatial, `ALBEDO` and `COLOR`:** if `ALBEDO` is never written it holds white (1, 1, 1), so the surface takes only the lights' colour. `COLOR` holds the mesh's vertex colour (white for the hydrant, which has none).
-5. **A frame-counting version:** if the ramp were "15 frames" it would last 0.50 s at 30 fps, 0.25 s at 60 fps and 0.104 s at 144 fps. That is why the driver uses `delta`.
-6. **Default vs current value, shared material:** the **shader** (`.gdshader` source) holds the uniform's default; the **ShaderMaterial** holds its current value. If two objects shared one material, setting `glow` on it would glow both.
-7. **Does `hint_range` clamp a value set from code?** Predicted: **no**. The Inspector slider clamps; `set_shader_parameter` does not. Checked in Use It with glow = 2.0 (A4).
+Collision, movement, input, the state machine and its timings (`EXTINGUISH_TICKS`, the +60 water linger, `FIRE_DEATH_HOLD`), `godot/game/session.gd`'s game logic, `godot/features/player/tuning.gd`, `godot/levels/first_steps.json`, the existing tests and their expectations, my Assignment 5 shaders in `godot/shaders/` and their driver, the HUD, the fires, the survivors, the background and every other object stay unchanged. Presentation code may read game state (`player.jumped`, `player.hosing`, `session.fire_height()`, `session.level`); it never writes it. `project.godot` rendering settings stay as they are.
+
+## Evidence split
+
+| Rule | Checked by | How |
+|---|---|---|
+| A3 / B3 settings | headless | configuration tests read every setting above back from the loaded scene files |
+| A-R1, A-R2 | headless | state test drives jumps through real input; counts `JumpPuff` instances and compares their position with the player's at the jump tick; none after load, start, R, landing or a walk-off |
+| A-R3 | headless + strip | two real jumps inside 0.9 s → two live puffs, the first not restarted; retrigger strip shows two puffs |
+| A-R4, A-R5 | headless | puff position unchanged after the player moves; instance count back to 0 within 0.9 s plus one frame |
+| A-R6, A-R7 | headless (state) + eyes | R mid-puff, tree pause; the frozen look is an eye check |
+| A looks like a puff, reads on wall and skyline | strip + eyes | A5 strip; my verdict in the running game at 1280 × 720 over the B1 wall and the street-level skyline |
+| B-R1 to B-R4, B-R7 | headless | state test drives W and R through real input; reads `emitting`, `amount_ratio`, `amount` and position at two or more fire strengths |
+| B-R5, B-R6 | headless (state) + eyes | tree pause, Esc, `visible = false`; what is drawn is an eye check |
+| B looks like steam, thins with the fire, reads on the sky | strip + eyes | B5 strip; my verdict in the running game |
+| No pop at the screen edge | eyes | walk so the blocking fire sits at the left and right edges while hosing |
+| No steam on scene load | headless + eyes | `emitting` false and `preprocess` 0 after load; first frames after load by eye |
+
+---
+
+## P. Predicted failures (mine)
+
+_I picked these three from the assignment's "Failures worth predicting" list and matched each one to the check I think catches it. Claude typed the descriptions from my picks._
+
+1. **Godot 3 property name (Effect A).** The agent writes `initial_velocity` instead of `initial_velocity_min` / `initial_velocity_max`. Godot ignores the unknown name, the speed stays at its default 0, and the puff fires as a blob that never spreads. **Caught by:** the configuration test, which reads `initial_velocity_min` back from the scene file and expects 50.
+2. **Puff glued to the player (Effect A).** The puff is added as a child of Extinguisho instead of the level, so it flies up with him instead of staying where he jumped. **Caught by:** the state test, which makes him jump and move and checks that the puff's position did not change.
+3. **Steam before the hose (Effect B).** `preprocess` is set or `emitting` starts true, so steam is already rising when the level loads, before any W. **Caught by:** my eyes on the first frames after the scene loads.
+
+## C. Price predictions and budget (mine)
+
+_My guesses, made before anything is built; Claude gave me the reference numbers (the course chapter measured `CPUParticles2D` at about 0.035 ms per 1,000 particles headless on an M4 Pro, and `GPUParticles2D` at the same cost as an empty scene) and the peak counts from the settings above (Effect A: 17 particles per puff, 2 puffs at most, so 34; Effect B: 54 at `amount_ratio` 1.0). A frame at 60 fps is 16.7 ms. Measured on my Apple M1._
+
+| | Effect A (CPU) | Effect B (GPU) |
+|---|---|---|
+| Peak particle count | 34 | 54 |
+| Predicted headless CPU price | about 0: too small to tell apart from the empty-scene control | about 0, the same as an empty scene |
+| Predicted GPU time | 0.05–0.5 ms | under 0.05 ms |
+| Budget | 0.1 ms | 0.5 ms |
+| Compared on | both prices (a CPU node) | GPU time only (a GPU node's headless price is near zero by construction) |
+
+## Q. Short answers (mine)
+
+_My answers, in my words. Claude gave me the fact each question needs before I answered._
+
+1. Which node type does each effect use, and which features in this brief does it lack?
+   The puff uses a CPU particle node, while the steam uses a GPU particle node. CPU particles don't have settings like amount_ratio, turbulence, or visibility_rect. GPU particles can't use trails or collision with the Compatibility renderer. The puff doesn't really need those extra settings since it's just a small jump effect. The steam also doesn't need trails or collision because it's just a visual effect.
+2. With `local_coords` as set, what does Effect A do if its parent moves after the event?
+   The puff's parent is the level, not Extinguisho. Since local_coords is turned off, the particles stay where they were created in the world. So if the parent moves sideways, the puff won't move with it.
+3. Under the retrigger rule, how many Effect A bursts can be alive at once, and what peak particle count does that give?
+   Each puff lasts around 0.9 seconds, and Extinguisho can jump again after about 0.65 seconds. So at most 2 puffs can overlap at once. Since each puff has 17 particles, that's 34 particles total.
+4. What will a headless run report as the cost of a GPU effect, and why? With vsync on, what would FPS read with the effect off and on?
+   A headless run only measures CPU time, so the steam would show almost the same time as an empty scene, close to 0 but not exactly 0, because the GPU particles aren't actually running. FPS shows how smoothly the game runs. With vsync on, both steam on and off would show around 60 FPS if the effect doesn't slow the game down much.
+5. What does Effect B show on the first frame after its scene loads, with `preprocess` and without it? While the tree is paused? While the node is hidden?
+   When the level first loads, there's no steam because nobody is using the hose. If steam was enabled with preprocess, it would already look like it had been running for a while instead of slowly starting. When the game is paused, the steam particles freeze where they are. When the steam node is hidden, we can't see it, but the code can still update its settings.
+6. Which settings in this brief belong to emission, which to process, and which to draw?
+   - Emission: amount, lifetime, one_shot, explosiveness, emission_shape, amount_ratio
+   - Process: initial_velocity, spread, gravity, damping, turbulence, colour ramp, scale curve
+   - Draw: texture, blend mode
+
+   Basically, emission controls when and how many particles appear, process controls how they move and change, and draw controls how they look.
 
 ---
 
 ## Revisions
 
-<!-- Dated revisions go here. The v1 text above is not edited. -->
-
-### Revision 1 — 2026-10-28, rule R7 names the wrong function
-
-- **What I found:** reviewing the agent's CLAUDE.md draft against `godot/game/session.gd`, the function that resets `water_ticks` to 0 is `restart_attempt()`, not `start_session()`. `start_session()` calls it; so do the R key handler and the DYING timeout. The rule's behaviour is unchanged (the water stops the same frame and `glow` ramps down from its current value); only the name was wrong.
-- **R7 now reads:** on a fire death, the DYING timeout or R during hosing, `session.restart_attempt()` resets `water_ticks` to 0 the same frame, `player.hosing` goes false, and `glow` ramps down from its current value over at most 0.25 s. It never jumps.
-- The v1 text above is kept as written.
-
-### Revision 2 — 2026-10-28, rule R6: the game's pause is not a tree pause
-
-- **What I found:** reviewing the driver plan, `session.set_paused()` changes `state` to PAUSED, which stops the session's physics writes, but it is not `get_tree().paused`, so a driver's `_process` keeps running. A ramp already in flight when the game pause lands finishes its remaining ≤ 0.25 s and then holds; during the 5 s hold the value is already 1.0 and stays 1.0. A true tree pause (`get_tree().paused = true`) freezes `glow` outright because `_process` stops.
-- **R6 now reads:** scaled time (physics ticks for the hold, `_process` `delta` for the ramps). Under the game's own pause, `glow` holds its value, except that a ramp in flight completes its last ≤ 0.25 s first. Under a tree pause, `glow` freezes at once. The test checks the game pause during the hold (value stays 1.0); the mid-ramp case is a human check, if at all.
-- Freezing mid-ramp under the game pause would need the driver to read `session.state` in addition to `player.hosing`, which widens the boundary; not done.
-- The v1 text above is kept as written.
-
-### Revision 3 — 2026-10-29, after my playtest: the glow breathes, and the fire-death case
-
-- **What I saw (my words):** hosing "worked"; a second W did nothing; R while glowing restarted the game (the fade-down happens on the respawned sprite at the start, so it is not visible in play; the test proves it); pause held the glow. At full glow he is a flat icy-blue statue with no detail for five seconds. I asked whether he should "just look icy blue or glow and fade", and whether we are supposed to see his suit. Decision: **make it breathe.** Walking into the fire while hosing: he stays blue-white through the 2 s "The fire got you." hold (`a5/evidence/`, playtest screenshot), and so does the water column.
-- **R1/R3 (hold phase) now read:** when hosing begins, `glow` ramps from 0.0 into the breathing band within **0.25 s** (tolerance one frame). While `player.hosing` holds, `glow` **breathes** between **0.4 and 0.8**: `0.6 + 0.2 · sin(2π · t)` where `t` is game seconds since the state began, accumulated from `_process` `delta` in the driver (not the shader's `TIME`, which cannot know when the state began). Period **1.0 s** ± one frame, the same at 30, 60 and 144 fps. The suit stays visible at the low end of the band. R2 (ramp to 0.0 over 0.25 s when the state ends), R5 (ignore), R6, R7 and R8 are unchanged. The shader and the colour line are unchanged; only the driver's target and the test's hold assertions change (`test_hose_glow.gd` is this assignment's own test; its expectations move with this revision, in their own commit).
-- **R7 wording corrected:** on a **fire death** the session enters DYING and `restart_attempt()` runs only after `FIRE_DEATH_HOLD` (2.0 s); during that hold `water_ticks` is not counted down, `player.hosing` stays true, and the glow (and the game's own water visual) stay on the burned pose. The reset "the same frame" applies to R and to the DYING timeout. **Accepted as is:** the glow follows the water visual, which the game already freezes during the hold; making the driver read `session.state` as well would widen the boundary for a cosmetic gain.
-- **Predicted pixel table (A4):** unchanged. The controlled captures freeze the driver and set `glow` from code, so 0.0 / 0.5 / 1.0 / 2.0 remain the test points; 1.0 is no longer reached in play.
-- The v1 text above is kept as written.
-
-### Revision 4 — 2026-10-29, R6 under the game's pause, after the breathing change
-
-- **What the test showed:** with the breathing hold, the game's `set_paused()` no longer "holds the value": the driver's `_process` keeps running (Revision 2 already recorded that the game pause is not a tree pause), so `glow` keeps breathing inside 0.4–0.8 on the pause screen; `water_ticks` is frozen and every paused sample stays in the band (`test_hose_glow.gd` `pause-holds`, all three frame rates).
-- **R6 now reads:** under the game's own pause, `glow` stays within the breathing band and keeps breathing; under a tree pause it freezes. **Accepted:** stopping it would need the driver to read `session.state`, declined in Revisions 2 and 3 for widening the boundary; the pause menu showing him breathing is harmless.
-- The v1 text above is kept as written.
+_None yet._
