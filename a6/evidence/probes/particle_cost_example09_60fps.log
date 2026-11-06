@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Rendering method: gl_compatibility
+Video adapter: 
+Headless Godot uses a dummy renderer, so GPU particle simulation and all drawing are not measured.
+Empty scene baseline: 0.003533 ms/frame
+GPUParticles2D amount=1000: min=0.005287 ms/frame, mean=0.006173 ms/frame, max=0.007240 ms/frame
+GPUParticles2D amount=10000: min=0.004140 ms/frame, mean=0.007056 ms/frame, max=0.012017 ms/frame
+GPUParticles2D amount=50000: min=0.003687 ms/frame, mean=0.003984 ms/frame, max=0.004430 ms/frame
+CPUParticles2D amount=1000: min=0.055873 ms/frame, mean=0.058497 ms/frame, max=0.062720 ms/frame
+CPUParticles2D amount=10000: min=0.520647 ms/frame, mean=0.535471 ms/frame, max=0.556290 ms/frame
+CPUParticles2D amount=50000: min=2.976190 ms/frame, mean=3.058046 ms/frame, max=3.191603 ms/frame

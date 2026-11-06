@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+rendering method: gl_compatibility adapter: ''
+color_ramp(type=24 hint=Gradient) scale_amount_curve(type=24 hint=Curve)
+color_ramp(type=24 hint=GradientTexture1D) scale_curve(type=24 hint=CurveTexture,CurveXYZTexture)
+CPUParticles2D signal finished=true restart()=true
+GPUParticles2D signal finished=true restart()=true
+GPU defaults: fixed_fps=30 interpolate=true amount_ratio=1.0
+after 120 frames (1/60 s each): cpu finished=1 emitting=false | gpu finished=0 emitting=false
+gpu amount_ratio set/get: 0.40000000596046 amount still 8

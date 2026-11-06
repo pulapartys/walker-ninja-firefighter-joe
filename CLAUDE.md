@@ -30,7 +30,7 @@ There is no AGENTS.md in this repository.
   scripts/run-test.sh test_game.gd 60            # 41/41
   scripts/run-test.sh test_keyboard.gd 60        # 14/14
   scripts/run-test.sh test_audio.gd 60           # 12/14 (see below)
-  scripts/run-test.sh test_audio.gd realtime     # 14/14
+  scripts/run-test.sh test_audio.gd realtime 300 # 14/14 (138 s; times out at the default 120)
   scripts/run-test.sh check_props.gd 60          # RESULT: PASS
   scripts/run-test.sh test_hose_glow.gd 30       # 15/15; same at 60 and 144
   scripts/run-test.sh test_materials.gd 60       # 35/35
@@ -38,7 +38,22 @@ There is no AGENTS.md in this repository.
 
   - `test_audio` fails `music-behaviour` and `music-loops` only when pinned. Both read the music's playback position, which runs on the real-time audio clock (a5/TEST-REPORT.md Baseline). This is pre-existing: leave it, don't "fix" it.
   - New A6 tests run as `scripts/run-test.sh <file>.gd <fps>`. Use `realtime` only for a test that waits on audio.
-- **What headless can see:** headless Godot draws nothing, so no pixel can be read (header comments in `test_hose_glow.gd` and `test_materials.gd`). Node and material properties can be read back. Every claim about the look is an eye or frame-strip check (CHANGE-BRIEF.md "Evidence split"): the puff's shape, the steam against the sky, no pop at the screen edge, the frozen look under a tree pause.
+## Headless facts
+
+What a `scripts/run-test.sh` run on this machine can and cannot observe. Probes and logs: `a6/evidence/probes/`.
+
+- A headless run uses a dummy renderer: it draws no particles and runs no GPU particle process. Node state (emitting, one_shot, amount_ratio, visibility, instance counts) is observable; the look is not.
+- A GPU effect's headless CPU price is near zero by construction.
+- Frame strips come from a windowed Movie Maker run, which I start.
+- Measured here (`particle_cost_example09_60fps.log`, Apple M1, `--fixed-fps 60`): `GPUParticles2D` at 1,000 to 50,000 particles costs the same as the empty scene (about 0.004 ms per frame); `CPUParticles2D` costs about 0.055 ms per 1,000 particles and grows with the count. Without `--fixed-fps` every case reads the same ~6.9 ms sleep (Chapter 9).
+- `RenderingServer.get_current_rendering_method()` still reports `gl_compatibility` headless; the empty `get_video_adapter_name()` is the sign that nothing renders (`headless_probe_60fps.log`).
+- A one-shot `CPUParticles2D` simulates headless and emits `finished`; a one-shot `GPUParticles2D` never emits `finished` headless, though `emitting` goes false (`headless_probe_60fps.log`). A test may wait on the CPU puff's `finished`, never on the GPU steam's.
+- `amount_ratio` is set and read back headless; `amount` is unchanged by it.
+- No pixel can be read headless. Every claim about the look is an eye or frame-strip check (CHANGE-BRIEF.md "Evidence split").
+- `--fixed-fps N` pins each frame to 1/N s of game time; physics stays at 60 ticks per second, so at 30 fps each frame runs two physics ticks (a5/TEST-REPORT.md: the 300-tick hold took 152 frames at 30 fps).
+- Real input works headless: `Input.parse_input_event()` with `InputEventKey` (`test_keyboard.gd`, `test_hose_glow.gd`) and the player's `test_*` hooks (`test_game.gd`).
+- `test_audio.gd` needs `realtime`, and its last check waits for the 25.6 s music loop, so it also needs the timeout argument (`realtime 300`, 138 s); at the default 120 s it stops at 13/14 with exit 124.
+- A5 shader facts still hold: `Shader.get_shader_uniform_list()` works headless and is empty for a shader that failed to parse; a `set_shader_parameter()` / `get_shader_parameter()` round trip proves nothing.
 
 ## Current change
 
@@ -56,15 +71,13 @@ There is no AGENTS.md in this repository.
 Use the Godot 4 class and property names of the pinned 4.7.2, never Godot 3 names.
 
 - **Classes:** `GPUParticles2D` (Godot 3: `Particles2D`), `ParticleProcessMaterial` (Godot 3: `ParticlesMaterial`), `CPUParticles2D`, `GradientTexture2D`, `Gradient`. A 1D gradient texture is `GradientTexture1D` (Godot 3: `GradientTexture`).
-- **Properties:** copy the spelling from CHANGE-BRIEF.md A3 / B3. The brief says every name there was probed on 4.7.2; this session did not re-probe them (see Unconfirmed).
-  - Ranges are `_min` / `_max` pairs. Never write a bare `initial_velocity`, `scale_amount`, `angle`, `angular_velocity`, `damping` or `hue_variation`: Godot ignores an unknown name (prediction P1).
+- **Properties:** copy the spelling from CHANGE-BRIEF.md A3 / B3. Every name there exists on 4.7.2 (`a6/evidence/probes/names_probe.log`).
+  - Ranges are `_min` / `_max` pairs. Never write a bare `initial_velocity`, `scale_amount`, `angle`, `angular_velocity`, `damping` or `hue_variation` (prediction P1). `CPUParticles2D` has no `initial_velocity`, so a scene line with it is dropped. `ParticleProcessMaterial` does list `initial_velocity` and `scale`, but only as editor-only range helpers that ignore a number, so a renamed line loads silently and `initial_velocity_min` / `_max` stay 0 (`godot3_names_probe.log`). On `CPUParticles2D`, `scale` is the node's own `Node2D` scale, not the particles'.
   - CPU and GPU spellings differ: `CPUParticles2D` has `scale_amount_min` / `scale_amount_curve`; `ParticleProcessMaterial` has `scale_min` / `scale_curve`.
   - The 2D flag is `particle_flag_disable_z` (Godot 3: `flag_disable_z`).
-- **Enum values, as the brief gives them:** `CPUParticles2D` `emission_shape` point 0, sphere 1; `ParticleProcessMaterial` box 3.
+- **Enum values:** `CPUParticles2D` `emission_shape` point 0 (the default), sphere 1; `ParticleProcessMaterial` box 3 (`names_probe.log`).
 - **GPU-only features:** `CPUParticles2D` has no `amount_ratio`, turbulence or `visibility_rect` (CHANGE-BRIEF.md A3, B3). They exist only on `GPUParticles2D` and its `ParticleProcessMaterial`.
-- **Not verified on 4.7.2, so check before relying on them:**
-  - In the Godot 4 class reference, `CPUParticles2D.color_ramp` is a `Gradient` and `scale_amount_curve` is a `Curve`. `ParticleProcessMaterial.color_ramp` and `scale_curve` take textures (`GradientTexture1D`, `CurveTexture`).
-  - The `finished` signal and `restart()` on both particle nodes.
+- **Resource types, checked on 4.7.2** (`headless_probe_60fps.log`): `CPUParticles2D.color_ramp` is a `Gradient` and `scale_amount_curve` a `Curve`; `ParticleProcessMaterial.color_ramp` takes a `GradientTexture1D` and `scale_curve` a `CurveTexture`. Both particle nodes have the `finished` signal and `restart()`. `GPUParticles2D` defaults: `fixed_fps` 30, `interpolate` true, `amount_ratio` 1.0.
 - **GDScript 4:** `PackedScene.instantiate()` (as in `check_props.gd`), `await` (not `yield`), `signal.connect(callable)` (as in `session.gd`), and `process_mode` (Godot 3: `pause_mode`) for tree-pause behaviour. Scene files use `format=3` (as in `godot/game/main.tscn`).
 
 ## Out of scope
@@ -84,9 +97,7 @@ Effect code is presentation: it reads `player.jumped`, `player.hosing`, `session
 
 - `godot/effects/` and `godot/previews/` do not exist yet. The brief names no file for the configuration or state tests and gives them no fps. For the frame strips it gives only "30 fps, `--quit-after 210`": no capture script or command.
 - The brief names no driver script or hook point. A5 used a node added from `player.gd` `_ready()`. Whether a hook line in `session.gd` `_ready()` counts as touching game logic is the human's call.
-- The particle names, enum values and defaults rest on the brief's 4.7.2 probe, which is not committed. That covers `fixed_fps` 30, `interpolate` true, and `use_fixed_seed` / `seed` on both node types. A `ClassDB` probe in this session was blocked, because running Godot outside `scripts/run-test.sh` needed approval.
-- Not established: whether `CPUParticles2D` simulates and emits `finished` under headless Godot (the A-R5 self-free test depends on it), and whether a `GPUParticles2D` does anything headlessly beyond storing its properties.
 - The brief does not say whether the puff and the steam draw in front of or behind Extinguisho, the fires and the water stream.
-- `fire_height()` counts physics ticks (`session.gd`: "4 s @ 60 Hz"), and `project.godot` sets no `physics_ticks_per_second`. No log shows the physics ticks per frame under `--fixed-fps 30` or `144`, so B-R3 ("0.5 after 2.0 s") is untested at those rates. Only 60 fps logs exist for `test_game`, `test_keyboard`, `test_audio` and `check_props`.
-- The brief's background luminance and contrast figures, and its Visual Profiler / Mobile-override pricing method, have no committed file that reproduces them.
-- The log results above are from the working tree. `logs/test_keyboard_60fps.log` and `logs/test_hose_glow_144fps.log` differ from HEAD; `logs/test_audio_realtime.log` is untracked. `test_keyboard.gd` prints no summary, so its 14/14 is a count of PASS lines.
+- `fire_height()` counts physics ticks (`session.gd`: "4 s @ 60 Hz"). B-R3 ("0.5 after 2.0 s") is only established at 60 fps until a test runs it at another rate; at 30 fps each frame runs two ticks (Headless facts).
+- The GPU price method (CHANGE-BRIEF.md "What limits the choices") rests on Chapter 9's citation of the Godot docs; whether a `--rendering-method mobile` run on this M1 shows Visual Profiler GPU time is not yet tried.
+- `test_keyboard.gd` prints no summary line, so its 14/14 is a count of PASS lines in `logs/test_keyboard_60fps.log`. The contrast figures in the brief are reproduced by `a6/evidence/probes/measure_contrast.py`.

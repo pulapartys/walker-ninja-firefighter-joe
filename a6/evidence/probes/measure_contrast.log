@@ -1,0 +1,10 @@
+tan wall                 0.552
+ledge                    0.448
+sky behind fire (mean)   0.464
+sky behind fire (max)    0.687
+lightest sky block       0.657
+darkest skyline block    0.098
+puff white         L=0.913  tan wall=1.6  ledge=1.9  sky behind fire (mean)=1.9  sky behind fire (max)=1.3  lightest sky block=1.4  darkest skyline block=6.5
+speck ink #25354a  L=0.034  tan wall=7.1  ledge=5.9  sky behind fire (mean)=6.1  sky behind fire (max)=8.7  lightest sky block=8.4  darkest skyline block=1.8
+steam white        L=0.893  tan wall=1.6  ledge=1.9  sky behind fire (mean)=1.8  sky behind fire (max)=1.3  lightest sky block=1.3  darkest skyline block=6.4
+haze grey          L=0.156  tan wall=2.9  ledge=2.4  sky behind fire (mean)=2.5  sky behind fire (max)=3.6  lightest sky block=3.4  darkest skyline block=1.4
