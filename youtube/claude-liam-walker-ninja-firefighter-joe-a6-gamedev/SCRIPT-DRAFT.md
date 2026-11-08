@@ -24,7 +24,7 @@ Brutalist `godot-gamedev`, `walker` mode. Liam (Kokoro `am_onyx`), in for Bear. 
 
 ## B05 — Effect A, built
 **On screen:** the scene tree `JumpPuff` with `Flash`, `Puff`, `Specks`; then the driver `jump_puff_driver.gd`, the `landed.connect` line and `move_child` line.
-**Narration:** Claude Code built it from the brief: three C P U emitters under one root. A flash, ten soft balls, six dark specks. The driver never writes game state. On each landing it drops a new puff into the level, behind Extinguisho, and frees it when it finishes. A second landing makes a second puff: the overlap rule.
+**Narration:** Claude Code built it from the brief: three C P U emitters under one root, a flash, ten soft balls, six dark specks. The driver never writes game state. On each landing it drops a new puff into the level, behind Extinguisho, and frees it when it finishes. A second landing makes a second puff: the overlap rule.
 
 ## B06 — The first strip, and a first look that saw nothing
 **On screen:** **FIXTURE CAPTURE**, r0 strip frames 10, 12, 15, 20, 30, 50, zoomed.
@@ -56,11 +56,11 @@ Brutalist `godot-gamedev`, `walker` mode. Liam (Kokoro `am_onyx`), in for Bear. 
 
 ## B13 — What the tests proved
 **On screen:** test output lines: config 94 / 94 and 89 / 89; state 30 / 30 and 18 / 18; the two mutation failures; her own run, ALL AS EXPECTED.
-**Narration:** Config tests read every setting back from the scene files. State tests press real keys: one puff per landing and never otherwise, steam on and off with the water, amount ratio changing while amount stays fixed. Rename one property to its Godot three name: no warning, the test exits one, and in the game the puff is a blob right under him. Proven: configuration and state. Not proven: a single visible pixel.
+**Narration:** Config tests read every setting back from the scene files. State tests press real keys: one puff per landing and never otherwise, steam on and off with the water, amount ratio changing while amount stays fixed. Rename one property to its Godot three name: no warning, the test exits one, and in the game the puff is a blob under him. Proven: configuration and state. Not proven: a visible pixel.
 
 ## B14 — The price, twice
 **On screen:** the cost table with the empty-scene control; the GPU probe table (0 under Metal, numbers under Vulkan); the Visual Profiler frames, labelled with the renderer.
-**Narration:** Headless, the puff's C P U price is lost in the noise, under budget. The steam costs nothing headless, because a headless run has no G P U and never runs its process step: that is the instrument, not the effect. To see the G P U, this Mac needed Mobile on Vulkan. There, the steam's particle work is about a fifth of a millisecond, under its half-millisecond budget, on a different renderer from the one the game ships with.
+**Narration:** Headless, the puff's C P U price is lost in the noise, under budget. The steam costs nothing headless: a headless run has no G P U and never runs its process step. That is the instrument, not the effect. On this Mac only Mobile on Vulkan reports G P U time. There, the steam's particle work is about a fifth of a millisecond, under its half-millisecond budget, on a different renderer from the game's.
 
 ## B15 — What Claude got wrong
 **On screen:** a list, each with how it was caught.
@@ -68,7 +68,7 @@ Brutalist `godot-gamedev`, `walker` mode. Liam (Kokoro `am_onyx`), in for Bear. 
 
 ## B16 — Verdict
 **On screen:** verdict panel; source revision.
-**Narration:** The verdict. Verified: both effects configured as the brief says, firing and stopping on the right states, under budget. Judged by Sreeja's eyes: the landing, the tuning rounds, the darker steam. Uncertain: the steam shown again after being hidden, and the puff's G P U cost. Next, from her first look: her blue hose glow pulls the eye from the steam. Directed and decided by Sreeja, implemented by Claude Code, eye-tested and played by Sreeja. No sourced textures. Source revision on screen.
+**Narration:** The verdict. Verified: both effects configured as the brief says, firing and stopping on the right states, under budget. Judged by Sreeja's eyes: the landing, the tuning rounds, the darker steam. Uncertain: the steam after being hidden, and the puff's G P U cost. Next: her blue hose glow pulls the eye from the steam. Directed and decided by Sreeja, implemented by Claude Code, eye-tested and played by Sreeja. No sourced textures. Source revision on screen.
 
 ## B17 — Your turn
 **On screen:** the Walker prompt, read aloud.
