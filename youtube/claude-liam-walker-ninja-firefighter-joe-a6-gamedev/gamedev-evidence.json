@@ -1,0 +1,1212 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "source_revision": "486bd48",
+  "files": [
+    {
+      "path": "MATERIALS.md",
+      "sha256": "4e684b33b6a9fc27d920f7ec9bf07c3265d8735f3f678db43198351314467340",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/anchors.json",
+      "sha256": "273694cf16f6ca103a60533732b651ded5f45e1eba048e8a5364fe8de3b39860",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/burned.png",
+      "sha256": "ea086187a5383fb7478569d1dbf69aaab50be87ab94259631c0d5c4cd27390b2",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/burned.png.import",
+      "sha256": "ccff6c6d278260df65396383d8b0d0b5fcd055164d43ae476595784b1b6b093c",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/celebrate.png",
+      "sha256": "2949c12128e9c3b779d78ce3ed2d3fe107f2411f200ad6d080efa9d769b13767",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/celebrate.png.import",
+      "sha256": "cd64801b3df024b48cfbeb209c12565ea8fdcec27befd4d5487080092d933f32",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/celebrate_portrait.png",
+      "sha256": "4f11570c56ee19ecc5e9e970e4307760aa8fedf22deb59e97b4e912b7bde24fe",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/celebrate_portrait.png.import",
+      "sha256": "4651a15f57e3435352f66b16fa94e4a50d6537621d016dc8848ff77e4ca0c8cf",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/devastated_portrait.png",
+      "sha256": "a4d58857558fe4542e88b07e401e723333396a36d96f0ff9dc8ea3be52ce7037",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/devastated_portrait.png.import",
+      "sha256": "66fb0b8579e4add1b18278375e30212906cd24a70fdc8e73b3545cec875c11aa",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/falling.png",
+      "sha256": "c937f250e99e9f2ebd53c0f1e9d88ef3f0e6c4e8a83027d48a41ba0ecc9787b3",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/falling.png.import",
+      "sha256": "b85aaa823c20063a4ef8c0bb3386808d52b070c8049ad30e05c9b402407eef28",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/grab.png",
+      "sha256": "0855b13cc7739dc694b11c7ce44fda7b0be262e348e17229e834e2ed75387c77",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/grab.png.import",
+      "sha256": "ccb290152847d9b193952274622c4dc0a0f7e256f21727863e2d188d50ac7f87",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/hose.png",
+      "sha256": "f0f5363e1240dfe83d94fad7effaf0325e934655831a66ee1d71d998ce4e6f76",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/hose.png.import",
+      "sha256": "0d76cdf45ad22f9ae93f8120acf6fa1a7f2fa28966d462f8a9ca1c5654b59d05",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/idle.png",
+      "sha256": "3f2002aaed05d16fc637ed990c3a5b2d850d2e14b7497a9be617ab7d21a9f432",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/idle.png.import",
+      "sha256": "16ab430a9ad76e37b71cfc1e60dbd9c4a47a3defb8feffd286db4378eef1b971",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/jump_crouch.png",
+      "sha256": "9ebd03956c9ac0ae81cda060cb03d43297c073159ed3e5632be6713cf379ba9a",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/jump_crouch.png.import",
+      "sha256": "8340afb25587faee4c7a8cc889e7ee6c5a70b266e33585a170455a428fe90758",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/landing.png",
+      "sha256": "1add9499981d1c4529cf605e0f7a839fd1522b626d887ea0d56aeb1037b7e45c",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/landing.png.import",
+      "sha256": "05a9ec8c0a8318818ae246c13e580919b1645c8b77ab11f04df4b9ecc0f0fb72",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/respawn.png",
+      "sha256": "281d76db6c06b69e62219e3494b98c0499fac1cc629621c9b9b25fa7f2192c2c",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/respawn.png.import",
+      "sha256": "bc8b7734bde231ad5411f89aa7798c7649298ad213f7cc23c2c9bf6444c19e71",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/rising.png",
+      "sha256": "56a376acf6b914ca0531d9856e36c00e922083a22a52d0f90d48219c5f72f4d2",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/rising.png.import",
+      "sha256": "7789d6b178ff75b082ff26310b2074ee2c9011f0395004966e6799a935845bfd",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/run.png",
+      "sha256": "a62893e713f16d5272e1bdb2d8608bc04cecd65439656f422163abd20c960dd5",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/run.png.import",
+      "sha256": "7de8bced1833194896c5898939b73da446b3a7b68303f2c7d976e7422868b4b8",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/toss.png",
+      "sha256": "e6b63679429d01c5baffa35f5ae27234fd2993afc5ee272aad69fcec73e9f29f",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/character/toss.png.import",
+      "sha256": "a6ec0947e9b880163637544d0e8a115988a013ed44214baa0de93671e29e19f7",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/env_bg.png",
+      "sha256": "a4aaf3ce2a3c596387d2e47ab12ac50555467d064e66bd70b758e184b4295a04",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/env_bg.png.import",
+      "sha256": "477878dcdb8269aaff42b408986cc6b2f8014f99cad415b4be6e417aa7350fad",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/fire_single.png",
+      "sha256": "deb986a13b58bac906127347cac1cfe8fd4b8fb4ed04a075fc640bfd22fdecea",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/fire_single.png.import",
+      "sha256": "b705bb60849a7f2615586fe9c7ac0d9bc5eaec9d942ebd46236cd498ad77fb58",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/fire_tall.png",
+      "sha256": "0d6e405f7b098ab3ee85e0a4ea918aff33ca8fada129194ac474abde2a966d1a",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/fire_tall.png.import",
+      "sha256": "35c54d26f0da657c43c57f521092a9fee920b788f0e41b647651d87733341512",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/fire_wide.png",
+      "sha256": "39dfb4f2a5d7688acdb31997801e73779bda7fd5b28a5bf54053877e08f688bf",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/env/fire_wide.png.import",
+      "sha256": "e885480bd89617296fd7a3cc1283f5e8b09e83654a73590ea242b8009c3f068d",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/hint/grey_3x1.png",
+      "sha256": "deb9df2a9689dd2297f2d37a3fa2759104f49dbb2eb3e33c00e1fa6292060ca6",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/hint/grey_3x1.png.import",
+      "sha256": "6d23d98e8ba74d9f39bcf8130d0454e1ee590c8df14c8b039792f9ef834fbe53",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/ATTRIBUTION.md",
+      "sha256": "6f4d52450cd5a743d30ea1a510d8d246a74f6c75f33964109585fb268d0abf5f",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_diff_1k.png",
+      "sha256": "b8e47f1d84acbe20119a351217d7a9d1139a21ea99a9fe0dd653880c9ee897ba",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_diff_1k.png.import",
+      "sha256": "550967874c91560e55b720871f603bab0337d121f7f6c330a4b08317d39264be",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_dx_1k.png",
+      "sha256": "cb4dad32c55b3f5d5893d6cc59537130179f72fc66afb255a9157649daaaeefe",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_dx_1k.png.import",
+      "sha256": "622c112d8c53b784e9e470e7ffdad01a11ae238060b5afecfa1fb8865298cc80",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png",
+      "sha256": "ad8284e25754f109a46ab418f08a26f7ab8030f9c6cdf60d5b939f441a30b789",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png.import",
+      "sha256": "50d1ae801493619dcb11082736445ea2a9b2514b52ad25784fedaf3506d74bc9",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_rough_1k.png",
+      "sha256": "86ad66e35ae81052886aacbb01a7c3eeb2fadcb906cc3e83805faf77b4182440",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "art/textures/rusty_metal_sheet/rusty_metal_sheet_rough_1k.png.import",
+      "sha256": "e6d1c6bb7436c8b367deb0ea1219f85e1dfba458432d31da075c375252a10de4",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/music_loop.ogg",
+      "sha256": "31de07e341f4c10de842fc1ea2acc83565e7f65b1799e3d44c71f87f6102f6bd",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/music_loop.ogg.import",
+      "sha256": "5d3065c488a8776ce416e1d4e8cd01ea6ceaf818d10517c59fb0155c023e0a63",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_burn.ogg",
+      "sha256": "5ddfdf618368fd24a7061c0c3ab1cd1c59d3d7c72aaa773b300ce7a8815b5c5b",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_burn.ogg.import",
+      "sha256": "2dba64b9b5d0e7a862a598d7257836a39aa635ddac3b36e7d925d6952b3f20ef",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_hose.ogg",
+      "sha256": "6685647379d2f2d8639d065d07817b3ef99f7925d71869680b7ee5330de7bb94",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_hose.ogg.import",
+      "sha256": "1f6335bd026c92f0c0ed970406ed46ff90bcd2df52287262f2d2bb3013c96b9b",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_jump.ogg",
+      "sha256": "c7c2de081a83308dff5e5cd98bafd4ac73523c153162bdcd621e40456498e03c",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_jump.ogg.import",
+      "sha256": "21117708bbcfdb0e031711eaca1b0355363ff94aa72c69b44039733bcfdab100",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_rescue.ogg",
+      "sha256": "a8a9dfc97dbe9579c1edd990512b1bd344cf7e59a8ac44cc1115e14140d071e9",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_rescue.ogg.import",
+      "sha256": "6b93a515e79947839cc3857e2826e1cc7f52d51dda02a1abfa61d96c9ac403e3",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_win.ogg",
+      "sha256": "ad547b55fd319144fe2d13da6d0518bb587228d8ab1dbf8cf16f2bb2d46e2227",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "audio/sfx_win.ogg.import",
+      "sha256": "bdbafc334e46183e62ccea26cc51ff03a0d815c2573acd4bac272821aeea0ebd",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "effects/ATTRIBUTION.md",
+      "sha256": "5ab6f2f80911207f7e21541dc348e03fa5ea019afed5cc974898fb15a9c9a24d",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "effects/hose_steam.tscn",
+      "sha256": "e03ce468428c5f54f090e1787d567c4bcd214e92e15090cfcf259d4318e8e824",
+      "role": "Effect B, the hose steam",
+      "component_ids": [
+        "hose-steam"
+      ]
+    },
+    {
+      "path": "effects/jump_puff.tscn",
+      "sha256": "22103f1ce66fee24f0376c84867ed90c8b52fa0b9b971e9bba283d81a8b67da4",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "features/debug/vsync_key.gd",
+      "sha256": "07f55acda635c38db497751ba7d8fbfbb73409bea5f09d846a0cea60875acd3b",
+      "role": "The price instruments",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "features/player/hose_glow.gd",
+      "sha256": "3d5f15c566cbdc93fe948eed48d4b45dd89e2081cb57d37de70e61fea7dbbd44",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "features/player/hose_steam_driver.gd",
+      "sha256": "b325091bf3cc88a4c88a0a10d68592c3d9bcc68dfc8ec65855386f5e1657891d",
+      "role": "Effect B, the hose steam",
+      "component_ids": [
+        "hose-steam"
+      ]
+    },
+    {
+      "path": "features/player/jump_puff_driver.gd",
+      "sha256": "01f9f9191f24af84688c672f92b4b94968d3648204cde60b05f32bce0e04f2ae",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "features/player/player.gd",
+      "sha256": "40a04b128515685e0002d50ba4d5a0b77397f435d1413c834ae5c5df53bbbfb5",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "features/player/tuning.gd",
+      "sha256": "1cb3a04eda7734e182a513662a8f5c65897fb141a6669baf6f60209d0f7c2e36",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "game/main.tscn",
+      "sha256": "017da6e141ad6f6199a9219208483c82cacd257210dbaa6b1184a27157a63a2f",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "game/session.gd",
+      "sha256": "67be2a7d7ac23ec9b56722ed2b521b51d6b7285dd0dc6039a369a42c90833a4b",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "levels/first_steps.json",
+      "sha256": "d435a1b6ba5eff47fe283e69329c6dea00f34a8299eeebb196c84e549d279b69",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "materials/hint_as_color.tres",
+      "sha256": "5027aa22b8705768678dadd8958c3fcdf9c0e4bea6a760a26aa9cad7e4a6ad90",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "materials/hint_as_data.tres",
+      "sha256": "f5f76717bfe8aab69d5c31ae401c886b2475e57e4e6b8e938577e702a9f128c6",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "materials/hydrant_fresh.tres",
+      "sha256": "8bdfe133100fef7c062a187cecd43af5f22ba0a6fb85386b811b22e0b7cd6090",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "materials/hydrant_rusty.tres",
+      "sha256": "30e4887de401d08f90e293d0229c55f4b5cee229d0008f0513c8142f4d798b1a",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "previews/gpu_price_preview.gd",
+      "sha256": "0dde544a48f74d65f2f332db2c6f88ab0c28c8e4796d7187a4a8662c22a25384",
+      "role": "The price instruments",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "previews/gpu_price_preview.tscn",
+      "sha256": "c3bdbbfeef7d69716f43c39f44a49963273fc2f97db0b961d5e1494d1e98bded",
+      "role": "The price instruments",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "previews/hose_steam_preview.gd",
+      "sha256": "7597bfffc85ae0a0caf93426a99414bbbac93465ef5ab59c57260553a78d0346",
+      "role": "Effect B, the hose steam",
+      "component_ids": [
+        "hose-steam"
+      ]
+    },
+    {
+      "path": "previews/hose_steam_preview.tscn",
+      "sha256": "65cae7f077fca0525bd60f99e03e4c6234ed15d38c58092aa36b152f62a81f42",
+      "role": "Effect B, the hose steam",
+      "component_ids": [
+        "hose-steam"
+      ]
+    },
+    {
+      "path": "previews/jump_puff_preview.gd",
+      "sha256": "c76b2041a0770d473840b2a24f25296fe74ea6a96e18e3f234bde3ed45ca6d5c",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "previews/jump_puff_preview.tscn",
+      "sha256": "f73fbbf13aed6039290022ee44052071c0d4b0f1facc55ee70697d60b8564d25",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "previews/scratch_process_material.tscn",
+      "sha256": "d2b9cdf0319a5cd73b0efcf8d0decc8ec5c1fa98e12ca036bd0bee088f7d68c1",
+      "role": "The process step as a shader",
+      "component_ids": [
+        "process-shader"
+      ]
+    },
+    {
+      "path": "project.godot",
+      "sha256": "18b80fb608279ceda4a94c998aea4ec6f5bb8d79c1969a9a6c4ac7a1552e47cf",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "props3d/flame.glb",
+      "sha256": "8d3427e9c57d6f78e2d483f33998a4154a616afea66163142b9e8a2aafc01973",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "props3d/flame.glb.import",
+      "sha256": "0acff9338338f0ad8d602372a5d8e754715ffe79e631dedc7e40421ae8ac0941",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "props3d/hydrant.glb",
+      "sha256": "826717f63c26b8ed7b9eee0dfc86278ac1a1edd1edb8fdc1890b0a85cfab47cd",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "props3d/hydrant.glb.import",
+      "sha256": "35bf1f4f3cbbbbcc8c1cfbb9c6f01b77cad1dedb5b4c958242ce07c7fe298b8c",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "props3d/rescue_bag.glb",
+      "sha256": "3b96bf6434cf79f30012cadbf406c2417ea674c1c5ea55e0cc6e5ed2e459bd88",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "props3d/rescue_bag.glb.import",
+      "sha256": "326e6fb68ed64779cebe12f039cb04c9afeeae7f6d69a5354415a923f1b6693f",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "scenes3d/hint_experiment.tscn",
+      "sha256": "edb6d506c2f17ef164c04dfdae597aba52946c9c58ccaf8a40496fccd62502d6",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "scenes3d/props_room.tscn",
+      "sha256": "a1b8a5ca1809650b5b2b9694ad6d3bfdc7698274513d590b4fec7f1c83c59c88",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "scenes3d/scratch_standard.tscn",
+      "sha256": "b20e03a5300e1fd1cd1f3d9d14e547eb0782e91cf5df04e2efe02a4ba2d6f18d",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "shaders/hint_experiment.gdshader",
+      "sha256": "a73097a924258f299899213de14558bb56dc224b18c3051fc21551251c735879",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "shaders/hose_glow.gdshader",
+      "sha256": "c1615bb82a7ca67c07b7988d9dd584a253f79a8af5f0661b727d129152aa553d",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "shaders/hydrant_surface.gdshader",
+      "sha256": "8bbc4798a07cd9a0e38f376ff5acd5f38bd18299a185644e3748e0739089df1a",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "shaders/particles_generated.gdshader",
+      "sha256": "69cf6b89ed475fef4c8af5045fb994526dcde66abc2448499e93e8323c2a902b",
+      "role": "The process step as a shader",
+      "component_ids": [
+        "process-shader"
+      ]
+    },
+    {
+      "path": "shaders/standard_generated.gdshader",
+      "sha256": "ca1c191c44fb614ae64a258fce3efbc13b77fdc82f480e98ac4582e30805650d",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/calibrate_normal_maps.gd",
+      "sha256": "6351c81b461c037fc175cc8fa3a39058aed1c9b34eb46825e97f792460c03cbc",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/capture_game.gd",
+      "sha256": "130ffe2f89d47f26e27837ef458525934ccba9c9e472d7566b1935b561ede64f",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/capture_glow.gd",
+      "sha256": "1546f913fe26f4ae5dd357eb35de5e9cf35ca1b2116199e1990fe83558445bf3",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/capture_hint.gd",
+      "sha256": "24ffd181b677be1848ef521cb3ea3bbadb566ee041e3674035b44aa4943da2e3",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/capture_hydrant.gd",
+      "sha256": "d788f058960b9528aea381e2cbc4a96978e3778b61294568bc995af5d6599c20",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/capture_props.gd",
+      "sha256": "2b1a41e56d07aa41fa865a4f465fe837fe5078693d21c7d5b446911349cd79bd",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/check_props.gd",
+      "sha256": "9a479e7f22256b283250313a77cd29c31d278ede368f6dec70bf2335ff898013",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/cost_effects.gd",
+      "sha256": "ad17f12ca4eddb2a24c11d79c6d7332b30d2e16c33785c87c64af78f55991246",
+      "role": "The price instruments",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "tests/gpu_price_effects.gd",
+      "sha256": "da0d38b35940f8fc2e413a29815fb8be308ca35963d91bda65638a6557351c54",
+      "role": "The price instruments",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "tests/make_scratch_process_material.gd",
+      "sha256": "8877e4bf452a05c6968f62a2d817a6f12d5de0d0817245593a1d5a6c87b390ce",
+      "role": "The process step as a shader",
+      "component_ids": [
+        "process-shader"
+      ]
+    },
+    {
+      "path": "tests/normal_map_check.gd",
+      "sha256": "d7ec5c3a0c7c7a2aef1365e8d6f9a649a98a7ac5b6995c1d406145d44f2daa0f",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/route_driver.gd",
+      "sha256": "f5fec4a09d52541cecf7553044bcd12169a8651fdb4e0ae891744bd0a60efc49",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/run_check_props.sh",
+      "sha256": "586371f62f1ebd607888e88b3bdb4acfc77533d4ec0301f4d95852ce71f462c8",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/test_audio.gd",
+      "sha256": "d17a92fcedb7c29aeb6787e5cd61e46785113567c7cba86cbd518c831052af42",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/test_game.gd",
+      "sha256": "5733fc7fa06ae20449c7276d3a03e5f0d891254c9443c8bf35339441c7c05f69",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/test_hose_glow.gd",
+      "sha256": "6cfcbe113d48e6bf4521a0aa106ceb1ccb3a7020f1f214ae9042cfca518a6651",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/test_hose_steam_config.gd",
+      "sha256": "7403ab5572a14e77a0074b2b08a733b0c301854d7fcc40e1134d7f8d17c7a4bb",
+      "role": "Effect B, the hose steam",
+      "component_ids": [
+        "hose-steam"
+      ]
+    },
+    {
+      "path": "tests/test_hose_steam_state.gd",
+      "sha256": "5b92a51db356f67e65bfaa2268086df3de24da6c02fad578e460a8a0e69b8ef8",
+      "role": "Effect B, the hose steam",
+      "component_ids": [
+        "hose-steam"
+      ]
+    },
+    {
+      "path": "tests/test_jump_puff_config.gd",
+      "sha256": "f11a6be414bcc63364573d1c8b40fb68e98650c8cd06a18addc45fa7ac7a29c2",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "tests/test_jump_puff_state.gd",
+      "sha256": "01eafb1c53b0f1425a64b9ad80b3f8e09cdbed20154023c9ad469dfa5b2908c2",
+      "role": "Effect A, the landing puff",
+      "component_ids": [
+        "landing-puff"
+      ]
+    },
+    {
+      "path": "tests/test_keyboard.gd",
+      "sha256": "0a47dd9b1f069ccf411fcbc994b8a9cfbf0b1f1d692e5d98cdf93fcf41aa0c8a",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/test_materials.gd",
+      "sha256": "77bab0a114990d31c585a4d386d39ae69bf76d00534179261a06d5df0a3ed499",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "tests/write_grey_strip.gd",
+      "sha256": "24f1e3ed8321cbd7a7927961399b4c50d0c098765abdf4a2c88275f51e458ad4",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    },
+    {
+      "path": "ui/hud.gd",
+      "sha256": "2534bdcff40fc0e0c28f7f0e64c79fe5e867af9d3c550b3239a4a9a2d0e23610",
+      "role": "The game this layer is added to",
+      "component_ids": [
+        "earlier-layers"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "landing-puff",
+      "explanation": "Effect A, the landing puff: three CPUParticles2D emitters in one scene file with a scene-defined texture (ATTRIBUTION.md), the driver that adds a fresh puff behind Extinguisho on every landed signal, the player script's landed signal and driver hooks, the preview fixture, and its configuration and state tests.",
+      "beat_ids": [
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B13"
+      ],
+      "files": [
+        "effects/ATTRIBUTION.md",
+        "effects/jump_puff.tscn",
+        "features/player/jump_puff_driver.gd",
+        "features/player/player.gd",
+        "previews/jump_puff_preview.gd",
+        "previews/jump_puff_preview.tscn",
+        "tests/test_jump_puff_config.gd",
+        "tests/test_jump_puff_state.gd"
+      ]
+    },
+    {
+      "id": "hose-steam",
+      "explanation": "Effect B, the hose steam: two GPUParticles2D emitters with turbulence and a box emitter in one scene file, the driver that writes emitting, amount_ratio from the fire's height and the position, the preview fixture, and its configuration and state tests.",
+      "beat_ids": [
+        "B09",
+        "B10",
+        "B11",
+        "B13"
+      ],
+      "files": [
+        "effects/hose_steam.tscn",
+        "features/player/hose_steam_driver.gd",
+        "previews/hose_steam_preview.gd",
+        "previews/hose_steam_preview.tscn",
+        "tests/test_hose_steam_config.gd",
+        "tests/test_hose_steam_state.gd"
+      ]
+    },
+    {
+      "id": "process-shader",
+      "explanation": "The process step as a shader: Godot's own code generated from a unique copy of the steam's ParticleProcessMaterial (converted by Sreeja in the editor), the scratch scene that holds the copy, and the helper that wrote it; nothing in the game uses them.",
+      "beat_ids": [
+        "B12"
+      ],
+      "files": [
+        "previews/scratch_process_material.tscn",
+        "shaders/particles_generated.gdshader",
+        "tests/make_scratch_process_material.gd"
+      ]
+    },
+    {
+      "id": "price",
+      "explanation": "The price instruments: the headless CPU cost script with its empty-scene control, the windowed GPU-time helper and the self-playing fixture used with the Visual Profiler under Mobile + Vulkan, and the F9 vsync debug key.",
+      "beat_ids": [
+        "B14"
+      ],
+      "files": [
+        "features/debug/vsync_key.gd",
+        "previews/gpu_price_preview.gd",
+        "previews/gpu_price_preview.tscn",
+        "tests/cost_effects.gd",
+        "tests/gpu_price_effects.gd"
+      ]
+    },
+    {
+      "id": "earlier-layers",
+      "explanation": "The game this layer is added to: the A2 2D game (session, level, HUD, generated art and audio, its tests and project settings), the A3 props room and the A5 shaders, materials, textures and their tests; unchanged in A6 except the player's landed signal and driver hooks.",
+      "beat_ids": [
+        "B02",
+        "B11"
+      ],
+      "files": [
+        "MATERIALS.md",
+        "art/character/anchors.json",
+        "art/character/burned.png",
+        "art/character/burned.png.import",
+        "art/character/celebrate.png",
+        "art/character/celebrate.png.import",
+        "art/character/celebrate_portrait.png",
+        "art/character/celebrate_portrait.png.import",
+        "art/character/devastated_portrait.png",
+        "art/character/devastated_portrait.png.import",
+        "art/character/falling.png",
+        "art/character/falling.png.import",
+        "art/character/grab.png",
+        "art/character/grab.png.import",
+        "art/character/hose.png",
+        "art/character/hose.png.import",
+        "art/character/idle.png",
+        "art/character/idle.png.import",
+        "art/character/jump_crouch.png",
+        "art/character/jump_crouch.png.import",
+        "art/character/landing.png",
+        "art/character/landing.png.import",
+        "art/character/respawn.png",
+        "art/character/respawn.png.import",
+        "art/character/rising.png",
+        "art/character/rising.png.import",
+        "art/character/run.png",
+        "art/character/run.png.import",
+        "art/character/toss.png",
+        "art/character/toss.png.import",
+        "art/env/env_bg.png",
+        "art/env/env_bg.png.import",
+        "art/env/fire_single.png",
+        "art/env/fire_single.png.import",
+        "art/env/fire_tall.png",
+        "art/env/fire_tall.png.import",
+        "art/env/fire_wide.png",
+        "art/env/fire_wide.png.import",
+        "art/hint/grey_3x1.png",
+        "art/hint/grey_3x1.png.import",
+        "art/textures/rusty_metal_sheet/ATTRIBUTION.md",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_diff_1k.png",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_diff_1k.png.import",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_dx_1k.png",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_dx_1k.png.import",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_nor_gl_1k.png.import",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_rough_1k.png",
+        "art/textures/rusty_metal_sheet/rusty_metal_sheet_rough_1k.png.import",
+        "audio/music_loop.ogg",
+        "audio/music_loop.ogg.import",
+        "audio/sfx_burn.ogg",
+        "audio/sfx_burn.ogg.import",
+        "audio/sfx_hose.ogg",
+        "audio/sfx_hose.ogg.import",
+        "audio/sfx_jump.ogg",
+        "audio/sfx_jump.ogg.import",
+        "audio/sfx_rescue.ogg",
+        "audio/sfx_rescue.ogg.import",
+        "audio/sfx_win.ogg",
+        "audio/sfx_win.ogg.import",
+        "features/player/hose_glow.gd",
+        "features/player/tuning.gd",
+        "game/main.tscn",
+        "game/session.gd",
+        "levels/first_steps.json",
+        "materials/hint_as_color.tres",
+        "materials/hint_as_data.tres",
+        "materials/hydrant_fresh.tres",
+        "materials/hydrant_rusty.tres",
+        "project.godot",
+        "props3d/flame.glb",
+        "props3d/flame.glb.import",
+        "props3d/hydrant.glb",
+        "props3d/hydrant.glb.import",
+        "props3d/rescue_bag.glb",
+        "props3d/rescue_bag.glb.import",
+        "scenes3d/hint_experiment.tscn",
+        "scenes3d/props_room.tscn",
+        "scenes3d/scratch_standard.tscn",
+        "shaders/hint_experiment.gdshader",
+        "shaders/hose_glow.gdshader",
+        "shaders/hydrant_surface.gdshader",
+        "shaders/standard_generated.gdshader",
+        "tests/calibrate_normal_maps.gd",
+        "tests/capture_game.gd",
+        "tests/capture_glow.gd",
+        "tests/capture_hint.gd",
+        "tests/capture_hydrant.gd",
+        "tests/capture_props.gd",
+        "tests/check_props.gd",
+        "tests/normal_map_check.gd",
+        "tests/route_driver.gd",
+        "tests/run_check_props.sh",
+        "tests/test_audio.gd",
+        "tests/test_game.gd",
+        "tests/test_hose_glow.gd",
+        "tests/test_keyboard.gd",
+        "tests/test_materials.gd",
+        "tests/write_grey_strip.gd",
+        "ui/hud.gd"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B05",
+      "path": "features/player/jump_puff_driver.gd",
+      "start_line": 12,
+      "end_line": 27,
+      "text": "func _on_landed() -> void:\n\tvar player: Node2D = get_parent()\n\tvar level: Node2D = player.get_parent()                  # WalkerJumpman (A-R6), never the player\n\tvar puff: Node2D = JumpPuff.instantiate()\n\tpuff.position = level.to_local(player.global_position)   # A-R1: his feet at the emit\n\tvar left := [puff.get_child_count()]                     # an Array, so the lambdas below share the count\n\tfor emitter in puff.get_children():\n\t\temitter.finished.connect(func():\n\t\t\tleft[0] -= 1\n\t\t\tif left[0] == 0:\n\t\t\t\tpuff.queue_free()                            # A-R5: freed when all three have finished\n\t\t)\n\tlevel.add_child(puff)\n\t# Revision 1 (A-R8): just before him in the level's child order, so it draws over the level's own\n\t# _draw() and behind Extinguisho. Not z_index: below 0 it would also go behind the buildings.\n\tlevel.move_child(puff, player.get_index())"
+    },
+    {
+      "beat_id": "B09",
+      "path": "features/player/hose_steam_driver.gd",
+      "start_line": 30,
+      "end_line": 39,
+      "text": "func _process(_delta: float) -> void:\n\tvar hosing: bool = get_parent().hosing\n\tsteam.position = _fire_top()                                                                    # B-R4\n\tvar ratio := clampf(session.fire_height() / float(session.level.blocking_fire[3]), 0.0, 1.0)  # B-R3\n\tfor emitter in emitters:\n\t\temitter.amount_ratio = ratio\n\t\t# B-R1, B-R2: written on a change only. Stopping is `emitting = false` alone (no restart, hide\n\t\t# or free), so steam already in the air finishes its life.\n\t\tif emitter.emitting != hosing:\n\t\t\temitter.emitting = hosing"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".gitignore",
+      "reason": "Repository hygiene (engine cache and local files ignored); not part of the running game."
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B05",
+      "result_beat": "B06",
+      "observation": "Fixture capture r0 of the puff preview (Movie Maker, 30 fps): triggered on frame 10, a white cluster with dark specks; about 20 px across by frame 12 and 25 px by frame 15; a pale haze by frame 20 that nearly melts into the tan wall; faint at 30; gone at 50.",
+      "media": {
+        "path": "media/stills/B06-figure.png",
+        "sha256": "a0161a32ebbaf65035bcdb2d1f7237ea58c5e74f0435f8f94183e83407d6eb84"
+      }
+    },
+    {
+      "code_beat": "B09",
+      "result_beat": "B10",
+      "observation": "Fixture captures of the steam preview, r0 against r1 at frames 16 and 40: r0's white steam barely shows on the pale sky; r1's darker, more solid haze shows the first grey puff at frame 16 and a defined grey cloud around the white steam at frame 40.",
+      "media": {
+        "path": "media/B10.mp4",
+        "sha256": "79d2489c04e432cc4555b669c36ac85066c0cd164355a6eef2641422a31daa54"
+      }
+    }
+  ]
+}

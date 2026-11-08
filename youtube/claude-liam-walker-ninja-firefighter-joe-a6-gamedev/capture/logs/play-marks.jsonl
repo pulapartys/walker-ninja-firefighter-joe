@@ -1,0 +1,17 @@
+{"event":"start","t":0.5,"tick":30}
+{"event":"landed (puff)","t":1.817,"tick":109}
+{"event":"landed (puff)","t":2.65,"tick":159}
+{"event":"double hop done","t":2.667,"tick":160}
+{"event":"landed (puff)","t":4.817,"tick":289}
+{"event":"landed (puff)","t":6.1,"tick":366}
+{"event":"landed (puff)","t":7.2,"tick":432}
+{"event":"landed (puff)","t":8.117,"tick":487}
+{"event":"landed (puff)","t":8.4,"tick":504}
+{"event":"landed (puff)","t":9.6,"tick":576}
+{"event":"landed (puff)","t":11.617,"tick":697}
+{"event":"landed (puff)","t":12.3,"tick":738}
+{"event":"landed (puff)","t":13.017,"tick":781}
+{"event":"hosing starts (W)","t":13.133,"tick":788}
+{"event":"Esc: game paused","t":15.133,"tick":908}
+{"event":"Esc: game resumed","t":16.65,"tick":999}
+{"event":"water stops","t":19.617,"tick":1177}

@@ -1,0 +1,28 @@
+{
+  "excerpts": [
+    {
+      "beat_id": "B05",
+      "path": "features/player/jump_puff_driver.gd",
+      "start_line": 12,
+      "end_line": 27,
+      "text": "func _on_landed() -> void:\n\tvar player: Node2D = get_parent()\n\tvar level: Node2D = player.get_parent()                  # WalkerJumpman (A-R6), never the player\n\tvar puff: Node2D = JumpPuff.instantiate()\n\tpuff.position = level.to_local(player.global_position)   # A-R1: his feet at the emit\n\tvar left := [puff.get_child_count()]                     # an Array, so the lambdas below share the count\n\tfor emitter in puff.get_children():\n\t\temitter.finished.connect(func():\n\t\t\tleft[0] -= 1\n\t\t\tif left[0] == 0:\n\t\t\t\tpuff.queue_free()                            # A-R5: freed when all three have finished\n\t\t)\n\tlevel.add_child(puff)\n\t# Revision 1 (A-R8): just before him in the level's child order, so it draws over the level's own\n\t# _draw() and behind Extinguisho. Not z_index: below 0 it would also go behind the buildings.\n\tlevel.move_child(puff, player.get_index())"
+    },
+    {
+      "beat_id": "B09",
+      "path": "features/player/hose_steam_driver.gd",
+      "start_line": 30,
+      "end_line": 39,
+      "text": "func _process(_delta: float) -> void:\n\tvar hosing: bool = get_parent().hosing\n\tsteam.position = _fire_top()                                                                    # B-R4\n\tvar ratio := clampf(session.fire_height() / float(session.level.blocking_fire[3]), 0.0, 1.0)  # B-R3\n\tfor emitter in emitters:\n\t\temitter.amount_ratio = ratio\n\t\t# B-R1, B-R2: written on a change only. Stopping is `emitting = false` alone (no restart, hide\n\t\t# or free), so steam already in the air finishes its life.\n\t\tif emitter.emitting != hosing:\n\t\t\temitter.emitting = hosing"
+    }
+  ],
+  "pairs": [
+    [
+      "B05",
+      "B06"
+    ],
+    [
+      "B09",
+      "B10"
+    ]
+  ]
+}

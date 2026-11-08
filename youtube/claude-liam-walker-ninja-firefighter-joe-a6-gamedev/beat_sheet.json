@@ -1,0 +1,1061 @@
+{
+  "metadata": {
+    "slug": "claude-liam-walker-ninja-firefighter-joe-a6-gamedev",
+    "title": "Extinguisho's Puff and Steam",
+    "persona": "Liam",
+    "palette": "claude",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "fps": 30,
+    "width": 3840,
+    "height": 2160,
+    "aspect_ratio": "16:9",
+    "caption_policy": "no burned captions",
+    "fit": "pad",
+    "skill": "godot-gamedev",
+    "modifier": "walker",
+    "source_revision": "486bd48",
+    "human_review_approved": false,
+    "authorization": "Student's Assignment 6 explainer; script v3 approved by Sreeja; local 4K master for course submission; no publication.",
+    "build": {
+      "at": "2026-11-08T13:39:17",
+      "cut": "master",
+      "filled": 19,
+      "of": 19,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "heading": "The prompt",
+      "narration_text": "Please use Walker to add two particle effects to my firefighter game: a puff of dust when the ninja lands, and steam that follows the fire while he hoses it. This is Liam, in for Bear. Assignment Six for C S Y E seventy-two seventy.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The prompt",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The prompt"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Please use Walker to convert my game design document\nabout a deadpan ninja firefighter into two particle effects:\na puff of dust when he lands, and steam that follows the fire.",
+            "topic": "Illustrative reconstruction, not a session transcript",
+            "segment": "Extinguisho's Puff and Steam",
+            "greeting": "Hello",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 14.366666666666667
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-08T18:28:18.417407+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B00.wav",
+      "actual_duration_s": 14.366666666666667,
+      "render_duration_s": 14.366666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "heading": "What was built",
+      "narration_text": "Two small visual effects in a two-D Godot game, and a lesson in working with an AI that cannot see the screen. An automatic test can prove an effect starts at the right moment. It cannot prove anyone can see it. That took real frames, human eyes and a running game.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What was built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What was built"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Two particle effects for a Godot game.\nA passing test proves the look.",
+            "triggerWords": "look",
+            "replacementWords": "timing",
+            "fontSize": 72,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "charMs": 55,
+            "jitter": 0,
+            "seed": "claude-liam-walker-ninja-firefighter-joe-a6-gamedev",
+            "face": "serif",
+            "align": "center",
+            "durationSeconds": 15.833333333333334
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-08T18:28:18.418299+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "audio_file": "audio/B01.wav",
+      "actual_duration_s": 15.833333333333334,
+      "render_duration_s": 15.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "heading": "The game, the two jobs",
+      "narration_text": "Extinguisho is Sreeja's deadpan ninja firefighter. Effect A is a quick burst: a puff of dust every time he lands. Effect B has a different job. While he sprays the fire, steam rises, and how much steam there is follows how much fire is left.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The game, the two jobs",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The game, the two jobs"
+          }
+        ],
+        "evidence_media": "media/B02.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "game.png",
+      "screen_title": "SCRIPTED-INPUT CAPTURE, not a human playtest · two frames of the take (Movie Maker, 4K)",
+      "screen_sub": "capture/play.avi frames 82 and 430 · capture/film_capture.gd · game revision 486bd48",
+      "screen_card_below": true,
+      "audio_file": "audio/B02.wav",
+      "actual_duration_s": 14.333333333333334,
+      "render_duration_s": 14.333333333333334,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, fixture frame strips) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "heading": "The brief came first",
+      "narration_text": "Before Claude wrote anything, Sreeja wrote a plan: not just numbers, but how each effect should look. Bright for an instant, gone in under a second, big enough to notice next to him. White dust nearly disappears on her tan walls, so the puff also throws dark specks. She also wrote down what might go wrong, and a cost budget.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The brief came first",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The brief came first"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The brief came first",
+            "status": "CHANGE-BRIEF.md · v1 committed before the first prompt · 45c4398",
+            "image": "B03-figure.png",
+            "imageLabel": "",
+            "source": "CHANGE-BRIEF.md · v1 committed before the first prompt · 45c4398",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "CHANGE-BRIEF.md"
+              }
+            ],
+            "durationSeconds": 17.0
+          },
+          "rendered": {
+            "out": "media/B03.mp4",
+            "at": "2026-11-08T18:28:18.418947+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B03-figure.png"
+      },
+      "audio_file": "audio/B03.wav",
+      "actual_duration_s": 17.0,
+      "render_duration_s": 17.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "heading": "Three parts of a particle system",
+      "narration_text": "A particle effect is one object that spawns lots of tiny, short-lived dots. It has three parts, and each can go wrong on its own. Emission: when, and how many. Here, ten puffs, all at once. Process: how each dot moves and changes. This line pulls every dot with gravity. Draw: what each dot looks like: a soft round blob, made in the scene file itself.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Three parts of a particle system",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Three parts of a particle system"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "Three parts of a particle system",
+            "status": "Godot editor reconstruction",
+            "image": "B04-figure.png",
+            "imageLabel": "",
+            "source": "Godot editor reconstruction · exact lines of godot/effects/jump_puff.tscn at revision 486bd48",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Godot editor reconstruction"
+              }
+            ],
+            "durationSeconds": 19.4
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-08T18:28:18.419590+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B04-figure.png"
+      },
+      "audio_file": "audio/B04.wav",
+      "actual_duration_s": 19.4,
+      "render_duration_s": 19.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "heading": "Effect A, built",
+      "narration_text": "Claude built the puff from the plan, on the computer's main processor: a quick flash, ten soft puffs and six dark specks. Each landing drops a fresh puff where he landed, behind him, and it cleans itself up when done. Land twice quickly and you get two puffs, the first one left to finish.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Effect A, built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Effect A, built"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Effect A, built",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/jump_puff_driver.gd",
+            "source": "Godot editor reconstruction · exact source, revision 486bd48 · next: the visible result",
+            "code": "func _on_landed() -> void:\n\tvar player: Node2D = get_parent()\n\tvar level: Node2D = player.get_parent()                  # WalkerJumpman (A-R6), never the player\n\tvar puff: Node2D = JumpPuff.instantiate()\n\tpuff.position = level.to_local(player.global_position)   # A-R1: his feet at the emit\n\tvar left := [puff.get_child_count()]                     # an Array, so the lambdas below share the count\n\tfor emitter in puff.get_children():\n\t\temitter.finished.connect(func():\n\t\t\tleft[0] -= 1\n\t\t\tif left[0] == 0:\n\t\t\t\tpuff.queue_free()                            # A-R5: freed when all three have finished\n\t\t)\n\tlevel.add_child(puff)\n\t# Revision 1 (A-R8): just before him in the level's child order, so it draws over the level's own\n\t# _draw() and behind Extinguisho. Not z_index: below 0 it would also go behind the buildings.\n\tlevel.move_child(puff, player.get_index())",
+            "startLine": 12,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Line 12",
+                "value": "on each landed signal"
+              },
+              {
+                "label": "Line 27",
+                "value": "drawn just behind Extinguisho"
+              }
+            ],
+            "output": [
+              "godot/features/player/jump_puff_driver.gd lines 12–27"
+            ],
+            "cues": [],
+            "durationSeconds": 15.633333333333333
+          },
+          "rendered": {
+            "out": "media/B05.mp4",
+            "at": "2026-11-08T18:28:18.420213+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B05.wav",
+      "actual_duration_s": 15.633333333333333,
+      "render_duration_s": 15.633333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "heading": "The first strip",
+      "narration_text": "The AI cannot watch the game, so Godot records real frames of a test scene, and Claude reads those pictures. Sreeja looked first, and saw nothing. The test scene waited for exactly frame ten, and a live window skipped right past it. A one-character fix.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The first strip",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The first strip"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The first strip",
+            "status": "FIXTURE CAPTURE · captures/jump_puff/r0 · Movie Maker 30 fps",
+            "image": "B06-figure.png",
+            "imageLabel": "",
+            "source": "FIXTURE CAPTURE · captures/jump_puff/r0 · Movie Maker 30 fps · preview scene, not the game · zoomed 3×",
+            "cards": [
+              {
+                "label": "1",
+                "text": "frame 10 · trigger"
+              },
+              {
+                "label": "2",
+                "text": "frame 12"
+              },
+              {
+                "label": "3",
+                "text": "frame 15"
+              },
+              {
+                "label": "4",
+                "text": "frame 20"
+              }
+            ],
+            "durationSeconds": 15.033333333333333
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-08T18:28:18.420820+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B06-figure.png"
+      },
+      "qc": {
+        "contrast_regions": [
+          {
+            "label": "title",
+            "box": [
+              0.05,
+              0.04,
+              0.3,
+              0.11
+            ]
+          },
+          {
+            "label": "status pill",
+            "box": [
+              0.05,
+              0.13,
+              0.49,
+              0.19
+            ]
+          },
+          {
+            "label": "cards",
+            "box": [
+              0.05,
+              0.79,
+              0.95,
+              0.89
+            ]
+          },
+          {
+            "label": "footer",
+            "box": [
+              0.05,
+              0.925,
+              0.62,
+              0.965
+            ]
+          }
+        ],
+        "contrast_reason": "The figure is fixture-capture frames of the game's tan wall (captured evidence, not typography); the designed text is the title, status pill, cards and footer."
+      },
+      "audio_file": "audio/B06.wav",
+      "actual_duration_s": 15.033333333333333,
+      "render_duration_s": 15.033333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "heading": "Her decision from play: the landing",
+      "narration_text": "In the game, the puff first appeared on the jump. Sreeja played it and decided it made more sense on the landing. So the game got one new message, he landed, sent at the moment it already switches to the landing pose. Two quick landings: two puffs.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "VIDEO",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Her decision from play: the landing",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Her decision from play: the landing"
+          }
+        ],
+        "evidence_media": "media/B07.mp4"
+      },
+      "gameplay_take": "landings",
+      "audio_file": "audio/B07.wav",
+      "actual_duration_s": 13.3,
+      "render_duration_s": 13.3,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / held-frame plate",
+            "box": [
+              0.06,
+              0.217,
+              0.94,
+              0.324
+            ]
+          }
+        ],
+        "contrast_reason": "The game's sky and streets are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "heading": "Tuning the puff",
+      "narration_text": "Tuning, one change at a time. First, a greyer fade. Claude predicted a clear grey cloud, and the zoomed frames agreed. In the game, Sreeja could not tell the difference. Her eyes are the judge, and that disagreement is on the record. Second, bigger puffs. She kept them: the dark dots now read like real dust.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Tuning the puff",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Tuning the puff"
+          }
+        ],
+        "evidence_media": "media/B08.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "puff-tuning.png",
+      "screen_title": "FIXTURE CAPTURES · captures/jump_puff/r0, r1, r2 · zoomed 3× · Claude's predictions and her verdicts from a6/TUNING.md",
+      "screen_sub": "her eyes in the running game decide each round; the strip is the reviewable record",
+      "screen_card_below": true,
+      "audio_file": "audio/B08.wav",
+      "actual_duration_s": 16.4,
+      "render_duration_s": 16.4,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, fixture frame strips) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "media",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "heading": "Effect B: a feedback loop",
+      "narration_text": "The steam follows a number. Every frame, the code checks how tall the fire still is and turns that into a share of the steam: all of it when the water first hits, none when the fire is out. It changes the share of dots, not the total, because changing the total restarts the effect and the steam would blink. Unlike the puff, the steam runs on the graphics card, swirls, and rises from the whole width of the fire.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Effect B: a feedback loop",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Effect B: a feedback loop"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Effect B: a feedback loop",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/hose_steam_driver.gd",
+            "source": "Godot editor reconstruction · exact source, revision 486bd48 · next: the visible result",
+            "code": "func _process(_delta: float) -> void:\n\tvar hosing: bool = get_parent().hosing\n\tsteam.position = _fire_top()                                                                    # B-R4\n\tvar ratio := clampf(session.fire_height() / float(session.level.blocking_fire[3]), 0.0, 1.0)  # B-R3\n\tfor emitter in emitters:\n\t\temitter.amount_ratio = ratio\n\t\t# B-R1, B-R2: written on a change only. Stopping is `emitting = false` alone (no restart, hide\n\t\t# or free), so steam already in the air finishes its life.\n\t\tif emitter.emitting != hosing:\n\t\t\temitter.emitting = hosing",
+            "startLine": 30,
+            "codeFontSize": 30,
+            "notes": [
+              {
+                "label": "Line 33",
+                "value": "share = fire height ÷ full height"
+              },
+              {
+                "label": "Line 35",
+                "value": "amount_ratio, not amount"
+              }
+            ],
+            "output": [
+              "godot/features/player/hose_steam_driver.gd lines 30–39"
+            ],
+            "cues": [],
+            "durationSeconds": 20.766666666666666
+          },
+          "rendered": {
+            "out": "media/B09.mp4",
+            "at": "2026-11-08T18:28:18.421423+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B09.wav",
+      "actual_duration_s": 20.766666666666666,
+      "render_duration_s": 20.766666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "heading": "Steam: her look, one change",
+      "narration_text": "Her first look: the steam was hard to see against the sky. Claude's reading agreed: the darker layer meant to make it stand out was invisible. One change: make that layer darker and more solid. Claude predicted the start would look the same. It did not: the first wisps showed up right away. Her verdict in the game: better now.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Steam: her look, one change",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Steam: her look, one change"
+          }
+        ],
+        "evidence_media": "media/B10.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "steam-tuning.png",
+      "screen_title": "FIXTURE CAPTURES · captures/hose_steam/r0 and r1 · zoomed 2× · her words and Claude's prediction from a6/TUNING.md",
+      "screen_sub": "r1: a darker, more solid haze (one setting) · kept after her check in the running game",
+      "screen_card_below": true,
+      "audio_file": "audio/B10.wav",
+      "actual_duration_s": 17.233333333333334,
+      "render_duration_s": 17.233333333333334,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, fixture frame strips) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "media",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "heading": "Steam in play",
+      "narration_text": "In play, the water starts and the steam rises. It thins as the flames shrink and stops when the water stops, while the last wisps drift away. Pressing Escape pauses the game but not the particles, so the steam keeps drifting behind the pause card, which Sreeja chose. At both edges of the screen it does not suddenly vanish.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "VIDEO",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Steam in play",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Steam in play"
+          }
+        ],
+        "evidence_media": "media/B11.mp4"
+      },
+      "gameplay_take": "hosing",
+      "audio_file": "audio/B11.wav",
+      "actual_duration_s": 17.766666666666666,
+      "render_duration_s": 17.766666666666666,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / held-frame plate",
+            "box": [
+              0.06,
+              0.217,
+              0.94,
+              0.324
+            ]
+          }
+        ],
+        "contrast_reason": "The game's sky and streets are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "heading": "The process step is a shader",
+      "narration_text": "Godot can show the hidden program behind the steam's movement. Sreeja converted a copy and found her own settings inside. Line three thirty-one skips a new dot if it falls outside the current share: her steam-follows-the-fire idea. Line two thirty-two picks each dot's speed between her twenty and forty. In her words: this program decides how dots move, grow and fade; drawing decides how they look.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The process step is a shader",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The process step is a shader"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The process step is a shader",
+            "status": "Exact lines · godot/shaders/particles_generated.gdshader (Godot wrote it)",
+            "image": "B12-figure.png",
+            "imageLabel": "",
+            "source": "Exact lines · godot/shaders/particles_generated.gdshader (Godot wrote it) · CHANGE-BRIEF.md · revision 486bd48",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Exact lines"
+              }
+            ],
+            "durationSeconds": 21.0
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-11-08T18:28:18.422046+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B12-figure.png"
+      },
+      "audio_file": "audio/B12.wav",
+      "actual_duration_s": 21.0,
+      "render_duration_s": 21.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "heading": "What the tests proved",
+      "narration_text": "The tests read every setting back from the files, and press real keys to check both effects start and stop at the right moments. Then a deliberate mistake: rename one setting to its old Godot three name. No warning, the test fails, and in the game the puff collapses into a blob. Tests prove settings and timing, not that anyone sees a thing.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What the tests proved",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What the tests proved"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "What the tests proved",
+            "status": "Recorded headless output · logs/ and a6/evidence/ · nothing retyped",
+            "image": "B13-figure.png",
+            "imageLabel": "",
+            "source": "Recorded headless output · logs/ and a6/evidence/ · nothing retyped",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "Recorded headless output"
+              }
+            ],
+            "durationSeconds": 18.433333333333334
+          },
+          "rendered": {
+            "out": "media/B13.mp4",
+            "at": "2026-11-08T18:28:18.422654+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B13-figure.png"
+      },
+      "audio_file": "audio/B13.wav",
+      "actual_duration_s": 18.433333333333334,
+      "render_duration_s": 18.433333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "heading": "The price, twice",
+      "narration_text": "Cost, measured twice. On the processor, the puff is too small to measure, inside its budget. The steam shows almost nothing there: it runs on the graphics card, and a test with no screen never uses the card. On this Mac only one graphics mode reports the card's time. There, the steam costs about a fifth of a millisecond per frame, under its half-millisecond budget.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The price, twice",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The price, twice"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "The price, twice",
+            "status": "a6/evidence/ cost, probe and GPU logs · a6/TEST-REPORT.md · Apple M1",
+            "image": "B14-figure.png",
+            "imageLabel": "",
+            "source": "a6/evidence/ cost, probe and GPU logs · a6/TEST-REPORT.md · Apple M1",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "a6/evidence/ cost, probe and GPU logs"
+              }
+            ],
+            "durationSeconds": 19.5
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-11-08T18:28:18.423265+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B14-figure.png"
+      },
+      "audio_file": "audio/B14.wav",
+      "actual_duration_s": 19.5,
+      "render_duration_s": 19.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "heading": "What Claude got wrong",
+      "narration_text": "What Claude got wrong, caught by checking: a test scene that skipped its own trigger, and a cost script that assumed every puff lasts equally long, then changed its rules after seeing the answer. And one of ours: recording windows hidden behind others, caught by spotting identical frames.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What Claude got wrong",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What Claude got wrong"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "What Claude got wrong",
+            "status": "As recorded · a6/FRICTIONAL.md · a6/TEST-REPORT.md",
+            "image": "B15-figure.png",
+            "imageLabel": "",
+            "source": "As recorded · a6/FRICTIONAL.md · a6/TEST-REPORT.md",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "As recorded"
+              }
+            ],
+            "durationSeconds": 15.466666666666667
+          },
+          "rendered": {
+            "out": "media/B15.mp4",
+            "at": "2026-11-08T18:28:18.423879+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B15-figure.png"
+      },
+      "audio_file": "audio/B15.wav",
+      "actual_duration_s": 15.466666666666667,
+      "render_duration_s": 15.466666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "heading": "Verdict",
+      "narration_text": "The verdict. Verified: both effects set up as planned, starting and stopping at the right moments, within budget. Judged by Sreeja's eyes: the landing, the tuning, the darker steam. Still uncertain: the steam right after being hidden, and the puff's graphics-card cost. Next: her blue hose glow pulls the eye from the steam. Directed and decided by Sreeja, built by Claude Code, tested by eye and played by Sreeja. No downloaded images. Source version on screen.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Verdict",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Verdict"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Assignment 6 · verdict",
+            "artifactHeading": "Two particle effects, checked by tests and by eye",
+            "artifactLines": [
+              "Verified: settings read back (94 + 89) · state through real keys (30 + 18) · Godot 3 name fails the test · within budget",
+              "Her eyes: the landing · puff r1 + r2 kept · darker steam kept · both screen edges · no steam at the start",
+              "Uncertain: the steam shown again after hiding · the puff's GPU cost",
+              "Next: her blue hose glow pulls the eye from the steam",
+              "Directed and decided by Sreeja · built by Claude Code · tested by eye and played by Sreeja",
+              "No downloaded images · game revision 486bd48"
+            ],
+            "durationSeconds": 23.8
+          },
+          "rendered": {
+            "out": "media/B16.mp4",
+            "at": "2026-11-08T18:28:18.424491+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B16.wav",
+      "actual_duration_s": 23.8,
+      "render_duration_s": 23.8,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "heading": "Your turn",
+      "narration_text": "Your turn. Read my change plan. The steam should visibly thin in its second second, and it is hard to see. Plan one change to the darker layer, predict what the frames will show, and name the test that must keep passing. This has been Liam, in for Bear.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Your turn",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Your turn"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Read my CHANGE-BRIEF. Between one and two seconds the steam should\nvisibly thin, and it is hard to see. Plan one change to the Haze,\npredict frames 40 and 70, and name the test in\ntest_hose_steam_state.gd that must keep passing.",
+            "topic": "Your turn · one change, one prediction, one test kept honest",
+            "segment": "Extinguisho's Puff and Steam",
+            "greeting": "Your turn",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 13.566666666666666
+          },
+          "rendered": {
+            "out": "media/B17.mp4",
+            "at": "2026-11-08T18:28:18.425114+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B17.wav",
+      "actual_duration_s": 13.566666666666666,
+      "render_duration_s": 13.566666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B17.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-08T13:39:17"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "heading": "Outro",
+      "narration_text": "Extinguisho's Puff and Steam. At Nik Bear Brown.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Outro",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Outro"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Extinguisho's Puff and Steam",
+            "slug": "claude-liam-walker-ninja-firefighter-joe-a6-gamedev",
+            "durationSeconds": 4.7
+          },
+          "rendered": {
+            "out": "media/B18.mp4",
+            "at": "2026-11-08T18:28:18.425726+00:00"
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_hold_s": 1.0,
+      "audio_file": "audio/B18.wav",
+      "actual_duration_s": 4.7,
+      "render_duration_s": 4.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B18.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-11-08T13:39:17"
+      }
+    }
+  ]
+}

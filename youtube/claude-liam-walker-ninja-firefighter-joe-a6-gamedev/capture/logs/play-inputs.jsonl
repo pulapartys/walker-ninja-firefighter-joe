@@ -1,0 +1,16 @@
+{"input":"confirm","tick":30,"value":true}
+{"input":"jump","tick":60,"value":true}
+{"input":"jump","tick":107,"value":true}
+{"input":"axis","tick":200,"value":1.0}
+{"input":"jump","tick":240,"value":true}
+{"input":"jump","tick":317,"value":true}
+{"input":"jump","tick":383,"value":true}
+{"input":"jump","tick":445,"value":true}
+{"input":"jump","tick":527,"value":true}
+{"input":"jump","tick":648,"value":true}
+{"input":"jump","tick":698,"value":true}
+{"input":"jump","tick":741,"value":true}
+{"input":"water","tick":787,"value":true}
+{"input":"axis","tick":787,"value":0.0}
+{"input":"pause (Esc)","tick":907,"value":true}
+{"input":"pause (Esc)","tick":998,"value":true}
