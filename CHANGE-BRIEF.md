@@ -274,3 +274,10 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
   - A-R4 to A-R8 are unchanged.
 - **Unchanged:** every setting in A3, the frame strip in A5 (the preview adds the puff itself, so its frame 10 is the landing), the names `jump_puff.tscn` / `JumpPuff` / `jump_puff_driver.gd` (renaming would touch every file and capture for no change in behaviour), predictions P and C, and the answers in Q.
 - The v1 text above is kept as written.
+
+### Revision 3 — 2026-11-07, Effect A tuning r1 kept: the puff greys as it fades
+
+- **Setting:** `Puff` `color_ramp` middle stop (0.35) is now (0.62, 0.63, 0.68, α 0.7), was (0.85, 0.85, 0.88, α 0.7); end stop (1.0) is now (0.45, 0.47, 0.52, α 0), was (0.60, 0.62, 0.68, α 0). The start stop and every alpha are unchanged.
+- **Why:** the r0 strip showed the puff fading into the tan wall from about 0.2 s (a6/TUNING.md r1). Kept after my check in the running game, where I saw little difference; the scene file and the configuration test carry the new values.
+- The v1 text above is kept as written.
+
