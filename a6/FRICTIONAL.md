@@ -96,6 +96,11 @@
   - **Reading it:** typing a frame number did not take ("Frame # is not a box"), so I clicked the graph. Claude's phase estimates were wrong, because the run went faster than 60 fps. I recorded what the frames showed (`1a1b778`).
 - **My guesses:** off in both directions. The puff was not measurable on the GPU or the CPU, and the steam cost more than I guessed, though still under budget (TEST-REPORT, "My predictions against the results").
 
+## What the film build found
+
+- **The finding:** while capturing the steam for the film, Claude found that the game's pause card covers the fire during Esc. My choice that the steam "keeps drifting" under Esc is true inside the engine, but no player can see it. Recorded as Revision 9, with no code change.
+- **The film's numbers:** 5:13 at the 5–5:30 I asked for, in the plain "layman technical" register I asked for (script v3, which I approved). It passed the toolkit's checks (`680a2d4`).
+
 ## Unresolved questions
 
 - **What does the steam look like when it is shown again after being hidden?** Only the headless state was checked; nothing in the game hides it.

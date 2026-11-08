@@ -310,3 +310,9 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - The v1 header says Claude typed sections A and B from my decisions and "I reviewed them". What happened: I directed and decided every choice in them in chat (the effects, jobs, node types, layers, pause behaviour, and later every revision); Claude implemented them as text, with the measurements and the property-name checks. I did not read the v1 text line by line before it was committed. I checked the result by eye-testing and playing the game many times. Sections P, C and Q are my own answers, as the header says.
 - The v1 text above is kept as written.
 
+### Revision 9 — 2026-11-08, B-R5 under Esc: the steam keeps simulating, but the pause card hides it
+
+- **What the film's capture showed:** during Esc the game draws its pause card over the play area, which covers the fire and the steam. The steam keeps simulating behind it, as B-R5 says and as `test_hose_steam_state.gd` `game-pause-holds` proves, but a player does not see it drift.
+- **B-R5 (game pause) now reads:** under Esc the session stops counting, `amount_ratio` holds, and the steam keeps simulating at that strength behind the pause card; on resume it continues from there. No code change.
+- The v1 text above is kept as written.
+
