@@ -14,7 +14,7 @@ fill_to = Vector2(1, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_haze_color"]
 offsets = PackedFloat32Array(0, 0.2, 1)
-colors = PackedColorArray(0.42, 0.43, 0.47, 0, 0.42, 0.43, 0.47, 0.5, 0.42, 0.43, 0.47, 0)
+colors = PackedColorArray(0.3, 0.31, 0.35, 0, 0.3, 0.31, 0.35, 0.8, 0.3, 0.31, 0.35, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_haze_color"]
 gradient = SubResource("Gradient_haze_color")

@@ -44,3 +44,13 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **Strip:** `captures/hose_steam/r0/` (frames 10, 16, 40, 70, 100, 130, 165, 200; W on frame 10, fire out on 130, water off on 160), captured through the real driver with `--always-on-top`, 210 / 210 frames drawn.
 - **My first look (preview window, `-- loop`, 1280 × 720), before Claude read any frame, in my words (typos fixed):** "i don't know if the steam is visible enough against the flashing of the firefighter the size is fine but idk if its that noticeable especially in the sky" (the "flashing" is my A5 hose glow breathing blue on Extinguisho while he hoses)
 
+- **Claude's reading of r0** (the frames at game size, around the fire): 10 water starts, no steam (as predicted). 16 nothing visible yet (brief: first wisps), a slower start. 40 a faint pale-white cloud above the flames, mostly lost in the pale sky; the darker `Haze` layer does not show at all (brief: white steam over a darker haze, about 50 px). 70 a few faint wisps, hard to tell from 40 (brief: visibly thinner). 100 one faint wisp, a trickle (as predicted). 130 a faint remnant (as predicted). 165 and 200 nothing (as predicted). **Claude agrees with my look:** the steam barely reads on the sky, the risk the brief's contrast numbers predicted (white on that sky 1.8 : 1), and the `Haze` layer meant to carry it is invisible at α 0.5 in a mid grey.
+
+## 2026-11-08 — Effect B, revision r1: a darker, more solid haze
+
+- **What I saw:** my first look above: the steam is not that noticeable, especially in the sky.
+- **Change (one setting), approved by me ("yes"):** `Haze` `color_ramp`: colour (0.42, 0.43, 0.47) → (0.30, 0.31, 0.35) at every stop; peak alpha at 0.2 of life 0.5 → 0.8; start and end alpha 0 unchanged. On paper the new grey (relative luminance 0.08) is about 4 : 1 against the sky's average and 2.3 : 1 against its darkest smoke clouds. Configuration test expected values updated to match.
+- **Claude's prediction for r1:** 10 and 16 unchanged (still a slow start). 40 a clearly visible grey cloud above the flames with the white steam on top, readable against the sky. 70 a thinner grey column, visibly thinner than 40. 100 and 130 a faint grey trickle. 165 and 200 nothing. Risk: where the steam crosses the background's own dark smoke clouds it may blend in.
+- **Claude's comparison of r1 with its prediction:** _pending._
+- **My verdict (running game, 1280 × 720):** _pending._
+- **Strips:** `captures/hose_steam/r0/`, `captures/hose_steam/r1/`

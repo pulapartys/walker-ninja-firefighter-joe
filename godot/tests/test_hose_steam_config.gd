@@ -62,10 +62,10 @@ var scale_curves := {
 	"Steam": [Vector2(0, 0.6), Vector2(1, 1.6)],
 }
 # color_ramp (a GradientTexture1D) as [offset, colour] stops of its Gradient.
-const GREY := Color(0.42, 0.43, 0.47)
+const GREY := Color(0.30, 0.31, 0.35)
 const WHITE := Color(0.95, 0.95, 0.97)
 var color_ramps := {
-	"Haze": [[0.0, Color(GREY, 0.0)], [0.2, Color(GREY, 0.5)], [1.0, Color(GREY, 0.0)]],
+	"Haze": [[0.0, Color(GREY, 0.0)], [0.2, Color(GREY, 0.8)], [1.0, Color(GREY, 0.0)]],
 	"Steam": [[0.0, Color(WHITE, 0.0)], [0.15, Color(WHITE, 0.8)], [0.6, Color(WHITE, 0.5)], [1.0, Color(WHITE, 0.0)]],
 }
 # "Draw": a GradientTexture2D in the scene file, Effect A's recipe, white α 1 → white α 0.
