@@ -1,0 +1,18 @@
+Godot: 4.7.2.stable.official.ed1daf0bf   revision: 68967ee   2026-11-08 12:09
+test_game.gd               60        exit 0   (expected 0) PASS 41  FAIL 0  ok         | WALKER TESTS: 41 checks / 0 failures
+test_keyboard.gd           60        exit 0   (expected 0) PASS 14  FAIL 0  ok         | 
+test_audio.gd              60        exit 1   (expected 1) PASS 12  FAIL 2  ok         | AUDIO TESTS: 2 failures
+test_audio.gd              realtime  exit 0   (expected 0) PASS 14  FAIL 0  ok         | AUDIO TESTS: 0 failures
+check_props.gd             60        exit 0   (expected 0) PASS 0   FAIL 0  ok         | RESULT: PASS (0 of 3 props failing)
+test_hose_glow.gd          30        exit 0   (expected 0) PASS 15  FAIL 0  ok         | HOSE GLOW TESTS: 15 checks / 0 failures (process delta 0.033333 s)
+test_hose_glow.gd          60        exit 0   (expected 0) PASS 15  FAIL 0  ok         | HOSE GLOW TESTS: 15 checks / 0 failures (process delta 0.016667 s)
+test_hose_glow.gd          144       exit 0   (expected 0) PASS 15  FAIL 0  ok         | HOSE GLOW TESTS: 15 checks / 0 failures (process delta 0.006944 s)
+test_materials.gd          60        exit 0   (expected 0) PASS 0   FAIL 0  ok         | MATERIALS TESTS: 35 checks / 0 failures
+test_jump_puff_config.gd   60        exit 0   (expected 0) PASS 94  FAIL 0  ok         | JUMP PUFF CONFIG: 94 checks / 0 failures
+test_jump_puff_state.gd    60        exit 0   (expected 0) PASS 30  FAIL 0  ok         | JUMP PUFF STATE: 30 checks / 0 failures (physics tick 0.016667 s, fram
+test_hose_steam_config.gd  60        exit 0   (expected 0) PASS 89  FAIL 0  ok         | HOSE STEAM CONFIG: 89 checks / 0 failures
+test_hose_steam_state.gd   60        exit 0   (expected 0) PASS 18  FAIL 0  ok         | HOSE STEAM STATE: 18 checks / 0 failures (physics tick 0.016667 s, fra
+cost_effects.gd            60        exit 0   (expected 0) PASS 0   FAIL 0  ok         | COST EFFECTS: 4 cases x 10 repeats x 300 frames at 0.016667 s per fram
+ALL AS EXPECTED
+
+[exited with code 0]

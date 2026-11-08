@@ -39,6 +39,27 @@ No log contained `SHADER ERROR` or `SCRIPT ERROR`.
 
 No log contains `SHADER ERROR` or `SCRIPT ERROR`. `git diff --stat godot/shaders/` was empty after every agent session.
 
+## My run of every suite (2026-11-08 12:09, revision `68967ee`)
+
+Run by me with `./scripts/run-all-tests.sh`, which calls `./scripts/run-test.sh` for each suite in the mode shown. The output is saved in `a6/evidence/run-all-tests_by-me_68967ee.txt`; the logs are in `logs/`. Result: **ALL AS EXPECTED**.
+
+| Test | Mode | Exit | Result |
+|---|---|---|---|
+| `test_game.gd` | `--fixed-fps 60` | 0 | 41 / 41 |
+| `test_keyboard.gd` | `--fixed-fps 60` | 0 | 14 / 14 |
+| `test_audio.gd` | `--fixed-fps 60` | 1 (expected) | 12 / 14, the two known pinned-fps failures |
+| `test_audio.gd` | realtime, timeout 300 | 0 | 14 / 14 |
+| `check_props.gd` | `--fixed-fps 60` | 0 | PASS |
+| `test_hose_glow.gd` | `--fixed-fps` 30 / 60 / 144 | 0 | 15 / 15 each |
+| `test_materials.gd` | `--fixed-fps 60` | 0 | 35 / 35 |
+| `test_jump_puff_config.gd` | `--fixed-fps 60` | 0 | 94 / 94 |
+| `test_jump_puff_state.gd` | `--fixed-fps 60` | 0 | 30 / 30 |
+| `test_hose_steam_config.gd` | `--fixed-fps 60` | 0 | 89 / 89 |
+| `test_hose_steam_state.gd` | `--fixed-fps 60` | 0 | 18 / 18 |
+| `cost_effects.gd` | `--fixed-fps 60`, timeout 300 | 0 | setup checks OK |
+
+No log contains `SHADER ERROR` or `SCRIPT ERROR`.
+
 ## Configuration tests
 
 - **Effect A, `test_jump_puff_config.gd`, 94 checks:** every A3 setting on `Flash`, `Puff` and `Specks`, read back from the loaded scene, including both curves, all three colour ramps and the `GradientTexture2D` definition; no fixed seed and no `preprocess` in the effect scene. Expected values follow CHANGE-BRIEF Revisions 3 and 4 (the two kept tuning changes).
