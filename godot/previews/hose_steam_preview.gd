@@ -17,6 +17,9 @@ extends Node2D
 # Frame N here is the preview's N-th drawn frame, counted from 0 (file N of a Movie Maker strip).
 # Capture with a window (30 fps):
 #   godot --path godot --write-movie <absolute dir>/frame.png --fixed-fps 30 --quit-after 210 --always-on-top res://previews/hose_steam_preview.tscn
+# Watching by eye (Claude, for my human checks; captures never pass these): `-- loop` restarts the
+# attempt 2 s after the water stops and presses W again, over and over; `-- edge_left` / `-- edge_right`
+# hold the camera so the fire's centre sits 8 px inside that screen edge (the visibility_rect check).
 const STAND := Vector2(1215, 240)   # B1 roof (x 1175-1365, top at y 240), left of the fire at x 1250-1306
 const TRIGGER_FRAME := 10
 const SEED := 1278  # preview only (CHANGE-BRIEF B3): fixed seeds on the driver's instance in this scene
@@ -28,6 +31,11 @@ var ticks_per_frame := 1           # from the last frame's delta: 2 under --fixe
 var pressed := false
 var was_hosing := false
 var was_fire_active := true
+var loop := false
+var edge_x := 0.0                  # camera x override for the edge checks; 0 = the game's own camera
+var trigger_at := TRIGGER_FRAME
+var stopped_at := -1
+const FIRE_X := 1278.0             # the blocking fire's centre (first_steps.json blocking_fire)
 
 func _ready() -> void:
 	process_priority = 1               # after the driver's _process (priority 0)
@@ -38,6 +46,12 @@ func _ready() -> void:
 	game.player.action_queue.clear()   # reset_at's 0.5 s respawn stance; in play he walks up to the fire
 	game.camera.position = Vector2(STAND.x + 100.0, 180.0)
 	game.hud.visible = false
+	var args := OS.get_cmdline_user_args()
+	loop = "loop" in args
+	if "edge_left" in args:
+		edge_x = FIRE_X - 8.0 + 320.0
+	elif "edge_right" in args:
+		edge_x = FIRE_X - 632.0 + 320.0
 	var steam: Node2D = game.player.get_node("HoseSteamDriver").steam
 	for i in steam.get_child_count():
 		var emitter: GPUParticles2D = steam.get_child(i)
@@ -49,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 	ticks_in_frame += 1
 	# `>=`, not `==`: in a live window ticks and drawn frames are not one-to-one, so the press falls
 	# on the first tick that reaches the count, on frame 10 or just after.
-	if not pressed and frame >= TRIGGER_FRAME and ticks_in_frame >= ticks_per_frame:
+	if not pressed and frame >= trigger_at and ticks_in_frame >= ticks_per_frame:
 		game.player.test_water_pressed = true   # the session reads it later in this same tick
 		pressed = true
 
@@ -59,8 +73,19 @@ func _process(delta: float) -> void:
 		print("preview: hosing %s on frame %d (fire height %.2f, amount_ratio %.3f)" % [hosing, frame, game.fire_height(), emitters[0].amount_ratio])
 		was_hosing = hosing
 	if game.fire_active != was_fire_active:
-		print("preview: fire out on frame %d" % frame)
+		print("preview: fire %s on frame %d" % ["back (new attempt)" if game.fire_active else "out", frame])
 		was_fire_active = game.fire_active
+	if not hosing and pressed and stopped_at < 0:
+		stopped_at = frame
+	if loop and stopped_at >= 0 and frame - stopped_at >= int(2.0 * Engine.get_frames_per_second() + 1):
+		game.restart_attempt()             # fixture only: a new attempt, so the fire burns again
+		game.player.reset_at(STAND)
+		game.player.action_queue.clear()
+		pressed = false
+		stopped_at = -1
+		trigger_at = frame + TRIGGER_FRAME
+	if edge_x != 0.0:
+		game.camera.position.x = edge_x    # after the session's physics set it this frame
 	frame += 1
 	ticks_in_frame = 0
 	ticks_per_frame = maxi(1, roundi(delta * Engine.physics_ticks_per_second))
