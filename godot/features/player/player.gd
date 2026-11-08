@@ -7,6 +7,7 @@ const Tuning = preload("res://features/player/tuning.gd")
 const HoseGlow = preload("res://features/player/hose_glow.gd")  # A5: glow material on `sprite`, driven from `hosing`
 const JumpPuffDriver = preload("res://features/player/jump_puff_driver.gd")  # A6: a JumpPuff in the level on each `landed`
 const HoseSteamDriver = preload("res://features/player/hose_steam_driver.gd")  # A6: one HoseSteam in the level, driven from `hosing`
+const VsyncKey = preload("res://features/debug/vsync_key.gd")  # A6 debug: F9 toggles vsync for the FPS check
 var tuning = Tuning.new()
 var enabled: bool = false
 var tick: int = 0
@@ -72,6 +73,7 @@ func _ready() -> void:
 	add_child(HoseGlow.new())  # visual only; the driver reads `hosing` and writes the shader's `glow`
 	add_child(JumpPuffDriver.new())  # visual only; the driver reads `landed` and adds a JumpPuff to the level node
 	add_child(HoseSteamDriver.new())  # visual only; the driver reads `hosing` and `fire_height()` and drives the level's HoseSteam
+	add_child(VsyncKey.new())  # debug only: F9 toggles vsync; reads no game state, writes none
 
 # Swap the state image. The anchor (bottom-center of the collision box in texture px)
 # lands on the origin; the holder's negative x scale mirrors the art when facing left.
