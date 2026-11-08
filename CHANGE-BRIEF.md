@@ -287,3 +287,10 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - **Why:** the r1 strip showed the puff at about 25 game px at its widest, below the 30–40 px in A2; r2 reaches about 30 px and is denser (a6/TUNING.md r2). Kept after my check in the running game: "i like this one better it shows those extra dots as more granular dust". The scene file and the configuration test carry the new values.
 - The v1 text above is kept as written.
 
+### Revision 5 — 2026-11-07, Effect B draw order (decided by Claude under my delegation, to confirm in my feedback session)
+
+- **What was missing:** v1 does not say where the steam draws relative to Extinguisho. As a child of `WalkerJumpman` it draws over the fire and the water stream either way, because those come from the level's own `_draw()`.
+- **Decision:** the steam draws **behind Extinguisho**, placed just before the player in `WalkerJumpman`'s child order, the same way as Revision 1, so he and the hose nozzle stay fully visible. I had told Claude to "finish all" and give my feedback at the end; Claude chose this for consistency with my Revision 1 decision. I confirm or change it when I look at the steam in play.
+- **New rule B-R8:** the steam root's index under `WalkerJumpman` is lower than the player's. Checked by the state test; the look is an eye check.
+- The v1 text above is kept as written.
+
