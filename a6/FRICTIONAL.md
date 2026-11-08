@@ -109,9 +109,9 @@
 - **Would the GPU numbers differ on the Compatibility renderer the game actually ships with?** This Mac cannot measure it.
 - **The A5 hose glow pulls the eye from the steam.** Toning it down belongs to A5's scope, not this assignment.
 
-## Still mine to do
+## The film
 
-- Watch the film before it is submitted.
+- I asked for 5–5:30 and a layman-technical register, approved script v3, and uploaded the MP4 to my Northeastern SharePoint myself. One mishap: the first `open` started it in Audacity, my Mac's default for `.mp4`, so it was reopened in QuickTime Player.
 
 ## Who did what
 

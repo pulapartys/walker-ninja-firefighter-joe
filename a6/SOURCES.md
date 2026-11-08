@@ -37,6 +37,9 @@ Earlier assignments' sources: [`../SOURCES.md`](../SOURCES.md) (A2: generative m
 | Python 3 (Anaconda) + Pillow + numpy | — | the background contrast measurement (`a6/evidence/probes/measure_contrast.py`) and the zoomed comparison sheets of the strips |
 | macOS `md5` | — | finding stale (repeated) frames in Movie Maker captures |
 | A local `godot` shim in `~/.local/bin` | — | lets the course wrapper and the allow lists call plain `godot`; not in the repository |
+| Brutalist `godot-gamedev` skill, walker mode | checkout `6a8380a` of github.com/nikbearbrown/brutalist.art | the explainer film (built by a background copy of the interactive Claude Code session) |
+| Kokoro (`kokoro-onnx`, voice `am_onyx`, "Liam") | local, free, Apache-2.0 model | the film's narration |
+| QuickTime Player, Godot editor (Visual Profiler, Convert to ShaderMaterial) | macOS / Godot 4.7.2 | watching the film; my Step 6 conversion and GPU reading |
 
 The Claude account used for every session was the one logged in on this Mac; commits and pushes are all from my Northeastern GitHub identity `pulapartys`.
 
@@ -58,7 +61,7 @@ Directed and decided by me; implemented by Claude; eye-tested and played many ti
 - **Measurement helpers:** `gpu_price_effects.gd`, `gpu_price_preview.tscn` (the self-playing GPU fixture for the Visual Profiler), `make_scratch_process_material.gd`, the scratch scene for Step 6, the steam preview's loop and edge modes, the cost script (`claude -p`) and its fix.
 - **Captures:** the r1 and r2 puff strips and the steam strips were launched from Claude's session at my request; the windows rendered on my screen.
 - **Docs:** TEST-REPORT, FRICTIONAL (organised from the session; my experience is in my words), TUNING's readings and comparisons, the README section and this file.
-- **Narration:** _the film's narration, to come (Brutalist `godot-gamedev`, AI voice)._
+- **Narration and film:** the film's script (v3, from the A6 record, revised at my request), its beat sheet, captures, code panels, render and QC (Brutalist `godot-gamedev` walker, checkout `6a8380a` of github.com/nikbearbrown/brutalist.art); narration by Liam, Kokoro `am_onyx` (local, free, Apache-2.0), an AI voice, not mine. Details: `youtube/claude-liam-walker-ninja-firefighter-joe-a6-gamedev/SOURCES.md`.
 
 ## What I did
 
@@ -67,4 +70,4 @@ Directed and decided by me; implemented by Claude; eye-tested and played many ti
 - Ran the first capture, looked at the puff before Claude read any frame, judged every tuning change in the running game and kept both, in my words.
 - Delegated the remaining build work with "finish all", then eye-tested the results and played the game many times (see FRICTIONAL).
 - In my feedback session: the steam's first look, the r1 choice and verdict, both screen edges, the scene-load and Esc checks, confirming Revision 5, the puff on the dark street, the Godot 3 rename in play, the Step 6 conversion and my answers, and reading the Visual Profiler.
-- _Still mine to do:_ watch and approve the film.
+- Asked for the film's length and register, approved script v3, and uploaded the film to my Northeastern SharePoint.

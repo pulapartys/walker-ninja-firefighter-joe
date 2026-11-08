@@ -1,0 +1,42 @@
+# SUBMISSION — Assignment 6
+
+- **Assignment:** Assignment 6 - Creating Particle Effects with Godot and Claude
+- **Student:** Sreeja P
+- **Project name:** walker-ninja-firefighter-joe (Extinguisho)
+- **GitHub repository URL:** https://github.com/pulapartys/walker-ninja-firefighter-joe
+- **Git tag and submitted commit SHA:** tag `a6`. The submitted commit is the one this file is in; its SHA is given in the Canvas note, because a commit cannot contain its own SHA. Revision chain: `486bd48` (game source, shown in the film) → `680a2d4` (film source) → `c37e70c` (brief Revision 9) → the tagged commit (adds the film link and this file). No file under `godot/` changed after `486bd48`.
+- **Game-source revision shown in the film:** `486bd48`. Verified: no file under `godot/` differs between `486bd48` and the submitted commit.
+- **Godot version, renderer, and operating system:** Godot 4.7.2 stable (`ed1daf0bf`) · GL Compatibility · macOS 26.6.2, Apple M1.
+- **GPU used for the GPU price:** Apple M1 (7-core GPU). The run used `--rendering-method mobile --rendering-driver vulkan` (Vulkan 1.2.334 over Metal, Forward Mobile), the only mode in which this Mac reports GPU time (`a6/evidence/probes/gpu_time_probe.log`). That is a different renderer from the game's GL Compatibility, as TEST-REPORT states.
+- **Effect A: event, node type, retrigger rule:** the landing puff. Event: `player.landed`, a signal added in `godot/features/player/player.gd`, emitted when the landing pose starts (on the floor after more than 10 physics ticks in the air; CHANGE-BRIEF Revision 2, my decision after playing: it first fired on the jump). Node type: three `CPUParticles2D` (`Flash`, `Puff`, `Specks`) under a `Node2D` root, `godot/effects/jump_puff.tscn`. Retrigger rule: overlap; a new puff per landing, at most 2 alive at once (34 particles), each freed when its emitters finish, drawn behind Extinguisho (Revision 1).
+- **Effect B: job, condition, node type, feature Effect A doesn't use:** the hose steam, a feedback loop. Condition: `player.hosing`. The game value is `session.fire_height()`, and `amount_ratio = fire_height() / 34`: 1.0 when the water hits, 0 when the fire is out; `amount` is never changed. Node type: two `GPUParticles2D` (`Haze`, `Steam`), `godot/effects/hose_steam.tscn`. Features Effect A doesn't use: `amount_ratio` driven by a game value, turbulence, a box emission shape across the fire, and a hand-set `visibility_rect`.
+- **Budgets, and the price each is compared on:**
+  - **Effect A:** 0.1 ms per frame, compared on both prices, because it is a CPU node. Headless CPU: not separable from run-to-run noise (≤ 0.005 ms), under budget. GPU: not measurable in the script. The Visual Profiler shows no GPU-particle row for a CPU node, and I did not isolate it there.
+  - **Effect B:** 0.5 ms per frame, compared on GPU time. Headless CPU: the same as effects off, as expected for a GPU node. GPU: +0.08 to +0.18 ms in the script, and the Visual Profiler's "Update GPU particles" row went from 0.04 to 0.25 / 0.27 ms. Under budget.
+- **Texture sources and licences (or model, version, and terms):** none sourced, downloaded or generated. Both effects draw a `GradientTexture2D` defined in their own scene file (`godot/effects/ATTRIBUTION.md`).
+- **Final film URL and filename:** https://northeastern-my.sharepoint.com/:f:/g/personal/pulaparty_s_northeastern_edu/IgBos6710ihDSJf_2SvxjvckAW0tlMk3uE5nUrF3xqw0tQs?e=orvgSc · `claude-liam-walker-ninja-firefighter-joe-a6-gamedev.mp4` (3840 × 2160, 30 fps, 5 min 13 s, 31.7 MB; source folder `youtube/claude-liam-walker-ninja-firefighter-joe-a6-gamedev/`)
+- **Final film SHA-256:** `c1d6b68634e320071ccca2f670349a2bb598af5fa2053da6355ad96c28a81604`
+- **Summary of my work:**
+  - **Directed and decided:** I chose both effects, their jobs, the node types, the layers and the pause behaviour. I wrote the brief's predicted failures, price guesses, budgets and six short answers in my own words before the first prompt.
+  - **Changed the design from play:** after playing, I moved the puff from the jump to the landing. I made the puff draw behind Extinguisho.
+  - **Tuning:** I looked at every effect before Claude read any frame. I judged each tuning change in the running game: two for the puff, one for the steam, all kept. I recorded where Claude's strip reading and my eyes disagreed.
+  - **My own checks:** the steam at both screen edges, at scene load and under Esc; the puff on the darkest and lightest backgrounds; the Godot 3 property-name mutation in play.
+  - **Step 6:** I converted the steam's process material to a shader in the editor and answered the Step 6 questions myself.
+  - **Prices and tests:** I read the GPU time in the Visual Profiler, and I ran every test suite myself through the wrapper.
+  - **Claude Code implemented:** the scenes, drivers, previews and tests (`claude -p` sessions with scoped tools, transcripts in `a6/sessions/`); the strip readings, predictions and comparisons; the measurements, the cost and GPU scripts, the documentation and the film.
+  - **The record:** FRICTIONAL.md records what it got wrong and how each mistake was caught.
+- **Checks run (command and result):** `./scripts/run-all-tests.sh`, run by me at `68967ee`: ALL AS EXPECTED.
+  - **New suites:** `test_jump_puff_config` 94/94, `test_jump_puff_state` 30/30, `test_hose_steam_config` 89/89, `test_hose_steam_state` 18/18, `cost_effects` setup checks OK.
+  - **Earlier suites, unchanged:** `test_game` 41/41, `test_keyboard` 14/14, `test_audio` 12/14 pinned (two known failures) and 14/14 realtime, `check_props` PASS, `test_hose_glow` 15/15 at 30, 60 and 144, `test_materials` 35/35.
+  - **Mutations:** both Effect A mutations exit 1.
+  - **Film:** `art godot-gamedev --check` PASS, GATE T PASS, Gate V 0 blockers / 0 major.
+  - **Fresh-clone rerun of tag `a6`:** in the Canvas copy of this file (it runs after the tag exists).
+- **Known limitations:**
+  - The puff's GPU cost was not isolated in the Visual Profiler.
+  - The steam's look after being hidden was checked headless only.
+  - The steam's thinning between 1 s and 2 s is hard to see.
+  - GPU time is measurable on this Mac only under Mobile + Vulkan, not under the shipped Compatibility renderer.
+  - The tests run at 60 fps only.
+  - A landing after 10 or fewer ticks in the air cannot be produced with real keys in this level.
+  - My A5 hose glow pulls the eye from the steam.
+- **Changed games since Assignment 2 (yes/no; if yes, FRICTIONAL.md entry):** no.

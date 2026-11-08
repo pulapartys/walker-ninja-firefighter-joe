@@ -69,7 +69,13 @@ A/D or arrows: move · Space: jump · W: hose (next to the fire) · R: retry · 
 
 ### Film
 
-_To come: Brutalist `godot-gamedev` walker explainer; link, file name and SHA-256 here._
+Brutalist `godot-gamedev` explainer, `walker` mode, native 4K (3840 × 2160, 30 fps), **5 min 13 s**, 31.7 MB, narrated by Liam (Kokoro, an AI voice, not mine): *Extinguisho's Puff and Steam*. Script v3, approved by me after I asked for 5–5:30 and a layman-technical register. Game source shown: revision `486bd48` (no file under `godot/` changed after it).
+
+- **Link (Northeastern SharePoint, course media storage):** https://northeastern-my.sharepoint.com/:f:/g/personal/pulaparty_s_northeastern_edu/IgBos6710ihDSJf_2SvxjvckAW0tlMk3uE5nUrF3xqw0tQs?e=orvgSc
+- **File:** `claude-liam-walker-ninja-firefighter-joe-a6-gamedev.mp4`
+- **SHA-256:** `c1d6b68634e320071ccca2f670349a2bb598af5fa2053da6355ad96c28a81604`
+- **Film source** (approved script, beat sheet, evidence ledger, capture logs, QC report): [`youtube/claude-liam-walker-ninja-firefighter-joe-a6-gamedev/`](youtube/claude-liam-walker-ninja-firefighter-joe-a6-gamedev/). The MP4, the Movie Maker AVI and the MP3s are not in git (course rule).
+- **Checks:** `art godot-gamedev --check` PASS, GATE T PASS, Gate V 0 blockers / 0 major.
 
 ## Assignment 5 — shaders, materials, and the Godot shading language
 
