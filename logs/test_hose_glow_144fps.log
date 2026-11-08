@@ -4,7 +4,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"shader-defaults","observed":{"glow_color_default_line":true,"glow_default_line":true,"source_bytes":219},"status":"PASS"}
 {"id":"colour-line","observed":{"a2_colour_line_present":true},"status":"PASS"}
 {"id":"driver-param-declared","observed":{"driver_writes":"glow","shader_declares":["glow","glow_color"]},"status":"PASS"}
-{"id":"material-on-sprite","observed":{"art_material":"<Object#null>","player_material":"<Object#null>","shader":"res://shaders/hose_glow.gdshader","sprite_material":"():<ShaderMaterial#-9223372000381106557>"},"status":"PASS"}
+{"id":"material-on-sprite","observed":{"art_material":"<Object#null>","player_material":"<Object#null>","shader":"res://shaders/hose_glow.gdshader","sprite_material":"():<ShaderMaterial#-9223372000045562236>"},"status":"PASS"}
 {"id":"glow-starts-zero","observed":{"frames":6,"last":{"d":0.00666666666666667,"g":0.0,"h":false}},"status":"PASS"}
 {"id":"ramp-up-time","observed":{"delta":0.00694444444444444,"expected_at_ramp_rate":0.1,"fps_from_delta":144.0,"frames":15,"hosing_at_first_rise":true,"max_glow":0.475555555555556,"seconds":0.104166666666667,"tolerance":0.00694444444444444,"within":0.25},"status":"PASS"}
 {"id":"ramp-up-monotonic","observed":{"from":7,"max_step":0.0277777777777778,"to":22,"worst_step":0.0322222222222222},"status":"PASS"}

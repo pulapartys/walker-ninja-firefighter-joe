@@ -9,7 +9,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"stays-put","observed":{"frames_moved":0,"frames_sampled":54,"player_max_distance_px":58.13,"puff_at":"(90.1383, 319.9256)"},"status":"PASS"}
 {"id":"frees-when-finished","observed":{"earliest_s":0.72,"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"puffs_in_tree":0,"tolerance_s":0.0166666666666667},"status":"PASS"}
 {"id":"retrigger-overlap","observed":{"first_freed_after_landing_2_s":0.05,"first_puff_layer_running_at_landing_2":true,"landing_gap_s":0.833333333333333,"live_at_landing_2":2,"player_at_landing_2":"(32.00497, 319.924)","second_at":"(32.00497, 319.924)","second_full":true,"second_is_new_instance":true},"status":"PASS"}
-{"id":"first-not-restarted","observed":{"earliest_s":0.72,"expected_s":0.9,"first":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"first_if_restarted_at_landing_2_s":1.73333333333333,"second":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"tolerance_s":0.0166666666666667},"status":"PASS"}
+{"id":"first-not-restarted","observed":{"earliest_s":0.72,"expected_s":0.9,"first":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"first_if_restarted_at_landing_2_s":1.73333333333333,"second":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4},"freed_after_s":0.8833,"freed_with_last_finished":true},"tolerance_s":0.0166666666666667},"status":"PASS"}
 {"id":"max-two-alive","observed":{"landing_gaps_s":[0.8333,0.8333,0.8333],"landings":4,"max_live":2},"status":"PASS"}
 {"id":"one-puff-on-step","observed":{"air_ticks":45,"landing_tick":523,"on_floor":true,"player_at_landing":"(180.1387, 303.9984)","puff_at":"(180.1387, 303.9984)","puff_tick":523,"state_at_landing":1},"status":"PASS"}
 {"id":"none-on-restart","observed":{"jumped":6,"landed":6,"player_at":"(64.0, 320.0)","puffs_added":6,"puffs_in_tree":1,"state":1},"status":"PASS"}
@@ -31,7 +31,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"always-behind-player","observed":{"index_not_below_player":0,"live_puff_samples":630,"not_child_of_level":0,"player_index":24,"puffs_never_sampled":0},"status":"PASS"}
 {"id":"never-moved","observed":{"live_puff_samples":630,"samples_moved":0},"status":"PASS"}
 JUMP PUFF STATE: 30 checks / 0 failures (physics tick 0.016667 s, frame 0.016667 s)
-WARNING: 24 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 18 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 8 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

@@ -1,6 +1,72 @@
 # walker-ninja-firefighter-joe
 
-My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props), **`a5`** (two hand-written shaders, their materials, and the Godot shading language).
+My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props), **`a5`** (two hand-written shaders, their materials, and the Godot shading language), **`a6`** (two particle effects).
+
+## Assignment 6 — particle effects
+
+Two particle effects, each with its own job. **Effect A, the landing puff:** a small burst of dust and dark specks at Extinguisho's feet every time he lands after a real fall. It sits behind him and stays where he landed. **Effect B, the hose steam:** while he hoses the fire blocking the first survivor, steam rises from the flames, and the amount follows how much fire is left: thick when the water first hits, thinning as the flames shrink, gone when the fire is out.
+
+| | Effect A — landing puff | Effect B — hose steam |
+|---|---|---|
+| Job | a one-shot burst on a repeating event | a feedback loop that follows a game value |
+| Event / condition | `player.landed` (new signal, fired when the landing pose starts) | `player.hosing`; the value is `session.fire_height()` → `amount_ratio` |
+| Node type | 3 × `CPUParticles2D` (`Flash`, `Puff`, `Specks`) | 2 × `GPUParticles2D` (`Haze`, `Steam`) |
+| Retrigger / pause | overlap, at most 2 alive; frozen by a tree pause | keeps drifting under Esc (not a tree pause); frozen by a tree pause |
+| Feature A doesn't use | — | `amount_ratio` from a game value, turbulence, box emission, `visibility_rect` |
+
+**Docs:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (v1 committed before the first prompt; Revisions 1–5) · [CLAUDE.md](CLAUDE.md) (agent draft, then review) · [`a6/`](a6/): [TUNING](a6/TUNING.md) · [TEST-REPORT](a6/TEST-REPORT.md) · [FRICTIONAL](a6/FRICTIONAL.md) · [SOURCES](a6/SOURCES.md) · prompts in `a6/prompts/`, `claude -p` transcripts in `a6/sessions/`, probes, mutation, cost and GPU logs in `a6/evidence/` · frame strips (fixture captures) in `captures/` · texture provenance in [`godot/effects/ATTRIBUTION.md`](godot/effects/ATTRIBUTION.md).
+
+**Versions:** Godot 4.7.2 stable, GL Compatibility renderer (the GPU price alone runs under Mobile on the Vulkan driver) · macOS 26.6.2, Apple M1 · Claude Code 2.1.285 (`claude-opus-5-5`).
+
+### What this assignment added
+
+| Path | What |
+|---|---|
+| `godot/effects/jump_puff.tscn`, `hose_steam.tscn` | the two effects; every setting lives in the scene file |
+| `godot/features/player/jump_puff_driver.gd`, `hose_steam_driver.gd` (+ hooks and the `landed` signal in `player.gd`) | presentation drivers: they read game state and never write it |
+| `godot/previews/jump_puff_preview.tscn`, `hose_steam_preview.tscn` | fixtures for the frame strips, over the real B1 level art |
+| `godot/tests/test_jump_puff_config.gd`, `test_hose_steam_config.gd` | read back every setting the brief names (94 and 89 checks) |
+| `godot/tests/test_jump_puff_state.gd`, `test_hose_steam_state.gd` | the event and condition through real keys (30 and 18 checks) |
+| `godot/tests/cost_effects.gd` | headless CPU price with an empty-scene control |
+| `godot/tests/gpu_price_effects.gd` | windowed GPU time under Mobile + Vulkan (a fixture measurement) |
+| `godot/features/debug/vsync_key.gd` | the F9 vsync debug key for the FPS check |
+| `godot/previews/scratch_process_material.tscn`, `godot/shaders/particles_generated.gdshader` | Step 6: a unique copy of the steam's process material, and Godot's shader generated from it (nothing in the game uses either) |
+
+### Run the tests
+
+```
+# from the repository root; Godot 4.7 on PATH as `godot`
+godot --headless --path godot --import                       # once, after cloning
+./scripts/run-test.sh test_jump_puff_config.gd 60            # 94 checks
+./scripts/run-test.sh test_jump_puff_state.gd 60             # 30
+./scripts/run-test.sh test_hose_steam_config.gd 60           # 89
+./scripts/run-test.sh test_hose_steam_state.gd 60            # 18
+./scripts/run-test.sh cost_effects.gd 60 300                 # headless CPU price
+./scripts/run-test.sh test_game.gd 60                        # earlier suites: 41
+./scripts/run-test.sh test_keyboard.gd 60                    # 14
+./scripts/run-test.sh test_audio.gd realtime 300             # 14 (12 / 14 at a pinned 60: see a5 TEST-REPORT)
+./scripts/run-test.sh check_props.gd 60                      # PASS
+./scripts/run-test.sh test_hose_glow.gd 60                   # 15 (also at 30 and 144)
+./scripts/run-test.sh test_materials.gd 60                   # 35
+```
+
+**Play it:** `godot --path godot`. Land after any jump to see the puff; W next to the big fire on B1's roof starts the water, and the steam. **Capture a strip:** `godot --path godot --always-on-top res://previews/jump_puff_preview.tscn --write-movie "$PWD/captures/<dir>/frame.png" --fixed-fps 30 --quit-after 60` (`hose_steam_preview.tscn` with `--quit-after 210`). **GPU price:** add `--rendering-method mobile --rendering-driver vulkan` to a windowed run.
+
+### Controls
+
+A/D or arrows: move · Space: jump · W: hose (next to the fire) · R: retry · Esc or P: pause · Enter: start or resume · M: menu · N / B: mute music / sound · **F9: toggle vsync** (debug, for the FPS check only).
+
+### Known limitations
+
+- The puff's CPU price and GPU time are both too small to separate from run-to-run noise on this machine. The budget comparison says "within budget", not a number.
+- GPU time can only be read under Mobile + Vulkan on this Mac, not under the Compatibility renderer the game ships with.
+- No level drop is short enough to test "no puff after 10 or fewer ticks in the air" with real keys. The rule holds by construction (the signal fires inside the game's own `air_ticks > 10` branch).
+- The tests run at 60 fps only.
+- Every look is a human check (TEST-REPORT and TUNING); a headless run proves state, not what is on screen.
+
+### Film
+
+_To come: Brutalist `godot-gamedev` walker explainer; link, file name and SHA-256 here._
 
 ## Assignment 5 — shaders, materials, and the Godot shading language
 
