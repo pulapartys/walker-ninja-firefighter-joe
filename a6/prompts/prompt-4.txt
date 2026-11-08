@@ -1,0 +1,28 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract; its Revision 2 moves
+Effect A's event from the jump to the landing. I have already decided how:
+do exactly this, nothing more.
+
+1. godot/features/player/player.gd: declare `signal landed` next to
+   `signal jumped`, and emit it in _update_pose() on the same branch that
+   sets `land_ticks = LAND_TICKS`. Change nothing else in player.gd.
+2. godot/features/player/jump_puff_driver.gd: connect to `landed` instead of
+   `jumped`. Everything else in the driver stays (overlap, parent, child
+   order, freeing).
+3. godot/tests/test_jump_puff_state.gd: move its assertions to Revision 2.
+   The event is now the landing: one puff per landing at his feet; none on
+   the jump itself; none on load, start, R or respawn; none in MENU, PAUSED,
+   DYING or COMPLETE; a walk-off landing after more than 10 ticks in the air
+   gives one; a landing after 10 ticks or fewer gives none, if you can make
+   one with real input; two landings inside 0.9 s give two live puffs and the
+   first is not restarted. Keep the checks that still apply (stays put,
+   frees when finished, tree pause, Esc, behind the player, max two alive).
+   Drive landings through the real game loop and real input (Space, D, A,
+   R, Esc), never by emitting `landed` or calling the driver yourself.
+4. CLAUDE.md: update only the bullet that names the puff's event.
+
+Do not change any effect setting, any .gdshader file, scripts/run-test.sh,
+session.gd or the existing tests. Run every test with ./scripts/run-test.sh
+as CLAUDE.md lists them, plus test_jump_puff_config.gd and
+test_jump_puff_state.gd at 60. Show the diff of player.gd and the driver, and
+the real test output with the mode. Say exactly what the state test proves
+and what it cannot prove headlessly. Do not commit.

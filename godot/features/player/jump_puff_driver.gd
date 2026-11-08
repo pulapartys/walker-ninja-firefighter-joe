@@ -1,15 +1,15 @@
 extends Node
-# Jump puff driver (CHANGE-BRIEF A1, A4, Revision 1). Presentation only: it reads player.jumped and
+# Jump puff driver (CHANGE-BRIEF A1, A4, Revisions 1 and 2). Presentation only: it reads player.landed and
 # the player's global_position and adds a JumpPuff to the level node. It never writes game state.
 # Every effect setting lives in res://effects/jump_puff.tscn; this only instances, places and frees.
 const JumpPuff := preload("res://effects/jump_puff.tscn")
 
 func _ready() -> void:
 	name = "JumpPuffDriver"
-	get_parent().jumped.connect(_on_jumped)
+	get_parent().landed.connect(_on_landed)
 
-# A-R3 overlap: every jump adds a new, full puff; earlier puffs are never touched.
-func _on_jumped() -> void:
+# A-R3 overlap: every landing adds a new, full puff; earlier puffs are never touched.
+func _on_landed() -> void:
 	var player: Node2D = get_parent()
 	var level: Node2D = player.get_parent()                  # WalkerJumpman (A-R6), never the player
 	var puff: Node2D = JumpPuff.instantiate()

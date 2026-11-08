@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal jumped  # emitted once per real jump (the session plays SFX-JUMP; sound never feeds back)
+signal landed  # emitted when the landing pose starts: on the floor after more than 10 ticks in the air
 
 const Tuning = preload("res://features/player/tuning.gd")
 const HoseGlow = preload("res://features/player/hose_glow.gd")  # A5: glow material on `sprite`, driven from `hosing`
@@ -91,6 +92,7 @@ func _update_pose() -> void:
 	if on_floor:
 		if not was_on_floor and air_ticks > 10:
 			land_ticks = LAND_TICKS
+			landed.emit()
 		air_ticks = 0
 		jumped_this_air = false
 	else:

@@ -1,30 +1,37 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-{"id":"none-on-load","observed":{"jumped":0,"puffs_added":0,"puffs_in_tree":0,"state":0},"status":"PASS"}
-{"id":"none-in-menu","observed":{"jumped":0,"puffs_added":0,"puffs_in_tree":0,"state":0},"status":"PASS"}
-{"id":"none-on-start","observed":{"jumped":0,"puffs_added":0,"puffs_in_tree":0,"state":1},"status":"PASS"}
-{"id":"none-on-landing","observed":{"jumped":1,"puffs_added":1,"puffs_in_tree":1,"state":1},"status":"PASS"}
-{"id":"one-puff-at-feet","observed":{"jump_tick":58,"player_at_jump":"(64.0, 320.0)","puff_at":"(64.0, 320.0)","puff_tick":58,"state_at_jump":1},"status":"PASS"}
+{"id":"none-on-load","observed":{"jumped":0,"landed":0,"puffs_added":0,"puffs_in_tree":0,"state":0},"status":"PASS"}
+{"id":"none-in-menu","observed":{"jumped":0,"landed":0,"puffs_added":0,"puffs_in_tree":0,"state":0},"status":"PASS"}
+{"id":"none-on-start","observed":{"jumped":0,"landed":0,"puffs_added":0,"puffs_in_tree":0,"state":1},"status":"PASS"}
+{"id":"none-on-jump","observed":{"jump_tick":58,"landing_tick":107,"puff_tick":107,"puffs_after_jump_frame":0,"puffs_while_in_air":0},"status":"PASS"}
+{"id":"one-puff-at-landing","observed":{"air_ticks":49,"landing_tick":107,"on_floor":true,"player_at_jump":"(64.0, 320.0)","player_at_landing":"(90.1383, 319.9256)","puff_at":"(90.1383, 319.9256)","puff_tick":107,"state_at_landing":1,"takeoff_to_puff_px":26.14},"status":"PASS"}
 {"id":"parent-is-level","observed":{"children":["Flash:CPUParticles2D","Puff:CPUParticles2D","Specks:CPUParticles2D"],"emitting_when_added":[true,true,true],"parent":"WalkerJumpman"},"status":"PASS"}
-{"id":"stays-put","observed":{"frames_moved":0,"frames_sampled":54,"player_max_distance_px":71.68,"puff_at":"(64.0, 320.0)"},"status":"PASS"}
-{"id":"frees-when-finished","observed":{"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"puffs_in_tree":0,"tolerance_s":0.0166666666666667},"status":"PASS"}
-{"id":"retrigger-overlap","observed":{"first_freed_after_jump_2_s":0.05,"first_puff_layer_running_at_jump_2":true,"jump_gap_s":0.833333333333333,"live_at_jump_2":2,"player_at_jump_2":"(90.1383, 319.924)","second_at":"(90.1383, 319.924)","second_full":true,"second_is_new_instance":true},"status":"PASS"}
-{"id":"first-not-restarted","observed":{"expected_s":0.9,"first":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"first_if_restarted_at_jump_2_s":1.73333333333333,"second":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"tolerance_s":0.0166666666666667},"status":"PASS"}
-{"id":"max-two-alive","observed":{"jump_gaps_s":[0.8333,0.8333,0.8333],"jumps":4,"max_live":2},"status":"PASS"}
-{"id":"none-on-walk-off","observed":{"air_ticks":16,"jumped":5,"landed_at":"(670.1332, 319.9253)","left_floor":true,"on_block":true,"puffs_added":5,"puffs_in_tree":0,"state":1},"status":"PASS"}
-{"id":"none-while-paused","observed":{"jumped":6,"puffs_added":6,"puffs_in_tree":1,"state":2},"status":"PASS"}
-{"id":"game-pause-puff-finishes","observed":{"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"state_when_freed":2,"tolerance_s":0.0166666666666667},"status":"PASS"}
-{"id":"tree-pause-freezes","observed":{"emitters_finished_before_pause":1,"emitters_finished_while_paused":0,"freed":false,"paused_at_s_after_jump":0.3,"paused_s":1.5,"player_moved":false,"visible":true},"status":"PASS"}
-{"id":"tree-pause-resumes","observed":{"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":2.3833,"Specks":1.9333},"freed_after_s":0.8833,"freed_with_last_finished":true,"tolerance_s":0.0166666666666667,"wall_s_including_pause":2.38333333333333},"status":"PASS"}
-{"id":"none-on-restart","observed":{"jumped":8,"player_at":"(64.0, 320.0)","puffs_added":8,"puffs_in_tree":1,"state":1},"status":"PASS"}
-{"id":"restart-mid-puff","observed":{"alive_in_level_after_R":true,"apart_px":606.13,"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"player_after_R":"(64.0, 320.0)","puff_at":"(670.1332, 319.924)","tolerance_s":0.0166666666666667},"status":"PASS"}
-{"id":"none-while-dying","observed":{"died":true,"jumped":8,"puffs_added":8,"puffs_in_tree":0,"restarted":true,"space_while_dying":true,"state":1},"status":"PASS"}
-{"id":"none-when-complete","observed":{"jumped":8,"puffs_added":8,"puffs_in_tree":0,"state":4},"status":"PASS"}
-{"id":"every-jump-one-puff","observed":{"expected_s":0.9,"jumped":8,"lives_s":[0.8833,0.8833,0.8833,0.8833,0.8833,0.8833,0.8833,0.8833],"mismatched":[],"puffs_added":8,"puffs_in_tree_at_end":0,"tolerance_s":0.0166666666666667},"status":"PASS"}
-{"id":"always-behind-player","observed":{"index_not_below_player":0,"live_puff_samples":522,"not_child_of_level":0,"player_index":23,"puffs_never_sampled":0},"status":"PASS"}
-{"id":"never-moved","observed":{"live_puff_samples":522,"samples_moved":0},"status":"PASS"}
-JUMP PUFF STATE: 23 checks / 0 failures (physics tick 0.016667 s, frame 0.016667 s)
-WARNING: 26 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+{"id":"stays-put","observed":{"frames_moved":0,"frames_sampled":54,"player_max_distance_px":58.13,"puff_at":"(90.1383, 319.9256)"},"status":"PASS"}
+{"id":"frees-when-finished","observed":{"earliest_s":0.72,"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"puffs_in_tree":0,"tolerance_s":0.0166666666666667},"status":"PASS"}
+{"id":"retrigger-overlap","observed":{"first_freed_after_landing_2_s":0.05,"first_puff_layer_running_at_landing_2":true,"landing_gap_s":0.833333333333333,"live_at_landing_2":2,"player_at_landing_2":"(32.00497, 319.924)","second_at":"(32.00497, 319.924)","second_full":true,"second_is_new_instance":true},"status":"PASS"}
+{"id":"first-not-restarted","observed":{"earliest_s":0.72,"expected_s":0.9,"first":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"first_if_restarted_at_landing_2_s":1.73333333333333,"second":{"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true},"tolerance_s":0.0166666666666667},"status":"PASS"}
+{"id":"max-two-alive","observed":{"landing_gaps_s":[0.8333,0.8333,0.8333],"landings":4,"max_live":2},"status":"PASS"}
+{"id":"one-puff-on-step","observed":{"air_ticks":45,"landing_tick":523,"on_floor":true,"player_at_landing":"(180.1387, 303.9984)","puff_at":"(180.1387, 303.9984)","puff_tick":523,"state_at_landing":1},"status":"PASS"}
+{"id":"none-on-restart","observed":{"jumped":6,"landed":6,"player_at":"(64.0, 320.0)","puffs_added":6,"puffs_in_tree":1,"state":1},"status":"PASS"}
+{"id":"restart-mid-puff","observed":{"alive_in_level_after_R":true,"apart_px":117.24,"earliest_s":0.72,"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"player_after_R":"(64.0, 320.0)","puff_at":"(180.1387, 303.9984)","tolerance_s":0.0166666666666667},"status":"PASS"}
+{"id":"walk-off-landing","observed":{"air_ticks":11,"air_ticks_measured_by_test":11,"jumped_since_on_step":0,"landed_since_on_step":1,"landing_tick":692,"left_step":true,"on_floor":true,"on_step_before":true,"player_at_landing":"(241.4669, 319.9252)","puff_at":"(241.4669, 319.9252)","puff_tick":692,"puffs_since_on_step":1,"state_at_landing":1},"status":"PASS"}
+{"id":"none-while-dying","observed":{"death_reason":"The fire got you.","died":true,"jumped":7,"landed":8,"puffs_added":8,"puffs_in_tree":0,"restarted":true,"space_and_a_while_dying":true,"state":1,"walk_off_puff_freed_in_state":3},"status":"PASS"}
+{"id":"none-on-respawn","observed":{"jumped":7,"landed":8,"player_at":"(64.0, 320.0)","puffs_added":8,"puffs_in_tree":0,"state":1},"status":"PASS"}
+{"id":"none-on-restart-midair","observed":{"in_air_at_R":true,"jumped":8,"landed":8,"player_at":"(64.0, 320.0)","puffs_added":8,"puffs_in_tree":0,"state":1},"status":"PASS"}
+{"id":"none-while-paused","observed":{"in_air_at_esc":true,"jumped":9,"landed":8,"player_at":"(64.0, 259.4808)","puffs_added":8,"puffs_in_tree":0,"state":2,"still_in_air":true},"status":"PASS"}
+{"id":"landing-after-resume","observed":{"air_ticks":49,"landed_since_esc":1,"landing_tick":1071,"on_floor":true,"player_at_landing":"(64.0, 319.9253)","puff_at":"(64.0, 319.9253)","puff_tick":1071,"puffs_since_esc":1,"resumed":true,"state_at_landing":1},"status":"PASS"}
+{"id":"game-pause-puff-finishes","observed":{"earliest_s":0.72,"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":0.8833,"Specks":0.4333},"freed_after_s":0.8833,"freed_with_last_finished":true,"paused_after_landing":true,"state_when_freed":2,"tolerance_s":0.0166666666666667},"status":"PASS"}
+{"id":"none-in-menu-midair","observed":{"in_air_at_menu":true,"jumped":10,"landed":9,"player_at":"(64.0, 259.4796)","puffs_added":9,"puffs_in_tree":0,"state":0,"still_in_air":true},"status":"PASS"}
+{"id":"none-on-start-from-menu","observed":{"jumped":10,"landed":9,"player_at":"(64.0, 320.0)","puffs_added":9,"puffs_in_tree":0,"state":1},"status":"PASS"}
+{"id":"tree-pause-freezes","observed":{"emitters_finished_before_pause":1,"emitters_finished_while_paused":0,"freed":false,"paused_at_s_after_landing":0.3,"paused_s":1.5,"player_moved":false,"visible":true},"status":"PASS"}
+{"id":"tree-pause-resumes","observed":{"earliest_s":0.72,"expected_s":0.9,"finished_after_s":{"Flash":0.1,"Puff":2.3833,"Specks":1.9333},"freed_after_s":0.8833,"freed_with_last_finished":true,"tolerance_s":0.0166666666666667,"wall_s_including_pause":2.38333333333333},"status":"PASS"}
+{"id":"none-when-complete","observed":{"in_air_at_complete":true,"jumped":12,"landed":10,"player_at":"(64.0, 259.4796)","puffs_added":10,"puffs_in_tree":0,"state":4,"still_in_air":true},"status":"PASS"}
+{"id":"every-landing-one-puff","observed":{"air_ticks":[49,49,49,49,49,45,45,11,49,49],"earliest_s":0.72,"expected_s":0.9,"landed":10,"lives_s":[0.8833,0.8833,0.8833,0.8833,0.8833,0.8833,0.8833,0.8833,0.8833,0.8833],"mismatched":[],"puffs_added":10,"puffs_in_tree_at_end":0,"tolerance_s":0.0166666666666667},"status":"PASS"}
+{"id":"none-on-any-jump","observed":{"jumped":12,"landed":10,"puffs_added":10,"puffs_added_in_a_jump_tick":0},"status":"PASS"}
+{"id":"always-behind-player","observed":{"index_not_below_player":0,"live_puff_samples":630,"not_child_of_level":0,"player_index":23,"puffs_never_sampled":0},"status":"PASS"}
+{"id":"never-moved","observed":{"live_puff_samples":630,"samples_moved":0},"status":"PASS"}
+JUMP PUFF STATE: 30 checks / 0 failures (physics tick 0.016667 s, frame 0.016667 s)
+WARNING: 24 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 8 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)
