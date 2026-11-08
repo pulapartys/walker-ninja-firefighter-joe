@@ -54,7 +54,7 @@ Performed by Claude at my request; logs in `a6/evidence/mutations/`; the scene w
 | **Godot 3 name:** `Puff`'s `initial_velocity_min` / `initial_velocity_max` replaced by `initial_velocity = 50.0` | **exit 1**, 2 failures (`Puff.initial_velocity_min` and `_max` read back 0.0) | Godot printed no warning: `CPUParticles2D` has no `initial_velocity`, and the line is silently dropped. |
 | **Drift from the brief:** `Puff` `spread` 80 → 120, brief unchanged | **exit 1**, 1 failure (`Puff.spread` expected 80, read 120) | |
 
-- **HUMAN CHECK, the Godot 3 name in play:** _pending._ Run the game with the mutation and note that the puff still fires, as a blob with no spread.
+- **HUMAN CHECK, the Godot 3 name in play (2026-11-08):** with mutation 1 applied again (by Claude, not committed), I played and landed: the puff still fires on every landing, as a blob with no spread, and nothing reports an error. My words: "yes its right under him doesnt look natural looks bad". Restored afterwards; `git diff` empty and the config test back to 94 / 0.
 - **Also observed:** the agent ran the same Godot 3 rename itself during session 2, and it failed the test the same way.
 
 ## State tests
