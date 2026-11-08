@@ -5,7 +5,7 @@ signal landed  # emitted when the landing pose starts: on the floor after more t
 
 const Tuning = preload("res://features/player/tuning.gd")
 const HoseGlow = preload("res://features/player/hose_glow.gd")  # A5: glow material on `sprite`, driven from `hosing`
-const JumpPuffDriver = preload("res://features/player/jump_puff_driver.gd")  # A6: a JumpPuff in the level on each `jumped`
+const JumpPuffDriver = preload("res://features/player/jump_puff_driver.gd")  # A6: a JumpPuff in the level on each `landed`
 var tuning = Tuning.new()
 var enabled: bool = false
 var tick: int = 0
@@ -69,7 +69,7 @@ func _ready() -> void:
 	art.add_child(sprite)
 	show_pose("idle")
 	add_child(HoseGlow.new())  # visual only; the driver reads `hosing` and writes the shader's `glow`
-	add_child(JumpPuffDriver.new())  # visual only; the driver reads `jumped` and adds a JumpPuff to the level node
+	add_child(JumpPuffDriver.new())  # visual only; the driver reads `landed` and adds a JumpPuff to the level node
 
 # Swap the state image. The anchor (bottom-center of the collision box in texture px)
 # lands on the origin; the holder's negative x scale mirrors the art when facing left.
