@@ -254,4 +254,9 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 
 ## Revisions
 
-_None yet._
+### Revision 1 — 2026-11-07, Effect A draw order (decided when I approved the Step 3 plan)
+
+- **What was missing:** v1 did not say whether the puff draws in front of or behind Extinguisho. The agent's plan added it last under `WalkerJumpman`, which draws it in front of him.
+- **My decision:** the puff draws **behind Extinguisho** and in front of the level art. He stays fully visible at take-off and the puff blooms behind his feet. It stays a child of the level node (A-R6 unchanged), placed just before the player in `WalkerJumpman`'s child order. Not by `z_index`: a negative `z_index` would put it behind the level's own `_draw()` (the buildings), where it would be hidden.
+- **New rule A-R8:** every puff's index under `WalkerJumpman` is lower than the player's. Checked by the state test; the look is an eye check.
+- The v1 text above is kept as written.
