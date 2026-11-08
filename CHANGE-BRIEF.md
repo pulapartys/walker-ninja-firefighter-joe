@@ -281,3 +281,9 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - **Why:** the r0 strip showed the puff fading into the tan wall from about 0.2 s (a6/TUNING.md r1). Kept after my check in the running game, where I saw little difference; the scene file and the configuration test carry the new values.
 - The v1 text above is kept as written.
 
+### Revision 4 — 2026-11-07, Effect A tuning r2 kept: a bigger puff
+
+- **Setting:** `Puff` `scale_amount_min` / `scale_amount_max` are now 0.5 / 0.8, were 0.35 / 0.55.
+- **Why:** the r1 strip showed the puff at about 25 game px at its widest, below the 30–40 px in A2; r2 reaches about 30 px and is denser (a6/TUNING.md r2). Kept after my check in the running game: "i like this one better it shows those extra dots as more granular dust". The scene file and the configuration test carry the new values.
+- The v1 text above is kept as written.
+
