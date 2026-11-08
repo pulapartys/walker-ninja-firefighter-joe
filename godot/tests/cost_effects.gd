@@ -32,8 +32,8 @@ const TIMED_FRAMES := 300
 const REPEATS := 10
 const SETTLE_FRAMES := 60     # after each case, so A's last puffs (0.88 s) are gone before the next one
 const MAX_PUFFS := 2          # A-R3: at most 2 alive at once
-const LANDING_GAP_S := 0.43   # at least this between two landings: under half a puff's measured 0.8833 s
-                              # (logs/test_jump_puff_state_60fps.log), so two stay alive and a third never starts
+const LANDING_GAP_S := 0.0    # refill on the frame a puff ends: lifetime_randomness 0.2 lets a puff end
+                              # at 0.72 s (CHANGE-BRIEF A3), so any fixed gap leaves frames with one alive
 const AMOUNTS := [14, 40]     # B3: Haze, Steam
 const EMPTY := "empty scene"
 const OFF := "game, effects off"
@@ -76,7 +76,7 @@ func frames(count: int) -> Dictionary:
 	var last := Time.get_ticks_usec()
 	for i in count:
 		frame += 1
-		if keep_puffs and live_puffs < MAX_PUFFS and frame - last_landing >= landing_gap:
+		while keep_puffs and live_puffs < MAX_PUFFS:   # MAX_PUFFS caps it, so a third never starts
 			game.player.landed.emit()
 			last_landing = frame
 		alive.append(live_puffs)

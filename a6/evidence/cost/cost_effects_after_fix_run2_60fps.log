@@ -1,0 +1,33 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Rendering method: gl_compatibility
+Video adapter: "" (empty: dummy renderer, nothing is drawn and no GPU particle process runs)
+Frame step 0.016667 s (fixed); 120 warm-up + 300 timed frames x 10 repeats per case
+Physics ticks per frame over the empty scene's timed frames: 1.000
+--- CPU time per frame, wall clock at a fixed rate (ms) ---
+empty scene              mean 0.003590 ms/frame | spread over 10 repeats: sd 0.000166, min 0.003493, max 0.004040 | per frame (3000): median 0.004000, p95 0.004000
+                         repeat means: 0.003667, 0.004040, 0.003543, 0.003513, 0.003587, 0.003510, 0.003493, 0.003510, 0.003513, 0.003523
+                         checks: OK; puffs alive per timed frame 0-0
+game, effects off        mean 0.182224 ms/frame | spread over 10 repeats: sd 0.013603, min 0.170107, max 0.207947 | per frame (3000): median 0.175000, p95 0.221000
+                         repeat means: 0.171410, 0.207947, 0.198670, 0.190240, 0.173860, 0.170107, 0.170353, 0.190680, 0.175743, 0.173230
+                         checks: OK; puffs alive per timed frame 0-0, PLAYING on the floor, the level's own steam not emitting
+Effect A, 2 puffs alive  mean 0.183830 ms/frame | spread over 10 repeats: sd 0.015327, min 0.172180, max 0.216383 | per frame (3000): median 0.175000, p95 0.222000
+                         repeat means: 0.172180, 0.208460, 0.216383, 0.176343, 0.179200, 0.178503, 0.176853, 0.179153, 0.176193, 0.175027
+                         checks: OK; puffs alive per timed frame 2-2, 100 landings emitted in timed frames (10.0 per repeat), PLAYING on the floor, the level's own steam not emitting
+Effect B, ratio 1.0      mean 0.182874 ms/frame | spread over 10 repeats: sd 0.023226, min 0.168910, max 0.243960 | per frame (3000): median 0.172000, p95 0.216000
+                         repeat means: 0.168910, 0.192777, 0.243960, 0.175547, 0.171063, 0.170397, 0.191860, 0.172777, 0.172113, 0.169337
+                         checks: OK; puffs alive per timed frame 0-0, its own HoseSteam emitting at amount_ratio 1.0 with amount [14, 40] at the start and end of every timed window, PLAYING on the floor, the level's own steam not emitting
+--- comparisons ---
+game, effects off vs empty scene: +0.178634 ms/frame (+4975.9 %) -> DIFFERENT (repeat ranges apart)
+  differ, as expected (the game's physics, process and draw calls run on the CPU).
+Effect A, 2 puffs alive vs game, effects off: +0.001606 ms/frame (+0.9 %) -> SAME within spread (per-round difference +0.001606, 2 standard errors 0.005810; the first is higher in 8 of 10 rounds)
+  FLAG: these should differ (34 CPUParticles2D particles simulate on the CPU, headless included) but read the same: the script may be measuring itself, not the effect.
+Effect A, 2 puffs alive vs Effect B, ratio 1.0: +0.000956 ms/frame (+0.5 %) -> SAME within spread (per-round difference +0.000956, 2 standard errors 0.008043; the first is higher in 8 of 10 rounds)
+  FLAG: these should differ (A simulates on the CPU; B's GPU process does not run headless) but read the same: the script may be measuring itself, not the effect.
+Effect B, ratio 1.0 vs game, effects off: +0.000650 ms/frame (+0.4 %) -> SAME within spread (per-round difference +0.000650, 2 standard errors 0.012145; the first is higher in 3 of 10 rounds)
+  same, as expected headless (headless runs no GPU particle process): this number is the game and the script, not the effect.
+COST EFFECTS: 4 cases x 10 repeats x 300 frames at 0.016667 s per frame; 2 of 4 comparisons flagged; setup checks: OK
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
