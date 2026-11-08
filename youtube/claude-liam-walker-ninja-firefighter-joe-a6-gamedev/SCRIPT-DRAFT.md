@@ -56,15 +56,15 @@ Brutalist `godot-gamedev`, `walker` mode. Liam (Kokoro `am_onyx`), in for Bear. 
 
 ## B13 — What the tests proved
 **On screen:** test output lines: config 94 / 94 and 89 / 89; state 30 / 30 and 18 / 18; the two mutation failures; her own run, ALL AS EXPECTED.
-**Narration:** The tests read every setting back from the files, and press real keys to check that both effects start and stop at the right moments. Then a deliberate mistake: rename one setting to its old Godot three name. No warning anywhere, the test fails, and in the game the puff collapses into a blob under him. Tests prove settings and timing. They cannot prove anyone sees a thing.
+**Narration:** The tests read every setting back from the files, and press real keys to check both effects start and stop at the right moments. Then a deliberate mistake: rename one setting to its old Godot three name. No warning, the test fails, and in the game the puff collapses into a blob. Tests prove settings and timing, not that anyone sees a thing.
 
 ## B14 — The price, twice
 **On screen:** the cost table with the empty-scene control; the GPU probe table (0 under Metal, numbers under Vulkan); the Visual Profiler frames, labelled with the renderer.
-**Narration:** Cost, measured twice. On the processor, the puff is too small to measure, inside its budget. The steam shows almost nothing there, because it runs on the graphics card, and a test with no screen never uses the graphics card. On this Mac only one graphics mode reports the card's time. There, the steam costs about a fifth of a millisecond per frame, under its half-millisecond budget.
+**Narration:** Cost, measured twice. On the processor, the puff is too small to measure, inside its budget. The steam shows almost nothing there: it runs on the graphics card, and a test with no screen never uses the card. On this Mac only one graphics mode reports the card's time. There, the steam costs about a fifth of a millisecond per frame, under its half-millisecond budget.
 
 ## B15 — What Claude got wrong
 **On screen:** a list, each with how it was caught.
-**Narration:** What Claude got wrong, and how it was caught: a test scene that skipped its own trigger, and a cost script that assumed every puff lasts the same time, then changed its rules after seeing the answer. And one of ours: recording windows hidden behind others, caught by spotting identical frames.
+**Narration:** What Claude got wrong, caught by checking: a test scene that skipped its own trigger, and a cost script that assumed every puff lasts equally long, then changed its rules after seeing the answer. And one of ours: recording windows hidden behind others, caught by spotting identical frames.
 
 ## B16 — Verdict
 **On screen:** verdict panel; source revision.
