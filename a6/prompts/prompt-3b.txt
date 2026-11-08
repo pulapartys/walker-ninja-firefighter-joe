@@ -1,0 +1,14 @@
+Approved: both steps, in order, in this run (Step 1, then Step 2). Hook in
+player.gd _ready() as you proposed.
+
+One change from me, now CHANGE-BRIEF.md Revision 1 (rule A-R8): the puff
+draws behind Extinguisho and in front of the level art. Keep it a child of
+WalkerJumpman and place it just before the player in the child order. Do not
+use z_index: a negative z_index would draw it behind the level's own _draw()
+and hide it. Add a state-test check that every puff's index under
+WalkerJumpman is lower than the player's.
+
+After Step 1, show the diff and run the existing tests as CLAUDE.md lists them,
+plus test_jump_puff_config.gd at 60. Then do Step 2 and run the new test at 60.
+Show the real output and say which mode you used. Say exactly what the test
+proves and what it cannot prove headlessly. Do not commit.

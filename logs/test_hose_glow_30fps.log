@@ -4,7 +4,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"shader-defaults","observed":{"glow_color_default_line":true,"glow_default_line":true,"source_bytes":219},"status":"PASS"}
 {"id":"colour-line","observed":{"a2_colour_line_present":true},"status":"PASS"}
 {"id":"driver-param-declared","observed":{"driver_writes":"glow","shader_declares":["glow","glow_color"]},"status":"PASS"}
-{"id":"material-on-sprite","observed":{"art_material":"<Object#null>","player_material":"<Object#null>","shader":"res://shaders/hose_glow.gdshader","sprite_material":"():<ShaderMaterial#-9223372001941387674>"},"status":"PASS"}
+{"id":"material-on-sprite","observed":{"art_material":"<Object#null>","player_material":"<Object#null>","shader":"res://shaders/hose_glow.gdshader","sprite_material":"():<ShaderMaterial#-9223372001270299023>"},"status":"PASS"}
 {"id":"glow-starts-zero","observed":{"frames":3,"last":{"d":0.0416666666666667,"g":0.0,"h":false}},"status":"PASS"}
 {"id":"ramp-up-time","observed":{"delta":0.0333333333333333,"expected_at_ramp_rate":0.1,"fps_from_delta":30.0,"frames":4,"hosing_at_first_rise":true,"max_glow":0.516666666666667,"seconds":0.133333333333333,"tolerance":0.0333333333333333,"within":0.25},"status":"PASS"}
 {"id":"ramp-up-monotonic","observed":{"from":3,"max_step":0.133333333333333,"to":7,"worst_step":0.133333333333333},"status":"PASS"}
@@ -16,7 +16,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"hold-is-game-time","observed":{"down_frames":6,"down_seconds":0.2,"expected":0.199845866686657,"glow_at_last_hosing":0.799383466746627,"hold_frames":159,"hold_seconds":5.3,"hosing_at_last":true,"hosing_next_frame":false,"last":0.0,"monotone":true,"tolerance":0.0333333333333333,"water_ticks":0,"worst_step":0.133333333333333},"status":"PASS"}
 {"id":"restart-mid-ramp","observed":{"down_frames":4,"down_seconds":0.133333333333333,"frames_until_descent":1,"glow_at_R":0.4,"monotone":true,"peak":0.533333333333333,"restarted":true,"state":1,"water_ticks":0,"worst_step":0.133333333333333},"status":"PASS"}
 HOSE GLOW TESTS: 15 checks / 0 failures (process delta 0.033333 s)
-WARNING: 12 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 4 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)
