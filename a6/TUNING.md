@@ -15,3 +15,13 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **Change:** not a setting. The event moves from the jump to the landing, through a new `landed` signal in `player.gd` emitted when the game already switches him to the landing pose (CHANGE-BRIEF Revision 2, my decision; option chosen over a driver that watches `is_on_floor()` itself). Every effect setting stays the same, so the r0 strip still shows the puff's look.
 - **This is a design change from play, not a tuning step:** the one-setting tuning loop (prediction, two strips, verdict) follows separately.
 - **My verdict on the landing version (running game, 1280 × 720, after `739da8b`), in my words (typo fixed):** "looks good and makes sense"
+
+## 2026-11-07 — Effect A, revision r1: greyer puff (round 1 of 2)
+
+- **What I saw (running game, 1280 × 720):** the landing puff "looks good and makes sense". Shown Claude's zoomed r0 strip, I chose to try both proposed changes, as two separate rounds; this is the first.
+- **Claude's reading of r0** (zoomed 2× around the puff, over the B1 tan wall): frame 10 a white cluster about 12 game px with dark specks (as predicted); 12 about 20 px, specks spreading (as predicted); 15 about 25 px, already soft and see-through (brief: widest at 30–40 px, still bright); 20 a pale haze that nearly melts into the tan wall, specks gone (brief: larger, greyer, about 60 % opacity); 30 a very faint haze (as predicted); 50 nothing (as predicted). Timing matches; the puff is a little small and, from about 0.2 s, has almost no value contrast on the wall, because the dark specks that were meant to carry it there are tiny and gone by then.
+- **Change (one setting), approved by me:** `Puff` `color_ramp`, middle stop (0.35) (0.85, 0.85, 0.88, α 0.7) → (0.62, 0.63, 0.68, α 0.7), end stop (1.0) (0.60, 0.62, 0.68, α 0) → (0.45, 0.47, 0.52, α 0). Alpha and the start stop unchanged. Configuration test expected value updated to match; 94/94 at 60.
+- **Claude's prediction for r1:** frames 10 and 12 unchanged (the white start); 15 grey edges appear on the puff; 20 a clear grey cloud against the tan wall instead of a pale haze; 30 a faint grey, easier to see than r0's; 50 nothing. Size, position and timing unchanged.
+- **Claude's comparison of r1 with its prediction:** _pending (after my capture)._
+- **My verdict (running game, 1280 × 720):** _pending._
+- **Strips:** `captures/jump_puff/r0/`, `captures/jump_puff/r1/`

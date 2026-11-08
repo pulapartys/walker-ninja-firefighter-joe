@@ -56,7 +56,7 @@ var scale_curves := {
 # color_ramp as [offset, colour] stops.
 var color_ramps := {
 	"Flash": [[0.0, Color(1, 1, 1, 0.9)], [1.0, Color(1, 1, 1, 0.0)]],
-	"Puff": [[0.0, Color(0.97, 0.96, 0.94, 0.95)], [0.35, Color(0.85, 0.85, 0.88, 0.7)], [1.0, Color(0.60, 0.62, 0.68, 0.0)]],
+	"Puff": [[0.0, Color(0.97, 0.96, 0.94, 0.95)], [0.35, Color(0.62, 0.63, 0.68, 0.7)], [1.0, Color(0.45, 0.47, 0.52, 0.0)]],
 	"Specks": [[0.0, Color(Color("25354a"), 1.0)], [1.0, Color(Color("25354a"), 0.0)]],
 }
 # "Draw": one GradientTexture2D in the scene file, white α 1 → white α 0.

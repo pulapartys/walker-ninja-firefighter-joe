@@ -27,7 +27,7 @@ point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_puff_color"]
 offsets = PackedFloat32Array(0, 0.35, 1)
-colors = PackedColorArray(0.97, 0.96, 0.94, 0.95, 0.85, 0.85, 0.88, 0.7, 0.6, 0.62, 0.68, 0)
+colors = PackedColorArray(0.97, 0.96, 0.94, 0.95, 0.62, 0.63, 0.68, 0.7, 0.45, 0.47, 0.52, 0)
 
 [sub_resource type="Gradient" id="Gradient_specks_color"]
 offsets = PackedFloat32Array(0, 1)
