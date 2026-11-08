@@ -1,0 +1,23 @@
+Approved, on the human's behalf (they asked Claude to finish the remaining
+work and will review it): all three steps, in order, in this run. Hook in
+player.gd _ready() as you proposed.
+
+Draw order, now CHANGE-BRIEF.md Revision 5 (rule B-R8): the steam draws behind
+Extinguisho. Keep HoseSteam a child of WalkerJumpman and place it just before
+the player in the child order, as jump_puff_driver.gd does; no z_index. Add a
+state-test check that the steam root's index under WalkerJumpman stays lower
+than the player's on every frame. Note that each live JumpPuff is also placed
+just before the player, so compare indices, not fixed positions.
+
+Step 3: make the preview use the driver's HoseSteam (fixed seeds on that
+instance only) instead of its own, and keep its frame-10 W press and its
+console lines for hosing true, fire out and hosing false.
+
+godot/tests/gpu_price_effects.gd is Claude's windowed GPU-time helper, not a
+test; leave it alone.
+
+After each step show the diff. Run every test as CLAUDE.md lists, plus both
+config tests, test_jump_puff_state.gd and the new test at 60, with
+./scripts/run-test.sh. Show the real output and say which mode you used. Say
+exactly what the new test proves and what it cannot prove headlessly. Do not
+commit.
