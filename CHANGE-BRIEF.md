@@ -260,3 +260,17 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - **My decision:** the puff draws **behind Extinguisho** and in front of the level art. He stays fully visible at take-off and the puff blooms behind his feet. It stays a child of the level node (A-R6 unchanged), placed just before the player in `WalkerJumpman`'s child order. Not by `z_index`: a negative `z_index` would put it behind the level's own `_draw()` (the buildings), where it would be hidden.
 - **New rule A-R8:** every puff's index under `WalkerJumpman` is lower than the player's. Checked by the state test; the look is an eye check.
 - The v1 text above is kept as written.
+
+### Revision 2 — 2026-11-07, Effect A fires on the landing, not the jump (from my playtest)
+
+- **What I saw:** in the running game the puff on every jump worked, but a puff at take-off did not make sense to me; at the landing it does (a6/TUNING.md, 2026-11-07).
+- **The job now:** "you touched down, and here." The puff is the dust of a ninja's landing. It still marks a place and still repeats many times a run.
+- **The event now:** a new signal `landed` on `godot/features/player/player.gd`, emitted in `_update_pose()` on the tick it sets `land_ticks = LAND_TICKS`: he is on the floor after more than 10 physics ticks in the air. That is the game's own rule for the landing pose, so the puff and the pose always agree. Position: the player's `global_position` at that emit (his feet, on the floor, after `move_and_slide()`). `reset_at()` sets `was_on_floor = true` and `air_ticks = 0`, so a respawn never counts as a landing.
+- **Boundary, widened by my decision:** `player.gd` gains `signal landed` and one `landed.emit()` line next to `land_ticks = LAND_TICKS`. Movement, collision, poses and their timing do not change; the line only announces a state change the game already makes. The driver stops listening to `jumped`.
+- **Rules that change:**
+  - **A-R1 now reads:** every `landed` emission creates one new `JumpPuff` whose root `global_position` equals the player's `global_position` at that emit.
+  - **A-R2 now reads:** never otherwise: not on the jump, not on scene load, start or R, not on a landing after 10 ticks or fewer in the air, not in MENU, PAUSED, DYING or COMPLETE. A landing after walking off a ledge **does** count when he was in the air more than 10 ticks (v1 said no puff on a walk-off; that was about the jump event).
+  - **A-R3:** overlap, unchanged. Two landings inside 0.9 s happen in play: land, jump again on the landing tick, land 0.8 s later on flat ground or about 0.65 s later on a ledge 40 px higher. At most 2 alive.
+  - A-R4 to A-R8 are unchanged.
+- **Unchanged:** every setting in A3, the frame strip in A5 (the preview adds the puff itself, so its frame 10 is the landing), the names `jump_puff.tscn` / `JumpPuff` / `jump_puff_driver.gd` (renaming would touch every file and capture for no change in behaviour), predictions P and C, and the answers in Q.
+- The v1 text above is kept as written.

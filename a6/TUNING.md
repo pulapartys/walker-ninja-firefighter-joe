@@ -8,3 +8,9 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **My first look (2026-11-06, preview window):** "idk i couldnt tell to small maybe". Afterwards we found the preview had not fired at all in most real-time runs (the agent's `frame == 10` check missed the frame in a live window); fixed in `6b5c613`, captures unaffected.
 - **My first verdict (2026-11-07, preview window at 1280 × 720, `-- loop`, a puff every 1.2 s), before Claude read any frame:** "for now it looks fine i wanna test once its in the game, the size looks fine"
 - **Claude's reading of r0:** _pending; read after the effect is in the game (Step 4)._
+
+## 2026-11-07 — Effect A in the running game: the event moves from the jump to the landing
+
+- **What I saw (running game, 1280 × 720, after `9a3b1f8` wired the puff to `jumped`), in my words (typos fixed):** "i checked the puff and it appearing at jumps looks good, but i think it doesnt make sense before, but makes sense to appear at the landing, so lets change that"
+- **Change:** not a setting. The event moves from the jump to the landing, through a new `landed` signal in `player.gd` emitted when the game already switches him to the landing pose (CHANGE-BRIEF Revision 2, my decision; option chosen over a driver that watches `is_on_floor()` itself). Every effect setting stays the same, so the r0 strip still shows the puff's look.
+- **This is a design change from play, not a tuning step:** the one-setting tuning loop (prediction, two strips, verdict) follows separately.
