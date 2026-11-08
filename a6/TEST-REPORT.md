@@ -118,15 +118,28 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 | Effect A, 2 puffs alive | 0.446 (not measurable) | 0.552 (not measurable) |
 | Effect B, ratio 1.0, filled | 0.532 (+0.084) | 0.728 (+0.175) |
 
-- **HUMAN CHECK, Visual Profiler:** _pending._ This is GPU time with each effect off, then on at its heaviest, read in the editor's Visual Profiler from a run under Mobile + Vulkan.
-- **HUMAN CHECK, FPS with vsync off (F9):** _pending._ Includes whether FPS rises above the display's refresh rate at all.
+- **Run 3** (connected to the editor; the profiler could not attach to a `--script` run): off 0.525 ms, puff 0.529 ms, steam 0.619 ms (+0.094).
+- **HUMAN CHECK, Visual Profiler (2026-11-08):**
+  - **Setup:** the editor's Debugger > Visual Profiler, with "Keep Debug Server Open". The run was `godot/previews/gpu_price_preview.tscn`, a fixture that plays three phases by itself (effects off, two puffs, steam at ratio 1.0), launched by Claude with `--remote-debug tcp://127.0.0.1:6007 --rendering-method mobile --rendering-driver vulkan`. I could not play the game and work the profiler at once, so I pressed Start, the fixture played, and I read the frames.
+  - **What it showed:** the profiler header read "GPU: Apple M1". The numbers below are the table rows I selected by clicking the GPU graph.
+
+| Frame | Steam | Update GPU particles (GPU) | Render Viewport (GPU, total) |
+|---|---|---|---|
+| 6000 | off | 0.04 ms | 1.02 ms |
+| 7182 | on, ratio 1.0 | 0.25 ms | 0.98 ms |
+| 8830 | on, ratio 1.0 | 0.27 ms | 1.08 ms |
+
+  - **Reading:** the steam's process step on the GPU ("Update GPU particles") is about +0.2 ms per frame, within its 0.5 ms budget and of the same order as the script's +0.08 to +0.18 ms. Single-frame totals vary by more than that, so the total frame time does not show it cleanly.
+  - **The puff:** it is a CPU node, so it has no "Update GPU particles" entry, and these frames do not isolate it. I could not reliably place a frame in its phase: the run went faster than 60 fps under Vulkan, so the phases fell at other frame numbers than Claude estimated. The script's "not measurable" stands for it.
+  - **Renderer:** this is Mobile on Vulkan, not the Compatibility renderer the game ships with.
+- **FPS with vsync off (F9):** not done. The assignment makes the FPS comparison optional ("if you compare it"), and GPU time is the primary number; the F9 key is in the game (`godot/features/debug/vsync_key.gd`). I read nothing in Monitors.
 
 ## Budgets against prices
 
 | | Budget | Headless CPU | GPU (script, Mobile + Vulkan) | Visual Profiler | Within budget? |
 |---|---|---|---|---|---|
-| Effect A (CPU node: compared on both) | 0.1 ms | not separable from noise (≤ 0.005 ms) | not measurable | _pending_ | yes, on both measured prices |
-| Effect B (GPU node: compared on GPU time) | 0.5 ms | ≈ 0, as expected for a GPU node | +0.08 to +0.18 ms | _pending_ | yes, on the script's GPU time |
+| Effect A (CPU node: compared on both) | 0.1 ms | not separable from noise (≤ 0.005 ms) | not measurable | not isolated (CPU node: no GPU-particles row) | yes, on both measured prices |
+| Effect B (GPU node: compared on GPU time) | 0.5 ms | ≈ 0, as expected for a GPU node | +0.08 to +0.18 ms | Update GPU particles +0.21 to +0.23 ms | yes, on both GPU readings |
 
 ## My predictions against the results
 
@@ -138,7 +151,7 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 | Puff headless CPU "about 0" | **right** |
 | Steam headless CPU "about 0, same as an empty scene" | **partly right:** the same as the game with effects off, which is about 0.18 ms, not the empty scene's 0.0035 |
 | Puff GPU 0.05–0.5 ms | **wrong, lower:** not measurable |
-| Steam GPU under 0.05 ms | **wrong, higher:** +0.08 to +0.18 ms (script); Visual Profiler _pending_ |
+| Steam GPU under 0.05 ms | **wrong, higher:** +0.08 to +0.18 ms (script), about +0.2 ms in the Visual Profiler's particle row |
 
 ## The process shader (Step 6)
 

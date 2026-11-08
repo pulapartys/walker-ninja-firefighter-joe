@@ -40,6 +40,12 @@ func report(label: String, runs: Array) -> void:
 	print("%-28s GPU mean %.4f ms (min %.4f, max %.4f) | CPU render mean %.4f ms" % [label, g.reduce(func(a, b): return a + b) / g.size(), g.min(), g.max(), c.reduce(func(a, b): return a + b) / c.size()])
 
 func run() -> void:
+	# `-- wait=N`: hold N seconds first, so a person can press Start in the editor's Visual Profiler
+	# (the run is connected with --remote-debug). Each case prints when it starts.
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("wait="):
+			print("waiting %s s: press Start in the Visual Profiler" % arg.substr(5))
+			await create_timer(float(arg.substr(5))).timeout
 	print("rendering method: ", RenderingServer.get_current_rendering_method(), ", adapter: ", RenderingServer.get_video_adapter_name())
 	game = (load("res://game/main.tscn") as PackedScene).instantiate()
 	game.test_mode = true
@@ -54,6 +60,7 @@ func run() -> void:
 	for r in REPEATS:
 		off.append(await sample(func(_i): pass))
 	report("level, effects off", off)
+	print("now: Effect A")
 	# Effect A: a new puff every 0.45 s keeps two alive at all times (CHANGE-BRIEF A-R3 peak).
 	var puffs := []
 	for r in REPEATS:
@@ -64,6 +71,7 @@ func run() -> void:
 				game.add_child(p)
 				create_timer(0.9).timeout.connect(p.queue_free)))
 	report("Effect A, 2 puffs alive", puffs)
+	print("now: Effect B")
 	await frames(60)
 	var steam: Node2D = HoseSteam.instantiate()
 	steam.position = STEAM_AT
