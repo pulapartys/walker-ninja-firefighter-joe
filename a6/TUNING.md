@@ -38,3 +38,9 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **Claude's comparison of r2 with its prediction:** 10: cluster about 17 px (predicted 18), match. 12: about 25–28 px (predicted 30), a little smaller. 15: about 30 px and denser (predicted 35–40), at the bottom of the brief's 30–40 range rather than the middle. 20: about 35 px, a bigger, denser grey cloud (predicted about 40), right direction, a little smaller. 30: about 32 px faint haze (r1 about 28), match. 50: nothing, match. Timing unchanged (gone by frame 37 in both), denser as predicted. Overall the change moved the puff the predicted way but about 5 px smaller than predicted; sizes are by eye on 2× crops, about ±3 px.
 - **My verdict (running game, 1280 × 720): kept**, in my words: "i like this one better it shows those extra dots as more granular dust"
 - **Strips:** `captures/jump_puff/r1/`, `captures/jump_puff/r2/`
+
+## 2026-11-08 — Effect B, first strip r0
+
+- **Strip:** `captures/hose_steam/r0/` (frames 10, 16, 40, 70, 100, 130, 165, 200; W on frame 10, fire out on 130, water off on 160), captured through the real driver with `--always-on-top`, 210 / 210 frames drawn.
+- **My first look (preview window, `-- loop`, 1280 × 720), before Claude read any frame, in my words (typos fixed):** "i don't know if the steam is visible enough against the flashing of the firefighter the size is fine but idk if its that noticeable especially in the sky" (the "flashing" is my A5 hose glow breathing blue on Extinguisho while he hoses)
+
