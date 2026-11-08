@@ -1,0 +1,13 @@
+rendering method: mobile, adapter: Apple M1 (Apple7)
+empty: mean GPU 0.0000 ms, mean CPU 0.0204 ms over 120 frames
+20000 GPU particles: mean GPU 0.0000 ms, mean CPU 0.1446 ms over 120 frames
+rendering method: gl_compatibility, adapter: Apple M1
+empty: mean GPU 0.0000 ms, mean CPU 0.1011 ms over 120 frames
+20000 GPU particles: mean GPU 0.0000 ms, mean CPU 7.2586 ms over 120 frames
+rendering method: forward_plus, adapter: Apple M1 (Apple7)
+empty: mean GPU 0.0000 ms, mean CPU 0.0187 ms over 120 frames
+20000 GPU particles: mean GPU 0.0000 ms, mean CPU 0.0318 ms over 120 frames
+Vulkan 1.2.334 - Forward Mobile - Using Device #0: Apple - Apple M1
+rendering method: mobile, adapter: Apple M1
+empty: mean GPU 0.0873 ms, mean CPU 0.0190 ms over 120 frames
+20000 GPU particles: mean GPU 0.6865 ms, mean CPU 2.0384 ms over 120 frames
