@@ -27,3 +27,13 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **My verdict (running game, 1280 × 720): kept**, in my words (typos fixed): "yes this seems fine too its visible, grey shows and gradually gets lost its not that bad honestly i couldnt tell the difference a lot"
 - **Claude against me:** Claude's reading of the zoomed strip called frame 20 a visible improvement; at game size and speed I could not see much difference. Kept because it does no harm and the strip shows more contrast on the wall, not because I saw it in play.
 - **Strips:** `captures/jump_puff/r0/`, `captures/jump_puff/r1/`
+
+## 2026-11-07 — Effect A, revision r2: bigger puff (round 2 of 2)
+
+- **What I saw:** my very first look said "to small maybe"; later, in the loop preview and the game, the size looked fine to me. I asked to try this change anyway, as the second of the two rounds.
+- **Claude's reading of r1:** at its widest (frame 15) the puff is about 25 game px across, below the brief's 30–40 px (1.5–2× his 20 px width).
+- **Change (one setting), approved by me:** `Puff` `scale_amount_min` / `scale_amount_max` 0.35 / 0.55 → 0.5 / 0.8 (each ball about 45 % larger). Configuration test expected values updated to match; 94/94 at 60.
+- **Claude's prediction for r2:** same seeds, so the same motion with bigger balls. 10: the cluster about 18 px instead of 12; 12: about 30 px; 15: the widest, about 35–40 px, the brief's target; 20: about 40 px and grey (r1's colour); 30: a larger faint grey haze; 50: nothing. Timing unchanged. Because the balls overlap more, the puff should also look denser, not only wider.
+- **Claude's comparison of r2 with its prediction:** _pending._
+- **My verdict (running game, 1280 × 720):** _pending._
+- **Strips:** `captures/jump_puff/r1/`, `captures/jump_puff/r2/`

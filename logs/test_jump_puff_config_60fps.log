@@ -47,8 +47,8 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"Puff.angle_max","observed":{"expected":360.0,"read_back":360.0},"status":"PASS"}
 {"id":"Puff.angular_velocity_min","observed":{"expected":-90.0,"read_back":-90.0},"status":"PASS"}
 {"id":"Puff.angular_velocity_max","observed":{"expected":90.0,"read_back":90.0},"status":"PASS"}
-{"id":"Puff.scale_amount_min","observed":{"expected":0.35,"read_back":0.349999994039536},"status":"PASS"}
-{"id":"Puff.scale_amount_max","observed":{"expected":0.55,"read_back":0.550000011920929},"status":"PASS"}
+{"id":"Puff.scale_amount_min","observed":{"expected":0.5,"read_back":0.5},"status":"PASS"}
+{"id":"Puff.scale_amount_max","observed":{"expected":0.8,"read_back":0.800000011920929},"status":"PASS"}
 {"id":"Puff.hue_variation_min","observed":{"expected":-0.02,"read_back":-0.0199999995529652},"status":"PASS"}
 {"id":"Puff.hue_variation_max","observed":{"expected":0.02,"read_back":0.0199999995529652},"status":"PASS"}
 {"id":"Puff.local_coords","observed":{"expected":false,"read_back":false},"status":"PASS"}

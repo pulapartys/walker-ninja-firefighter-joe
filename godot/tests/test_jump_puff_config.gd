@@ -31,7 +31,7 @@ var brief := {
 		"initial_velocity_min": 50.0, "initial_velocity_max": 90.0, "gravity": Vector2(0, -20),
 		"damping_min": 250.0, "damping_max": 300.0, "angle_min": 0.0, "angle_max": 360.0,
 		"angular_velocity_min": -90.0, "angular_velocity_max": 90.0,
-		"scale_amount_min": 0.35, "scale_amount_max": 0.55,
+		"scale_amount_min": 0.5, "scale_amount_max": 0.8,
 		"hue_variation_min": -0.02, "hue_variation_max": 0.02,
 		"local_coords": false, "preprocess": 0.0, "use_fixed_seed": false,
 	},
