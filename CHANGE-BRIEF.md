@@ -294,3 +294,9 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - **New rule B-R8:** the steam root's index under `WalkerJumpman` is lower than the player's. Checked by the state test; the look is an eye check.
 - The v1 text above is kept as written.
 
+### Revision 6 — 2026-11-08, Effect B tuning r1 kept: a darker, more solid haze
+
+- **Setting:** `Haze` `color_ramp` colour is now (0.30, 0.31, 0.35) at every stop, was (0.42, 0.43, 0.47); peak alpha at 0.2 of life is now 0.8, was 0.5. Start and end alpha stay 0.
+- **Why:** my first look found the steam "not that noticeable, especially in the sky", and Claude's reading of r0 found the `Haze` layer invisible (a6/TUNING.md, Effect B r0 and r1). Kept after my check in the running game: "its better now". The scene file and the configuration test carry the new values. B2's contrast line now reads about 4 : 1 for the haze on the sky's average, on paper.
+- The v1 text above is kept as written.
+
