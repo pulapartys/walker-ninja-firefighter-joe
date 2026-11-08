@@ -142,7 +142,24 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 
 ## The process shader (Step 6)
 
-_Pending: my conversion in the editor of `godot/previews/scratch_process_material.tscn`, saved as `godot/shaders/particles_generated.gdshader`, then the line references and my answers._
+- **What I did (2026-11-08):** in the editor I opened `godot/previews/scratch_process_material.tscn`, which holds a unique deep copy of the steam's `Steam` `ParticleProcessMaterial` (made by Claude's `make_scratch_process_material.gd`, so the real effect cannot change). I converted it with the Inspector's resource menu ("Convert to ShaderMaterial") and saved the shader as `godot/shaders/particles_generated.gdshader`, 486 lines, Godot 4.7.2's own code (`bf9bbfc`). Nothing in the game uses it; `hose_steam.tscn` is unchanged.
+- **Line references.** Claude located these with `grep`; I looked at each.
+
+| What | Line(s) |
+|---|---|
+| `shader_type particles;` | 3 |
+| `void start()` / `void process()` | 319 / 374 |
+| initial velocity from its minimum and maximum | 232: `params.initial_velocity_multiplier = mix(initial_linear_velocity_min, initial_linear_velocity_max, rand_from_seed(alt_seed));`, used at 361 to set the starting velocity along the spread direction |
+| gravity changes velocity | 408: `force = gravity;`, then 421: `USERDATA1.xyz += force * DELTA;` (the particle's velocity), which becomes `VELOCITY` at 447–451 |
+| colour over life sampled | 255: `parameters.color *= texture(color_ramp, vec2(lifetime));`, written to `COLOR` at 459 |
+| scale over life applied | 254: `parameters.scale *= texture(scale_curve, vec2(lifetime)).rgb;`, applied to the particle's transform at 476–478 |
+| **one line tied to a setting in my brief (my choice)** | **331:** `if (rand_from_seed(alt_seed) > AMOUNT_RATIO) { ACTIVE = false; }`. This is my feedback loop (B-R3): the driver writes `amount_ratio = fire_height() / 34`, from 1.0 when the water first hits down to 0 when the fire is out, and this line switches off that share of the particles that start. `amount` stays 40 (Steam) and 14 (Haze). |
+
+- **Which of my brief's settings live in this shader, and which belong to the draw step (my answer, in my words, after Claude's "rulebook and costume department" explanation):**
+  - Shader: starting speed (20–40 px/s), gravity (0, −15, 0), turbulence, the colour ramp, the scale curve, `amount_ratio`.
+  - Draw: the texture (the soft round disc) and the blend mode (normal mix).
+  - "The process shader controls how particles move, change size, and fade over time, while the draw step controls how they look on screen."
+
 
 ## In play — HUMAN CHECK
 
