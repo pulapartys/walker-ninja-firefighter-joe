@@ -1,0 +1,4 @@
+rendering method: mobile, adapter: Apple M1
+level, effects off           GPU mean 0.4476 ms (min 0.4425, max 0.4512) | CPU render mean 0.0683 ms
+Effect A, 2 puffs alive      GPU mean 0.4456 ms (min 0.4341, max 0.4544) | CPU render mean 0.0888 ms
+Effect B, ratio 1.0, filled  GPU mean 0.5316 ms (min 0.5175, max 0.5538) | CPU render mean 0.0847 ms
