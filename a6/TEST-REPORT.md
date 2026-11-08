@@ -227,3 +227,9 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 
 - The film, the `a6` tag, the fresh-clone check of the tag, the submission zip and SUBMISSION.md.
 - Not done, recorded as such: Effect B hidden by eye; the puff's GPU time isolated in the Visual Profiler; the optional FPS comparison with vsync off.
+
+## Fresh clone of tag `a6` (2026-11-08 17:24)
+
+- **Revision:** tag `a6` → `ae4fc03`, cloned from GitHub into an empty folder; `godot --headless --path godot --import` once (exit 0); then `./scripts/run-all-tests.sh`.
+- **Result: ALL AS EXPECTED.** Every count matches this report: `test_game` 41, `test_keyboard` 14, `test_audio` 12 / 14 pinned and 14 / 14 realtime, `check_props` PASS, `test_hose_glow` 15 at 30, 60 and 144, `test_materials` 35, `test_jump_puff_config` 94, `test_jump_puff_state` 30, `test_hose_steam_config` 89, `test_hose_steam_state` 18, `cost_effects` setup OK. No `SHADER ERROR` or `SCRIPT ERROR`. Output: `a6/evidence/run-all-tests_fresh-clone-of-a6_ae4fc03.txt`.
+- This entry is committed after the tag, so the tag holds everything except this note.
