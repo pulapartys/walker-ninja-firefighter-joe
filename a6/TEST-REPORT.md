@@ -134,7 +134,7 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 |---|---|
 | P1: a Godot 3 name leaves the speed at 0, caught by the config test | **right:** mutation 1, exit 1; the agent's own trial too |
 | P2: the puff glued to the player, caught by the state test | did not happen; the state test's `stays-put` and `parent-is-level` checks would catch it |
-| P3: steam before the hose, caught by my eyes | did not happen (`emitting = false` in the scene, `none-on-load` passes); first-frames eye check _pending_ |
+| P3: steam before the hose, caught by my eyes | did not happen: `emitting = false` in the scene, `none-on-load` passes, and my eyes saw no steam at the start |
 | Puff headless CPU "about 0" | **right** |
 | Steam headless CPU "about 0, same as an empty scene" | **partly right:** the same as the game with effects off, which is about 0.18 ms, not the empty scene's 0.0035 |
 | Puff GPU 0.05–0.5 ms | **wrong, lower:** not measurable |
@@ -146,16 +146,17 @@ _Pending: my conversion in the editor of `godot/previews/scratch_process_materia
 
 ## In play — HUMAN CHECK
 
-- **Effect A:** _done._ Triggered by normal play many times, including quick repeated landings. Kept at the landing ("looks good and makes sense"), r1 and r2 kept (`a6/TUNING.md`). Still to note explicitly: the darkest (street-level skyline) and lightest (B1 tan wall) backgrounds; most of my look so far was on the tan wall.
-- **Effect B:** _pending:_ first look, starting and stopping, Esc, the size verdict, both backgrounds.
-- **Edge of screen** (the steam's `visibility_rect`): _pending._
-- **Scene load** (no steam in the first frames): _pending._
+- **Effect A:** _done._ Triggered by normal play many times, including quick repeated landings. Kept at the landing ("looks good and makes sense"), r1 and r2 kept (`a6/TUNING.md`). Lightest background: the B1 tan wall, where all three tuning looks were made.
+- **Effect B (2026-11-08, revision `2ee9203` and on):** first look in the preview: "i don't know if the steam is visible enough against the flashing of the firefighter the size is fine but idk if its that noticeable especially in the sky". After r1 (darker haze), in the running game: "its better now" (kept, Revision 6). Starting and stopping with the hose, Esc while hosing (keeps drifting) and the draw order behind Extinguisho: "all ok" (Revision 7). Size: "the size is fine".
+- **Edge of screen** (the steam's `visibility_rect`), 2026-11-08: the steam preview with the camera held so the fire's centre sits 8 px inside each screen edge (`-- loop edge_left` / `edge_right`, a fixture). Left edge: "looks good ig". Right edge: "good". No pop seen at either edge.
+- **Scene load** (no steam in the first frames), 2026-11-08, running game: no steam before hosing ("all ok").
+- **Effect A on the darkest background**, 2026-11-08: landings at street level near the spawn, with the dark skyline behind him: "clearly visible".
 - **Boundaries holding in play** (movement, hose, rescue, death, timer unchanged): _pending, explicitly._
 
 ## Claude against me
 
 - **r1 (greyer puff):** Claude's reading of the zoomed strip called frame 20 a visible improvement; in the game I "couldnt tell the difference a lot". Kept anyway (`a6/TUNING.md`).
-- **Effect B:** _pending._
+- **Effect B:** we agreed: my first look said the steam was hard to notice on the sky, and Claude's r0 reading found the haze layer invisible. Claude's r1 prediction was wrong at frame 16: the darker haze showed the first puff already there, which r0 had hidden.
 
 ## Agent mistakes caught
 

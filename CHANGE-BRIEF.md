@@ -300,3 +300,8 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - **Why:** my first look found the steam "not that noticeable, especially in the sky", and Claude's reading of r0 found the `Haze` layer invisible (a6/TUNING.md, Effect B r0 and r1). Kept after my check in the running game: "its better now". The scene file and the configuration test carry the new values. B2's contrast line now reads about 4 : 1 for the haze on the sky's average, on paper.
 - The v1 text above is kept as written.
 
+### Revision 7 — 2026-11-08, Revision 5 confirmed in play
+
+- I checked the steam in the running game and confirmed Claude's Revision 5 choice (the steam draws behind Extinguisho) and the B-R5 game-pause behaviour (the steam keeps drifting under Esc): "all ok". Revision 5 is now my decision.
+- The v1 text above is kept as written.
+
