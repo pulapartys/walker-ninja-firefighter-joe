@@ -1,0 +1,93 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+{"id":"scene-loads","observed":{"path":"res://effects/hose_steam.tscn"},"status":"PASS"}
+{"id":"structure","observed":{"children":["Haze:GPUParticles2D","Steam:GPUParticles2D"],"expected":["Haze:GPUParticles2D","Steam:GPUParticles2D"],"not_in_effect_a":true,"root":"HoseSteam:Node2D"},"status":"PASS"}
+{"id":"root.material","observed":{"expected":"none (mix blend)","read_back":"<Object#null>"},"status":"PASS"}
+{"id":"Haze.amount","observed":{"expected":14,"read_back":14},"status":"PASS"}
+{"id":"Haze.amount_ratio","observed":{"expected":1.0,"not_in_effect_a":true,"read_back":1.0},"status":"PASS"}
+{"id":"Haze.emitting","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Haze.one_shot","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Haze.explosiveness","observed":{"expected":0.0,"read_back":0.0},"status":"PASS"}
+{"id":"Haze.randomness","observed":{"expected":0.3,"read_back":0.300000011920929},"status":"PASS"}
+{"id":"Haze.lifetime","observed":{"expected":1.6,"read_back":1.6},"status":"PASS"}
+{"id":"Haze.preprocess","observed":{"expected":0.0,"read_back":0.0},"status":"PASS"}
+{"id":"Haze.fixed_fps","observed":{"expected":30,"read_back":30},"status":"PASS"}
+{"id":"Haze.interpolate","observed":{"expected":true,"read_back":true},"status":"PASS"}
+{"id":"Haze.local_coords","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Haze.visibility_rect","observed":{"expected":"[P: (-70.0, -100.0), S: (140.0, 120.0)]","not_in_effect_a":true,"read_back":"[P: (-70.0, -100.0), S: (140.0, 120.0)]"},"status":"PASS"}
+{"id":"Haze.use_fixed_seed","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Haze.trail_enabled","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Haze.process_material","observed":{"expected":"ParticleProcessMaterial in the scene file","in_scene_file":true,"read_back":"(res://effects/hose_steam.tscn::ParticleProcessMaterial_haze):<ParticleProcessMaterial#-9223372010195778094>"},"status":"PASS"}
+{"id":"Haze.process_material.emission_shape","observed":{"expected":3,"not_in_effect_a":true,"read_back":3},"status":"PASS"}
+{"id":"Haze.process_material.emission_box_extents","observed":{"expected":"(20.0, 3.0, 0.0)","not_in_effect_a":true,"read_back":"(20.0, 3.0, 0.0)"},"status":"PASS"}
+{"id":"Haze.process_material.direction","observed":{"expected":"(0.0, -1.0, 0.0)","read_back":"(0.0, -1.0, 0.0)"},"status":"PASS"}
+{"id":"Haze.process_material.spread","observed":{"expected":15.0,"read_back":15.0},"status":"PASS"}
+{"id":"Haze.process_material.initial_velocity_min","observed":{"expected":12.0,"read_back":12.0},"status":"PASS"}
+{"id":"Haze.process_material.initial_velocity_max","observed":{"expected":25.0,"read_back":25.0},"status":"PASS"}
+{"id":"Haze.process_material.gravity","observed":{"expected":"(0.0, -10.0, 0.0)","read_back":"(0.0, -10.0, 0.0)"},"status":"PASS"}
+{"id":"Haze.process_material.damping_min","observed":{"expected":1.0,"read_back":1.0},"status":"PASS"}
+{"id":"Haze.process_material.damping_max","observed":{"expected":3.0,"read_back":3.0},"status":"PASS"}
+{"id":"Haze.process_material.turbulence_enabled","observed":{"expected":true,"not_in_effect_a":true,"read_back":true},"status":"PASS"}
+{"id":"Haze.process_material.turbulence_influence_min","observed":{"expected":0.03,"not_in_effect_a":true,"read_back":0.0299999993294477},"status":"PASS"}
+{"id":"Haze.process_material.turbulence_influence_max","observed":{"expected":0.08,"not_in_effect_a":true,"read_back":0.0799999982118607},"status":"PASS"}
+{"id":"Haze.process_material.angle_min","observed":{"expected":0.0,"read_back":0.0},"status":"PASS"}
+{"id":"Haze.process_material.angle_max","observed":{"expected":360.0,"read_back":360.0},"status":"PASS"}
+{"id":"Haze.process_material.scale_min","observed":{"expected":0.6,"read_back":0.600000023841858},"status":"PASS"}
+{"id":"Haze.process_material.scale_max","observed":{"expected":0.8,"read_back":0.800000011920929},"status":"PASS"}
+{"id":"Haze.process_material.particle_flag_disable_z","observed":{"expected":true,"read_back":true},"status":"PASS"}
+{"id":"Haze.process_material.collision_mode","observed":{"expected":0,"read_back":0},"status":"PASS"}
+{"id":"Haze.process_material.scale_curve","observed":{"expected_points":"[(0.0, 0.6), (1.0, 1.8)]","in_scene_file":true,"read_back_points":"[(0.0, 0.6), (1.0, 1.8)]","type":"(res://effects/hose_steam.tscn::CurveTexture_haze_scale):<CurveTexture#-9223372010246109743>"},"status":"PASS"}
+{"id":"Haze.process_material.color_ramp","observed":{"expected":"[[0.0, (0.42, 0.43, 0.47, 0.0)], [0.2, (0.42, 0.43, 0.47, 0.5)], [1.0, (0.42, 0.43, 0.47, 0.0)]]","in_scene_file":true,"read_back":"[[0.0, (0.42, 0.43, 0.47, 0.0)], [0.20000000298023, (0.42, 0.43, 0.47, 0.5)], [1.0, (0.42, 0.43, 0.47, 0.0)]]","type":"(res://effects/hose_steam.tscn::GradientTexture1D_haze_color):<GradientTexture1D#-9223372010279664177>"},"status":"PASS"}
+{"id":"Haze.material","observed":{"expected":"none (mix blend)","read_back":"<Object#null>"},"status":"PASS"}
+{"id":"Haze.texture","observed":{"read_back":"(res://effects/hose_steam.tscn::GradientTexture2D_disc):<GradientTexture2D#-9223372010313218611>","resource_path":"res://effects/hose_steam.tscn::GradientTexture2D_disc"},"status":"PASS"}
+{"id":"Haze.texture.width","observed":{"expected":32,"read_back":32},"status":"PASS"}
+{"id":"Haze.texture.height","observed":{"expected":32,"read_back":32},"status":"PASS"}
+{"id":"Haze.texture.fill","observed":{"expected":1,"read_back":1},"status":"PASS"}
+{"id":"Haze.texture.fill_from","observed":{"expected":"(0.5, 0.5)","read_back":"(0.5, 0.5)"},"status":"PASS"}
+{"id":"Haze.texture.fill_to","observed":{"expected":"(1.0, 0.5)","read_back":"(1.0, 0.5)"},"status":"PASS"}
+{"id":"Haze.texture.gradient","observed":{"expected":"[[0.0, (1.0, 1.0, 1.0, 1.0)], [1.0, (1.0, 1.0, 1.0, 0.0)]]","in_scene_file":true,"read_back":"[[0.0, (1.0, 1.0, 1.0, 1.0)], [1.0, (1.0, 1.0, 1.0, 0.0)]]"},"status":"PASS"}
+{"id":"Steam.amount","observed":{"expected":40,"read_back":40},"status":"PASS"}
+{"id":"Steam.amount_ratio","observed":{"expected":1.0,"not_in_effect_a":true,"read_back":1.0},"status":"PASS"}
+{"id":"Steam.emitting","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Steam.one_shot","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Steam.explosiveness","observed":{"expected":0.0,"read_back":0.0},"status":"PASS"}
+{"id":"Steam.randomness","observed":{"expected":0.3,"read_back":0.300000011920929},"status":"PASS"}
+{"id":"Steam.lifetime","observed":{"expected":1.4,"read_back":1.4},"status":"PASS"}
+{"id":"Steam.preprocess","observed":{"expected":0.0,"read_back":0.0},"status":"PASS"}
+{"id":"Steam.fixed_fps","observed":{"expected":30,"read_back":30},"status":"PASS"}
+{"id":"Steam.interpolate","observed":{"expected":true,"read_back":true},"status":"PASS"}
+{"id":"Steam.local_coords","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Steam.visibility_rect","observed":{"expected":"[P: (-70.0, -100.0), S: (140.0, 120.0)]","not_in_effect_a":true,"read_back":"[P: (-70.0, -100.0), S: (140.0, 120.0)]"},"status":"PASS"}
+{"id":"Steam.use_fixed_seed","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Steam.trail_enabled","observed":{"expected":false,"read_back":false},"status":"PASS"}
+{"id":"Steam.process_material","observed":{"expected":"ParticleProcessMaterial in the scene file","in_scene_file":true,"read_back":"(res://effects/hose_steam.tscn::ParticleProcessMaterial_steam):<ParticleProcessMaterial#-9223372010078337576>"},"status":"PASS"}
+{"id":"Steam.process_material.emission_shape","observed":{"expected":3,"not_in_effect_a":true,"read_back":3},"status":"PASS"}
+{"id":"Steam.process_material.emission_box_extents","observed":{"expected":"(24.0, 3.0, 0.0)","not_in_effect_a":true,"read_back":"(24.0, 3.0, 0.0)"},"status":"PASS"}
+{"id":"Steam.process_material.direction","observed":{"expected":"(0.0, -1.0, 0.0)","read_back":"(0.0, -1.0, 0.0)"},"status":"PASS"}
+{"id":"Steam.process_material.spread","observed":{"expected":25.0,"read_back":25.0},"status":"PASS"}
+{"id":"Steam.process_material.initial_velocity_min","observed":{"expected":20.0,"read_back":20.0},"status":"PASS"}
+{"id":"Steam.process_material.initial_velocity_max","observed":{"expected":40.0,"read_back":40.0},"status":"PASS"}
+{"id":"Steam.process_material.gravity","observed":{"expected":"(0.0, -15.0, 0.0)","read_back":"(0.0, -15.0, 0.0)"},"status":"PASS"}
+{"id":"Steam.process_material.damping_min","observed":{"expected":2.0,"read_back":2.0},"status":"PASS"}
+{"id":"Steam.process_material.damping_max","observed":{"expected":6.0,"read_back":6.0},"status":"PASS"}
+{"id":"Steam.process_material.turbulence_enabled","observed":{"expected":true,"not_in_effect_a":true,"read_back":true},"status":"PASS"}
+{"id":"Steam.process_material.turbulence_influence_min","observed":{"expected":0.05,"not_in_effect_a":true,"read_back":0.0500000007450581},"status":"PASS"}
+{"id":"Steam.process_material.turbulence_influence_max","observed":{"expected":0.15,"not_in_effect_a":true,"read_back":0.150000005960464},"status":"PASS"}
+{"id":"Steam.process_material.angle_min","observed":{"expected":0.0,"read_back":0.0},"status":"PASS"}
+{"id":"Steam.process_material.angle_max","observed":{"expected":360.0,"read_back":360.0},"status":"PASS"}
+{"id":"Steam.process_material.scale_min","observed":{"expected":0.4,"read_back":0.400000005960464},"status":"PASS"}
+{"id":"Steam.process_material.scale_max","observed":{"expected":0.6,"read_back":0.600000023841858},"status":"PASS"}
+{"id":"Steam.process_material.particle_flag_disable_z","observed":{"expected":true,"read_back":true},"status":"PASS"}
+{"id":"Steam.process_material.collision_mode","observed":{"expected":0,"read_back":0},"status":"PASS"}
+{"id":"Steam.process_material.scale_curve","observed":{"expected_points":"[(0.0, 0.6), (1.0, 1.6)]","in_scene_file":true,"read_back_points":"[(0.0, 0.6), (1.0, 1.6)]","type":"(res://effects/hose_steam.tscn::CurveTexture_steam_scale):<CurveTexture#-9223372010128669225>"},"status":"PASS"}
+{"id":"Steam.process_material.color_ramp","observed":{"expected":"[[0.0, (0.95, 0.95, 0.97, 0.0)], [0.15, (0.95, 0.95, 0.97, 0.8)], [0.6, (0.95, 0.95, 0.97, 0.5)], [1.0, (0.95, 0.95, 0.97, 0.0)]]","in_scene_file":true,"read_back":"[[0.0, (0.95, 0.95, 0.97, 0.0)], [0.15000000596046, (0.95, 0.95, 0.97, 0.8)], [0.60000002384186, (0.95, 0.95, 0.97, 0.5)], [1.0, (0.95, 0.95, 0.97, 0.0)]]","type":"(res://effects/hose_steam.tscn::GradientTexture1D_steam_color):<GradientTexture1D#-9223372010162223659>"},"status":"PASS"}
+{"id":"Steam.material","observed":{"expected":"none (mix blend)","read_back":"<Object#null>"},"status":"PASS"}
+{"id":"Steam.texture","observed":{"read_back":"(res://effects/hose_steam.tscn::GradientTexture2D_disc):<GradientTexture2D#-9223372010313218611>","resource_path":"res://effects/hose_steam.tscn::GradientTexture2D_disc"},"status":"PASS"}
+{"id":"Steam.texture.width","observed":{"expected":32,"read_back":32},"status":"PASS"}
+{"id":"Steam.texture.height","observed":{"expected":32,"read_back":32},"status":"PASS"}
+{"id":"Steam.texture.fill","observed":{"expected":1,"read_back":1},"status":"PASS"}
+{"id":"Steam.texture.fill_from","observed":{"expected":"(0.5, 0.5)","read_back":"(0.5, 0.5)"},"status":"PASS"}
+{"id":"Steam.texture.fill_to","observed":{"expected":"(1.0, 0.5)","read_back":"(1.0, 0.5)"},"status":"PASS"}
+{"id":"Steam.texture.gradient","observed":{"expected":"[[0.0, (1.0, 1.0, 1.0, 1.0)], [1.0, (1.0, 1.0, 1.0, 0.0)]]","in_scene_file":true,"read_back":"[[0.0, (1.0, 1.0, 1.0, 1.0)], [1.0, (1.0, 1.0, 1.0, 0.0)]]"},"status":"PASS"}
+HOSE STEAM CONFIG: features Effect A doesn't use: 15 checks / 0 failures
+HOSE STEAM CONFIG: 89 checks / 0 failures

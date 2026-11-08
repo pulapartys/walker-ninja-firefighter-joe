@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=3]
+
+[sub_resource type="Gradient" id="Gradient_disc"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_disc"]
+gradient = SubResource("Gradient_disc")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_haze_color"]
+offsets = PackedFloat32Array(0, 0.2, 1)
+colors = PackedColorArray(0.42, 0.43, 0.47, 0, 0.42, 0.43, 0.47, 0.5, 0.42, 0.43, 0.47, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_haze_color"]
+gradient = SubResource("Gradient_haze_color")
+
+[sub_resource type="Curve" id="Curve_haze_scale"]
+max_value = 1.8
+_data = [Vector2(0, 0.6), 0.0, 1.2, 0, 1, Vector2(1, 1.8), 1.2, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_haze_scale"]
+curve = SubResource("Curve_haze_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_haze"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 3, 0)
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_min = 12.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, -10, 0)
+damping_min = 1.0
+damping_max = 3.0
+angle_min = 0.0
+angle_max = 360.0
+scale_min = 0.6
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_haze_scale")
+color_ramp = SubResource("GradientTexture1D_haze_color")
+turbulence_enabled = true
+turbulence_influence_min = 0.03
+turbulence_influence_max = 0.08
+
+[sub_resource type="Gradient" id="Gradient_steam_color"]
+offsets = PackedFloat32Array(0, 0.15, 0.6, 1)
+colors = PackedColorArray(0.95, 0.95, 0.97, 0, 0.95, 0.95, 0.97, 0.8, 0.95, 0.95, 0.97, 0.5, 0.95, 0.95, 0.97, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_steam_color"]
+gradient = SubResource("Gradient_steam_color")
+
+[sub_resource type="Curve" id="Curve_steam_scale"]
+max_value = 1.6
+_data = [Vector2(0, 0.6), 0.0, 1.0, 0, 1, Vector2(1, 1.6), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_steam_scale"]
+curve = SubResource("Curve_steam_scale")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(24, 3, 0)
+direction = Vector3(0, -1, 0)
+spread = 25.0
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, -15, 0)
+damping_min = 2.0
+damping_max = 6.0
+angle_min = 0.0
+angle_max = 360.0
+scale_min = 0.4
+scale_max = 0.6
+scale_curve = SubResource("CurveTexture_steam_scale")
+color_ramp = SubResource("GradientTexture1D_steam_color")
+turbulence_enabled = true
+turbulence_influence_min = 0.05
+turbulence_influence_max = 0.15
+
+[node name="HoseSteam" type="Node2D"]
+
+[node name="Haze" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 14
+amount_ratio = 1.0
+process_material = SubResource("ParticleProcessMaterial_haze")
+texture = SubResource("GradientTexture2D_disc")
+lifetime = 1.6
+one_shot = false
+preprocess = 0.0
+explosiveness = 0.0
+randomness = 0.3
+fixed_fps = 30
+interpolate = true
+visibility_rect = Rect2(-70, -100, 140, 120)
+local_coords = false
+
+[node name="Steam" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 40
+amount_ratio = 1.0
+process_material = SubResource("ParticleProcessMaterial_steam")
+texture = SubResource("GradientTexture2D_disc")
+lifetime = 1.4
+one_shot = false
+preprocess = 0.0
+explosiveness = 0.0
+randomness = 0.3
+fixed_fps = 30
+interpolate = true
+visibility_rect = Rect2(-70, -100, 140, 120)
+local_coords = false
