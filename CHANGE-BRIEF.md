@@ -305,3 +305,8 @@ _My answers, in my words. Claude gave me the fact each question needs before I a
 - I checked the steam in the running game and confirmed Claude's Revision 5 choice (the steam draws behind Extinguisho) and the B-R5 game-pause behaviour (the steam keeps drifting under Esc): "all ok". Revision 5 is now my decision.
 - The v1 text above is kept as written.
 
+### Revision 8 — 2026-11-08, how sections A and B were made (a correction to the v1 header)
+
+- The v1 header says Claude typed sections A and B from my decisions and "I reviewed them". What happened: I directed and decided every choice in them in chat (the effects, jobs, node types, layers, pause behaviour, and later every revision); Claude implemented them as text, with the measurements and the property-name checks. I did not read the v1 text line by line before it was committed. I checked the result by eye-testing and playing the game many times. Sections P, C and Q are my own answers, as the header says.
+- The v1 text above is kept as written.
+

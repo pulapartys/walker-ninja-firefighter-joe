@@ -3,7 +3,7 @@
 - **Engine:** Godot 4.7.2.stable.official (`ed1daf0bf`), GL Compatibility renderer (`godot/project.godot`). The GPU price alone runs under a launch override, `--rendering-method mobile --rendering-driver vulkan`.
 - **Machine:** macOS 26.6.2, Apple M1 (7-core GPU). Windows report "OpenGL API 4.1 Metal – Compatibility – Apple M1"; the GPU run reports "Vulkan 1.2.334 – Forward Mobile – Apple M1".
 - **How tests run:** every headless test through `./scripts/run-test.sh <test>.gd <fps|realtime> [timeout]` from the repository root (the assignment's wrapper, `78d926e`); logs in `logs/`. Frame strips are Movie Maker captures of the preview scenes (fixtures; see `a6/TUNING.md`).
-- Each entry names its source revision. **HUMAN CHECK** marks what only my eyes judge; _pending_ marks what I have not done yet.
+- **Who did what:** I directed the work and decided every design and tuning choice; Claude implemented it (the `claude -p` sessions and the interactive session) and ran the measurements; I eye-tested and played the game many times. Each entry names its source revision. **HUMAN CHECK** marks what only my eyes judged.
 
 ## Baseline — before any A6 effect (2026-11-06)
 
@@ -156,7 +156,7 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 ## The process shader (Step 6)
 
 - **What I did (2026-11-08):** in the editor I opened `godot/previews/scratch_process_material.tscn`, which holds a unique deep copy of the steam's `Steam` `ParticleProcessMaterial` (made by Claude's `make_scratch_process_material.gd`, so the real effect cannot change). I converted it with the Inspector's resource menu ("Convert to ShaderMaterial") and saved the shader as `godot/shaders/particles_generated.gdshader`, 486 lines, Godot 4.7.2's own code (`bf9bbfc`). Nothing in the game uses it; `hose_steam.tscn` is unchanged.
-- **Line references.** Claude located these with `grep`; I looked at each.
+- **Line references.** Claude located and verified these with `grep` against the file; I chose the line tied to my brief (331).
 
 | What | Line(s) |
 |---|---|
@@ -181,7 +181,9 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 - **Edge of screen** (the steam's `visibility_rect`), 2026-11-08: the steam preview with the camera held so the fire's centre sits 8 px inside each screen edge (`-- loop edge_left` / `edge_right`, a fixture). Left edge: "looks good ig". Right edge: "good". No pop seen at either edge.
 - **Scene load** (no steam in the first frames), 2026-11-08, running game: no steam before hosing ("all ok").
 - **Effect A on the darkest background**, 2026-11-08: landings at street level near the spawn, with the dark skyline behind him: "clearly visible".
-- **Boundaries holding in play** (movement, hose, rescue, death, timer unchanged): _pending, explicitly._
+- **Boundaries holding in play** (movement, hose, rescue, death, timer unchanged), 2026-11-08, in my words (typos fixed): "for the steam and everything I've played the game multiple times so that's good". The headless suites back this up (`test_game` 41/41 with the same 1268-tick scripted route, `test_keyboard`, `test_audio` unchanged).
+- **Effect B hidden (`visible = false`):** checked headless only (`test_hose_steam_state.gd` `hidden-still-driven`: the driver keeps writing `emitting` and `amount_ratio`, the emitters are not visible in the tree). Nothing in the game hides the steam, and I did not hide it by eye, so what the screen shows when it is shown again is not checked.
+- **Effect B against its backgrounds:** the steam only appears at the B1 fire, over the pale sky and the background's dark smoke clouds; I saw both in play and at both screen edges ("its better now", "looks good ig", "good").
 
 ## Claude against me
 
@@ -202,4 +204,5 @@ Readings, predictions, comparisons and my verdicts are in `a6/TUNING.md`.
 
 ## Open items
 
-Every _pending_ above; the film; the fresh-clone check of the tag before submission.
+- The film, the `a6` tag, the fresh-clone check of the tag, the submission zip and SUBMISSION.md.
+- Not done, recorded as such: Effect B hidden by eye; the puff's GPU time isolated in the Visual Profiler; the optional FPS comparison with vsync off.

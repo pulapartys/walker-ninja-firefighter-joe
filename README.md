@@ -14,7 +14,9 @@ Two particle effects, each with its own job. **Effect A, the landing puff:** a s
 | Retrigger / pause | overlap, at most 2 alive; frozen by a tree pause | keeps drifting under Esc (not a tree pause); frozen by a tree pause |
 | Feature A doesn't use | — | `amount_ratio` from a game value, turbulence, box emission, `visibility_rect` |
 
-**Docs:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (v1 committed before the first prompt; Revisions 1–5) · [CLAUDE.md](CLAUDE.md) (agent draft, then review) · [`a6/`](a6/): [TUNING](a6/TUNING.md) · [TEST-REPORT](a6/TEST-REPORT.md) · [FRICTIONAL](a6/FRICTIONAL.md) · [SOURCES](a6/SOURCES.md) · prompts in `a6/prompts/`, `claude -p` transcripts in `a6/sessions/`, probes, mutation, cost and GPU logs in `a6/evidence/` · frame strips (fixture captures) in `captures/` · texture provenance in [`godot/effects/ATTRIBUTION.md`](godot/effects/ATTRIBUTION.md).
+**Starting point:** my Assignment 5 game in this repository (tag `a5`, `b3f457b`), the same game since Assignment 2. **Who did what:** directed and decided by me, implemented by Claude Code, eye-tested and played many times by me.
+
+**Docs:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (v1 committed before the first prompt; Revisions 1–8) · [CLAUDE.md](CLAUDE.md) (agent draft, then review) · [`a6/`](a6/): [TUNING](a6/TUNING.md) · [TEST-REPORT](a6/TEST-REPORT.md) · [FRICTIONAL](a6/FRICTIONAL.md) · [SOURCES](a6/SOURCES.md) · prompts in `a6/prompts/`, `claude -p` transcripts in `a6/sessions/`, probes, mutation, cost and GPU logs in `a6/evidence/` · frame strips (fixture captures) in `captures/` · texture provenance in [`godot/effects/ATTRIBUTION.md`](godot/effects/ATTRIBUTION.md).
 
 **Versions:** Godot 4.7.2 stable, GL Compatibility renderer (the GPU price alone runs under Mobile on the Vulkan driver) · macOS 26.6.2, Apple M1 · Claude Code 2.1.285 (`claude-opus-5-5`).
 
@@ -37,6 +39,7 @@ Two particle effects, each with its own job. **Effect A, the landing puff:** a s
 ```
 # from the repository root; Godot 4.7 on PATH as `godot`
 godot --headless --path godot --import                       # once, after cloning
+./scripts/run-all-tests.sh                                   # every line below, with a summary
 ./scripts/run-test.sh test_jump_puff_config.gd 60            # 94 checks
 ./scripts/run-test.sh test_jump_puff_state.gd 60             # 30
 ./scripts/run-test.sh test_hose_steam_config.gd 60           # 89

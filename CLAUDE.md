@@ -7,7 +7,7 @@ There is no AGENTS.md in this repository.
 - **Engine:** Godot 4.7.2 stable. `godot/project.godot` declares `config/features=PackedStringArray("4.7", "GL Compatibility")`; every log in `logs/` starts `Godot Engine v4.7.2.stable.official.ed1daf0bf`.
 - **Renderer:** GL Compatibility. `godot/project.godot` `[rendering]` sets `renderer/rendering_method="gl_compatibility"` and `renderer/rendering_method.mobile="gl_compatibility"`; no `hdr_2d` key. The brief rules out particle trails and 2D particle collision under it (CHANGE-BRIEF.md "What limits the choices").
 - **Viewport:** 640 × 360, window 1280 × 720, stretch `canvas_items` (`godot/project.godot` `[display]`).
-- **Effect node types** (CHANGE-BRIEF.md A3, B3; neither scene exists yet):
+- **Effect node types** (CHANGE-BRIEF.md A3, B3, as tuned in Revisions 3, 4 and 6):
   - Jump puff: `godot/effects/jump_puff.tscn`, `Node2D` root `JumpPuff` with three `CPUParticles2D` children `Flash`, `Puff`, `Specks`, all `one_shot`.
   - Hose steam: `godot/effects/hose_steam.tscn`, `Node2D` root `HoseSteam` with two `GPUParticles2D` children `Haze` (drawn first) and `Steam`, each with a `ParticleProcessMaterial`.
   - Both draw a `GradientTexture2D` defined inside the scene; no image file, no draw material (mix blend).
@@ -16,7 +16,8 @@ There is no AGENTS.md in this repository.
 - **Hose steam value, `fire_height()`** (`session.gd`): full height (`level.blocking_fire[3]`) until hosing starts, then `full * extinguish_ticks / EXTINGUISH_TICKS`, and 0 once `fire_active` is false. `godot/levels/first_steps.json` has `"blocking_fire": [1250, 206, 56, 34]`: base at y 240, centre at x 1278, full height 34.
 - **Pause:** Esc/P call `session.gd` `set_paused()`, which changes only `state` and `player.enabled`. No `.gd` file under `godot/` sets `get_tree().paused` or `process_mode`. `_on_focus_lost()` also pauses, unless `test_mode` is set.
 - **Scene the effects appear in:** `res://game/main.tscn` (`godot/project.godot` `run/main_scene`). It holds one `Node2D` `WalkerJumpman` with `godot/game/session.gd`, whose `_ready()` builds everything in code: solids, hazard areas, `Player.new()`, `Camera2D`, a background `CanvasLayer` (layer −1) and a HUD `CanvasLayer`. `session.gd` `_draw()` draws the buildings, fires and water stream on `WalkerJumpman` itself. The puff's root becomes a child of `WalkerJumpman`, not of the player (CHANGE-BRIEF.md A-R6). The steam root's position is given in level coordinates (B-R4).
-- **Previews (to be made):** `godot/previews/jump_puff_preview.tscn` and `godot/previews/hose_steam_preview.tscn`, both over the real B1 art and captured as 30 fps strips (CHANGE-BRIEF.md A5, B5).
+- **Drivers:** `godot/features/player/jump_puff_driver.gd` (a new `JumpPuff` under `WalkerJumpman` just before the player on each `landed`, freed when its three emitters finish) and `godot/features/player/hose_steam_driver.gd` (one `HoseSteam` just before the player; writes its position, `amount_ratio = fire_height() / 34` and `emitting = hosing`). Both are added from `player.gd` `_ready()`, as is `godot/features/debug/vsync_key.gd` (F9 toggles vsync).
+- **Previews (fixtures):** `godot/previews/jump_puff_preview.tscn` (`-- retrigger`, `-- loop`) and `godot/previews/hose_steam_preview.tscn` (`-- loop`, `-- edge_left`, `-- edge_right`), both over the real B1 art, captured as 30 fps strips into `captures/` (CHANGE-BRIEF.md A5, B5); `gpu_price_preview.tscn` plays three phases for the Visual Profiler.
 - **A5 driver pattern:** `godot/features/player/hose_glow.gd` is a `Node` that `player.gd` `_ready()` adds as a child. It reads `hosing` in `_process` and writes one shader parameter. `godot/tests/test_hose_glow.gd` tests it with real key events.
 - **Tests (`godot/tests/`, all `extends SceneTree`):** `_initialize()` defers to `run()`, and `steps(n)` awaits `physics_frame` plus `process_frame`.
   - `test_game.gd` (41 checks) drives the player through its hooks `test_control`, `test_axis`, `test_jump_pressed`, `test_jump_held` and `test_water_pressed`.
@@ -34,10 +35,18 @@ There is no AGENTS.md in this repository.
   scripts/run-test.sh check_props.gd 60          # RESULT: PASS
   scripts/run-test.sh test_hose_glow.gd 30       # 15/15; same at 60 and 144
   scripts/run-test.sh test_materials.gd 60       # 35/35
+  scripts/run-test.sh test_jump_puff_config.gd 60   # 94/94 (A6)
+  scripts/run-test.sh test_jump_puff_state.gd 60    # 30/30 (A6)
+  scripts/run-test.sh test_hose_steam_config.gd 60  # 89/89 (A6)
+  scripts/run-test.sh test_hose_steam_state.gd 60   # 18/18 (A6)
+  scripts/run-test.sh cost_effects.gd 60 300        # headless CPU price (A6)
   ```
+
+  `scripts/run-all-tests.sh` runs every line above and prints one summary line per run.
 
   - `test_audio` fails `music-behaviour` and `music-loops` only when pinned. Both read the music's playback position, which runs on the real-time audio clock (a5/TEST-REPORT.md Baseline). This is pre-existing: leave it, don't "fix" it.
   - New A6 tests run as `scripts/run-test.sh <file>.gd <fps>`. Use `realtime` only for a test that waits on audio.
+
 ## Headless facts
 
 What a `scripts/run-test.sh` run on this machine can and cannot observe. Probes and logs: `a6/evidence/probes/`.
@@ -82,7 +91,7 @@ Use the Godot 4 class and property names of the pinned 4.7.2, never Godot 3 name
 
 ## Out of scope
 
-Effect code is presentation: it reads `player.jumped`, `player.hosing`, `session.fire_height()` and `session.level`, and writes none of them.
+Effect code is presentation: it reads `player.landed`, `player.hosing`, `session.fire_height()` and `session.level`, and writes none of them.
 
 - `godot/game/session.gd` game logic stays as it is: the state machine, the hose counters, `EXTINGUISH_TICKS`, the 60-tick water linger, `FIRE_DEATH_HOLD`, death, rescue, the timer, pause, audio and input. Esc stays a game pause, not a tree pause.
 - No change to collision, movement, jump timing, poses, the input map or tuning (the `player.gd` physics, `tuning.gd`, `first_steps.json`).
@@ -95,9 +104,7 @@ Effect code is presentation: it reads `player.jumped`, `player.hosing`, `session
 
 ## Unconfirmed
 
-- `godot/effects/` and `godot/previews/` do not exist yet. The brief names no file for the configuration or state tests and gives them no fps. For the frame strips it gives only "30 fps, `--quit-after 210`": no capture script or command.
-- The brief names no driver script or hook point. A5 used a node added from `player.gd` `_ready()`. Whether a hook line in `session.gd` `_ready()` counts as touching game logic is the human's call.
-- The brief does not say whether the puff and the steam draw in front of or behind Extinguisho, the fires and the water stream.
-- `fire_height()` counts physics ticks (`session.gd`: "4 s @ 60 Hz"). B-R3 ("0.5 after 2.0 s") is only established at 60 fps until a test runs it at another rate; at 30 fps each frame runs two ticks (Headless facts).
-- The GPU price method (CHANGE-BRIEF.md "What limits the choices") rests on Chapter 9's citation of the Godot docs; whether a `--rendering-method mobile` run on this M1 shows Visual Profiler GPU time is not yet tried.
+- The brief does not say whether the puff and the steam draw in front of or behind Extinguisho: settled by CHANGE-BRIEF.md Revisions 1, 5 and 7 (both behind him).
+- `fire_height()` counts physics ticks (`session.gd`: "4 s @ 60 Hz"). B-R3 ("0.5 after 2.0 s") is only established at 60 fps; at 30 fps each frame runs two ticks (Headless facts).
+- GPU time on this M1 is reported only under `--rendering-method mobile --rendering-driver vulkan` (`a6/evidence/probes/gpu_time_probe.log`); the Visual Profiler attaches to a normal scene run with `--remote-debug`, not to a `--script` run (a6/TEST-REPORT.md "GPU price").
 - `test_keyboard.gd` prints no summary line, so its 14/14 is a count of PASS lines in `logs/test_keyboard_60fps.log`. The contrast figures in the brief are reproduced by `a6/evidence/probes/measure_contrast.py`.

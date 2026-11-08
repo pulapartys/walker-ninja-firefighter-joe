@@ -44,6 +44,10 @@ The Claude account used for every session was the one logged in on this Mac; com
 
 None. No other person played or reviewed the game for this assignment.
 
+## How the work was split
+
+Directed and decided by me; implemented by Claude; eye-tested and played many times by me. The details follow.
+
 ## What AI contributed
 
 - **Explanation and facts:** what each part of a particle system decides, CPU versus GPU particles, why a headless price of a GPU effect is near zero; the measurements behind the brief (background luminance and contrast, jump timing); the Godot 4.7.2 property-name probes; the GPU-timing probe that found only the Vulkan driver reports GPU time on this Mac.
@@ -53,13 +57,14 @@ None. No other person played or reviewed the game for this assignment.
 - **Tuning:** the strip readings, the proposed changes, the predictions and the comparisons in `a6/TUNING.md`; the edits for the two kept puff revisions.
 - **Measurement helpers:** `gpu_price_effects.gd`, `gpu_price_preview.tscn` (the self-playing GPU fixture for the Visual Profiler), `make_scratch_process_material.gd`, the scratch scene for Step 6, the steam preview's loop and edge modes, the cost script (`claude -p`) and its fix.
 - **Captures:** the r1 and r2 puff strips and the steam strips were launched from Claude's session at my request; the windows rendered on my screen.
-- **Docs:** drafts of TEST-REPORT, FRICTIONAL (organised from the session; my experience is in my words) and this file.
+- **Docs:** TEST-REPORT, FRICTIONAL (organised from the session; my experience is in my words), TUNING's readings and comparisons, the README section and this file.
+- **Narration:** _the film's narration, to come (Brutalist `godot-gamedev`, AI voice)._
 
 ## What I did
 
 - Chose both effects, their jobs, the node types, the layers and the pause behaviour; wrote the predicted failures (by choosing them and their checks), the price guesses and budgets, and the six short answers in my own words.
 - Decided, from playing the game, that the puff belongs on the landing, not the jump (Revision 2), and that the puff draws behind Extinguisho (Revision 1).
 - Ran the first capture, looked at the puff before Claude read any frame, judged every tuning change in the running game and kept both, in my words.
-- Delegated the remaining build work with "finish all" and reviewed it afterwards (see FRICTIONAL).
+- Delegated the remaining build work with "finish all", then eye-tested the results and played the game many times (see FRICTIONAL).
 - In my feedback session: the steam's first look, the r1 choice and verdict, both screen edges, the scene-load and Esc checks, confirming Revision 5, the puff on the dark street, the Godot 3 rename in play, the Step 6 conversion and my answers, and reading the Visual Profiler.
 - _Still mine to do:_ watch and approve the film.

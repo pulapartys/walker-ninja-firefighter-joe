@@ -1,5 +1,7 @@
 # TUNING — Assignment 6
 
+**Who did what here:** I directed each round and decided every change; Claude read the strips, proposed one change at a time, predicted and compared, and made the edit I approved; I judged every result with my own eyes in the running game, which I played many times.
+
 Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), not the running game, rendered by Godot's Movie Maker at 1280 × 720 and 30 fps on the GL Compatibility renderer (Apple M1), with fixed seeds on the preview's own instances. I run every capture. Verdicts are mine, in my words, from the running game or the preview window at the project's window size (1280 × 720). Claude's readings and predictions are claims; where we disagree, my verdict decides and the disagreement is written down.
 
 ## 2026-11-07 — Effect A, first strip r0 (before any tuning)
@@ -8,6 +10,7 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **My first look (2026-11-06, preview window):** "idk i couldnt tell to small maybe". Afterwards we found the preview had not fired at all in most real-time runs (the agent's `frame == 10` check missed the frame in a live window); fixed in `6b5c613`, captures unaffected.
 - **My first verdict (2026-11-07, preview window at 1280 × 720, `-- loop`, a puff every 1.2 s), before Claude read any frame:** "for now it looks fine i wanna test once its in the game, the size looks fine"
 - **Claude's reading of r0:** in the r1 entry below.
+- **Commits:** `e3cad94` (strip, captured by me), `6b5c613` (preview fix), `b9ce50f` (this verdict).
 
 ## 2026-11-07 — Effect A in the running game: the event moves from the jump to the landing
 
@@ -15,6 +18,7 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **Change:** not a setting. The event moves from the jump to the landing, through a new `landed` signal in `player.gd` emitted when the game already switches him to the landing pose (CHANGE-BRIEF Revision 2, my decision; option chosen over a driver that watches `is_on_floor()` itself). Every effect setting stays the same, so the r0 strip still shows the puff's look.
 - **This is a design change from play, not a tuning step:** the one-setting tuning loop (prediction, two strips, verdict) follows separately.
 - **My verdict on the landing version (running game, 1280 × 720, after `739da8b`), in my words (typo fixed):** "looks good and makes sense"
+- **Commits:** `237cba4` (brief Revision 2), `a618ef8` (implemented by the agent, session 4), `739da8b` (comments), `e00b5e7` (verdict).
 
 ## 2026-11-07 — Effect A, revision r1: greyer puff (round 1 of 2)
 
@@ -27,6 +31,7 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **My verdict (running game, 1280 × 720): kept**, in my words (typos fixed): "yes this seems fine too its visible, grey shows and gradually gets lost its not that bad honestly i couldnt tell the difference a lot"
 - **Claude against me:** Claude's reading of the zoomed strip called frame 20 a visible improvement; at game size and speed I could not see much difference. Kept because it does no harm and the strip shows more contrast on the wall, not because I saw it in play.
 - **Strips:** `captures/jump_puff/r0/`, `captures/jump_puff/r1/`
+- **Commits:** `bae7219` (change and prediction), `a5a5ac3` (r1 strip and comparison), `f6fba18` (kept; brief Revision 3).
 
 ## 2026-11-07 — Effect A, revision r2: bigger puff (round 2 of 2)
 
@@ -38,6 +43,7 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **Claude's comparison of r2 with its prediction:** 10: cluster about 17 px (predicted 18), match. 12: about 25–28 px (predicted 30), a little smaller. 15: about 30 px and denser (predicted 35–40), at the bottom of the brief's 30–40 range rather than the middle. 20: about 35 px, a bigger, denser grey cloud (predicted about 40), right direction, a little smaller. 30: about 32 px faint haze (r1 about 28), match. 50: nothing, match. Timing unchanged (gone by frame 37 in both), denser as predicted. Overall the change moved the puff the predicted way but about 5 px smaller than predicted; sizes are by eye on 2× crops, about ±3 px.
 - **My verdict (running game, 1280 × 720): kept**, in my words: "i like this one better it shows those extra dots as more granular dust"
 - **Strips:** `captures/jump_puff/r1/`, `captures/jump_puff/r2/`
+- **Commits:** `55fa09f` (change and prediction), `5afb846` (r2 strip and comparison), `bbe29fc` (kept; brief Revision 4).
 
 ## 2026-11-08 — Effect B, first strip r0
 
@@ -55,3 +61,4 @@ Every strip here is a **fixture capture**: a preview scene (`godot/previews/`), 
 - **Claude's comparison of r1 with its prediction:** 16: a small dark-grey puff already at the flame tops, where r0 showed nothing; the prediction said unchanged, so the r0 "slow start" was mostly the steam being invisible, not late. 40: a defined grey cloud around the white steam, clearly visible on the sky, as predicted. 70: grey and white wisps, visible, but not obviously thinner than 40, so the thinning is still hard to see. 100: dark wisps over the low flames, much more visible than r0, stronger than the predicted faint trickle. 130: almost nothing, as in r0. 165 and 200: nothing. The predicted risk (blending into the background's dark clouds) barely shows. Not predicted: it now reads more as smoke and steam than as pure steam, because the dark grey dominates.
 - **My verdict (running game, 1280 × 720): kept**, in my words: "its better now"
 - **Strips:** `captures/hose_steam/r0/`, `captures/hose_steam/r1/`
+- **Commits:** `3851dd8` (r0 strip), `6c9c1ec` (my first look), `dcebd1a` (reading, change and prediction), `2ee9203` (r1 strip and comparison), `098be8f` (kept; brief Revision 6).
