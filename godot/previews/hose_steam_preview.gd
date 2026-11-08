@@ -9,22 +9,19 @@ extends Node2D
 # play. The session counts the press tick as the first of its 240 / 300, so the press is made on
 # frame 10's last physics tick: under --fixed-fps 30 (two ticks per frame) `player.hosing` is then
 # first true on frame 10, the fire is out on frame 130 and `hosing` is false from frame 160.
-# The steam is a HoseSteam this script adds to the level node; nothing in the game creates or drives
-# one. Each frame it writes on its own instance what the brief gives the driver (B-R1 to B-R4):
-# `emitting` from `player.hosing`, `amount_ratio` = fire_height() / full height, and the root at
-# the top centre of the fire. It is added last, so it draws over the fire and over Extinguisho;
-# the brief does not set the in-game order.
+# The steam is the game's own: the HoseSteam that hose_steam_driver.gd adds to the level node, just
+# before Extinguisho in its child order (Revision 5), and drives from `player.hosing` and
+# `fire_height()` (B-R1 to B-R4). The preview writes nothing on it but fixed seeds (CHANGE-BRIEF B3,
+# preview only), set here before it first emits. It runs after the driver in each frame
+# (process_priority 1), so its console lines report the values the driver wrote that frame.
 # Frame N here is the preview's N-th drawn frame, counted from 0 (file N of a Movie Maker strip).
 # Capture with a window (30 fps):
 #   godot --path godot --write-movie <absolute dir>/frame.png --fixed-fps 30 --quit-after 210 --always-on-top res://previews/hose_steam_preview.tscn
-const HoseSteam = preload("res://effects/hose_steam.tscn")
 const STAND := Vector2(1215, 240)   # B1 roof (x 1175-1365, top at y 240), left of the fire at x 1250-1306
 const TRIGGER_FRAME := 10
-const SEED := 1278  # preview only (CHANGE-BRIEF B3): fixed seeds on this scene's own instance
+const SEED := 1278  # preview only (CHANGE-BRIEF B3): fixed seeds on the driver's instance in this scene
 @onready var game: Node2D = $WalkerJumpman
-var steam: Node2D
 var emitters: Array[GPUParticles2D] = []
-var fire: Array                    # level.blocking_fire: [x, y, w, h]
 var frame := 0                     # frames drawn so far
 var ticks_in_frame := 0            # physics ticks run so far in this frame
 var ticks_per_frame := 1           # from the last frame's delta: 2 under --fixed-fps 30
@@ -33,6 +30,7 @@ var was_hosing := false
 var was_fire_active := true
 
 func _ready() -> void:
+	process_priority = 1               # after the driver's _process (priority 0)
 	game.test_mode = true
 	game.start_session()
 	game.player.test_control = true
@@ -40,15 +38,12 @@ func _ready() -> void:
 	game.player.action_queue.clear()   # reset_at's 0.5 s respawn stance; in play he walks up to the fire
 	game.camera.position = Vector2(STAND.x + 100.0, 180.0)
 	game.hud.visible = false
-	fire = game.level.blocking_fire
-	steam = HoseSteam.instantiate()
+	var steam: Node2D = game.player.get_node("HoseSteamDriver").steam
 	for i in steam.get_child_count():
 		var emitter: GPUParticles2D = steam.get_child(i)
 		emitter.use_fixed_seed = true
 		emitter.seed = SEED + i
 		emitters.append(emitter)
-	steam.position = _fire_top()   # placed before it first emits, so nothing is released on the way from (0, 0)
-	game.add_child(steam)
 
 func _physics_process(_delta: float) -> void:
 	ticks_in_frame += 1
@@ -60,14 +55,8 @@ func _physics_process(_delta: float) -> void:
 
 func _process(delta: float) -> void:
 	var hosing: bool = game.player.hosing
-	var height: float = game.fire_height()
-	for emitter in emitters:
-		if emitter.emitting != hosing:
-			emitter.emitting = hosing
-		emitter.amount_ratio = clampf(height / float(fire[3]), 0.0, 1.0)
-	steam.position = _fire_top()
 	if hosing != was_hosing:
-		print("preview: hosing %s on frame %d (fire height %.2f, amount_ratio %.3f)" % [hosing, frame, height, emitters[0].amount_ratio])
+		print("preview: hosing %s on frame %d (fire height %.2f, amount_ratio %.3f)" % [hosing, frame, game.fire_height(), emitters[0].amount_ratio])
 		was_hosing = hosing
 	if game.fire_active != was_fire_active:
 		print("preview: fire out on frame %d" % frame)
@@ -75,6 +64,3 @@ func _process(delta: float) -> void:
 	frame += 1
 	ticks_in_frame = 0
 	ticks_per_frame = maxi(1, roundi(delta * Engine.physics_ticks_per_second))
-
-func _fire_top() -> Vector2:
-	return Vector2(float(fire[0]) + float(fire[2]) / 2.0, float(fire[1]) + float(fire[3]) - game.fire_height())
