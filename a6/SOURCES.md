@@ -25,7 +25,7 @@ Earlier assignments' sources: [`../SOURCES.md`](../SOURCES.md) (A2: generative m
 
 | File | Written by |
 |---|---|
-| `godot/shaders/particles_generated.gdshader` | Godot, by my converting a copy of the steam's `ParticleProcessMaterial` to a `ShaderMaterial` in the editor (Step 6). _Pending: my step._ |
+| `godot/shaders/particles_generated.gdshader` | Godot 4.7.2, by my converting a copy of the steam's `ParticleProcessMaterial` to a `ShaderMaterial` in the editor (Step 6, `bf9bbfc`) |
 
 ## Tools and versions
 
@@ -51,7 +51,7 @@ None. No other person played or reviewed the game for this assignment.
 - **CLAUDE.md:** the draft (`claude -p` session 1, read-only tools) and the review edits (interactive session).
 - **Effects, drivers, previews and tests:** `jump_puff.tscn`, `hose_steam.tscn`, `jump_puff_driver.gd`, `hose_steam_driver.gd`, the `player.gd` hooks and `landed` signal, both preview scenes, both configuration tests and both state tests, all by `claude -p` sessions from the assignment's prompts or prompts I approved. The interactive session fixed one preview bug (`6b5c613`) and two stale comments (`739da8b`).
 - **Tuning:** the strip readings, the proposed changes, the predictions and the comparisons in `a6/TUNING.md`; the edits for the two kept puff revisions.
-- **Measurement helpers:** `gpu_price_effects.gd`, `make_scratch_process_material.gd`, the scratch scene for Step 6, the cost script (`claude -p`).
+- **Measurement helpers:** `gpu_price_effects.gd`, `gpu_price_preview.tscn` (the self-playing GPU fixture for the Visual Profiler), `make_scratch_process_material.gd`, the scratch scene for Step 6, the steam preview's loop and edge modes, the cost script (`claude -p`) and its fix.
 - **Captures:** the r1 and r2 puff strips and the steam strips were launched from Claude's session at my request; the windows rendered on my screen.
 - **Docs:** drafts of TEST-REPORT, FRICTIONAL (organised from the session; my experience is in my words) and this file.
 
@@ -61,4 +61,5 @@ None. No other person played or reviewed the game for this assignment.
 - Decided, from playing the game, that the puff belongs on the landing, not the jump (Revision 2), and that the puff draws behind Extinguisho (Revision 1).
 - Ran the first capture, looked at the puff before Claude read any frame, judged every tuning change in the running game and kept both, in my words.
 - Delegated the remaining build work with "finish all" and reviewed it afterwards (see FRICTIONAL).
-- _Still mine to do:_ the steam's first look and verdicts, the Step 6 conversion and answers, the Visual Profiler reading, the in-play and edge-of-screen checks, and the film review.
+- In my feedback session: the steam's first look, the r1 choice and verdict, both screen edges, the scene-load and Esc checks, confirming Revision 5, the puff on the dark street, the Godot 3 rename in play, the Step 6 conversion and my answers, and reading the Visual Profiler.
+- _Still mine to do:_ watch and approve the film.

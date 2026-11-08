@@ -65,12 +65,33 @@
 - **What Claude found:** on my M1 the viewport's GPU time reads 0 under Compatibility and under Mobile or Forward+ on Metal; only Mobile on the Vulkan driver reports it (`a6/evidence/probes/gpu_time_probe.log`). So the GPU price uses `--rendering-method mobile --rendering-driver vulkan`, a launch flag; `project.godot` is unchanged.
 - **Script numbers (fixture):** the puff is not measurable on the GPU; the steam adds 0.08–0.18 ms. My guesses were off in both directions. My own Visual Profiler reading is still to do.
 
+## The steam: my look, Claude's reading, one change
+
+- **My first look (preview loop):** "i don't know if the steam is visible enough against the flashing of the firefighter the size is fine but idk if its that noticeable especially in the sky". The "flashing" is my own A5 hose glow breathing blue on Extinguisho, which pulls the eye from the fire; it stays as it is (A5 is out of this assignment's scope).
+- **Claude's reading of r0** agreed: the white steam barely shows on the pale sky, and the darker `Haze` layer my brief relied on for contrast was invisible.
+- **Change r1:** a darker, more solid haze (one setting, the `Haze` colour ramp). Claude predicted frame 16 would be unchanged; it was not: the first grey puff showed already, so r0's "slow start" was really the steam being invisible. My verdict in the game: "its better now" (Revision 6).
+- **Checks after it:** both screen edges ("looks good ig", "good"), no steam at the start, Esc keeps it drifting, and the steam behind Extinguisho: "all ok" (Revision 7 confirms the Revision 5 that Claude chose for me). The puff on the dark street: "clearly visible".
+
+## The Godot 3 name in play
+
+- With the mutation applied again for a moment, I landed a few times: "yes its right under him doesnt look natural looks bad". The puff still fired; nothing reported an error; only the config test catches it.
+
+## Step 6, the process shader
+
+- Claude made a scratch scene with a private copy of the steam's material; I did the conversion in the editor myself (I asked "shader field?" once and found "Save As…" from the menu I had open).
+- For the second question I first said "idk can you help". Claude explained it as a dance troupe (the shader is the choreographer's rulebook, the draw step the costume department) and asked me to sort my own settings; I sorted them and wrote the sentence myself (TEST-REPORT, "The process shader").
+
+## The GPU profiler took four tries
+
+- I could not play the game and work the Visual Profiler at the same time ("idk im not able to do both, can you do it for me"). Claude made the game play itself.
+- **Try 1 and 2:** a `--script` run connected to the editor (the socket showed it) but the editor gave it no profiler; Start stayed grey. **Try 3:** a normal scene with the same three phases; Start worked.
+- **Reading it:** typing a frame number did not take ("Frame # is not a box"), so I clicked the graph instead. Claude's frame estimates for the phases were wrong because the run went faster than 60 fps under Vulkan; frame 7182, meant to be the puff, already had the steam on. I recorded what the frames actually showed: the steam's particle row 0.04 → 0.25 / 0.27 ms.
+- I skipped the optional FPS-with-vsync-off comparison.
+
 ## Still mine to do
 
-- The steam: first look, verdicts in play, and at least one tuning change from something I see.
-- Step 6: convert the scratch material in the editor and answer the questions in my own words.
-- The Visual Profiler GPU time, the vsync-off FPS check, the screen-edge and scene-load checks, and the Godot 3 rename in play.
-- Watching the film before it is submitted.
+- Skim this log and SOURCES.md and say what is not true.
+- Watch the film before it is submitted.
 
 ## Who did what
 
@@ -81,4 +102,5 @@
 | Build and tests | approved the puff plans | wrote the scenes, drivers, previews and tests (`claude -p`), reviewed and re-ran them |
 | Tuning | first looks and every verdict | strip readings, proposals, predictions, comparisons, the two edits |
 | Captures | r0 of the puff | the later captures, at my request |
+| Human checks | every look, verdict, edge and start check, the Godot 3 rename in play, the Step 6 conversion and answers, reading the Visual Profiler | launched the windows, made the fixtures that let the game play itself, located the shader line numbers, recorded my words |
 | Rejected or changed | the jump trigger (moved to the landing) | Claude declined to write my predictions and answers |
