@@ -1,0 +1,21 @@
+# Step 4 prompt (the assignment's text, placeholders filled). Executed in the interactive Claude
+# Code session on 2026-11-22, not as a claude -p run; see a7/FRICTIONAL.md.
+
+Read CLAUDE.md first. The rig is godot/features/survivor/survivor_person.tscn,
+and its route is keyed cutout. The phase table or cycle spec for wave is in
+CHANGE-BRIEF.md, in frames at 30.
+
+For a keyed cutout rig: write the wave clip for the AnimationPlayer
+in survivor_person.tscn, using Godot 4 Animation properties for the version in
+CLAUDE.md (loop_mode, not loop). Put a key at every phase boundary in
+the table, and list each key's time beside the frame it comes from.
+
+Either way, add a read-back test that asserts every track resolves to
+a real node and property, bone or blend shape; that the key times or
+clip length match the brief, compared with a tolerance; and that the
+loop mode is as stated. Branch the track check on track type: a 3D
+position, rotation or scale track names a bone, and a blend-shape
+track names a blend shape.
+
+Run it through ./scripts/run-test.sh and show the real output. Do not
+wire the clip into the state machine yet. Do not commit.

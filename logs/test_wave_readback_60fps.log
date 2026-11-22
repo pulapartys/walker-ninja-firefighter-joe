@@ -1,0 +1,16 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+{"id":"rig-loads","observed":{"anim":"AnimationPlayer:<AnimationPlayer#27296531939>","shoulder":"Shoulder:<Node2D#27111982552>"},"status":"PASS"}
+{"id":"shoulder-pivot","observed":{"position":"(4.7, -16.0)"},"status":"PASS"}
+{"id":"autoplay-wave","observed":{"autoplay":"wave"},"status":"PASS"}
+{"id":"clock-idle","observed":{"callback_mode_process":1},"status":"PASS"}
+{"id":"tracks-resolve","observed":{"problems":[]},"status":"PASS"}
+{"id":"clip-list","observed":{"clips":["wave"]},"status":"PASS"}
+{"id":"one-rotation-track","observed":{"path":"Shoulder:rotation","tracks":1},"status":"PASS"}
+{"id":"wave-keys","observed":{"brief_frames":[0,12,24],"brief_values":[0.0,0.45,0.0],"times":[0.0,0.400000005960464,0.800000011920929],"values":[0.0,0.45,0.0]},"status":"PASS"}
+{"id":"wave-length","observed":{"brief":0.8,"length":0.8},"status":"PASS"}
+{"id":"step","observed":{"step":0.0333333015441895},"status":"PASS"}
+{"id":"wave-loops","observed":{"loop_mode":1},"status":"PASS"}
+{"id":"continuous","observed":{"update_mode":0},"status":"PASS"}
+{"id":"seam","observed":{"value_at_0":0.0,"value_at_length":0.0},"status":"PASS"}
+WAVE READBACK RESULT: 13 checks / 0 failures
