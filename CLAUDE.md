@@ -4,65 +4,41 @@ There is no AGENTS.md in this repository.
 
 ## Project context
 
-- **Engine:** Godot 4.7.2 stable. `godot/project.godot` declares `config/features=PackedStringArray("4.7", "GL Compatibility")`; every log in `logs/` starts `Godot Engine v4.7.2.stable.official.ed1daf0bf`.
-- **Renderer:** GL Compatibility. `godot/project.godot` `[rendering]` sets `renderer/rendering_method="gl_compatibility"` and `renderer/rendering_method.mobile="gl_compatibility"`; no `hdr_2d` key. The brief rules out particle trails and 2D particle collision under it (CHANGE-BRIEF.md "What limits the choices").
-- **Viewport:** 640 × 360, window 1280 × 720, stretch `canvas_items` (`godot/project.godot` `[display]`).
-- **Effect node types** (CHANGE-BRIEF.md A3, B3, as tuned in Revisions 3, 4 and 6):
-  - Jump puff: `godot/effects/jump_puff.tscn`, `Node2D` root `JumpPuff` with three `CPUParticles2D` children `Flash`, `Puff`, `Specks`, all `one_shot`.
-  - Hose steam: `godot/effects/hose_steam.tscn`, `Node2D` root `HoseSteam` with two `GPUParticles2D` children `Haze` (drawn first) and `Steam`, each with a `ParticleProcessMaterial`.
-  - Both draw a `GradientTexture2D` defined inside the scene; no image file, no draw material (mix blend).
-- **Jump puff event, signal `landed`** (CHANGE-BRIEF.md Revision 2): declared next to `jumped` at the top of `godot/features/player/player.gd`, emitted in `_update_pose()` on the branch that sets `land_ticks = LAND_TICKS` (on the floor after more than 10 physics ticks in the air). `_update_pose()` runs at the end of `_physics_process`, after `move_and_slide()`. `_physics_process` returns at once while `enabled` is false. `godot/game/session.gd` sets `player.enabled = false` in `set_paused()`, in `resolve_contacts()` (DYING, COMPLETE) and in the `menu` handler, so `landed` fires only in PLAYING. `reset_at()` sets `was_on_floor = true` and `air_ticks = 0`, so a respawn never counts as a landing. The player's origin is his feet (`player.gd`: `BOX` comment; collider at `(0, -BOX.y / 2)`). `godot/features/player/jump_puff_driver.gd` connects to `landed`; `jumped` still drives only `session.gd`'s `play_sfx("jump")`. With real keys on `first_steps.json` the shortest landing is the walk-off from the 16 px step at x 160–208: 11 ticks in the air (`logs/test_jump_puff_state_60fps.log`, `walk-off-landing`).
-- **Hose steam condition, `player.hosing`:** `var hosing` in `player.gd`. `session.gd` `_physics_process` writes `player.hosing = water_ticks > 0` inside the PLAYING branch only, so the value holds through PAUSED and DYING. A W press in range sets `extinguish_ticks = EXTINGUISH_TICKS` (240) and `water_ticks = EXTINGUISH_TICKS + 60`. `restart_attempt()` runs from `start_session()`, from the R handler in `_unhandled_input` and from the DYING timeout. It zeroes both counters and calls `player.reset_at()`, which sets `hosing = false` at once.
-- **Hose steam value, `fire_height()`** (`session.gd`): full height (`level.blocking_fire[3]`) until hosing starts, then `full * extinguish_ticks / EXTINGUISH_TICKS`, and 0 once `fire_active` is false. `godot/levels/first_steps.json` has `"blocking_fire": [1250, 206, 56, 34]`: base at y 240, centre at x 1278, full height 34.
-- **Pause:** Esc/P call `session.gd` `set_paused()`, which changes only `state` and `player.enabled`. No `.gd` file under `godot/` sets `get_tree().paused` or `process_mode`. `_on_focus_lost()` also pauses, unless `test_mode` is set.
-- **Scene the effects appear in:** `res://game/main.tscn` (`godot/project.godot` `run/main_scene`). It holds one `Node2D` `WalkerJumpman` with `godot/game/session.gd`, whose `_ready()` builds everything in code: solids, hazard areas, `Player.new()`, `Camera2D`, a background `CanvasLayer` (layer −1) and a HUD `CanvasLayer`. `session.gd` `_draw()` draws the buildings, fires and water stream on `WalkerJumpman` itself. The puff's root becomes a child of `WalkerJumpman`, not of the player (CHANGE-BRIEF.md A-R6). The steam root's position is given in level coordinates (B-R4).
-- **Drivers:** `godot/features/player/jump_puff_driver.gd` (a new `JumpPuff` under `WalkerJumpman` just before the player on each `landed`, freed when its three emitters finish) and `godot/features/player/hose_steam_driver.gd` (one `HoseSteam` just before the player; writes its position, `amount_ratio = fire_height() / 34` and `emitting = hosing`). Both are added from `player.gd` `_ready()`, as is `godot/features/debug/vsync_key.gd` (F9 toggles vsync).
-- **Previews (fixtures):** `godot/previews/jump_puff_preview.tscn` (`-- retrigger`, `-- loop`) and `godot/previews/hose_steam_preview.tscn` (`-- loop`, `-- edge_left`, `-- edge_right`), both over the real B1 art, captured as 30 fps strips into `captures/` (CHANGE-BRIEF.md A5, B5); `gpu_price_preview.tscn` plays three phases for the Visual Profiler.
-- **A5 driver pattern:** `godot/features/player/hose_glow.gd` is a `Node` that `player.gd` `_ready()` adds as a child. It reads `hosing` in `_process` and writes one shader parameter. `godot/tests/test_hose_glow.gd` tests it with real key events.
-- **Tests (`godot/tests/`, all `extends SceneTree`):** `_initialize()` defers to `run()`, and `steps(n)` awaits `physics_frame` plus `process_frame`.
-  - `test_game.gd` (41 checks) drives the player through its hooks `test_control`, `test_axis`, `test_jump_pressed`, `test_jump_held` and `test_water_pressed`.
-  - `test_keyboard.gd` (14) and `test_hose_glow.gd` (15) send `InputEventKey`s via `Input.parse_input_event`.
-  - Also `test_audio.gd` (14), `test_materials.gd` (35) and `check_props.gd` (`RESULT: PASS`). Each one calls `quit(1)` on any failure.
-  - Other scripts in the folder: `route_driver.gd` (scripted route), `normal_map_check.gd` (helper for `test_materials.gd`), `calibrate_normal_maps.gd`, `write_grey_strip.gd`, the windowed `capture_*.gd`, `run_check_props.sh` (A3 runner).
-- **Runner:** `scripts/run-test.sh <test-file.gd> <fps|realtime> [timeout-seconds]` runs `godot --headless [--fixed-fps <fps>] --path godot --script res://tests/<file>` under `timeout` (default 120 s). It tees to `logs/<name>_<fps>fps.log` or `logs/<name>_realtime.log`. The exit status is Godot's (124 = hung), or 1 if the log has a `SHADER ERROR` / `SCRIPT ERROR` line. `realtime` drops `--fixed-fps`. It calls `godot` from PATH (on this Mac a local shim; commit `78d926e`) and forwards no other arguments.
-- **Exact commands** (from the repository root; results as in `logs/`):
+- **Engine:** Godot 4.7.2 stable. Every log in `logs/` starts `Godot Engine v4.7.2.stable.official.ed1daf0bf` (e.g. `logs/test_game_60fps.log` line 1); `godot/project.godot` declares `config/features=PackedStringArray("4.7", "GL Compatibility")`.
+- **Renderer:** GL Compatibility (`godot/project.godot` `[rendering]` `renderer/rendering_method="gl_compatibility"`, `.mobile` the same). No `default_texture_filter` key, so canvas textures filter linearly and the sheet needs padded cells (CHANGE-BRIEF.md "What limits the choices").
+- **Viewport:** 640 × 360, window 1280 × 720, stretch `canvas_items` (`godot/project.godot` `[display]`). No physics key, so physics runs at the default 60 ticks per second (`session.gd:25`: "4 s @ 60 Hz").
+- **Scene both clips play in:** `res://game/main.tscn` (`project.godot` `run/main_scene`): one `Node2D` `WalkerJumpman` with `godot/game/session.gd`. Its `_ready()` builds everything in code: solids, hazard and survivor areas, `Player.new()`, camera, background and HUD layers (`session.gd:54–93`). Its `_draw()` paints buildings, fires, survivors, flights and labels on `WalkerJumpman` itself (`session.gd:328–479`), so every child node draws over that. The A6 drivers place their nodes just before the player with `move_child(node, player.get_index())` (`jump_puff_driver.gd:27`, `hose_steam_driver.gd:25`).
+- **Clip 1, the person survivor's wave** (cycle; CHANGE-BRIEF.md "Clip 1", "The cycle spec"). Route: cutout rig keyed as resource text. Node: new scene `godot/features/survivor/survivor_person.tscn`, the person rebuilt from `Polygon2D` parts, the raised arm and hand under a `Node2D` pivot `Shoulder`, and an `AnimationPlayer` (`autoplay = "wave"`, idle-process callback). Clip `wave` keys `Shoulder:rotation` 0 / 0.45 / 0 rad at frames 0 / 12 / 24 of 30 fps: cubic angle, continuous, `LOOP_LINEAR`, `step` 1/30. Today the person at (1335, 240) (`godot/levels/first_steps.json` `survivors`) is drawn in `session.gd` `_draw()` (`:425–446`, raised arm `:437–440`). The window and its glow (`:405–407`) and the HELP! bubble (`:447–454`) stay drawn there.
+- **Clip 2, Joe's survivor toss** (committing action; "Clip 2", "The sheet", "The phase table"). Route: `Sprite2D` frame track. Node: new scene `godot/features/player/joe_art.tscn`: root `Node2D` `Art`, `Sprite2D` `Sprite` (`hframes` 4, `vframes` 3, `centered = false`, `position (-70, -133)`) and one `AnimationPlayer` (manual callback) with the library `godot/animations/joe.tres`, baked by `godot/tools/bake_joe_clips.gd`. Clip `toss` keys `Sprite:frame` 8 / 9 / 1 at frames 0 / 15 / 30 of 60 fps: length 46/60 s, `LOOP_NONE`, `UPDATE_DISCRETE`, `step` 1/60. Every other pose has a one-key hold clip. The sheet `godot/art/character/joe_sheet.png` is packed by `tools/make_joe_sheet.py` from the 12 PNGs and `anchors.json` in `godot/art/character/`.
+- **No A7 file exists yet** (listed 2026-11-22): no `godot/animations/`, `godot/features/survivor/`, `godot/tools/`, `joe_art.tscn`, `joe_sheet.png`, `tools/make_joe_sheet.py`, `godot/art/character/ATTRIBUTION.md` or `godot/previews/toss_preview.tscn`. Their names come from CHANGE-BRIEF.md only.
+- **State machine owner: `godot/features/player/player.gd`.** `_update_pose()` (`:94–124`, the last call in `_physics_process`, `:175`) picks one state per tick in this order: action queue, air (`rising` if he jumped, else `falling`), `landing` (`LAND_TICKS` 20), `run` (`abs(velocity.x) > 8`), `hose`, `idle`. `show_pose()` (`:80–86`) sets `pose` and today writes `sprite.texture`, `sprite.position` and `art.scale`. `play_actions()` (`:89–92`) loads the timed queue. Callers outside it: the rescue's `play_actions([["grab", GRAB_TICKS], ["toss", TOSS_UP_TICKS]])` (`session.gd:267`; 15 and 30 at `:32–33`), `show_pose("burned")` and `show_pose("celebrate")` (`session.gd:201`, `:209`). `reset_at()` queues `[["respawn", 30]]`, which moving cancels (`player.gd:107`, `:143`). `_physics_process` returns at once while `enabled` is false (`:147`).
+- **Tick order and the launch:** `session.gd` sets `process_physics_priority = 10` (`:55`), so the player's tick runs before the session's. A flight launches when `fl.t == GRAB_TICKS` (`:291`), in a loop outside the PLAYING branch (`:289–297`), so flights keep counting while paused.
+- **Today's art:** `player.gd` `_ready()` (`:62–72`) loads one texture per `anchors.json` state and builds `art` (`Node2D`, `show_behind_parent = true` so the code-drawn bag stays on top) holding `sprite` (`Sprite2D`). The bag sits at `BAG[pose]` in `player.gd` `_draw()` (`:186`) and `session.gd` `_draw_flights()` (`:490`). No state ever shows `jump_crouch` (cell 3).
+- **Code that reaches into Joe's art:** `hose_glow.gd:21` writes `get_parent().sprite.material` in its `_ready()` (added at `player.gd:73`, after the sprite). `test_hose_glow.gd` reads `player.sprite.material` and `player.art.material` (`:31–33`, `:161–164`). `capture_game.gd` and `capture_glow.gd` read `player.pose`. So `player.sprite` and `player.art` must name the new `Sprite` and `Art`, and both must exist before `HoseGlow` is added.
+- **Pause:** Esc/P call `session.gd` `set_paused()` (`:177–185`), which changes only `state` and `player.enabled`. No game script sets `get_tree().paused` or `process_mode`; only a sampler in `test_hose_steam_state.gd:153` sets `PROCESS_MODE_ALWAYS`.
+- **Tests** (`godot/tests/test_*.gd`, `extends SceneTree`): `_initialize()` defers to `run()`, `steps(n)` awaits `physics_frame` then `process_frame`, `check()` prints one JSON line, and the run ends with `quit(1 if failures else 0)` (`test_game.gd:8–20`, `:241`). Real keys go in through `Input.parse_input_event` (`test_keyboard.gd:20`, `test_hose_glow.gd:52`, `test_jump_puff_state.gd:64`, `test_hose_steam_state.gd:57`); `test_game.gd` uses the player's `test_*` hooks (`player.gd:22–26`). No `test_*.gd` reads `pose`, the toss timings or a sprite frame.
+- **Headless:** a dummy renderer, so node state is observable and the look is not (`a6/evidence/probes/headless_probe_60fps.log`: empty `get_video_adapter_name()`). `--fixed-fps 30` runs two physics ticks per frame (a5/TEST-REPORT.md). Frame strips come from a windowed Movie Maker run that the human starts (CHANGE-BRIEF.md "The frame strip").
+- **Runner:** `scripts/run-test.sh <test-file.gd> <fps|realtime> [timeout-seconds]` runs `godot --headless [--fixed-fps <fps>] --path godot --script res://tests/<file>` under `timeout` (default 120 s) and tees to `logs/<name>_<fps>fps.log` or `logs/<name>_realtime.log`. It exits with Godot's status (124 = hung), or 1 if the log has `SHADER ERROR`, `SCRIPT ERROR` or `Failed loading resource` (`scripts/run-test.sh:5–14`). `realtime` drops `--fixed-fps`. `godot` comes from PATH; no other arguments are forwarded.
+- **Exact commands** (repository root; results from `a7/evidence/baseline_run-all-tests_82fdeb2.txt`, "ALL AS EXPECTED"):
 
   ```
-  scripts/run-test.sh test_game.gd 60            # 41/41
-  scripts/run-test.sh test_keyboard.gd 60        # 14/14
-  scripts/run-test.sh test_audio.gd 60           # 12/14 (see below)
-  scripts/run-test.sh test_audio.gd realtime 300 # 14/14 (138 s; times out at the default 120)
-  scripts/run-test.sh check_props.gd 60          # RESULT: PASS
-  scripts/run-test.sh test_hose_glow.gd 30       # 15/15; same at 60 and 144
-  scripts/run-test.sh test_materials.gd 60       # 35/35
-  scripts/run-test.sh test_jump_puff_config.gd 60   # 94/94 (A6)
-  scripts/run-test.sh test_jump_puff_state.gd 60    # 30/30 (A6)
-  scripts/run-test.sh test_hose_steam_config.gd 60  # 89/89 (A6)
-  scripts/run-test.sh test_hose_steam_state.gd 60   # 18/18 (A6)
-  scripts/run-test.sh cost_effects.gd 60 300        # headless CPU price (A6)
+  scripts/run-test.sh test_game.gd 60               # 41/41
+  scripts/run-test.sh test_keyboard.gd 60           # 14/14 (no summary line: count the PASS lines)
+  scripts/run-test.sh test_audio.gd 60              # 12/14, exit 1: expected (see below)
+  scripts/run-test.sh test_audio.gd realtime 300    # 14/14; needs 300 s (waits on the 25.6 s music loop)
+  scripts/run-test.sh check_props.gd 60             # RESULT: PASS
+  scripts/run-test.sh test_hose_glow.gd 30          # 15/15; also run at 60 and 144
+  scripts/run-test.sh test_materials.gd 60          # 35/35
+  scripts/run-test.sh test_jump_puff_config.gd 60   # 94/94
+  scripts/run-test.sh test_jump_puff_state.gd 60    # 30/30
+  scripts/run-test.sh test_hose_steam_config.gd 60  # 89/89
+  scripts/run-test.sh test_hose_steam_state.gd 60   # 18/18
+  scripts/run-test.sh cost_effects.gd 60 300        # COST EFFECTS line, exit 0
   ```
 
-  `scripts/run-all-tests.sh` runs every line above and prints one summary line per run.
-
-  - `test_audio` fails `music-behaviour` and `music-loops` only when pinned. Both read the music's playback position, which runs on the real-time audio clock (a5/TEST-REPORT.md Baseline). This is pre-existing: leave it, don't "fix" it.
-  - New A6 tests run as `scripts/run-test.sh <file>.gd <fps>`. Use `realtime` only for a test that waits on audio.
-
-## Headless facts
-
-What a `scripts/run-test.sh` run on this machine can and cannot observe. Probes and logs: `a6/evidence/probes/`.
-
-- A headless run uses a dummy renderer: it draws no particles and runs no GPU particle process. Node state (emitting, one_shot, amount_ratio, visibility, instance counts) is observable; the look is not.
-- A GPU effect's headless CPU price is near zero by construction.
-- Frame strips come from a windowed Movie Maker run, which I start.
-- Measured here (`particle_cost_example09_60fps.log`, Apple M1, `--fixed-fps 60`): `GPUParticles2D` at 1,000 to 50,000 particles costs the same as the empty scene (about 0.004 ms per frame); `CPUParticles2D` costs about 0.055 ms per 1,000 particles and grows with the count. Without `--fixed-fps` every case reads the same ~6.9 ms sleep (Chapter 9).
-- `RenderingServer.get_current_rendering_method()` still reports `gl_compatibility` headless; the empty `get_video_adapter_name()` is the sign that nothing renders (`headless_probe_60fps.log`).
-- A one-shot `CPUParticles2D` simulates headless and emits `finished`; a one-shot `GPUParticles2D` never emits `finished` headless, though `emitting` goes false (`headless_probe_60fps.log`). A test may wait on the CPU puff's `finished`, never on the GPU steam's.
-- `amount_ratio` is set and read back headless; `amount` is unchanged by it.
-- No pixel can be read headless. Every claim about the look is an eye or frame-strip check (CHANGE-BRIEF.md "Evidence split").
-- `--fixed-fps N` pins each frame to 1/N s of game time; physics stays at 60 ticks per second, so at 30 fps each frame runs two physics ticks (a5/TEST-REPORT.md: the 300-tick hold took 152 frames at 30 fps).
-- Real input works headless: `Input.parse_input_event()` with `InputEventKey` (`test_keyboard.gd`, `test_hose_glow.gd`) and the player's `test_*` hooks (`test_game.gd`).
-- `test_audio.gd` needs `realtime`, and its last check waits for the 25.6 s music loop, so it also needs the timeout argument (`realtime 300`, 138 s); at the default 120 s it stops at 13/14 with exit 124.
-- A5 shader facts still hold: `Shader.get_shader_uniform_list()` works headless and is empty for a shader that failed to parse; a `set_shader_parameter()` / `get_shader_parameter()` round trip proves nothing.
+  `scripts/run-all-tests.sh` runs exactly these lines (`:24–37`) and prints one verdict per run.
+  - `test_audio` at a pinned 60 fails `music-behaviour` and `music-loops`, which read the real-time audio clock (a5/TEST-REPORT.md Baseline). This is pre-existing: leave it.
+  - New A7 tests run as `scripts/run-test.sh <file>.gd 60` (one frame = one physics tick). Use `realtime` only for a test that waits on audio.
 
 ## Current change
 
@@ -70,41 +46,53 @@ What a `scripts/run-test.sh` run on this machine can and cannot observe. Probes 
 
 ## Ownership
 
-- Files in `godot/shaders/` are hand-written by the human and are never edited by an agent. That covers `hose_glow.gdshader`, `hint_experiment.gdshader`, `hydrant_surface.gdshader` and `standard_generated.gdshader`. An agent may read them, write drivers, tests and scenes that use them, and report what it observes; it does not create, edit, rename or delete anything under `godot/shaders/`.
-- Effect settings live in scene files in `godot/effects/` (`jump_puff.tscn`, `hose_steam.tscn`), not in code. Every value in CHANGE-BRIEF.md A3 and B3 goes in the `.tscn`: node properties, the `ParticleProcessMaterial`, gradients, curves and the `GradientTexture2D`. No driver script sets them.
-- At runtime a driver writes only what the brief gives it. For the puff, that is instancing a `JumpPuff` and placing its root. For the steam, it is `emitting`, `amount_ratio` and the root position (B-R1 to B-R4); `amount` never changes. Only preview scenes set `use_fixed_seed` / `seed`, and only on their own instances.
-- CHANGE-BRIEF.md sections P, C and Q are the human's own words; an agent does not edit them.
+- Files in `godot/shaders/` are hand-written by the human and are never edited by an agent. That covers `hose_glow.gdshader`, `hint_experiment.gdshader`, `hydrant_surface.gdshader`, `standard_generated.gdshader` and `particles_generated.gdshader`. An agent may read them, write drivers, tests and scenes that use them, and report what it observes; it does not create, edit, rename or delete anything under `godot/shaders/`.
+- Clips live as resources: in `godot/animations/` (Joe's `AnimationLibrary` `joe.tres`, saved once by the headless tool `godot/tools/bake_joe_clips.gd` and committed) or in the scene that owns them (`wave` in `survivor_person.tscn`). No clip, track or key is ever built, added or changed in code at runtime. Game, driver, test and preview scripts only play and read clips.
+- The v1 text of CHANGE-BRIEF.md is the human's and is never rewritten; new findings go under Revisions, with a date.
+
+## One authority
+
+Each animated node has exactly one writer of what is animated on it. Never add a second writer to a node that already has one: no other script, test, preview or tool sets these properties or calls `play()`, `stop()`, `seek()` or `advance()` on these players.
+
+- **Joe's `Sprite` (`joe_art.tscn`), `frame`:** written only by Joe's `AnimationPlayer` in `joe_art.tscn`. Only `player.gd`'s state machine drives that player: `show_pose()` (`play()` and `seek(0, true)`) and the end of `_physics_process` (`advance(delta)`). `session.gd` asks for states only through `player.play_actions()` and `player.show_pose()`. `show_pose()` no longer writes the sprite's texture; the sheet and `position (-70, -133)` come from the scene and never change at runtime. The one other writer on this node stays as it is and is not animated: `hose_glow.gd` sets `Sprite.material` once and its `glow` parameter each frame.
+- **Joe's `Art` (root of `joe_art.tscn`):** not animated. Only `player.gd` writes it: `scale = (0.5 × facing, 0.5)`.
+- **The person's `Shoulder` (`survivor_person.tscn`), `rotation`:** written only by the rig's own `AnimationPlayer`, started by its `autoplay = "wave"`. No script calls `play()` on it or writes `Shoulder`.
+- **The rig's root:** not animated. `session.gd` instances it in `_ready()` and then writes only `visible` (false on rescue, true in `restart_attempt()`).
+- Tests and previews press real keys and read (`current_animation`, `current_animation_position`, `Sprite.frame`, `Shoulder.rotation`); they never set a frame or a rotation and never drive a player. No game logic reads a clip, and there are no method tracks (CHANGE-BRIEF.md "The two clocks").
 
 ## Godot 4 names
 
-Use the Godot 4 class and property names of the pinned 4.7.2, never Godot 3 names.
+Use Godot 4 names for the pinned 4.7.2, never Godot 3 names. **No animation name below has been probed on 4.7.2 in this repository** (`a6/evidence/probes/names_probe.gd` covers particles only). They are the Godot 4.2+ names the brief also uses; where I am unsure, it says so. Probe a name (`ClassDB.class_has_method()`, `ClassDB.class_get_property_list()`, `ClassDB.class_has_integer_constant()`) before relying on it.
 
-- **Classes:** `GPUParticles2D` (Godot 3: `Particles2D`), `ParticleProcessMaterial` (Godot 3: `ParticlesMaterial`), `CPUParticles2D`, `GradientTexture2D`, `Gradient`. A 1D gradient texture is `GradientTexture1D` (Godot 3: `GradientTexture`).
-- **Properties:** copy the spelling from CHANGE-BRIEF.md A3 / B3. Every name there exists on 4.7.2 (`a6/evidence/probes/names_probe.log`).
-  - Ranges are `_min` / `_max` pairs. Never write a bare `initial_velocity`, `scale_amount`, `angle`, `angular_velocity`, `damping` or `hue_variation` (prediction P1). `CPUParticles2D` has no `initial_velocity`, so a scene line with it is dropped. `ParticleProcessMaterial` does list `initial_velocity` and `scale`, but only as editor-only range helpers that ignore a number, so a renamed line loads silently and `initial_velocity_min` / `_max` stay 0 (`godot3_names_probe.log`). On `CPUParticles2D`, `scale` is the node's own `Node2D` scale, not the particles'.
-  - CPU and GPU spellings differ: `CPUParticles2D` has `scale_amount_min` / `scale_amount_curve`; `ParticleProcessMaterial` has `scale_min` / `scale_curve`.
-  - The 2D flag is `particle_flag_disable_z` (Godot 3: `flag_disable_z`).
-- **Enum values:** `CPUParticles2D` `emission_shape` point 0 (the default), sphere 1; `ParticleProcessMaterial` box 3 (`names_probe.log`).
-- **GPU-only features:** `CPUParticles2D` has no `amount_ratio`, turbulence or `visibility_rect` (CHANGE-BRIEF.md A3, B3). They exist only on `GPUParticles2D` and its `ParticleProcessMaterial`.
-- **Resource types, checked on 4.7.2** (`headless_probe_60fps.log`): `CPUParticles2D.color_ramp` is a `Gradient` and `scale_amount_curve` a `Curve`; `ParticleProcessMaterial.color_ramp` takes a `GradientTexture1D` and `scale_curve` a `CurveTexture`. Both particle nodes have the `finished` signal and `restart()`. `GPUParticles2D` defaults: `fixed_fps` 30, `interpolate` true, `amount_ratio` 1.0.
-- **GDScript 4:** `PackedScene.instantiate()` (as in `check_props.gd`), `await` (not `yield`), `signal.connect(callable)` (as in `session.gd`), and `process_mode` (Godot 3: `pause_mode`) for tree-pause behaviour. Scene files use `format=3` (as in `godot/game/main.tscn`).
+- **Never these Godot 3 names:** a boolean `loop` on `Animation`, `playback_speed`, `playback_process_mode` / `ANIMATION_PROCESS_*`, `playback_active`, `UPDATE_TRIGGER`, `AnimatedSprite`, `Sprite`, `instance()`, `yield`, `pause_mode`.
+- **Classes:** `AnimationPlayer` (extends `AnimationMixer` since 4.2), `Animation`, `AnimationLibrary`, `Sprite2D`, `Polygon2D`, `Node2D`. Not used here: `AnimatedSprite2D` / `SpriteFrames`, `AnimationTree`, `Skeleton2D`.
+- **Loop:** `Animation.loop_mode` = `Animation.LOOP_NONE` / `Animation.LOOP_LINEAR` (prediction 2: a boolean `loop` loads silently and the holds stop after one frame).
+- **Speed:** `speed_scale`. This change sets no speed.
+- **Clock:** `callback_mode_process` with `AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL` (Joe) or `_PROCESS_IDLE` (the wave, the default). Unsure whether 4.7.2 GDScript also accepts these constants through `AnimationPlayer.`; write `AnimationMixer.` or probe.
+- **Tracks:** `add_track(Animation.TYPE_VALUE)`, `track_set_path()`, `track_insert_key(track, time, value)`, `value_track_set_update_mode(track, Animation.UPDATE_DISCRETE)` (`UPDATE_CONTINUOUS` for the wave), `track_set_interpolation_type(track, Animation.INTERPOLATION_CUBIC_ANGLE)`, `Animation.step`, `Animation.length`. Paths resolve from the player's `root_node` (default `..`, the player's parent): `Sprite:frame`, not `Art/Sprite:frame`, when the player is a child of `Art` (prediction 4).
+- **Libraries and saving:** `AnimationLibrary.add_animation(name, anim)`, then `add_animation_library("", lib)` on the player (Godot 3 had `add_animation()` on the player). `ResourceSaver.save(resource, path)`: resource first (Godot 3 put the path first).
+- **Playing and reading:** `play(name)`, `seek(seconds, update)`, `advance(delta)`, `autoplay`, `current_animation`, `assigned_animation`, `current_animation_position`, `get_animation(name)`, `has_animation(name)`. Unsure on 4.7.2: whether `play()` plus `seek(0, true)` under the manual callback sets `Sprite.frame` on that same tick without an `advance()`. The edge test's per-tick log settles it.
+- **Sprite:** `Sprite2D.hframes`, `vframes`, `frame`, `frame_coords`, `centered`, `texture`.
+- **GDScript 4 and scenes:** `PackedScene.instantiate()`, `await`, `signal.connect(callable)`, `process_mode`, `Engine.physics_ticks_per_second` (Godot 3: `iterations_per_second`). Scene files use `format=3` (`godot/game/main.tscn`). Unsure: the exact 4.7.2 text form of an `Animation` / `AnimationLibrary` sub-resource (`tracks/0/keys`, `libraries = {…}`). Copy it from a file Godot itself saved rather than guess.
 
 ## Out of scope
 
-Effect code is presentation: it reads `player.landed`, `player.hosing`, `session.fire_height()` and `session.level`, and writes none of them.
+The clips are presentation: they read game state and never write it.
 
-- `godot/game/session.gd` game logic stays as it is: the state machine, the hose counters, `EXTINGUISH_TICKS`, the 60-tick water linger, `FIRE_DEATH_HOLD`, death, rescue, the timer, pause, audio and input. Esc stays a game pause, not a tree pause.
-- No change to collision, movement, jump timing, poses, the input map or tuning (the `player.gd` physics, `tuning.gd`, `first_steps.json`).
-- No edits to the existing tests or their expectations, including the pinned `test_audio` failures, and none to `scripts/run-test.sh`.
-- The A5 work stays as it is: the shaders (see Ownership), the `hose_glow.gd` driver and its hook, the materials, and the 3D scenes and props.
-- The HUD, the fires and how they are drawn, the survivors, the background and the generated art under `godot/art/` all stay as they are.
-- `project.godot` rendering settings stay as they are, and the renderer is not switched. The Mobile (Metal) price run is a one-off command-line override. No particle trails, no 2D particle collision.
-- The effects use no image files, no additive or other draw material and no `preprocess` above 0, and no steam emits on load. No effect scene fixes a seed. The puff is never a child of the player.
-- The v1 text of `CHANGE-BRIEF.md` is never rewritten; new findings go under Revisions with a date.
+- Game logic stays as it is: `session.gd`'s state machine, rescue, counts and bag contents, the flights and their timing (`GRAB_TICKS`, `TOSS_UP_TICKS`, `TOSS_DOWN_TICKS`, `TOSS_HEIGHT`), death, timer, audio and input. Esc stays a game pause, not a tree pause.
+- The player keeps its states, their order and their timings: the `pose` strings, the action queue, `LAND_TICKS`, the 30-tick respawn and its cancel-on-move. Collision, movement, jumping, the input map, `tuning.gd` and `first_steps.json` do not change. What changes is only what `show_pose()` outputs, plus `bag_pose()` and its one call site in `session.gd` (CHANGE-BRIEF.md "Named changes").
+- The 12 pose PNGs and `anchors.json` are not edited, rescaled or repainted; the sheet is a new file built from them.
+- Left alone: the shaders (see Ownership), the A5 `hose_glow.gd` driver and materials, the A6 effects, drivers and previews, the 3D props, the dog, the fires, the window, its glow, the HELP! bubble, the HUD, the background and the level.
+- Existing tests and their expected values, including the pinned `test_audio` failures, and `scripts/run-test.sh` stay as they are.
+- `project.godot` stays as it is: no renderer switch and no texture-filter key (the sheet's padding handles bleed).
+- Not in this change: a run cycle (the human deferred it), `AnimationTree`, `AnimatedSprite2D`, an imported or skeleton rig, method tracks, and any clip built at runtime.
 
 ## Unconfirmed
 
-- The brief does not say whether the puff and the steam draw in front of or behind Extinguisho: settled by CHANGE-BRIEF.md Revisions 1, 5 and 7 (both behind him).
-- `fire_height()` counts physics ticks (`session.gd`: "4 s @ 60 Hz"). B-R3 ("0.5 after 2.0 s") is only established at 60 fps; at 30 fps each frame runs two ticks (Headless facts).
-- GPU time on this M1 is reported only under `--rendering-method mobile --rendering-driver vulkan` (`a6/evidence/probes/gpu_time_probe.log`); the Visual Profiler attaches to a normal scene run with `--remote-debug`, not to a `--script` run (a6/TEST-REPORT.md "GPU price").
-- `test_keyboard.gd` prints no summary line, so its 14/14 is a count of PASS lines in `logs/test_keyboard_60fps.log`. The contrast figures in the brief are reproduced by `a6/evidence/probes/measure_contrast.py`.
+- The animation names in "Godot 4 names" have not been probed on 4.7.2 here, and no run in this repository has yet shown an `AnimationPlayer` advancing headless.
+- `track_problems()` (CHANGE-BRIEF.md "The evidence split") is defined nowhere in the repository and is not a Godot method I know of. It reads as a test helper still to be written.
+- The brief names no files for the A7 tests or the Step 2 pins, and no existing test pins today's pose order or toss timings. It also doesn't say whether the A7 tests get lines in `scripts/run-all-tests.sh`.
+- Where the rig sits among `WalkerJumpman`'s children is not given. The old person was drawn in `session.gd` `_draw()`, under every child including Joe, so a rig added after the player would cover him. The A6 `move_child(..., player.get_index())` pattern would keep it behind him.
+- Placing the rig: the brief says `session.gd` writes only the root's `visible`, yet the rig must be put at the survivor's (x, y) once, when it is instanced. The brief doesn't say how.
+- The `Shoulder` pivot point is not given. The old raised arm is a 3 × 11 rect from (x + 3.2, y − 27), with the hand at (x + 4.7, y − 27.5) (`session.gd:437–440`). With the hand above the pivot, a positive (clockwise in Godot 2D) rotation moves it outward, as the brief says. I worked that out; I have not run it.
+- The brief doesn't say whether `show_behind_parent = true` (the bag on top, `player.gd:67`) moves into `joe_art.tscn` or stays in `player.gd`. Either way it must still hold.
