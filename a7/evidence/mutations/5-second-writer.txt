@@ -1,0 +1,21 @@
+mutation: 5-second-writer
+worktree of: 317835f
+test: scripts/run-test.sh test_anim_states.gd 60   exit 1
+--- change
+ godot/features/player/player.gd | 1 +
+ 1 file changed, 1 insertion(+)
+diff --git a/godot/features/player/player.gd b/godot/features/player/player.gd
+index ae394b6..0a96230 100644
+--- a/godot/features/player/player.gd
++++ b/godot/features/player/player.gd
+@@ -91,6 +91,7 @@ func show_pose(state: String) -> void:
+ 		anim.seek(0.0, true)
+ 		clip_started_frame = Engine.get_physics_frames()
+ 	pose = state
++	sprite.frame = 0
+ 	art.scale = Vector2(0.5 * facing, 0.5)
+ 	queue_redraw()  # the bag follows the art
+ 
+--- failing checks and result line
+{"id":"frame-is-the-clips-key","observed":{"mismatches":[{"assigned":"respawn","frame":0,"held":1,"i":0,"pose":"respawn"},{"assigned":"respawn","frame":0,"held":1,"i":1,"pose":"respawn"},{"assigned":"respawn","frame":0,"held":1,"i":2,"pose":"respawn"},{"assigned":"respawn","frame":0,"held":1,"i":3,"pose":"respawn"},{"assigned":"respawn","frame":0,"held":1,"i":4,"pose":"respawn"}],"ticks":1396},"status":"FAIL"}
+ANIM STATES RESULT: 16 checks / 1 failures

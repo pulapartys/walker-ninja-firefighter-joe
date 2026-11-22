@@ -1,0 +1,7 @@
+mutation: 4-empty-import-cache (no edit; godot/.godot deleted, then --import)
+worktree of: 317835f
+cache existed before the import: yes-after-import
+test_toss_readback exit 0: TOSS READBACK RESULT: 66 checks / 0 failures
+test_wave_readback exit 0: WAVE READBACK RESULT: 13 checks / 0 failures
+expected: both pass. The wave is keyed in the scene and Joe's clips are a committed .tres, so
+nothing lives in the import cache; an imported rig with its loop mode set in the scene would lose it here.

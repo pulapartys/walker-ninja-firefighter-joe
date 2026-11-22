@@ -1,0 +1,23 @@
+mutation: 1b-wave-subname
+worktree of: 317835f
+test: scripts/run-test.sh test_wave_readback.gd 60   exit 1
+--- change
+ godot/features/survivor/survivor_person.tscn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+diff --git a/godot/features/survivor/survivor_person.tscn b/godot/features/survivor/survivor_person.tscn
+index 477cae7..ead0b0a 100644
+--- a/godot/features/survivor/survivor_person.tscn
++++ b/godot/features/survivor/survivor_person.tscn
+@@ -7,7 +7,7 @@ step = 0.0333333
+ tracks/0/type = "value"
+ tracks/0/imported = false
+ tracks/0/enabled = true
+-tracks/0/path = NodePath("Shoulder:rotation")
++tracks/0/path = NodePath("Shoulder:rotaton")
+ tracks/0/interp = 4
+ tracks/0/loop_wrap = true
+ tracks/0/keys = {
+--- failing checks and result line
+{"id":"tracks-resolve","observed":{"problems":["wave track 0: Shoulder has no property rotaton"]},"status":"FAIL"}
+{"id":"one-rotation-track","observed":{"path":"Shoulder:rotaton","tracks":1},"status":"FAIL"}
+WAVE READBACK RESULT: 13 checks / 2 failures

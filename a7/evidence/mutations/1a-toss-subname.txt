@@ -1,0 +1,23 @@
+mutation: 1a-toss-subname
+worktree of: 317835f
+test: scripts/run-test.sh test_toss_readback.gd 60   exit 1
+--- change
+ godot/animations/joe.tres | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+diff --git a/godot/animations/joe.tres b/godot/animations/joe.tres
+index 36312a1..0565055 100644
+--- a/godot/animations/joe.tres
++++ b/godot/animations/joe.tres
+@@ -159,7 +159,7 @@ step = 0.016666668
+ tracks/0/type = "value"
+ tracks/0/imported = false
+ tracks/0/enabled = true
+-tracks/0/path = NodePath("Sprite:frame")
++tracks/0/path = NodePath("Sprite:frames")
+ tracks/0/interp = 0
+ tracks/0/loop_wrap = true
+ tracks/0/keys = {
+--- failing checks and result line
+{"id":"tracks-resolve","observed":{"problems":["toss track 0: Sprite has no property frames"]},"status":"FAIL"}
+{"id":"frame-track:toss","observed":{"discrete":false,"path":"Sprite:frames","tracks":1},"status":"FAIL"}
+TOSS READBACK RESULT: 61 checks / 2 failures

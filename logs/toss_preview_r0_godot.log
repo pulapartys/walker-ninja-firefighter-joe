@@ -1,0 +1,15 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M1
+
+Movie Maker mode enabled, recording movie in 1280×720 @ 30 FPS...
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+--------------------------------------------------------------------------------
+Done recording movie at path: /Users/joe/Desktop/repos/walker-ninja-firefighter-joe/captures/toss/r0/frame.png
+90 frames at 30 FPS (movie length: 00:00:03:00), recorded in 00:00:17 (17% of real-time speed).
+CPU render time: 0.06 seconds (average: 0.62 ms/frame)
+GPU render time: 0.00 seconds (average: 0.00 ms/frame)
+Encoding time: 16.43 seconds (average: 182.53 ms/frame)
+--------------------------------------------------------------------------------

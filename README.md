@@ -1,6 +1,57 @@
 # walker-ninja-firefighter-joe
 
-My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props), **`a5`** (two hand-written shaders, their materials, and the Godot shading language), **`a6`** (two particle effects).
+My CSYE 7270 game, built up one assignment at a time. Each assignment is a git tag: **`a2`** (generated art, sound and music; submitted from the class repo at commit `50a1797`), **`a3`** (three simple 3D props), **`a5`** (two hand-written shaders, their materials, and the Godot shading language), **`a6`** (two particle effects), **`a7`** (two animations: a rig cycle and a sprite-sheet action).
+
+## Assignment 7 — animation
+
+Two animations, one of each kind. **The cycle, the survivor's wave:** the trapped person in the window now waves their raised arm, a cutout rig turning on a shoulder pivot, so the window calls for help from across the level. **The committing action, Joe's survivor toss:** when he rescues someone, Joe grabs them (startup), flings them sky-high without looking (active, on the exact tick the game launches the survivor), then settles back into his ready stance while they are still in the air (recovery).
+
+| | The wave (cycle) | The toss (committing action) |
+|---|---|---|
+| Route | cutout rig keyed as resource text: `Polygon2D` parts, `Node2D` pivot `Shoulder` | `Sprite2D` frame track on a sheet packed from my A2 poses (4 × 3 cells) |
+| Clip | `wave`: `Shoulder:rotation` 0 / 0.45 / 0 rad at frames 0 / 12 / 24 of 30 fps, `LOOP_LINEAR` | `toss`: `Sprite:frame` 8 / 9 / 1 at frames 0 / 14 / 30 of 60 fps, 46 frames, `LOOP_NONE`, discrete |
+| One authority | the rig's own `AnimationPlayer` (autoplay); `session.gd` writes only the rig's `visible` | Joe's `AnimationPlayer`, driven only by `player.gd`'s state machine (`show_pose()`) |
+| Clock | process tick | physics tick, advanced by `player.gd` only while he is enabled (manual callback) |
+| Scene | `godot/features/survivor/survivor_person.tscn`, placed by `session.gd` | `godot/features/player/joe_art.tscn` + `godot/animations/joe.tres` |
+
+**Starting point:** my Assignment 6 game in this repository (tag `a6`, `ae4fc03`), the same game since Assignment 2. **Who did what:** directed and decided by me, implemented by Claude Code, eye-tested and played by me.
+
+**Docs:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (v1 committed before the first setup prompt; Revisions) · [CLAUDE.md](CLAUDE.md) (agent draft, then review) · [`a7/`](a7/): [TUNING](a7/TUNING.md) · [TEST-REPORT](a7/TEST-REPORT.md) · [FRICTIONAL](a7/FRICTIONAL.md) · [SOURCES](a7/SOURCES.md) · prompts in `a7/prompts/`, the `claude -p` transcript in `a7/sessions/`, probe, baseline and mutation logs in `a7/evidence/` · frame strips (fixture captures) in `captures/toss/` · sheet credits in [`godot/art/character/ATTRIBUTION.md`](godot/art/character/ATTRIBUTION.md).
+
+### What this assignment added
+
+| Path | What |
+|---|---|
+| `tools/make_joe_sheet.py`, `godot/art/character/joe_sheet.png` (+ `.import`, `ATTRIBUTION.md`) | the sheet, packed unscaled from the 12 A2 poses, every anchor on one cell point |
+| `godot/tools/bake_joe_clips.gd`, `godot/animations/joe.tres` | Joe's clips, baked once from the phase table and committed |
+| `godot/features/player/joe_art.tscn` | Joe's art: the sheet's `Sprite` and the clips' `AnimationPlayer` |
+| `godot/features/survivor/survivor_person.tscn` | the person rebuilt as a cutout rig with the `wave` clip |
+| `godot/features/player/player.gd`, `godot/game/session.gd` | the state machine plays clips; the rig is placed, hidden on rescue, shown on restart |
+| `godot/tests/test_pins_a7.gd` | Step 2 pins: state order, timings, launch tick (8 checks) |
+| `godot/tests/test_toss_readback.gd`, `test_wave_readback.gd`, `anim_checks.gd` | read-backs of both clips (66 and 13 checks) |
+| `godot/tests/test_anim_states.gd` | structure and state test with real keys (16 checks) |
+| `godot/tests/test_toss_edges.gd` | interrupts at every phase boundary (40 checks) |
+| `godot/tests/probe_a7_headless.gd` | the headless facts, probed |
+| `godot/previews/toss_preview.tscn` | the frame-strip fixture |
+
+### Run the tests
+
+```
+# from the repository root; Godot 4.7 on PATH as `godot`
+godot --headless --path godot --import          # once, after cloning
+./scripts/run-all-tests.sh                      # every suite, with a summary
+./scripts/run-test.sh test_pins_a7.gd 60        # 8
+./scripts/run-test.sh test_toss_readback.gd 60  # 66
+./scripts/run-test.sh test_wave_readback.gd 60  # 13
+./scripts/run-test.sh test_anim_states.gd 60    # 16
+./scripts/run-test.sh test_toss_edges.gd 60 180 # 40
+```
+
+**Play it:** `godot --path godot`. The person waves from the window behind the big fire on B1's roof; hose the fire (W), walk into the window and watch the toss. **Capture the strip:** `godot --path godot --always-on-top res://previews/toss_preview.tscn --write-movie "$PWD/captures/toss/r0/frame.png" --fixed-fps 30 --quit-after 90 -- r0`.
+
+**Known limitations:** the run cycle is parked (two of four frames made); R while still standing on a rescued survivor's window rescues them again at once (pre-existing, recorded in CHANGE-BRIEF Revision 2, not fixed); the wave keeps playing behind the pause card, because the game's pause is not a tree pause.
+
+**Controls:** as in Assignment 6 below.
 
 ## Assignment 6 — particle effects
 

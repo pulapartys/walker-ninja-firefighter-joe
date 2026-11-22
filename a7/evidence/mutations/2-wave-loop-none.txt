@@ -1,0 +1,22 @@
+mutation: 2-wave-loop-none
+worktree of: 317835f
+test: scripts/run-test.sh test_wave_readback.gd 60   exit 1
+--- change
+ godot/features/survivor/survivor_person.tscn | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+diff --git a/godot/features/survivor/survivor_person.tscn b/godot/features/survivor/survivor_person.tscn
+index 477cae7..599692c 100644
+--- a/godot/features/survivor/survivor_person.tscn
++++ b/godot/features/survivor/survivor_person.tscn
+@@ -2,7 +2,7 @@
+ [sub_resource type="Animation" id="Animation_wave"]
+ resource_name = "wave"
+ length = 0.8
+-loop_mode = 1
++loop_mode = 0
+ step = 0.0333333
+ tracks/0/type = "value"
+ tracks/0/imported = false
+--- failing checks and result line
+{"id":"wave-loops","observed":{"loop_mode":0},"status":"FAIL"}
+WAVE READBACK RESULT: 13 checks / 1 failures

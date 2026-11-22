@@ -1,0 +1,23 @@
+mutation: 3-toss-cell-12
+worktree of: 317835f
+test: scripts/run-test.sh test_toss_readback.gd 60   exit 1
+--- change
+ godot/animations/joe.tres | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+diff --git a/godot/animations/joe.tres b/godot/animations/joe.tres
+index 36312a1..0c24f01 100644
+--- a/godot/animations/joe.tres
++++ b/godot/animations/joe.tres
+@@ -166,7 +166,7 @@ tracks/0/keys = {
+ "times": PackedFloat32Array(0, 0.23333333, 0.5),
+ "transitions": PackedFloat32Array(1, 1, 1),
+ "update": 1,
+-"values": [8, 9, 1]
++"values": [8, 12, 1]
+ }
+ 
+ [resource]
+--- failing checks and result line
+{"id":"frame-in-sheet:toss","observed":{"cells":12,"values":[8,12,1]},"status":"FAIL"}
+{"id":"toss-keys","observed":{"brief_cells":[8,9,1],"brief_frames":[0,14,30],"times":[0.0,0.233333334326744,0.5],"values":[8,12,1]},"status":"FAIL"}
+TOSS READBACK RESULT: 66 checks / 2 failures
