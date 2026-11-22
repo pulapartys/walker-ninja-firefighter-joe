@@ -35,5 +35,10 @@ run test_jump_puff_state.gd 60
 run test_hose_steam_config.gd 60
 run test_hose_steam_state.gd 60
 run cost_effects.gd 60 300
+run test_pins_a7.gd 60
+run test_toss_readback.gd 60
+run test_wave_readback.gd 60
+run test_anim_states.gd 60
+run test_toss_edges.gd 60 180
 if [ "$bad" = 0 ]; then echo "ALL AS EXPECTED"; else echo "SOMETHING DIFFERS: read the line marked UNEXPECTED"; fi
 exit $bad

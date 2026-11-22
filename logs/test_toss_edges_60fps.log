@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+BASELINE TICK LOG (frame:clip@position=cell, L = flight launched): -1:run@0.0000=2 0:toss@0.0000=8 1:toss@0.0167=8 2:toss@0.0333=8 3:toss@0.0500=8 4:toss@0.0667=8 5:toss@0.0833=8 6:toss@0.1000=8 7:toss@0.1167=8 8:toss@0.1333=8 9:toss@0.1500=8 10:toss@0.1667=8 11:toss@0.1833=8 12:toss@0.2000=8 13:toss@0.2167=8 14:toss@0.2333=9L 15:toss@0.2500=9L 16:toss@0.2667=9L 17:toss@0.2833=9L 18:toss@0.3000=9L 19:toss@0.3167=9L 20:toss@0.3333=9L 21:toss@0.3500=9L 22:toss@0.3667=9L 23:toss@0.3833=9L 24:toss@0.4000=9L 25:toss@0.4167=9L 26:toss@0.4333=9L 27:toss@0.4500=9L 28:toss@0.4667=9L 29:toss@0.4833=9L 30:toss@0.5000=1L 31:toss@0.5167=1L 32:toss@0.5333=1L 33:toss@0.5500=1L 34:toss@0.5667=1L 35:toss@0.5833=1L 36:toss@0.6000=1L 37:toss@0.6167=1L 38:toss@0.6333=1L 39:toss@0.6500=1L 40:toss@0.6667=1L 41:toss@0.6833=1L 42:toss@0.7000=1L 43:toss@0.7167=1L 44:toss@0.7333=1L 45:toss@0.7500=1L 46:idle@0.0000=0L 47:idle@0.0000=0L
+{"id":"baseline-table","observed":{"cells_0_to_45":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"baseline-before-touch-not-toss","observed":{"clip_before":"run"},"status":"PASS"}
+{"id":"baseline-handback-on-46","observed":{"clip_45":"toss","clip_46":"idle"},"status":"PASS"}
+{"id":"throw-on-launch-tick","observed":{"disagreement_ticks":0,"first_throw_frame":14,"launch_frame":14},"status":"PASS"}
+{"id":"R@13","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@13","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@13","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@13","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@14","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@14","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@14","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@14","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@15","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@15","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@15","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@15","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@29","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@29","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@29","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@29","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@30","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@30","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@30","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@30","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@31","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@31","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@31","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@31","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@45","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@45","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@45","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@45","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@46","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@46","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@46","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@46","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+{"id":"R@47","observed":{"before_follow_table":true,"clip_on_k":"respawn","next":["toss",0.0,8]},"status":"PASS"}
+{"id":"LEFT@47","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"SPACE@47","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"status":"PASS"}
+{"id":"ESC@47","observed":{"cells":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"frozen_while_paused":true},"status":"PASS"}
+TOSS EDGES RESULT: 40 checks / 0 failures
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 4 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
