@@ -1,0 +1,114 @@
+[
+  {
+    "beat": "B02",
+    "take": "screen",
+    "source": "media/screens/game.png",
+    "source_sha256": "6a758f319a86b8a1f8899a717be31ccfd8884cba7b60c46f993e1bf0efa81d92",
+    "output_duration_s": 14.9,
+    "retimed": false,
+    "output_sha256": "50a09d6ca84bd101c059a403fa76f8458fd92e0221e4cfba4fae1f67ad615eaf"
+  },
+  {
+    "beat": "B03",
+    "take": "screen",
+    "source": "media/screens/brief.png",
+    "source_sha256": "45b296731406a3e0ee0945e9ebae1faea7c2a7287c67ca6cdecb54483d99d297",
+    "output_duration_s": 16.966666666666665,
+    "retimed": false,
+    "output_sha256": "190b7725e32a629533482d4ff8ba8105dac9fb3bf61ce18917d258f47794f303"
+  },
+  {
+    "beat": "B05",
+    "take": "wave",
+    "source": "capture/play.avi",
+    "segment_s": [
+      10.5,
+      15.9
+    ],
+    "played_s": 5.4,
+    "slowed_replay": null,
+    "tail_hold_s": 2.7,
+    "output_duration_s": 8.1,
+    "retimed": false,
+    "retime_disclosed_on_screen": false,
+    "source_sha256": "297b4a18a46b964721050519d58adbc95dc7ba47e81158d45b0f0c3cb391edb3",
+    "output_sha256": "6f60f366e9f2257f8a0b6e1dd9983d6424ddcecf8f595e81daa7a571dc5fe4e2"
+  },
+  {
+    "beat": "B07",
+    "take": "screen",
+    "source": "media/screens/sheet.png",
+    "source_sha256": "f9b9e66cb68db0a21d24a785106d451d1997833a069bbdd74b6d1d2786a86dcc",
+    "output_duration_s": 12.6,
+    "retimed": false,
+    "output_sha256": "0e63843927e46f1fe1747923f022a7b5d1ea0f6359e0a0a1bfec1ff1c649542f"
+  },
+  {
+    "beat": "B09",
+    "take": "screen",
+    "source": "media/screens/r0.png",
+    "source_sha256": "b231e78f18743b7804a917e49758b4b02d89d259eafa288382cf87a63cf8b701",
+    "output_duration_s": 12.833333333333334,
+    "retimed": false,
+    "output_sha256": "9ce106d180dde52e64e8e5175f5c8d24a75865726d0f3dbcf2484f9b9da995c3"
+  },
+  {
+    "beat": "B11",
+    "take": "screen",
+    "source": "media/screens/tests.png",
+    "source_sha256": "39dcb4b9ea31554995b5252d689044b904ebc5521e4c1b2c7a94f29ee20a160a",
+    "output_duration_s": 12.766666666666667,
+    "retimed": false,
+    "output_sha256": "cedcb99edb836e4c9df6ea3bf7bb1c25e193116f32d4ec0a606f323083d25471"
+  },
+  {
+    "beat": "B13",
+    "take": "toss1",
+    "source": "capture/play.avi",
+    "segment_s": [
+      15.85,
+      17.25
+    ],
+    "played_s": 1.4,
+    "slowed_replay": {
+      "segment_s": [
+        15.98,
+        16.82
+      ],
+      "factor": 4,
+      "method": "frames repeated (setpts), labelled"
+    },
+    "tail_hold_s": 7.273,
+    "output_duration_s": 12.033333333333333,
+    "retimed": true,
+    "retime_disclosed_on_screen": true,
+    "source_sha256": "297b4a18a46b964721050519d58adbc95dc7ba47e81158d45b0f0c3cb391edb3",
+    "output_sha256": "eb9adcc0cbb63ee038e6143a4e52c765070f81f26ba541af5b902d114c7101de"
+  },
+  {
+    "beat": "B15",
+    "take": "toss2",
+    "source": "capture/play.avi",
+    "segment_s": [
+      19.4,
+      21.9
+    ],
+    "played_s": 2.5,
+    "slowed_replay": null,
+    "tail_hold_s": 10.233,
+    "output_duration_s": 12.733333333333333,
+    "retimed": false,
+    "retime_disclosed_on_screen": false,
+    "source_sha256": "297b4a18a46b964721050519d58adbc95dc7ba47e81158d45b0f0c3cb391edb3",
+    "output_sha256": "b71da067b16d975b5fa7ffcbbe807237a9a513f129625a428911dba647182b6d"
+  },
+  {
+    "beat": "B16",
+    "take": "screen",
+    "source": "media/screens/pins.png",
+    "source_sha256": "faf889bae6e5c054a932cfad2d17ee5adbf727643f296d185d3af4592ab16f46",
+    "output_duration_s": 17.8,
+    "retimed": false,
+    "output_sha256": "8738b723a2b0dcf268a3fecd62f6b80c263822983996b322da01de1f9100ae76"
+  }
+]

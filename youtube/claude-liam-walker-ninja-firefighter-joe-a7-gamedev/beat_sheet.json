@@ -1,0 +1,1139 @@
+{
+  "metadata": {
+    "slug": "claude-liam-walker-ninja-firefighter-joe-a7-gamedev",
+    "title": "Extinguisho's Wave and Toss",
+    "persona": "Liam",
+    "palette": "claude",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "fps": 30,
+    "width": 3840,
+    "height": 2160,
+    "aspect_ratio": "16:9",
+    "caption_policy": "no burned captions",
+    "fit": "pad",
+    "skill": "godot-gamedev",
+    "modifier": "walker",
+    "source_revision": "7848c6e",
+    "human_review_approved": false,
+    "pending_human_beats": [
+      "H1",
+      "H2",
+      "H3"
+    ],
+    "authorization": "Student's Assignment 7 explainer; script v1 drafted by Claude Code, not yet approved by Sreeja; local master for course submission; no publication.",
+    "build": {
+      "at": "2026-11-22T17:03:51",
+      "cut": "master",
+      "filled": 21,
+      "of": 21,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "heading": "The prompt",
+      "narration_text": "Please use Walker to give my firefighter game two animations: a trapped survivor who waves for help, and a rescue toss that commits once it starts. This is Liam, in for Bear. Assignment Seven for C S Y E seventy-two seventy.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The prompt",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The prompt"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Please use Walker to give my firefighter game two animations:\na trapped survivor who waves for help,\nand a rescue toss that commits once it starts.",
+            "topic": "Illustrative reconstruction, not a session transcript",
+            "segment": "Extinguisho's Wave and Toss",
+            "greeting": "Hello",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 13.966666666666667
+          },
+          "rendered": {
+            "out": "media/B00.mp4",
+            "at": "2026-11-22T21:55:03.091588+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B00.wav",
+      "actual_duration_s": 13.966666666666667,
+      "render_duration_s": 13.966666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B00.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "heading": "What was built",
+      "narration_text": "Two animations in a two-D Godot game: one loops, one commits. And one lesson. A test can prove a clip is built the way the plan says. Only real frames and human eyes can say whether the motion reads.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What was built",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What was built"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Two animations for a Godot game.\nA passing test proves the motion.",
+            "triggerWords": "motion",
+            "replacementWords": "structure",
+            "fontSize": 72,
+            "mistakeRate": 0,
+            "hesitateWithin": 0,
+            "hesitateBetween": 0,
+            "charMs": 55,
+            "jitter": 0,
+            "seed": "claude-liam-walker-ninja-firefighter-joe-a7-gamedev",
+            "face": "serif",
+            "align": "center",
+            "durationSeconds": 13.1
+          },
+          "rendered": {
+            "out": "media/B01.mp4",
+            "at": "2026-11-22T21:55:03.095001+00:00"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "audio_file": "audio/B01.wav",
+      "actual_duration_s": 13.1,
+      "render_duration_s": 13.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B01.mp4",
+        "filled_by": "remotion:BrutalistHesitantWriter",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "heading": "The game, the two clips",
+      "narration_text": "Extinguisho is Sreeja's deadpan ninja firefighter. The cycle: the trapped person in the window waves, one arm turning on a shoulder pivot. The committing action: Joe grabs the survivor, flings them sky-high without looking, and settles back into his stance.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The game, the two clips",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The game, the two clips"
+          }
+        ],
+        "evidence_media": "media/B02.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "game.png",
+      "screen_title": "SCRIPTED-INPUT CAPTURE, not a human playtest · two frames of the take (Movie Maker, 4K)",
+      "screen_sub": "capture/play.avi frames 400 and 488 · capture/film_capture.gd · game revision 7848c6e",
+      "screen_card_below": true,
+      "audio_file": "audio/B02.wav",
+      "actual_duration_s": 14.9,
+      "render_duration_s": 14.9,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, the fixture frame strip) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          },
+          {
+            "label": "cream card",
+            "box": [
+              0.03,
+              0.59,
+              0.97,
+              0.85
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B02.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "heading": "The brief came first",
+      "narration_text": "Before any clip existed, the brief, written from Sreeja's decisions, named both clips, the route each one takes, the single thing allowed to drive each, and the toss as a table of frames: grab, throw, settle. Behaviour pins came next: tests that record what the game already does, so the change can be checked against them.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The brief came first",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The brief came first"
+          }
+        ],
+        "evidence_media": "media/B03.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "brief.png",
+      "screen_title": "CHANGE-BRIEF.md · lines as written · v1 committed before any setup prompt (f0a6de5)",
+      "screen_sub": "phase table from Revision 2 (the pins moved the throw from frame 15 to 14) · repository revision 7848c6e",
+      "screen_card_below": false,
+      "audio_file": "audio/B03.wav",
+      "actual_duration_s": 16.966666666666665,
+      "render_duration_s": 16.966666666666665,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, the fixture frame strip) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "heading": "A clip is a list of keys",
+      "narration_text": "First idea: a clip is a list of keys, not a movie. The whole wave is three keys on one property, the shoulder's rotation: zero, nought point four five radians, zero, over twenty-four frames, looping. Nothing in it knows about the game.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "A clip is a list of keys",
+        "show": [
+          {
+            "at": "beat",
+            "event": "A clip is a list of keys"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "A clip is a list of keys",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/survivor/survivor_person.tscn",
+            "source": "Godot editor reconstruction · exact source, revision 7848c6e · next: the visible result",
+            "code": "loop_mode = 1\nstep = 0.0333333\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Shoulder:rotation\")\ntracks/0/interp = 4\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.4, 0.8),\n\"transitions\": PackedFloat32Array(1, 1, 1),\n\"update\": 0,\n\"values\": [0.0, 0.45, 0.0]",
+            "startLine": 5,
+            "codeFontSize": 23,
+            "notes": [
+              {
+                "label": "Line 10",
+                "value": "the track names Shoulder:rotation"
+              },
+              {
+                "label": "Lines 14 and 17",
+                "value": "0, 0.4, 0.8 s → 0, 0.45, 0 rad"
+              },
+              {
+                "label": "Line 5",
+                "value": "loop_mode 1 = LOOP_LINEAR"
+              }
+            ],
+            "output": [
+              "godot/features/survivor/survivor_person.tscn lines 5–17"
+            ],
+            "cues": [],
+            "durationSeconds": 13.766666666666667
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-22T21:55:03.097846+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B04.wav",
+      "actual_duration_s": 13.766666666666667,
+      "render_duration_s": 13.766666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B04.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "heading": "The wave in play",
+      "narration_text": "In the running game, while Joe hoses the fire, the arm swings out and back. The first key and the last are equal, so the loop has no seam.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "VIDEO",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The wave in play",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The wave in play"
+          }
+        ],
+        "evidence_media": "media/B05.mp4"
+      },
+      "gameplay_take": "wave",
+      "audio_file": "audio/B05.wav",
+      "actual_duration_s": 8.1,
+      "render_duration_s": 8.1,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / replay / held-frame plate",
+            "box": [
+              0.06,
+              0.217,
+              0.94,
+              0.324
+            ]
+          }
+        ],
+        "contrast_reason": "The game's sky and buildings are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B05.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "heading": "The sheet and its slicing",
+      "narration_text": "The toss uses a sprite sheet. Claude packed Sreeja's twelve Assignment Two poses into a four by three grid, each placed so his feet land on the same point in every cell. The sprite reads the grid by number.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The sheet and its slicing",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The sheet and its slicing"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The sheet and its slicing",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/joe_art.tscn",
+            "source": "Godot editor reconstruction · exact source, revision 7848c6e · next: the visible result",
+            "code": "[node name=\"Sprite\" type=\"Sprite2D\" parent=\".\"]\ntexture = ExtResource(\"1_sheet\")\ncentered = false\nposition = Vector2(-70, -133)\nhframes = 4\nvframes = 3\n\n[node name=\"AnimationPlayer\" type=\"AnimationPlayer\" parent=\".\"]\nlibraries = {\n&\"\": ExtResource(\"2_clips\")\n}\ncallback_mode_process = 2",
+            "startLine": 10,
+            "codeFontSize": 24,
+            "notes": [
+              {
+                "label": "Lines 14–15",
+                "value": "4 × 3 cells"
+              },
+              {
+                "label": "Line 21",
+                "value": "callback 2 = manual"
+              }
+            ],
+            "output": [
+              "godot/features/player/joe_art.tscn lines 10–21"
+            ],
+            "cues": [],
+            "durationSeconds": 12.266666666666667
+          },
+          "rendered": {
+            "out": "media/B06.mp4",
+            "at": "2026-11-22T21:55:03.100451+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B06.wav",
+      "actual_duration_s": 12.266666666666667,
+      "render_duration_s": 12.266666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B06.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "heading": "The real sheet",
+      "narration_text": "This is the actual sheet, with its slicing drawn on top. Cell eight is the grab, nine the throw, one the ready stance. The grid decides which picture a number means, so a wrong grid would show the wrong pose without any error.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The real sheet",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The real sheet"
+          }
+        ],
+        "evidence_media": "media/B07.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "sheet.png",
+      "screen_title": "The committed sheet file, magnified 3× (nearest) · the grid, cell numbers and + anchors are an overlay",
+      "screen_sub": "godot/art/character/joe_sheet.png at game revision 7848c6e · packed by tools/make_joe_sheet.py from the A2 poses",
+      "screen_card_below": false,
+      "audio_file": "audio/B07.wav",
+      "actual_duration_s": 12.6,
+      "render_duration_s": 12.6,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, the fixture frame strip) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "heading": "Feel in frames",
+      "narration_text": "Second idea: feel is designed in frames. At sixty frames a second, one per physics tick: grab on frame zero, throw from fourteen, settle from thirty, done at forty-six. This script builds the keys from that table; nobody types them by hand.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Feel in frames",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Feel in frames"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Feel in frames",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "tools/bake_joe_clips.gd",
+            "source": "Godot editor reconstruction · exact source, revision 7848c6e · next: the visible result",
+            "code": "const FPS := 60.0                # the phase table's frame rate: one frame per physics tick\nconst TRACK := \"Sprite:frame\"    # relative to the AnimationPlayer's root_node, the Art root\n# One-key hold clips, one per state the state machine can show outside the toss.\nconst HOLDS := [\"idle\", \"respawn\", \"run\", \"rising\", \"falling\", \"landing\", \"hose\", \"burned\", \"celebrate\"]\n# The toss: [first frame of the phase, cell shown], then the clip length in frames.\nconst TOSS_KEYS := [[0, \"grab\"], [14, \"toss\"], [30, \"respawn\"]]\nconst TOSS_FRAMES := 46",
+            "startLine": 8,
+            "codeFontSize": 23,
+            "notes": [
+              {
+                "label": "Line 13",
+                "value": "grab 0 · throw 14 · ready 30"
+              },
+              {
+                "label": "Line 14",
+                "value": "46 frames at 60 fps"
+              }
+            ],
+            "output": [
+              "godot/tools/bake_joe_clips.gd lines 8–14"
+            ],
+            "cues": [],
+            "durationSeconds": 14.7
+          },
+          "rendered": {
+            "out": "media/B08.mp4",
+            "at": "2026-11-22T21:55:03.102984+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B08.wav",
+      "actual_duration_s": 14.7,
+      "render_duration_s": 14.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B08.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "heading": "The first strip",
+      "narration_text": "Godot recorded real frames of a preview, and the log names the tick in each one. Tick fourteen: the arm goes up and the survivor leaves his hand in the same frame. Tick thirty, the ready stance. Tick forty-six, standing again.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The first strip",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The first strip"
+          }
+        ],
+        "evidence_media": "media/B09.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "r0.png",
+      "screen_title": "FIXTURE CAPTURE · captures/toss/r0 · Movie Maker 30 fps · toss_preview.tscn (the real game at the window, fire put out by the fixture)",
+      "screen_sub": "ticks from logs/toss_preview_r0.log · two physics ticks per strip frame · game revision 7848c6e",
+      "screen_card_below": false,
+      "audio_file": "audio/B09.wav",
+      "actual_duration_s": 12.833333333333334,
+      "render_duration_s": 12.833333333333334,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, the fixture frame strip) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B09.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "heading": "A wrong name fails silently",
+      "narration_text": "Third idea: a track names a node and a property. Misspell the property and Godot stays silent: the clip plays, and nothing moves. So this helper walks every track and checks that its node and property really exist.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "A wrong name fails silently",
+        "show": [
+          {
+            "at": "beat",
+            "event": "A wrong name fails silently"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "A wrong name fails silently",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "tests/anim_checks.gd",
+            "source": "Godot editor reconstruction · exact source, revision 7848c6e · next: the visible result",
+            "code": "\t\tfor t in clip.get_track_count():\n\t\t\tvar path := clip.track_get_path(t)\n\t\t\tvar node := root.get_node_or_null(NodePath(path.get_concatenated_names()))\n\t\t\tif node == null:\n\t\t\t\tproblems.append(\"%s track %d: no node at %s\" % [clip_name, t, path])\n\t\t\t\tcontinue\n\t\t\tif path.get_subname_count() == 0:\n\t\t\t\tcontinue\n\t\t\tvar sub := path.get_subname(0)",
+            "startLine": 16,
+            "codeFontSize": 24,
+            "notes": [
+              {
+                "label": "Line 18",
+                "value": "find the node the track names"
+              },
+              {
+                "label": "Line 20",
+                "value": "no node: report it"
+              },
+              {
+                "label": "Line 24",
+                "value": "the property it names (checked on line 35)"
+              }
+            ],
+            "output": [
+              "godot/tests/anim_checks.gd lines 16–24"
+            ],
+            "cues": [],
+            "durationSeconds": 12.366666666666667
+          },
+          "rendered": {
+            "out": "media/B10.mp4",
+            "at": "2026-11-22T21:55:03.105441+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B10.wav",
+      "actual_duration_s": 12.366666666666667,
+      "render_duration_s": 12.366666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B10.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "heading": "What the read-backs caught",
+      "narration_text": "Both read-backs pass, sixty-six checks on Joe's clips and thirteen on the wave. Then one letter was added to a property name, in a throwaway copy. The test failed and named it. Four other planted mistakes failed their tests too.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What the read-backs caught",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What the read-backs caught"
+          }
+        ],
+        "evidence_media": "media/B11.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "tests.png",
+      "screen_title": "RECORDED HEADLESS OUTPUT · logs/test_*_readback_60fps.log and a7/evidence/mutations/ · nothing retyped",
+      "screen_sub": "each mutation made in a throwaway git worktree of 317835f and removed afterwards · repository revision 7848c6e",
+      "screen_card_below": false,
+      "audio_file": "audio/B11.wav",
+      "actual_duration_s": 12.766666666666667,
+      "render_duration_s": 12.766666666666667,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, the fixture frame strip) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B11.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "heading": "One authority",
+      "narration_text": "Fourth idea: one authority. Only Joe's animation player writes his picture. The state machine just asks it to play a clip, and restarts the toss from frame zero on every grab.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "One authority",
+        "show": [
+          {
+            "at": "beat",
+            "event": "One authority"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One authority",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/player.gd",
+            "source": "Godot editor reconstruction · exact source, revision 7848c6e · next: the visible result",
+            "code": "func show_pose(state: String) -> void:\n\tvar clip: String = STATE_CLIPS[state]\n\tif clip != anim.assigned_animation or (state == \"grab\" and pose != \"grab\"):\n\t\tanim.play(clip)\n\t\tanim.seek(0.0, true)\n\t\tclip_started_frame = Engine.get_physics_frames()\n\tpose = state\n\tart.scale = Vector2(0.5 * facing, 0.5)\n\tqueue_redraw()  # the bag follows the art",
+            "startLine": 87,
+            "codeFontSize": 26,
+            "notes": [
+              {
+                "label": "Line 89",
+                "value": "restart on a new clip, or on every grab"
+              },
+              {
+                "label": "Lines 90–91",
+                "value": "play, then seek to frame 0"
+              }
+            ],
+            "output": [
+              "godot/features/player/player.gd lines 87–95"
+            ],
+            "cues": [],
+            "durationSeconds": 11.033333333333333
+          },
+          "rendered": {
+            "out": "media/B12.mp4",
+            "at": "2026-11-22T21:55:03.107748+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B12.wav",
+      "actual_duration_s": 11.033333333333333,
+      "render_duration_s": 11.033333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B12.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "heading": "The toss in play, interrupted",
+      "narration_text": "Here, a jump interrupts the grab on frame seven. The toss carries on in the air: moving never cancels it. Had a second writer touched the frame, the last one to run would win. A planted one failed the state test.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "VIDEO",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "The toss in play, interrupted",
+        "show": [
+          {
+            "at": "beat",
+            "event": "The toss in play, interrupted"
+          }
+        ],
+        "evidence_media": "media/B13.mp4"
+      },
+      "gameplay_take": "toss1",
+      "audio_file": "audio/B13.wav",
+      "actual_duration_s": 12.033333333333333,
+      "render_duration_s": 12.033333333333333,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / replay / held-frame plate",
+            "box": [
+              0.06,
+              0.217,
+              0.94,
+              0.324
+            ]
+          }
+        ],
+        "contrast_reason": "The game's sky and buildings are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B13.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "heading": "Two clocks",
+      "narration_text": "And two clocks. The game launches the survivor on the physics tick, so Joe's clip advances by hand on that same tick, and only while he's enabled.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Two clocks",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Two clocks"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Two clocks",
+            "project": "walker-ninja-firefighter-joe",
+            "path": "features/player/player.gd",
+            "source": "Godot editor reconstruction · exact source, revision 7848c6e · next: the visible result",
+            "code": "\tmove_and_slide()\n\tposition.x = maxf(position.x, 10.0)\n\t_update_pose()\n\t# The clips' clock (CHANGE-BRIEF \"The two clocks\"): one physics tick of clip time per tick while\n\t# enabled, so pause, dying and complete freeze the clip as they freeze the action queue. A clip\n\t# (re)started on this tick stays on its frame 0.\n\tif Engine.get_physics_frames() != clip_started_frame:\n\t\tanim.advance(delta)\n\tqueue_redraw()",
+            "startLine": 187,
+            "codeFontSize": 24,
+            "notes": [
+              {
+                "label": "Line 193",
+                "value": "not on the tick a clip starts"
+              },
+              {
+                "label": "Line 194",
+                "value": "advance by the physics delta"
+              }
+            ],
+            "output": [
+              "godot/features/player/player.gd lines 187–195"
+            ],
+            "cues": [],
+            "durationSeconds": 9.0
+          },
+          "rendered": {
+            "out": "media/B14.mp4",
+            "at": "2026-11-22T21:55:03.109992+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B14.wav",
+      "actual_duration_s": 9.0,
+      "render_duration_s": 9.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B14.mp4",
+        "filled_by": "remotion:GodotDevWorkbench",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "heading": "Pause and restart",
+      "narration_text": "So pause freezes the toss on its frame and resumes it from there, and R cuts it with the respawn stance. The throw now lands exactly on the launch tick. Before, the picture was two ticks late, about three hundredths of a second.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "VIDEO",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Pause and restart",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Pause and restart"
+          }
+        ],
+        "evidence_media": "media/B15.mp4"
+      },
+      "gameplay_take": "toss2",
+      "audio_file": "audio/B15.wav",
+      "actual_duration_s": 12.733333333333333,
+      "render_duration_s": 12.733333333333333,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Actual native 4K Godot output fills the frame; not a slide.",
+        "contrast_regions": [
+          {
+            "label": "capture / replay / held-frame plate",
+            "box": [
+              0.06,
+              0.217,
+              0.94,
+              0.324
+            ]
+          }
+        ],
+        "contrast_reason": "The game's sky and buildings are the captured scene; the designed text is the cream plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B15.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "heading": "What the pins caught",
+      "narration_text": "The pins paid off before a single key existed. The brief said the launch came on frame fifteen. The pin measured fourteen. Claude had read the code and was off by one, the exact failure the brief predicted. The table moved; the keys followed. The pins also caught an old bug: R at a rescued window rescues them again. Recorded, not fixed.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "SCREEN",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What the pins caught",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What the pins caught"
+          }
+        ],
+        "evidence_media": "media/B16.mp4"
+      },
+      "gameplay_take": "screen",
+      "screen_still": "pins.png",
+      "screen_title": "RECORDED HEADLESS OUTPUT · logs/test_pins_a7_60fps.log · CHANGE-BRIEF.md Revision 2 (lines as written)",
+      "screen_sub": "the pins were committed (c643146) before any clip was wired (74363a6) · repository revision 7848c6e",
+      "screen_card_below": false,
+      "audio_file": "audio/B16.wav",
+      "actual_duration_s": 17.8,
+      "render_duration_s": 17.8,
+      "qc": {
+        "full_bleed": true,
+        "full_bleed_reason": "Real images (frames of the scripted-input take, the fixture frame strip) fill the frame.",
+        "contrast_regions": [
+          {
+            "label": "provenance plate",
+            "box": [
+              0.06,
+              0.871,
+              0.94,
+              0.977
+            ]
+          }
+        ],
+        "contrast_reason": "The game frames are captured evidence, not our typography; the designed text is on the cream card and plate."
+      },
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B16.mp4",
+        "filled_by": "media",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "heading": "What Claude got wrong",
+      "narration_text": "The agent's recorded mistakes: that off-by-one, two bugs in its own tests caught before commit, and four commands its read-only session tried and was refused. And the limit stays: no headless run draws a pixel. Whether the motion reads is Sreeja's call, in the running game.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "What Claude got wrong",
+        "show": [
+          {
+            "at": "beat",
+            "event": "What Claude got wrong"
+          }
+        ],
+        "remotion": {
+          "pattern": "GodotDesignFigure",
+          "props": {
+            "title": "What Claude got wrong",
+            "status": "As recorded · a7/FRICTIONAL.md · a7/TEST-REPORT.md",
+            "image": "B17-figure.png",
+            "imageLabel": "",
+            "source": "As recorded · a7/FRICTIONAL.md · a7/TEST-REPORT.md",
+            "cards": [
+              {
+                "label": "Source",
+                "text": "As recorded"
+              }
+            ],
+            "durationSeconds": 15.433333333333334
+          },
+          "rendered": {
+            "out": "media/B17.mp4",
+            "at": "2026-11-22T21:55:03.112243+00:00"
+          }
+        },
+        "evidence_media": "media/stills/B17-figure.png"
+      },
+      "audio_file": "audio/B17.wav",
+      "actual_duration_s": 15.433333333333334,
+      "render_duration_s": 15.433333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B17.mp4",
+        "filled_by": "remotion:GodotDesignFigure",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "heading": "Verdict",
+      "narration_text": "The verdict. Verified by tests: both clips built as the brief says, the pins unchanged, every state, every interrupt, and every planted mistake caught. Still to come: Sreeja's own eye checks in the running game. Next step: guard the rescue against that old re-rescue. Directed and decided by Sreeja, implemented by Claude. The sheet is her own Assignment Two art; OpenAI's terms give her the rights.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Verdict",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Verdict"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Assignment 7 · verdict",
+            "artifactHeading": "Two clips, checked by tests; the motion is her call",
+            "artifactLines": [
+              "Verified: read-backs 66 + 13 · pins 8, unchanged after the wiring · states 16 · edges 40 · 5 planted mistakes fail their tests",
+              "Her eyes: pending in this draft (TODO-HUMAN) · the wave, the toss in play, registration, backgrounds",
+              "Uncertain: whether the hand-back on frame 46 reads as a pop",
+              "Next: guard the rescue with contact_settle_ticks (the old re-rescue after R)",
+              "Directed and decided by Sreeja · implemented by Claude Code · her eye checks in the running game come next (TODO-HUMAN)",
+              "Sheet: her A2 ChatGPT poses · OpenAI terms checked 2026-11-22 · game revision 7848c6e"
+            ],
+            "durationSeconds": 21.6
+          },
+          "rendered": {
+            "out": "media/B18.mp4",
+            "at": "2026-11-22T21:57:46.219148+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B18.wav",
+      "actual_duration_s": 21.6,
+      "render_duration_s": 21.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B18.mp4",
+        "filled_by": "remotion:ClaudeVerdictArtifact",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "heading": "Your turn",
+      "narration_text": "Your turn. Move one boundary in the phase table, rebuild the keys from it, predict what two frames of the strip will show, and name the read-back value that must change with it. Then go and look for yourself. This was Liam, in for Bear.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Your turn",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Your turn"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "command": "Read my CHANGE-BRIEF. The toss snaps from the wide ready stance\nto standing on frame 46. Move one boundary in the phase table,\nrebuild the keys with bake_joe_clips.gd, predict strip frames\n50 and 52, and name the read-back value that must change.",
+            "topic": "Your turn · one change, one prediction, one test kept honest",
+            "segment": "Extinguisho's Wave and Toss",
+            "greeting": "Your turn",
+            "runningText": "",
+            "output": [],
+            "folderLabel": "walker-ninja-firefighter-joe",
+            "modelLabel": "Claude Code",
+            "effortLabel": "",
+            "placeholder": "",
+            "durationSeconds": 12.833333333333334
+          },
+          "rendered": {
+            "out": "media/B19.mp4",
+            "at": "2026-11-22T21:57:46.223031+00:00"
+          }
+        }
+      },
+      "audio_file": "audio/B19.wav",
+      "actual_duration_s": 12.833333333333334,
+      "render_duration_s": 12.833333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B19.mp4",
+        "filled_by": "remotion:ClaudeComposerAsk",
+        "at": "2026-11-22T17:03:51"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "heading": "Outro",
+      "narration_text": "Extinguisho's Wave and Toss. At Nik Bear Brown.",
+      "engine": "kokoro",
+      "voice": "am_onyx",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "classification": "SHOW",
+        "visual_intent": "Outro",
+        "show": [
+          {
+            "at": "beat",
+            "event": "Outro"
+          }
+        ],
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "Extinguisho's Wave and Toss",
+            "slug": "claude-liam-walker-ninja-firefighter-joe-a7-gamedev",
+            "durationSeconds": 4.733333333333333
+          },
+          "rendered": {
+            "out": "media/B20.mp4",
+            "at": "2026-11-22T21:57:46.225636+00:00"
+          }
+        }
+      },
+      "kind": "outro_voice",
+      "tail_hold_s": 1.0,
+      "audio_file": "audio/B20.wav",
+      "actual_duration_s": 4.733333333333333,
+      "render_duration_s": 4.733333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media/B20.mp4",
+        "filled_by": "remotion:ClaudeTitleOutro",
+        "at": "2026-11-22T17:03:51"
+      }
+    }
+  ]
+}

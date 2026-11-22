@@ -1,0 +1,8 @@
+{"event":"start","t":0.5,"tick":30}
+{"event":"hosing starts (W)","t":10.8,"tick":648}
+{"event":"touch 1: the person (toss frame 0)","t":16.017,"tick":961}
+{"event":"jump on toss frame 6 (startup)","t":16.117,"tick":967}
+{"event":"touch 2: the dog (toss frame 0)","t":19.65,"tick":1179}
+{"event":"Esc on toss frame 20 (active): paused","t":19.983,"tick":1199}
+{"event":"Esc: resumed","t":20.75,"tick":1245}
+{"event":"R on toss frame 36 (recovery): restart","t":21.017,"tick":1261}

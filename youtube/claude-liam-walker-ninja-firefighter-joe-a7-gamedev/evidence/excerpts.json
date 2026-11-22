@@ -1,0 +1,72 @@
+{
+  "excerpts": [
+    {
+      "beat_id": "B04",
+      "path": "features/survivor/survivor_person.tscn",
+      "start_line": 5,
+      "end_line": 17,
+      "text": "loop_mode = 1\nstep = 0.0333333\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Shoulder:rotation\")\ntracks/0/interp = 4\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.4, 0.8),\n\"transitions\": PackedFloat32Array(1, 1, 1),\n\"update\": 0,\n\"values\": [0.0, 0.45, 0.0]"
+    },
+    {
+      "beat_id": "B06",
+      "path": "features/player/joe_art.tscn",
+      "start_line": 10,
+      "end_line": 21,
+      "text": "[node name=\"Sprite\" type=\"Sprite2D\" parent=\".\"]\ntexture = ExtResource(\"1_sheet\")\ncentered = false\nposition = Vector2(-70, -133)\nhframes = 4\nvframes = 3\n\n[node name=\"AnimationPlayer\" type=\"AnimationPlayer\" parent=\".\"]\nlibraries = {\n&\"\": ExtResource(\"2_clips\")\n}\ncallback_mode_process = 2"
+    },
+    {
+      "beat_id": "B08",
+      "path": "tools/bake_joe_clips.gd",
+      "start_line": 8,
+      "end_line": 14,
+      "text": "const FPS := 60.0                # the phase table's frame rate: one frame per physics tick\nconst TRACK := \"Sprite:frame\"    # relative to the AnimationPlayer's root_node, the Art root\n# One-key hold clips, one per state the state machine can show outside the toss.\nconst HOLDS := [\"idle\", \"respawn\", \"run\", \"rising\", \"falling\", \"landing\", \"hose\", \"burned\", \"celebrate\"]\n# The toss: [first frame of the phase, cell shown], then the clip length in frames.\nconst TOSS_KEYS := [[0, \"grab\"], [14, \"toss\"], [30, \"respawn\"]]\nconst TOSS_FRAMES := 46"
+    },
+    {
+      "beat_id": "B10",
+      "path": "tests/anim_checks.gd",
+      "start_line": 16,
+      "end_line": 24,
+      "text": "\t\tfor t in clip.get_track_count():\n\t\t\tvar path := clip.track_get_path(t)\n\t\t\tvar node := root.get_node_or_null(NodePath(path.get_concatenated_names()))\n\t\t\tif node == null:\n\t\t\t\tproblems.append(\"%s track %d: no node at %s\" % [clip_name, t, path])\n\t\t\t\tcontinue\n\t\t\tif path.get_subname_count() == 0:\n\t\t\t\tcontinue\n\t\t\tvar sub := path.get_subname(0)"
+    },
+    {
+      "beat_id": "B12",
+      "path": "features/player/player.gd",
+      "start_line": 87,
+      "end_line": 95,
+      "text": "func show_pose(state: String) -> void:\n\tvar clip: String = STATE_CLIPS[state]\n\tif clip != anim.assigned_animation or (state == \"grab\" and pose != \"grab\"):\n\t\tanim.play(clip)\n\t\tanim.seek(0.0, true)\n\t\tclip_started_frame = Engine.get_physics_frames()\n\tpose = state\n\tart.scale = Vector2(0.5 * facing, 0.5)\n\tqueue_redraw()  # the bag follows the art"
+    },
+    {
+      "beat_id": "B14",
+      "path": "features/player/player.gd",
+      "start_line": 187,
+      "end_line": 195,
+      "text": "\tmove_and_slide()\n\tposition.x = maxf(position.x, 10.0)\n\t_update_pose()\n\t# The clips' clock (CHANGE-BRIEF \"The two clocks\"): one physics tick of clip time per tick while\n\t# enabled, so pause, dying and complete freeze the clip as they freeze the action queue. A clip\n\t# (re)started on this tick stays on its frame 0.\n\tif Engine.get_physics_frames() != clip_started_frame:\n\t\tanim.advance(delta)\n\tqueue_redraw()"
+    }
+  ],
+  "pairs": [
+    [
+      "B04",
+      "B05"
+    ],
+    [
+      "B06",
+      "B07"
+    ],
+    [
+      "B08",
+      "B09"
+    ],
+    [
+      "B10",
+      "B11"
+    ],
+    [
+      "B12",
+      "B13"
+    ],
+    [
+      "B14",
+      "B15"
+    ]
+  ]
+}

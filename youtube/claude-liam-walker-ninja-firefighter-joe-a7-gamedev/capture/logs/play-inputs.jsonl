@@ -1,0 +1,21 @@
+{"input":"confirm","tick":30,"value":true}
+{"input":"axis","tick":60,"value":1.0}
+{"input":"jump","tick":100,"value":true}
+{"input":"jump","tick":177,"value":true}
+{"input":"jump","tick":243,"value":true}
+{"input":"jump","tick":305,"value":true}
+{"input":"jump","tick":387,"value":true}
+{"input":"jump","tick":508,"value":true}
+{"input":"jump","tick":558,"value":true}
+{"input":"jump","tick":601,"value":true}
+{"input":"water","tick":647,"value":true}
+{"input":"axis","tick":647,"value":0.0}
+{"input":"axis","tick":902,"value":1.0}
+{"input":"jump (startup interrupt)","tick":967,"value":true}
+{"input":"jump","tick":1028,"value":true}
+{"input":"jump","tick":1078,"value":true}
+{"input":"jump","tick":1122,"value":true}
+{"input":"pause (Esc)","tick":1199,"value":true}
+{"input":"pause (Esc)","tick":1245,"value":true}
+{"input":"jump","tick":1254,"value":true}
+{"input":"restart (R)","tick":1261,"value":true}
