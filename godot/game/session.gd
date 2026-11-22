@@ -50,6 +50,7 @@ var music: AudioStreamPlayer
 const FIRE_SINGLE := preload("res://art/env/fire_single.png")   # ENV-FIRE-A
 const FIRE_WIDE := preload("res://art/env/fire_wide.png")       # ENV-FIRE-B
 const FIRE_TALL := preload("res://art/env/fire_tall.png")       # ENV-FIRE-Bb
+const SurvivorPerson := preload("res://features/survivor/survivor_person.tscn")  # A7: the person, waving (rig)
 
 func _ready() -> void:
 	process_physics_priority = 10
@@ -65,7 +66,14 @@ func _ready() -> void:
 	goal = _add_area(Rect2(f[0], f[1], f[2], f[3]), 16, false)
 	for entry in level.survivors:
 		var area := _add_area(Rect2(entry[0] - 8.0, entry[1] - 22.0, 16.0, 22.0), 32, false)
-		survivors.append({"area": area, "type": String(entry[2]), "rescued": false, "x": float(entry[0]), "y": float(entry[1])})
+		# A7: the person is a waving rig placed once at its window, added before the player so he
+		# draws over it; afterwards only its `visible` is written. The dog is still drawn in _draw().
+		var rig: Node2D = null
+		if String(entry[2]) == "person":
+			rig = SurvivorPerson.instantiate()
+			rig.position = Vector2(entry[0], entry[1])
+			add_child(rig)
+		survivors.append({"area": area, "type": String(entry[2]), "rescued": false, "x": float(entry[0]), "y": float(entry[1]), "rig": rig})
 	player = Player.new()
 	add_child(player)
 	player.reset_at(Vector2(level.spawn[0], level.spawn[1]))
@@ -163,6 +171,8 @@ func restart_attempt() -> void:
 	for s in survivors:
 		s.rescued = false
 		s.area.set_deferred("monitoring", true)
+		if s.rig != null:
+			s.rig.visible = true
 
 # Blocking-fire height in px: full until hosing starts, then shrinks linearly to 0
 # over EXTINGUISH_TICKS (half by 2 s). Drives both the flame visual and the kill-zone.
@@ -259,6 +269,8 @@ func _physics_process(delta: float) -> void:
 			for s in survivors:
 				if not s.rescued and s.area.overlaps_body(player):
 					s.rescued = true
+					if s.rig != null:
+						s.rig.visible = false
 					s.area.set_deferred("monitoring", false)
 					rescued_count += 1
 					player.rescued = rescued_count
@@ -422,28 +434,7 @@ func _draw() -> void:
 			draw_rect(Rect2(sx + 7.8, sy - 11.6, 3.6, 2.2), dg)
 			draw_circle(Vector2(sx + 11.0, sy - 10.8), 0.9, ink)
 			draw_circle(Vector2(sx + 6.2, sy - 12.6), 0.9, ink)
-		else:
-			# clearly a person: head+face, torso, one arm RAISED waving, two legs (dark outline, bright fill)
-			var shirt := Color("46a0e0")
-			var face := Color("f2c9a0")
-			draw_rect(Rect2(sx - 3.6, sy - 8.0, 3.2, 8.0), ink)
-			draw_rect(Rect2(sx + 0.4, sy - 8.0, 3.2, 8.0), ink)
-			draw_rect(Rect2(sx - 3.1, sy - 7.5, 2.2, 7.0), Color("2b3a55"))
-			draw_rect(Rect2(sx + 0.9, sy - 7.5, 2.2, 7.0), Color("2b3a55"))
-			draw_rect(Rect2(sx - 5.0, sy - 19.0, 10.0, 12.0), ink)
-			draw_rect(Rect2(sx - 4.0, sy - 18.0, 8.0, 10.0), shirt)
-			draw_rect(Rect2(sx - 7.0, sy - 18.0, 3.0, 9.0), ink)
-			draw_rect(Rect2(sx - 6.5, sy - 17.0, 2.0, 8.0), face)
-			draw_rect(Rect2(sx + 3.2, sy - 27.0, 3.0, 11.0), ink)
-			draw_rect(Rect2(sx + 3.7, sy - 26.0, 2.0, 10.0), face)
-			draw_circle(Vector2(sx + 4.7, sy - 27.5), 2.3, ink)
-			draw_circle(Vector2(sx + 4.7, sy - 27.5), 1.5, face)
-			draw_circle(Vector2(sx, sy - 22.5), 5.2, ink)
-			draw_circle(Vector2(sx, sy - 22.5), 4.2, face)
-			draw_rect(Rect2(sx - 4.3, sy - 27.0, 8.6, 3.2), Color("3a2f1a"))
-			draw_circle(Vector2(sx - 1.6, sy - 23.0), 0.9, ink)
-			draw_circle(Vector2(sx + 1.6, sy - 23.0), 0.9, ink)
-			draw_rect(Rect2(sx - 1.5, sy - 20.0, 3.0, 1.1), Color("a23e36"))
+		# The person is drawn by its rig (survivor_person.tscn, A7), a child node over this drawing.
 		# HELP! speech bubble (enlarged) with a pointer/tail down to the survivor
 		var buby := sy - 58.0
 		var bubx := sx - 23.0
@@ -487,7 +478,7 @@ func _draw_flights() -> void:
 		var from: Vector2 = fl.from + Vector2(0.0, -12.0)
 		var launch: Vector2 = fl.get("launch", from)
 		var apex: Vector2 = fl.get("apex", from + Vector2(0.0, -TOSS_HEIGHT))
-		var bag: Vector2 = Player.BAG.get(player.pose, Player.BAG.idle)
+		var bag: Vector2 = Player.BAG.get(player.bag_pose(), Player.BAG.idle)
 		var into := player.position + Vector2(bag.x * player.facing, bag.y - 6.0)
 		var pos := from
 		var spin := 0.0

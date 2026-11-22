@@ -8,6 +8,12 @@ const HoseGlow = preload("res://features/player/hose_glow.gd")  # A5: glow mater
 const JumpPuffDriver = preload("res://features/player/jump_puff_driver.gd")  # A6: a JumpPuff in the level on each `landed`
 const HoseSteamDriver = preload("res://features/player/hose_steam_driver.gd")  # A6: one HoseSteam in the level, driven from `hosing`
 const VsyncKey = preload("res://features/debug/vsync_key.gd")  # A6 debug: F9 toggles vsync for the FPS check
+const JoeArt = preload("res://features/player/joe_art.tscn")  # A7: the sheet, the Sprite and the clips' AnimationPlayer
+# The clip each state plays (CHANGE-BRIEF "The state machine"). grab and toss share the one toss clip,
+# started once on entering grab; every other state plays the clip of its own name.
+const STATE_CLIPS := {"idle": "idle", "run": "run", "rising": "rising", "falling": "falling",
+	"landing": "landing", "hose": "hose", "grab": "toss", "toss": "toss", "respawn": "respawn",
+	"burned": "burned", "celebrate": "celebrate"}
 var tuning = Tuning.new()
 var enabled: bool = false
 var tick: int = 0
@@ -24,7 +30,8 @@ var test_axis: float = 0.0
 var test_jump_pressed: bool = false
 var test_jump_held: bool = false
 var test_water_pressed: bool = false  # hose input hook for the scripted route / tests
-# Extinguisho art: one static generated image per state, swapped in (visual only; never read by gameplay).
+# Extinguisho art: the generated poses packed in one sheet, shown by one clip per state (A7; visual
+# only, never read by gameplay). anchors.json's key order is the sheet's cell order.
 const ART_DIR := "res://art/character/"
 const BOX := Vector2(20, 40)   # collision box; feet at the origin (CHARACTER-SHEET, collision option A)
 const LAND_TICKS := 20         # landing pose holds this long after real air time (was 8: too fast to see)
@@ -37,8 +44,9 @@ const BAG := {"idle": Vector2(-10, -30), "respawn": Vector2(-13, -20), "run": Ve
 var pose: String = "idle"
 var art: Node2D
 var sprite: Sprite2D
-var textures := {}
-var anchors := {}
+var anim: AnimationPlayer       # the only writer of sprite.frame; only show_pose() and _physics_process drive it
+var cells: Array = []           # pose name per sheet cell (anchors.json order)
+var clip_started_frame := -1    # physics frame on which show_pose() last (re)started a clip; that tick shows frame 0
 var jumped_this_air: bool = false
 var air_ticks: int = 0
 var land_ticks: int = 0
@@ -60,30 +68,36 @@ func _ready() -> void:
 	collider.position = Vector2(0, -BOX.y / 2.0)
 	add_child(collider)
 	var info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(ART_DIR + "anchors.json"))
-	anchors = info.anchors
-	for state in anchors:
-		textures[state] = load(ART_DIR + state + ".png")
-	art = Node2D.new()
-	art.show_behind_parent = true  # the code-drawn rescue bag stays on top of the art
+	cells = info.anchors.keys()
+	art = JoeArt.instantiate()  # its root sets show_behind_parent, so the code-drawn rescue bag stays on top
 	add_child(art)
-	sprite = Sprite2D.new()
-	sprite.centered = false
-	art.add_child(sprite)
+	sprite = art.get_node("Sprite")
+	anim = art.get_node("AnimationPlayer")
 	show_pose("idle")
 	add_child(HoseGlow.new())  # visual only; the driver reads `hosing` and writes the shader's `glow`
 	add_child(JumpPuffDriver.new())  # visual only; the driver reads `landed` and adds a JumpPuff to the level node
 	add_child(HoseSteamDriver.new())  # visual only; the driver reads `hosing` and `fire_height()` and drives the level's HoseSteam
 	add_child(VsyncKey.new())  # debug only: F9 toggles vsync; reads no game state, writes none
 
-# Swap the state image. The anchor (bottom-center of the collision box in texture px)
-# lands on the origin; the holder's negative x scale mirrors the art when facing left.
+# Shows `state` by playing its clip (STATE_CLIPS). The clip restarts from frame 0 when it differs from
+# the one assigned, and when the state changes to "grab", so every toss starts at its first frame
+# (play() alone keeps a clip's position and, under the manual callback, applies no key until a seek).
+# The holder's negative x scale mirrors the art when facing left. An unknown state fails loud: the
+# dictionary lookup errors and play() reports the missing clip.
 func show_pose(state: String) -> void:
+	var clip: String = STATE_CLIPS[state]
+	if clip != anim.assigned_animation or (state == "grab" and pose != "grab"):
+		anim.play(clip)
+		anim.seek(0.0, true)
+		clip_started_frame = Engine.get_physics_frames()
 	pose = state
-	sprite.texture = textures[state]
-	var a: Array = anchors[state]
-	sprite.position = -Vector2(a[0], a[1])
 	art.scale = Vector2(0.5 * facing, 0.5)
-	queue_redraw()  # the bag follows the pose
+	queue_redraw()  # the bag follows the art
+
+# The pose name of the sheet cell on screen. The bag is drawn on that pose's back, which can differ
+# from `pose` inside the toss: its recovery shows the respawn cell while `pose` is still "toss".
+func bag_pose() -> String:
+	return cells[sprite.frame]
 
 # Timed state poses (grab, toss, respawn), played in order and held for their tick count.
 func play_actions(steps: Array, cancel_on_move: bool = false) -> void:
@@ -173,6 +187,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	position.x = maxf(position.x, 10.0)
 	_update_pose()
+	# The clips' clock (CHANGE-BRIEF "The two clocks"): one physics tick of clip time per tick while
+	# enabled, so pause, dying and complete freeze the clip as they freeze the action queue. A clip
+	# (re)started on this tick stays on its frame 0.
+	if Engine.get_physics_frames() != clip_started_frame:
+		anim.advance(delta)
 	queue_redraw()
 
 func _draw() -> void:
@@ -183,7 +202,7 @@ func _draw() -> void:
 	if bag_types.is_empty():
 		return
 	var f := facing                 # +1 right, -1 left
-	var c: Vector2 = BAG.get(pose, BAG.idle)
+	var c: Vector2 = BAG.get(bag_pose(), BAG.idle)
 	draw_set_transform(Vector2(c.x * f, c.y), 0.0, Vector2(2.0, 2.0))
 	var ink := Color("1b2a3f")      # outline
 	var skin := Color("e8b98f")     # face
