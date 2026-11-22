@@ -16,7 +16,7 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 {"id":"hold-is-game-time","observed":{"down_frames":28,"down_seconds":0.194444444444444,"expected":0.189826495901226,"glow_at_last_hosing":0.759305983604903,"hold_frames":742,"hold_seconds":5.15277777777778,"hosing_at_last":true,"hosing_next_frame":false,"last":0.0,"monotone":true,"tolerance":0.00694444444444444,"water_ticks":0,"worst_step":0.0277777777777778},"status":"PASS"}
 {"id":"restart-mid-ramp","observed":{"down_frames":13,"down_seconds":0.0902777777777778,"frames_until_descent":1,"glow_at_R":0.333333333333333,"monotone":true,"peak":0.361111111111111,"restarted":true,"state":1,"water_ticks":0,"worst_step":0.0277777777777778},"status":"PASS"}
 HOSE GLOW TESTS: 15 checks / 0 failures (process delta 0.006944 s)
-WARNING: 12 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 4 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

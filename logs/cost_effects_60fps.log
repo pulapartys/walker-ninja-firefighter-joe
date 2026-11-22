@@ -5,28 +5,28 @@ Video adapter: "" (empty: dummy renderer, nothing is drawn and no GPU particle p
 Frame step 0.016667 s (fixed); 120 warm-up + 300 timed frames x 10 repeats per case
 Physics ticks per frame over the empty scene's timed frames: 1.000
 --- CPU time per frame, wall clock at a fixed rate (ms) ---
-empty scene              mean 0.003575 ms/frame | spread over 10 repeats: sd 0.000024, min 0.003540, max 0.003620 | per frame (3000): median 0.004000, p95 0.004000
-                         repeat means: 0.003620, 0.003607, 0.003583, 0.003580, 0.003570, 0.003570, 0.003567, 0.003560, 0.003557, 0.003540
+empty scene              mean 0.008969 ms/frame | spread over 10 repeats: sd 0.006130, min 0.005063, max 0.024943 | per frame (3000): median 0.005000, p95 0.013000
+                         repeat means: 0.007593, 0.006903, 0.010367, 0.006930, 0.012417, 0.005110, 0.005063, 0.005290, 0.005073, 0.024943
                          checks: OK; puffs alive per timed frame 0-0
-game, effects off        mean 0.165128 ms/frame | spread over 10 repeats: sd 0.001291, min 0.163827, max 0.168443 | per frame (3000): median 0.162000, p95 0.177000
-                         repeat means: 0.165050, 0.164713, 0.165150, 0.164440, 0.168443, 0.163827, 0.164717, 0.165750, 0.165113, 0.164073
+game, effects off        mean 1.213765 ms/frame | spread over 10 repeats: sd 0.188538, min 1.002423, max 1.494843 | per frame (3000): median 0.756000, p95 3.075000
+                         repeat means: 1.433193, 1.049217, 1.203000, 1.177500, 1.367360, 1.023113, 1.494843, 1.021987, 1.002423, 1.365013
                          checks: OK; puffs alive per timed frame 0-0, PLAYING on the floor, the level's own steam not emitting
-Effect A, 2 puffs alive  mean 0.168964 ms/frame | spread over 10 repeats: sd 0.000673, min 0.168177, max 0.169827 | per frame (3000): median 0.165000, p95 0.185000
-                         repeat means: 0.169623, 0.168280, 0.168787, 0.169623, 0.168177, 0.169113, 0.169827, 0.168377, 0.169613, 0.168223
+Effect A, 2 puffs alive  mean 1.298636 ms/frame | spread over 10 repeats: sd 0.362034, min 0.595893, max 1.891230 | per frame (3000): median 0.780000, p95 3.233000
+                         repeat means: 1.203273, 1.411413, 1.215860, 1.633277, 1.045187, 1.326683, 1.080040, 0.595893, 1.583503, 1.891230
                          checks: OK; puffs alive per timed frame 2-2, 100 landings emitted in timed frames (10.0 per repeat), PLAYING on the floor, the level's own steam not emitting
-Effect B, ratio 1.0      mean 0.164315 ms/frame | spread over 10 repeats: sd 0.000755, min 0.163550, max 0.166150 | per frame (3000): median 0.162000, p95 0.174000
-                         repeat means: 0.164207, 0.166150, 0.164090, 0.164957, 0.164253, 0.163550, 0.164353, 0.163717, 0.163763, 0.164110
+Effect B, ratio 1.0      mean 1.151360 ms/frame | spread over 10 repeats: sd 0.166971, min 0.948190, max 1.482383 | per frame (3000): median 0.751000, p95 3.164000
+                         repeat means: 1.215517, 1.057223, 0.988900, 0.948190, 0.955027, 1.263873, 1.180330, 1.482383, 1.183590, 1.238567
                          checks: OK; puffs alive per timed frame 0-0, its own HoseSteam emitting at amount_ratio 1.0 with amount [14, 40] at the start and end of every timed window, PLAYING on the floor, the level's own steam not emitting
 --- comparisons ---
-game, effects off vs empty scene: +0.161552 ms/frame (+4518.5 %) -> DIFFERENT (repeat ranges apart)
+game, effects off vs empty scene: +1.204796 ms/frame (+13432.9 %) -> DIFFERENT (repeat ranges apart)
   differ, as expected (the game's physics, process and draw calls run on the CPU).
-Effect A, 2 puffs alive vs game, effects off: +0.003837 ms/frame (+2.3 %) -> DIFFERENT (per-round difference +0.003837, 2 standard errors 0.001055; the first is higher in 9 of 10 rounds)
-  differ, as expected (34 CPUParticles2D particles simulate on the CPU, headless included).
-Effect A, 2 puffs alive vs Effect B, ratio 1.0: +0.004649 ms/frame (+2.8 %) -> DIFFERENT (per-round difference +0.004649, 2 standard errors 0.000690; the first is higher in 10 of 10 rounds)
-  differ, as expected (A simulates on the CPU; B's GPU process does not run headless).
-Effect B, ratio 1.0 vs game, effects off: -0.000813 ms/frame (-0.5 %) -> SAME within spread (per-round difference -0.000813, 2 standard errors 0.000973; the first is higher in 3 of 10 rounds)
+Effect A, 2 puffs alive vs game, effects off: +0.084871 ms/frame (+7.0 %) -> SAME within spread (per-round difference +0.084871, 2 standard errors 0.256822; the first is higher in 6 of 10 rounds)
+  FLAG: these should differ (34 CPUParticles2D particles simulate on the CPU, headless included) but read the same: the script may be measuring itself, not the effect.
+Effect A, 2 puffs alive vs Effect B, ratio 1.0: +0.147276 ms/frame (+12.8 %) -> SAME within spread (per-round difference +0.147276, 2 standard errors 0.284679; the first is higher in 7 of 10 rounds)
+  FLAG: these should differ (A simulates on the CPU; B's GPU process does not run headless) but read the same: the script may be measuring itself, not the effect.
+Effect B, ratio 1.0 vs game, effects off: -0.062405 ms/frame (-5.1 %) -> SAME within spread (per-round difference -0.062405, 2 standard errors 0.175702; the first is higher in 4 of 10 rounds)
   same, as expected headless (headless runs no GPU particle process): this number is the game and the script, not the effect.
-COST EFFECTS: 4 cases x 10 repeats x 300 frames at 0.016667 s per frame; 0 of 4 comparisons flagged; setup checks: OK
+COST EFFECTS: 4 cases x 10 repeats x 300 frames at 0.016667 s per frame; 2 of 4 comparisons flagged; setup checks: OK
 WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 2 resources still in use at exit (run with --verbose for details).
