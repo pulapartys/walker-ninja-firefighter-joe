@@ -1,0 +1,35 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PROBE version: 4.7.2-stable (official)
+PROBE adapter (empty = nothing renders): ''
+PROBE Animation has property loop_mode: true
+PROBE Animation has Godot 3 property loop: false
+PROBE AnimationPlayer has speed_scale: true
+PROBE AnimationPlayer has Godot 3 playback_speed: false
+PROBE ClassDB AnimatedSprite exists (Godot 3): false
+PROBE AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL: 2
+PROBE AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE: 1
+PROBE AnimationPlayer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL (via subclass): 2
+PROBE Animation.INTERPOLATION_CUBIC_ANGLE: 4
+PROBE Animation.LOOP_NONE / LOOP_LINEAR: [0, 1]
+PROBE Animation.UPDATE_CONTINUOUS / DISCRETE: [0, 1]
+PROBE Animation default step: 0.0333333350718
+PROBE manual: frame right after play(), no seek: 0
+PROBE manual: frame after seek(0, true): 8
+PROBE manual: frame after each of 46 advances of 1/60: [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+PROBE current_animation after the clip end (LOOP_NONE): ''
+PROBE assigned_animation after the clip end: 'toss'
+PROBE manual: frame unchanged by the engine's own ticks: true
+PROBE play() again on the same clip keeps position (0.5): 0.5
+PROBE continuous frame track 9 -> 1 sampled every 0.05 s: [9, 7, 6, 4, 3, 1]
+PROBE key 1/60 after .tres round trip == 1.0/60.0: false
+PROBE key 1/60 after .tres round trip, difference: 0.00000000086923
+PROBE step default 1/30 vs 1/60: [0.0333333350718, 0.01666666666667]
+ERROR: Condition "t->type != TYPE_VALUE" is true. Returning: UPDATE_CONTINUOUS
+   at: value_track_get_update_mode (scene/resources/animation.cpp:2756)
+   GDScript backtrace (most recent call first):
+       [0] run (res://tests/probe_a7_headless.gd:104)
+PROBE value_track_get_update_mode on a 3D position track (expect an ERROR line above): 0
+PROBE DONE
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

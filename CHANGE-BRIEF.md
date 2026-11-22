@@ -155,4 +155,12 @@ Unchanged unless named above: collision, movement, input, the state machine's st
 
 ## Revisions
 
-*(none yet)*
+### Revision 1 · 2026-11-22 · gaps found while reviewing the CLAUDE.md draft
+
+The agent's draft (`a7/sessions/session-1.jsonl`) listed what v1 left unsaid. Each is settled here; none changes a clip, a timing or a rule above.
+
+- **Shoulder pivot:** (4.7, −16) in the person's own coordinates, the bottom of the old raised arm where it meets the torso. The arm and hand are drawn relative to it, so rotation 0 is the old drawing.
+- **Placing the rig:** `session.gd` sets the rig root's `position` once, to the survivor's (x, y), when it instances the rig in `_ready()`. That is setup, not animation; afterwards it writes only `visible`. The rigs are added before `Player.new()`, so Joe draws over the person, as he did over the old drawing.
+- **`show_behind_parent = true`** (the code-drawn bag stays on top of the art) is set on `joe_art.tscn`'s root `Art`.
+- **Test files:** `godot/tests/test_pins_a7.gd` (Step 2), `test_toss_readback.gd` (Step 3), `test_wave_readback.gd` (Step 4), `test_anim_states.gd` (Step 5), `test_toss_edges.gd` (Step 6), with the shared helper `anim_checks.gd`. Each gets a line in `scripts/run-all-tests.sh`.
+- **Probe before building** (`a7/evidence/probes/probe_a7_headless_60fps.log`): under the manual callback `play()` alone does not set `Sprite.frame`, and `seek(0, true)` does at once. This is the "Restart rule" above working as written.
