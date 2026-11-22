@@ -31,6 +31,7 @@ var game: Node2D
 var samples: Array = []             # one per physics tick: {t, pose, state, rescued, launched}
 var failures := 0
 var count := 0
+var per_tick := "--per-tick" in OS.get_cmdline_user_args()
 
 # Calls take() once per physics tick, after the player (priority 0) and the session (priority 10).
 class TickSampler extends Node:
@@ -71,6 +72,11 @@ func sample() -> void:
 		return
 	samples.append({"t": Engine.get_physics_frames(), "pose": game.player.pose, "state": game.state,
 		"rescued": game.rescued_count, "launched": game.flights.size() > 0 and game.flights[0].has("launch")})
+	# `-- --per-tick` prints one line per physics tick, so a windowed Movie Maker replay at --fixed-fps 60
+	# can be matched frame for frame against the log (Step 2, "Watching the pins").
+	if per_tick:
+		var s: Dictionary = samples.back()
+		print("TICK %d pose=%s state=%d rescued=%d launched=%s x=%.1f" % [s.t, s.pose, s.state, s.rescued, s.launched, game.player.position.x])
 
 # Collapses the per-tick poses (in PLAYING only) into [pose, ticks] runs.
 func runs() -> Array:
