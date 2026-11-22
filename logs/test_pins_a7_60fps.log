@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+MEASURED SEQUENCE: [["respawn",30],["idle",13],["run",45],["idle",55],["rising",48],["landing",19],["idle",30],["hose",299],["idle",13],["run",52],["grab",16],["toss",30],["idle",35],["respawn",1],["grab",16],["toss",26]]
+MEASURED FACTS: {"grab_shown":16,"handback":46,"landing":19,"launch_after":14,"respawn":30,"toss_shown":30,"touch_pose":"grab"}
+{"id":"rescued","observed":{"facts":{"grab_shown":16,"handback":46,"landing":19,"launch_after":14,"respawn":30,"toss_shown":30,"touch_pose":"grab"},"touch_index":634},"status":"PASS"}
+{"id":"sequence","observed":{"observed":[["respawn",30],["idle",13],["run",45],["idle",55],["rising",48],["landing",19],["idle",30],["hose",299],["idle",13],["run",52],["grab",16],["toss",30],["idle",35],["respawn",1],["grab",16],["toss",26]],"pinned":[["respawn",30],["idle",13],["run",45],["idle",55],["rising",48],["landing",19],["idle",30],["hose",299],["idle",13],["run",52],["grab",16],["toss",30],["idle",35],["respawn",1],["grab",16],["toss",26]]},"status":"PASS"}
+{"id":"respawn-ticks","observed":{"observed":30,"pinned":30},"status":"PASS"}
+{"id":"landing-ticks","observed":{"observed":19,"pinned":19},"status":"PASS"}
+{"id":"grab-shown","observed":{"observed":16,"pinned":16},"status":"PASS"}
+{"id":"toss-shown","observed":{"observed":30,"pinned":30},"status":"PASS"}
+{"id":"handback","observed":{"observed":46,"pinned":46},"status":"PASS"}
+{"id":"launch-after-touch","observed":{"observed":14,"pinned":14},"status":"PASS"}
+PINS RESULT: 8 checks / 0 failures
+WARNING: 18 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 8 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

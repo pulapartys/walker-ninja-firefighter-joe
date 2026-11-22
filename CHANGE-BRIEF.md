@@ -164,3 +164,22 @@ The agent's draft (`a7/sessions/session-1.jsonl`) listed what v1 left unsaid. Ea
 - **`show_behind_parent = true`** (the code-drawn bag stays on top of the art) is set on `joe_art.tscn`'s root `Art`.
 - **Test files:** `godot/tests/test_pins_a7.gd` (Step 2), `test_toss_readback.gd` (Step 3), `test_wave_readback.gd` (Step 4), `test_anim_states.gd` (Step 5), `test_toss_edges.gd` (Step 6), with the shared helper `anim_checks.gd`. Each gets a line in `scripts/run-all-tests.sh`.
 - **Probe before building** (`a7/evidence/probes/probe_a7_headless_60fps.log`): under the manual callback `play()` alone does not set `Sprite.frame`, and `seek(0, true)` does at once. This is the "Restart rule" above working as written.
+
+### Revision 2 · 2026-11-22 · the Step 2 pins measured three facts differently from v1
+
+The pins (`godot/tests/test_pins_a7.gd`, measured on the game before any change, log `logs/test_pins_a7_60fps.log`) disagree with three statements in v1. The pins are measurements; v1's statements were worked out by reading the code, and these were wrong.
+
+- **The launch is on frame 14, not 15.** `session.gd` appends the flight with `t = 0` in the PLAYING branch and then, later in the same `_physics_process`, adds 1 to every flight's `t`. So `fl.t` is already 1 at the end of the touch tick, and reaches `GRAB_TICKS` (15) on frame 14. Today's throw picture starts on frame 16, two ticks after the launch, not one. This is predicted failure 3 (an off-by-one against the launch), caught in the brief itself before anything was built.
+- **The phase table changes so the throw still lands on the launch** (the keys follow the table, never the other way round):
+
+  | Phase | Frames | Begins on | Cell shown | What the player may do | What the game reads |
+  |---|---|---|---|---|---|
+  | Startup (grab) | 0–13 (14) | 0 | 8 grab | as in v1 | rescue counted on frame 0; survivor held |
+  | Active (throw) | 14–29 (16) | 14 | 9 toss | as in v1 | the survivor launches on frame 14, on the physics tick |
+  | Recovery (settle) | 30–45 (16) | 30 | 1 respawn | as in v1 | the survivor still rising; hand-back to locomotion on frame 46 |
+
+  Keys: `Sprite:frame` 8 at 0 s, 9 at 14/60 s (0.2333 s), 1 at 30/60 s (0.5 s). Length 46/60 s, `step` 1/60, `LOOP_NONE`, discrete, unchanged. The disagreement between the throw cell and the launch is 0 ticks by construction; before this change the picture lagged the launch by 2 ticks (2/60 s ≈ 0.033 s). The frame strip reads the boundary at tick 14, which a 30 fps strip shows exactly (strip frame 7).
+- **The landing shows 19 ticks, not 20.** `_update_pose()` sets `land_ticks = 20` and decrements it on the same tick, so `landing` is shown while it counts 19 … 1. Unchanged by this change; the pin is 19.
+- **A pre-existing re-rescue after R.** Pressing R while Joe still overlaps a rescued survivor's area restores the survivor (`restart_attempt()` sets `rescued = false` and turns monitoring back on) while the area still reports the old overlap, so the next physics tick rescues them again: one tick of `respawn`, then a full grab and toss at the spawn point. The pinned run ends this way. It is game logic in `session.gd`, outside this change's boundary, so it is recorded here and in a7/TEST-REPORT.md and not fixed.
+- **Consequence for the interrupt rule:** R still cuts the toss. The `respawn` clip plays on the tick R is handled. If he was still overlapping the survivor, the re-rescue then starts a new toss from frame 0 on the following tick (the restart rule). The edge test asserts exactly that.
+
