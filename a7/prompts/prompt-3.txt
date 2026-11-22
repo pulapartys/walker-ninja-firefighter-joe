@@ -1,0 +1,25 @@
+# Step 3 prompt (the assignment's text, placeholders filled). Executed in the interactive Claude
+# Code session on 2026-11-22, not as a claude -p run: the sheet is packed with Python (Pillow) and
+# the clips are baked by a headless Godot tool script, neither of which the claude -p allowlist
+# permits. The interactive session's work is in the commits that follow; see a7/FRICTIONAL.md.
+
+Read CLAUDE.md first. The sprite sheet is godot/art/character/joe_sheet.png,
+packed from the 12 pose images in godot/art/character/. Its source, license,
+cell size, grid and frame order are in CHANGE-BRIEF.md, with the frame
+count, frame rate and loop rule for toss (phase table, Revision 2).
+
+Set up toss on Sprite (under Art) in godot/features/player/joe_art.tscn as
+the Sprite2D + AnimationPlayer frame-track route, using Godot 4
+properties for the version in CLAUDE.md. Slice the sheet from the
+brief, not by guessing from the image. Set Animation.step to one frame
+period at the brief's frame rate.
+
+Add a read-back test. For a frame track, assert every frame key is
+inside the sheet, the track uses discrete updates, and key times, step
+and loop mode match the brief; compare key times with a tolerance of
+half a frame period, never with ==. For SpriteFrames, assert the
+animation exists for every name the state machine requests, its frame
+count, speed and loop match the brief, and autoplay is empty.
+
+Run it through ./scripts/run-test.sh and show the real output. Do not
+wire the clip into the state machine yet. Do not commit.
