@@ -15,7 +15,7 @@ run() {
     local pass=$(grep -c '"status":"PASS"' "$log")
     local fail=$(grep -c '"status":"FAIL"' "$log")
     local summary=$(grep -h -E "TESTS:|CONFIG: [0-9]|STATE:|RESULT:|COST EFFECTS" "$log" | grep -v features | tail -1 | cut -c1-70)
-    local errors=$(grep -c -E "SHADER ERROR|SCRIPT ERROR" "$log")
+    local errors=$(grep -c -E "SHADER ERROR|SCRIPT ERROR|Failed loading resource" "$log")
     local ok="ok"
     if [ "$status" != "$expect" ] || [ "$errors" != 0 ]; then ok="UNEXPECTED"; bad=1; fi
     printf "%-26s %-9s exit %-3s (expected %s) PASS %-3s FAIL %-2s %-10s | %s\n" "$file" "$mode" "$status" "$expect" "$pass" "$fail" "$ok" "$summary"
